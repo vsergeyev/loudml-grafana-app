@@ -1,0 +1,26 @@
+{
+  "name": "grafana-loudml-app",
+  "version": "0.0.1",
+  "description": "Loud ML app: visualization panel for Grafana to connect with Loud ML AI",
+  "scripts": {
+    "build": "grafana-toolkit plugin:build",
+    "test": "grafana-toolkit plugin:test",
+    "dev": "grafana-toolkit plugin:dev",
+    "watch": "grafana-toolkit plugin:dev --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vsergeyev/loudml-grafana-app"
+  },
+  "author": "Volodymyr Sergeyev <vova.sergeyev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vsergeyev/loudml-grafana-app/issues",
+    "email": "vova.sergeyev@gmail.com"
+  },
+  "devDependencies": {
+    "@grafana/data": "next",
+    "@grafana/toolkit": "next",
+    "@grafana/ui": "next"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "panel",
+  "name": "Loud ML panel",
+  "id": "grafana-loudml-app",
+
+  "info": {
+    "description": "Loud ML app: Visualization panel for Grafana to connect with Loud ML AI",
+    "author": {
+      "name": "Volodymyr Sergeyev"
+    },
+    "keywords": ["LoudML", "ML", "AI"],
+    "logos": {
+      "small": "img/logo.png",
+      "large": "img/logo.png"
+    },
+    "links": [
+      {"name": "Website", "url": "https://github.com/vsergeyev/loudml-grafana-app"},
+      {"name": "License", "url": "https://github.com/vsergeyev/loudml-grafana-app/blob/master/LICENSE"}
+    ],
+    "screenshots": [],
+    "version": "0.0.1",
+    "updated": "02/28/2020"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "6.3.x",
+    "plugins": []
+  }
+}
