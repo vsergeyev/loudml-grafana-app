@@ -21,6 +21,7 @@
   "devDependencies": {
     "@grafana/data": "next",
     "@grafana/toolkit": "next",
-    "@grafana/ui": "next"
+    "@grafana/ui": "next",
+    "@grafana/runtime": "next"
   }
 }

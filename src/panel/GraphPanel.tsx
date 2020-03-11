@@ -2,7 +2,7 @@ import React from 'react';
 import { GraphWithLegend, Chart } from '@grafana/ui';
 import { PanelProps } from '@grafana/data';
 import { Options } from './types';
-import { GraphPanelController } from './GraphPanelController';
+import { GraphPanelController, CreateBaselineButton } from './GraphPanelController';
 import { LegendDisplayMode } from '@grafana/ui/src/components/Legend/Legend';
 
 interface GraphPanelProps extends PanelProps<Options> {}
@@ -39,6 +39,14 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
   };
   const { asTable, isVisible, ...legendProps } = legendOptions;
   return (
+    <>
+    <CreateBaselineButton
+      data={data}
+      timeRange={timeRange}
+      timeZone={timeZone}
+      panelOptions={options}
+    >
+    </CreateBaselineButton>
     <GraphPanelController
       data={data}
       timeZone={timeZone}
@@ -52,7 +60,7 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
             timeRange={timeRange}
             timeZone={timeZone}
             width={width}
-            height={height}
+            height={height-30} // TODO: -30 is to ajust graph height with CreateBaselineButton, need better calc
             displayMode={asTable ? LegendDisplayMode.Table : LegendDisplayMode.List}
             isLegendVisible={isVisible}
             sortLegendBy={legendOptions.sortBy}
@@ -68,5 +76,6 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
         );
       }}
     </GraphPanelController>
+    </>
   );
 };

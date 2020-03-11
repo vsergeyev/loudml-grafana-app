@@ -1,6 +1,7 @@
 import React from 'react';
-import { GraphSeriesToggler } from '@grafana/ui';
-import { PanelData, GraphSeriesXY, AbsoluteTimeRange, TimeZone } from '@grafana/data';
+import { GraphSeriesToggler, Button, Tooltip } from '@grafana/ui';
+import { PanelData, GraphSeriesXY, AbsoluteTimeRange, TimeZone, AppEvents } from '@grafana/data';
+import appEvents from 'grafana/app/core/app_events';
 
 import { getGraphSeriesModel } from './getGraphSeriesModel';
 import { Options, SeriesOptions } from './types';
@@ -144,5 +145,91 @@ export class GraphPanelController extends React.Component<GraphPanelControllerPr
         }}
       </GraphSeriesToggler>
     );
+  }
+}
+
+export class LoudMLTooltip extends React.Component {
+  constructor(props: any) {
+    super(props);
+    this.data = props.data;
+
+    window.console.log(props);
+  }
+
+  formatGroupBy(value: any) {
+    return value.map(o => [o.type, o.params].join(': ')).join(', ')
+  }
+
+  render () {
+    const feature = (
+      (
+        this.data.series
+        &&this.data.series.length===1
+        &&this.data.series[0].name
+      )
+    )|| 'Select one field'
+
+    const interval = (
+      (
+        this.data.request.targets
+        &&this.data.request.targets===1
+        &&this.data.request.targets[0].groupBy
+        &&this.formatGroupBy(this.data.request.targets[0].groupBy)
+      )
+    )|| 'Select a \'Group by\' value'
+
+    return (
+      <div>
+        <div>Use your current data selection to baseline normal metric behavior using a machine learning task.</div>
+        <div>This will create a new model, and run training to fit the baseline to your data.</div>
+        <div>You can visualise the baseline, and forecast future data using the Loud ML tab on the left panel once training is completed.</div>
+        <br />
+        <b>Feature:</b>
+        <code>{feature}</code>
+        <br />
+        <b>groupBy bucket interval:</b>
+        <code>{interval}</code>
+      </div>
+    )
+  }
+}
+
+export class CreateBaselineButton extends React.Component {
+  constructor(props: any) {
+    super(props);
+
+    this.data = props.data;
+
+    window.console.log(props);
+  }
+
+  onCreateBaselineClick() {
+    window.console.log(this);
+
+    const ds = this.props.panelOptions.datasourceOptions.datasource;
+
+    if (!ds) {
+      appEvents.emit(AppEvents.alertError, ['Please choose Loud ML Server in panel settings']);
+      return
+    }
+
+    appEvents.emit(AppEvents.alertSuccess, ['Model has been created on Loud ML server']);
+  }
+
+  render () {
+    const data = this.data;
+    return(
+      <>
+      <Button size="sm" className="btn btn-secondary" onClick={this.onCreateBaselineClick.bind(this)}>
+        <i className="fa fa-graduation-cap fa-fw"></i>
+        Create Baseline
+      </Button>
+      <Tooltip placement="top" content={<LoudMLTooltip data={data} />}>
+        <span className="gf-form-help-icon">
+          <i className="fa fa-info-circle" />
+        </span>
+      </Tooltip>
+      </>
+    )
   }
 }

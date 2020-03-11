@@ -1,6 +1,6 @@
 import { LegendOptions, GraphTooltipOptions } from '@grafana/ui';
 import { GraphLegendEditorLegendOptions } from './GraphLegendEditor';
-import { YAxis, ReducerID, FieldDisplayOptions, ThresholdsMode } from '@grafana/data';
+import { YAxis, ReducerID, FieldDisplayOptions, ThresholdsMode, DataSourceSelectItem } from '@grafana/data';
 
 export const standardFieldDisplayOptions: FieldDisplayOptions = {
   values: false,
@@ -29,6 +29,11 @@ export interface GraphOptions {
   showPoints: boolean;
 }
 
+export interface GraphDatasourceOptions {
+  datasource?: string;
+  // datasource?: DataSourceSelectItem;
+}
+
 export interface Options {
   graph: GraphOptions;
   legend: LegendOptions & GraphLegendEditorLegendOptions;
@@ -37,6 +42,7 @@ export interface Options {
   };
   fieldOptions: FieldDisplayOptions;
   tooltipOptions: GraphTooltipOptions;
+  datasourceOptions: GraphDatasourceOptions;
 }
 
 export const defaults: Options = {
@@ -53,4 +59,5 @@ export const defaults: Options = {
   series: {},
   fieldOptions: { ...standardFieldDisplayOptions },
   tooltipOptions: { mode: 'single' },
+  datasourceOptions: { datasource: '' }
 };

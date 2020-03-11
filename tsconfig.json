@@ -2,8 +2,25 @@
   "extends": "./node_modules/@grafana/toolkit/src/config/tsconfig.plugin.json",
   "include": ["src", "types"],
   "compilerOptions": {
+    "checkJs": false,
     "rootDir": "./src",
     "baseUrl": "./src",
-    "typeRoots": ["./node_modules/@types"]
-  }
+    "typeRoots": ["./node_modules/@types"],
+    "skipLibCheck": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": false,
+    "noImplicitUseStrict": false,
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "baseUrl": "./src",
+    "allowUnreachableCode": true,
+    "paths": {
+      "@": ["."]
+    }
+  },
+  "linterOptions": {
+    "exclude": ["./dist/*", "./node_modules/*"]
+  },
+  "exclude": ["node_modules"],
 }
