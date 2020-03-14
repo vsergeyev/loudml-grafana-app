@@ -36,3 +36,15 @@ export const DEFAULT_FEATURE = {
     anomaly_type: 'low_high',
     match_all: [],
 }
+
+export const MIN_INTERVAL_SECOND = 5
+
+export const MIN_INTERVAL_UNIT = `${MIN_INTERVAL_SECOND}s`
+
+export const MAX_INTERVAL_SECOND = 60
+
+export const MAX_INTERVAL_UNIT = `${MAX_INTERVAL_SECOND}s`
+
+export const MIN_SPAN = 10
+
+export const MAX_SPAN = 100

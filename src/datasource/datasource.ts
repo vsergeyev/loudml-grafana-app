@@ -1,28 +1,18 @@
-import { DataSourceApi, DataSourceInstanceSettings } from '@grafana/data';
-import { DataQuery, DataSourceJsonData } from '@grafana/data';
-
 import { BackendSrv } from 'grafana/app/core/services/backend_srv';
 
 import LoudMLAPI from './loudml_api';
-import { LoudMLQuery, LoudMLOptions } from './types';
 
-export class LoudMLDatasource extends DataSourceApi<LoudMLQuery, LoudMLOptions> {
+
+export class LoudMLDatasource {
   private loudml: LoudMLAPI;
 
-  type: string;
-  name: string;
-  bucket: string;
+  jsonData: any;
 
   /** @ngInject */
-  constructor(instanceSettings: DataSourceInstanceSettings<LoudMLOptions>, backendSrv: BackendSrv) {
-    super(instanceSettings);
+  constructor(instanceSettings: any, backendSrv: BackendSrv) {
+    // window.console.log("instanceSettings", instanceSettings);
 
-    this.type = 'loudml-datasource';
-    this.name = instanceSettings.name;
-
-    // window.console.log(instanceSettings);
-
-    this.bucket = instanceSettings.database;
+    this.bucket = (instanceSettings.jsonData || {}).bucket;
     this.loudml = new LoudMLAPI(instanceSettings, backendSrv);
   }
 
@@ -39,7 +29,7 @@ export class LoudMLDatasource extends DataSourceApi<LoudMLQuery, LoudMLOptions> 
       : { status: 'error', message: response.error };
   }
 
-  // metricFindQuery(query: string, options?: any) {
-  //   return [];
-  // }
+  metricFindQuery(options: any) {
+    return [];
+  }
 }

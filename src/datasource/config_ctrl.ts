@@ -13,16 +13,19 @@ export class LoudMLConfigCtrl {
     { key: 'direct', value: 'Browser' }
   ];
 
+  current: any;
+
   public showAccessHelp = false;
   public modelsList = [];
   public jobsList = [];
 
   constructor(private $scope: any) {
+    // window.console.log($scope);
+
     if(this.$scope.current === undefined) {
       this.$scope.current = {
         url: '',
         access: 'proxy',
-        bucket: 'aaa',
       };
     }
   }
