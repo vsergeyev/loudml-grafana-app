@@ -16,12 +16,16 @@ import {
   MODEL_TYPE_LIST,
   DEFAULT_MODEL,
   DEFAULT_FEATURE,
+  DEFAULT_START_OPTIONS,
   MIN_INTERVAL_SECOND,
   MIN_INTERVAL_UNIT,
   MAX_INTERVAL_SECOND,
   MAX_INTERVAL_UNIT,
   MIN_SPAN,
-  MAX_SPAN
+  MAX_SPAN,
+  DEFAULT_ANOMALY_TYPE,
+  ANOMALY_HOOK_NAME,
+  ANOMALY_HOOK
 } from '../datasource/types';
 
 
@@ -273,6 +277,11 @@ export class CreateBaselineButton extends React.Component {
     this.data = props.data;
 
     window.console.log('CreateBaselineButton init', props);
+  }
+
+  componentDidUpdate(prevProps) {
+    this.data = this.props.data;
+    window.console.log('BaselineButton update', this.data);
   }
 
   isValid() {

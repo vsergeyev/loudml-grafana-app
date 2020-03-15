@@ -37,6 +37,12 @@ export const DEFAULT_FEATURE = {
     match_all: [],
 }
 
+export const DEFAULT_START_OPTIONS = {
+    output_bucket: 'loudml',
+    save_output_data: true,
+    flag_abnormal_data: true,
+}
+
 export const MIN_INTERVAL_SECOND = 5
 
 export const MIN_INTERVAL_UNIT = `${MIN_INTERVAL_SECOND}s`
@@ -48,3 +54,21 @@ export const MAX_INTERVAL_UNIT = `${MAX_INTERVAL_SECOND}s`
 export const MIN_SPAN = 10
 
 export const MAX_SPAN = 100
+
+export const DEFAULT_ANOMALY_TYPE = [
+    { text: 'low', value: 'low', },
+    { text: 'high', value: 'high', },
+    { text: 'low/high', value: 'low_high', }
+]
+
+export const ANOMALY_HOOK_NAME = 'add_annotation'
+
+export const ANOMALY_HOOK = {
+    "type": "annotations",
+    "name": ANOMALY_HOOK_NAME,
+    "config": {
+        "id": null,
+        "type": "loudml",
+        "bucket": null,
+    },
+}
