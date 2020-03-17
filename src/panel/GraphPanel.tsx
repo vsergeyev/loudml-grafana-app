@@ -67,6 +67,7 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
             sortLegendDesc={legendOptions.sortDesc}
             onSeriesToggle={onSeriesToggle}
             onHorizontalRegionSelected={onHorizontalRegionSelected}
+            onClick={onHorizontalRegionSelected}
             {...graphProps}
             {...legendProps}
             {...controllerApi}

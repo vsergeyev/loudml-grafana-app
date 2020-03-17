@@ -3,7 +3,7 @@ import moment from 'moment'
 
 import { GraphSeriesToggler, Button, Tooltip } from '@grafana/ui';
 import { PanelData, GraphSeriesXY, AbsoluteTimeRange, TimeZone, AppEvents } from '@grafana/data';
-import { getDataSourceSrv } from '@grafana/runtime';
+import { getDataSourceSrv, getBackendSrv } from '@grafana/runtime';
 import appEvents from 'grafana/app/core/app_events';
 
 import { getGraphSeriesModel } from './getGraphSeriesModel';
@@ -273,15 +273,13 @@ export class LoudMLTooltip extends React.Component {
 export class CreateBaselineButton extends React.Component {
   constructor(props: any) {
     super(props);
-
     this.data = props.data;
-
     window.console.log('CreateBaselineButton init', props);
   }
 
   componentDidUpdate(prevProps) {
     this.data = this.props.data;
-    window.console.log('BaselineButton update', this.data);
+    // window.console.log('BaselineButton update', this.data);
   }
 
   isValid() {
@@ -416,54 +414,123 @@ export class CreateBaselineButton extends React.Component {
 
     const source = this.data.request.targets[0];
     const fields = [source];
+    const loudml = this.ds.loudml;
 
-    const name = [
-            this.ds.bucket,
-            source.measurement,
-            this._formatSelect(source.select[0]),
-            this._formatTags(source.tags),
-            this._formatTime(source.groupBy),
-        ].join('_')
+    this.getDatasource(source.datasource).then(result => {
+      this.datasource = result;
+      window.console.log("getDatasource", this.datasource);
 
-    // Group By Value – [{params: ["5m"], type: "time"}, {params: ["linear"], type: "fill"}]
-    // Let parse a "5m" time from it
-    const time = this._get_time(source.groupBy);
+      // TODO: find a way to pass all this.datasource connection params to Loud ML server
+      // This will allow to auto create bucket to store ML Model training results
 
-    window.console.log("Model Name", name);
-    window.console.log("Model Time", time);
-    window.console.log("Model Interval", this.normalizeInterval(time));
-    window.console.log("Model Span", this.normalizeSpan(time));
+      // this.ds.loudml.createAndGetBucket(
+      //   this.datasource.database,
+      //   source.policy,
+      //   source.measurement,
+      //   this.datasource
+      // ).then(result => {
+      //     const bucket = result;
+          const bucket = this.props.panelOptions.datasourceOptions.input_bucket;
+          window.console.log("Input Bucket", bucket);
 
-    const model = {
-        ...DEFAULT_MODEL,
-        max_evals: 10,
-        name: name,
-        interval: this.normalizeInterval(time),
-        span: this.normalizeSpan(time),
-        default_bucket: this.ds.bucket,
-        bucket_interval: time,
-        features: fields.map(
-            (field) => ({
-                    name: this._formatSelect(field.select[0]),
-                    measurement: field.measurement,
-                    field: this._get_feature(field.select[0]),
-                    metric: this._get_func(field.select[0]),
-                    io: 'io',
-                    default: this._get_fill(source.groupBy),
-                    match_all: field.tags.map(
-                        (tag) => ({
-                                tag: tag.key,
-                                value: tag.value,
-                            })
-                        ),
-                })
-            ),
-    }
+          const name = [
+              this.datasource.database,
+              source.measurement,
+              this._formatSelect(source.select[0]),
+              this._formatTags(source.tags),
+              this._formatTime(source.groupBy),
+          ].join('_')
 
-    window.console.log(model)
+          window.console.log("New ML Model name", name)
+
+          // Group By Value – [{params: ["5m"], type: "time"}, {params: ["linear"], type: "fill"}]
+          // Let parse a "5m" time from it
+          const time = this._get_time(source.groupBy);
+          const model = {
+              ...DEFAULT_MODEL,
+              max_evals: 10,
+              name: name,
+              interval: this.normalizeInterval(time),
+              span: this.normalizeSpan(time),
+              default_bucket: bucket, //bucket.name - if we will use createAndGetBucket()
+              bucket_interval: time,
+              features: fields.map(
+                  (field) => ({
+                          name: this._formatSelect(field.select[0]),
+                          measurement: field.measurement,
+                          field: this._get_feature(field.select[0]),
+                          metric: this._get_func(field.select[0]),
+                          io: 'io',
+                          default: this._get_fill(source.groupBy),
+                          match_all: field.tags.map(
+                              (tag) => ({
+                                      tag: tag.key,
+                                      value: tag.value,
+                                  })
+                              ),
+                      })
+                  ),
+          }
+
+          window.console.log("ML Model", model)
+
+          try {
+            loudml.createModel(model).then(result => {
+              window.console.log("createModel", result)
+              loudml.createModelHook(model.name, loudml.createHook(ANOMALY_HOOK, model.default_bucket)).then(result => {
+                window.console.log("createModelHook", result)
+                // loudml.modelCreated(model)
+                appEvents.emit(AppEvents.alertSuccess, ['Model has been created on Loud ML server']);
+
+                try {
+                  loudml.trainModel(model.name, this.data).then(result => {
+                    window.console.log("trainModel", result)
+                    appEvents.emit(AppEvents.alertSuccess, ['Model train job started on Loud ML server']);
+                  }).catch(err => {
+                    window.console.log("trainModel error", err)
+                    appEvents.emit(AppEvents.alertError, ['Model train job error', err.data.message]);
+                    return
+                  });
+                } catch (error) {
+                  console.error(error)
+                  appEvents.emit(AppEvents.alertError, ['Model train job error', err.message]);
+                }
+
+              }).catch(err => {
+                window.console.log("createModelHook error", err)
+                appEvents.emit(AppEvents.alertError, [err.message]);
+                return
+              });
+            }).catch(err => {
+              window.console.log("createModel error", err)
+              appEvents.emit(AppEvents.alertError, ["Model create error", err.data]);
+              return
+            });
+          } catch (err) {
+            console.error(err)
+            appEvents.emit(AppEvents.alertError, ['Model create error', err.message]);
+            return
+          }
+        // })
+
+    }).catch(err => {
+      console.error(err);
+      appEvents.emit(AppEvents.alertError, [err.message]);
+      return
+    });
   }
 
-  async getDatasource() {
+  async getDatasource(value: any) {
+    // TODO: Consider to use this to get proper URL, username
+    // getBackendSrv().get('api/datasources/' + 6)
+    // .then(ds => {
+    //   window.console.log(ds)
+    // })
+
+    return (await getDataSourceSrv().loadDatasource(value));
+  }
+
+  async getLoudMLDatasource() {
     return (await getDataSourceSrv().loadDatasource(this.dsName)) as LoudMLDatasource;
   }
 
@@ -477,26 +544,25 @@ export class CreateBaselineButton extends React.Component {
       return
     }
 
-    this.getDatasource().then(result => {
+    this.getLoudMLDatasource().then(result => {
         this.ds = result;
-        window.console.log(this.ds);
+        window.console.log("getLoudMLDatasource", this.ds);
 
-        if (!this.ds.bucket) {
-            appEvents.emit(AppEvents.alertError, ['Please choose Output bucket in Loud ML datasource settings']);
-            return
-        }
+        // if (!this.ds.bucket) {
+        //     appEvents.emit(AppEvents.alertError, ['Please choose Output bucket in Loud ML datasource settings']);
+        //     return
+        // }
 
         if (this.isValid()) {
           this._createAndTrainModel();
-          appEvents.emit(AppEvents.alertSuccess, ['Model has been created on Loud ML server']);
         } else {
           appEvents.emit(AppEvents.alertError, ['In Query settings please choose One metric; Group by != auto; Fill != linear']);
         }
 
     }).catch(err => {
-      window.console.log(err);
-        appEvents.emit(AppEvents.alertError, [err]);
-        return
+      window.console.log("Error getting Loud ML datasource", err);
+      appEvents.emit(AppEvents.alertError, [err.message]);
+      return
     });
   }
 

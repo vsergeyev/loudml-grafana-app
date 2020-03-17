@@ -31,7 +31,8 @@ export interface GraphOptions {
 
 export interface GraphDatasourceOptions {
   datasource?: string;
-  // datasource?: DataSourceSelectItem;
+  input_bucket?: string;
+  output_bucket?: string;
 }
 
 export interface Options {
@@ -59,5 +60,9 @@ export const defaults: Options = {
   series: {},
   fieldOptions: { ...standardFieldDisplayOptions },
   tooltipOptions: { mode: 'single' },
-  datasourceOptions: { datasource: '' }
+  datasourceOptions: {
+    datasource: '',
+    input_bucket: '',
+    output_bucket: 'loudml'
+  }
 };
