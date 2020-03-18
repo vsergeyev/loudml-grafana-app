@@ -44,6 +44,7 @@ export interface Options {
   fieldOptions: FieldDisplayOptions;
   tooltipOptions: GraphTooltipOptions;
   datasourceOptions: GraphDatasourceOptions;
+  modelName?: string;
 }
 
 export const defaults: Options = {
@@ -64,5 +65,6 @@ export const defaults: Options = {
     datasource: '',
     input_bucket: '',
     output_bucket: 'loudml'
-  }
+  },
+  modelName: ''
 };

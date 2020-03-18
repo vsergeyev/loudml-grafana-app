@@ -207,7 +207,7 @@ export class LoudMLTooltip extends React.Component {
     const feature = (
       (
         this.data.request.targets
-        &&this.data.request.targets.length===1
+        // &&this.data.request.targets.length===1
         &&this.data.request.targets[0].select
         &&this.data.request.targets[0].select.length===1
         &&this.formatFeature(this.data.request.targets[0].select[0])
@@ -217,7 +217,7 @@ export class LoudMLTooltip extends React.Component {
     const interval = (
       (
         this.data.request.targets
-        &&this.data.request.targets.length===1
+        // &&this.data.request.targets.length===1
         &&this.data.request.targets[0].groupBy
         &&this.formatGroupBy(this.data.request.targets[0].groupBy)
       )
@@ -225,14 +225,14 @@ export class LoudMLTooltip extends React.Component {
 
     const fill_value = (
         this.data.request.targets
-        &&this.data.request.targets.length===1
+        // &&this.data.request.targets.length===1
         &&this.data.request.targets[0].groupBy
         &&this.formatFillValue(this.data.request.targets[0].groupBy)
     )|| 'Select a \'Fill\' value'
 
     const tags_value = (
         this.data.request.targets
-        &&this.data.request.targets.length===1
+        // &&this.data.request.targets.length===1
         &&this.data.request.targets[0].tags
         &&this.formatTags(this.data.request.targets[0].tags)
     )|| '(Optional) Select a \'Tag(s)\' in WHERE statement'
@@ -285,7 +285,7 @@ export class CreateBaselineButton extends React.Component {
   isValid() {
     return (
       this.data.request.targets
-      &&this.data.request.targets.length===1
+      // &&this.data.request.targets.length===1
       &&this.data.request.targets[0].select
       &&this.data.request.targets[0].select.length===1
     )
@@ -473,6 +473,8 @@ export class CreateBaselineButton extends React.Component {
           }
 
           window.console.log("ML Model", model)
+          this.props.panelOptions.modelName = name;
+          this.props.onOptionsChange(this.props.panelOptions);
 
           try {
             loudml.createModel(model).then(result => {
@@ -481,6 +483,9 @@ export class CreateBaselineButton extends React.Component {
                 window.console.log("createModelHook", result)
                 // loudml.modelCreated(model)
                 appEvents.emit(AppEvents.alertSuccess, ['Model has been created on Loud ML server']);
+
+                this.props.panelOptions.modelName = name;
+                this.props.onOptionsChange(this.props.panelOptions);
 
                 try {
                   loudml.trainModel(model.name, this.data).then(result => {
@@ -571,7 +576,7 @@ export class CreateBaselineButton extends React.Component {
     // window.console.log(this.isValid());
     return(
       <>
-      <Button className="btn btn-inverse" disabled={!this.isValid()}
+      <Button size="sm" className="btn btn-inverse" disabled={!this.isValid()}
         onClick={this.onCreateBaselineClick.bind(this)}>
         <i className="fa fa-graduation-cap fa-fw"></i>
         Create Baseline

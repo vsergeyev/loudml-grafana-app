@@ -112,6 +112,16 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
       datasourceOptions: { datasource, input_bucket, output_bucket },
     } = this.props.options;
 
+    // if (this.props.options.modelName) {
+    //   const model_block =
+    //     <div className="gf-form max-width-40">
+    //       <span className="gf-form-label width-10">ML Model</span>
+    //       <Input value={this.props.options.modelName} className="gf-form-input" type="text" />
+    //     </div>;
+    // } else {
+    //   const model_block = <></>;
+    // }
+
     return (
       <>
         <div className="section gf-form-group">

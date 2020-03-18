@@ -149,18 +149,20 @@
       <div class="table-panel-scroll">
         <table class="table-panel-table">
           <tbody>
-            <tr ng-repeat="model in ctrl.jobsList">
+            <tr ng-repeat="job in ctrl.jobsList">
                 <td>
-                  {{model.end_date}}
+                  {{job.model}}
                 </td>
                 <td>
-                  {{model.type}}
+                  {{job.start_date}}
                 </td>
                 <td>
-                  {{model.state}}
+                  {{job.type}}
                 </td>
                 <td>
-                  {{model.result || model.error}}
+                  {{job.state}}
+                  <br />
+                  {{job.error}}
                 </td>
             </tr>
           </tbody>

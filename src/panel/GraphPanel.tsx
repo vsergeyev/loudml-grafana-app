@@ -38,15 +38,30 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
     tooltipOptions,
   };
   const { asTable, isVisible, ...legendProps } = legendOptions;
+
+  if (options.modelName) {
+    const create_baseline_block =
+        <span className="panel-time-info">
+        ML Model: {options.modelName}
+        <a href="#"> <i class="fa fa-play"></i> Play</a>
+        <a href="#"> <i class="fa fa-clock-o"></i> Forecast</a>
+        </span>
+  } else {
+    const create_baseline_block =
+      <></>;
+  }
+
   return (
     <>
     <CreateBaselineButton
-      data={data}
-      timeRange={timeRange}
-      timeZone={timeZone}
-      panelOptions={options}
-    >
+        data={data}
+        timeRange={timeRange}
+        timeZone={timeZone}
+        panelOptions={options}
+        onOptionsChange={onOptionsChange}
+      >
     </CreateBaselineButton>
+    {create_baseline_block}
     <GraphPanelController
       data={data}
       timeZone={timeZone}
