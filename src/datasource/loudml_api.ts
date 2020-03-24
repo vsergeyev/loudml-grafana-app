@@ -1,5 +1,10 @@
+// Loud ML API class
+// Connects to Loud ML server
+//
+// https://loudml.io
+// http://github.com/regel/loudml
+
 import { BackendSrv } from 'grafana/app/core/services/backend_srv';
-// import { BackendSrv } from '@grafana/runtime';
 
 import {
   DEFAULT_LOUDML_RP,
@@ -66,10 +71,8 @@ export default class LoudMLAPI {
         password: source.password,
     }
 
-    // window.console.log("createAndGetBucket Settings", settings);
     await this._query('POST', '/buckets', settings)
     const response = await this._query('GET', `/buckets/${bucketName}`)
-    // window.console.log("createAndGetBucket Response", response);
 
     return response[0];
   }
@@ -87,6 +90,10 @@ export default class LoudMLAPI {
   createModel = async model => {
     // POST model JSON to /models
     return this._query('POST', '/models', model)
+  }
+
+  deleteModel = async name => {
+    return this._query('DELETE', `/models/${name}`)
   }
 
   createHook = (hook, bucket) => {
@@ -116,6 +123,18 @@ export default class LoudMLAPI {
     } = this.convertTimeRange(data.timeRange)
 
     return await this.trainAndStartModel(name, lower, upper)
+  }
+
+  startModel = async (name) => {
+    const params = {
+      ...DEFAULT_START_OPTIONS,
+    }
+    return this._query('POST', `/models/${name}/_start`, params, true)
+  }
+
+  stopModel = async (name) => {
+    const params = {}
+    return this._query('POST', `/models/${name}/_stop`, params, true)
   }
 
   convertTimeRange = timeRange => {

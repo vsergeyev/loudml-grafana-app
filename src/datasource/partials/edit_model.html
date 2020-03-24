@@ -1,0 +1,188 @@
+<div class="modal-body">
+    <div class="modal-header">
+        <h2 class="modal-header-title">
+            <i class="fa fa-info-circle"></i>
+            <span class="p-l-1">Loud ML Model</span>
+        </h2>
+
+        <a class="modal-header-close" ng-click="dismiss();">
+            <i class="fa fa-remove"></i>
+        </a>
+    </div>
+
+    <div class="modal-content">
+        <div class="gf-form-group">
+          <h3 class="page-heading">{{model.settings.name}}</h3>
+
+          <div class="gf-form max-width-40">
+            <span class="gf-form-label width-20">Model type</span>
+            <input
+              class="gf-form-input" type="text"
+              ng-model='model.settings.type'
+              min-length="0"
+              required
+              ng-blur=""
+            />
+          </div>
+
+          <div class="gf-form max-width-40">
+            <span class="gf-form-label width-20">Bucket</span>
+            <input
+              class="gf-form-input" type="text"
+              ng-model='model.settings.default_bucket'
+              min-length="0"
+              required
+              ng-blur=""
+            />
+          </div>
+
+          <div class="gf-form max-width-40">
+            <span class="gf-form-label width-20">Max training hyper-paramethers iterations</span>
+            <input
+              class="gf-form-input" type="text"
+              ng-model='model.settings.max_evals'
+              min-length="0"
+              required
+              ng-blur=""
+            />
+          </div>
+
+        </div>
+
+        <div class="gf-form-group">
+          <h3 class="page-heading">Parameters</h3>
+
+          <div class="gf-form max-width-40">
+            <span class="gf-form-label width-20">GroupdBy bucket interval</span>
+            <input
+              class="gf-form-input" type="text"
+              ng-model='model.settings.bucket_interval'
+              min-length="0"
+              required
+              ng-blur=""
+            />
+          </div>
+
+          <div class="gf-form max-width-40">
+            <span class="gf-form-label width-20">Span</span>
+            <input
+              class="gf-form-input" type="text"
+              ng-model='model.settings.span'
+              min-length="0"
+              required
+              ng-blur=""
+            />
+          </div>
+        </div>
+
+        <div class="gf-form-group">
+          <h3 class="page-heading">Features</h3>
+
+          <div class="gf-form-group" ng-repeat="feature in model.settings.features">
+            <h5>{{feature.name}}</h5>
+            <div class="gf-form-inline">
+              <div class="gf-form max-width-15">
+                <span class="gf-form-label width-8">Measurement</span>
+                <input
+                  class="gf-form-input" type="text"
+                  ng-model='feature.measurement'
+                  min-length="0"
+                  required
+                  ng-blur=""
+                />
+              </div>
+              <div class="gf-form max-width-15">
+                <span class="gf-form-label width-8">Field</span>
+                <input
+                  class="gf-form-input" type="text"
+                  ng-model='feature.field'
+                  min-length="0"
+                  required
+                  ng-blur=""
+                />
+              </div>
+            </div>
+            <div class="gf-form-inline">
+              <div class="gf-form max-width-15">
+                <span class="gf-form-label width-8">Metric</span>
+                <input
+                  class="gf-form-input" type="text"
+                  ng-model='feature.metric'
+                  min-length="0"
+                  required
+                  ng-blur=""
+                />
+              </div>
+              <div class="gf-form max-width-15">
+                <span class="gf-form-label width-8">Default</span>
+                <input
+                  class="gf-form-input" type="text"
+                  ng-model='feature.default'
+                  min-length="0"
+                  required
+                  ng-blur=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gf-form-group">
+          <h3 class="page-heading">Predictions</h3>
+
+          <div class="gf-form-inline">
+            <div class="gf-form max-width-15">
+              <span class="gf-form-label width-8">Interval</span>
+              <input
+                class="gf-form-input" type="text"
+                ng-model='model.settings.interval'
+                min-length="0"
+                required
+                ng-blur=""
+              />
+            </div>
+
+            <div class="gf-form max-width-15">
+              <span class="gf-form-label width-8">Offset</span>
+              <input
+                class="gf-form-input" type="text"
+                ng-model='model.settings.offset'
+                min-length="0"
+                required
+                ng-blur=""
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="gf-form-group">
+          <h3 class="page-heading">Anomalies</h3>
+
+          <div class="gf-form-inline">
+            <div class="gf-form max-width-15">
+              <span class="gf-form-label width-8">Min threshold</span>
+              <input
+                class="gf-form-input" type="text"
+                ng-model='model.settings.min_threshold'
+                min-length="0"
+                required
+                ng-blur=""
+              />
+            </div>
+
+            <div class="gf-form max-width-15">
+              <span class="gf-form-label width-8">Max threshold</span>
+              <input
+                class="gf-form-input" type="text"
+                ng-model='model.settings.max_threshold'
+                min-length="0"
+                required
+                ng-blur=""
+              />
+            </div>
+          </div>
+        </div>
+    </div>
+
+</div>
+

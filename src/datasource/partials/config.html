@@ -122,16 +122,37 @@
           <tbody>
             <tr ng-repeat="model in ctrl.modelsList">
                 <td>
-                  <a href="#" ng-click="ctrl.editModel('{{model.settings.name}}')">
+                  <a href="#" ng-click="ctrl.editModel(model.settings.name)">
                     <i class="fa fa-pencil fa-fw"></i>
                     {{model.settings.name}}
                   </a>
                 </td>
                 <td>
-                  Trained: {{model.state.trained}}
+                  <span ng-show="model.settings.run">Running.</span>
+                  <span ng-show="model.state.trained">Trained.</span>
+                  <span ng-hide="model.state.trained">Not trained.</span>
                 </td>
                 <td>
-                  <a href="#" ng-click="ctrl.deleteModel('{{model.settings.name}}')">
+                  <a href="#" ng-click="ctrl.startModel(model.settings.name)" ng-hide="model.settings.run">
+                    <i class="fa fa-play"></i> Play
+                  </a>
+
+                  <a href="#" ng-click="ctrl.stopModel(model.settings.name)" ng-show="model.settings.run">
+                    <i class="fa fa-pause"></i> Stop
+                  </a>
+                </td>
+                <td>
+                  <a href="#" ng-click="ctrl.trainModel(model.settings.name)">
+                    <i class="fa fa-clock-o"></i> Train
+                  </a>
+                </td>
+                <td>
+                  <a href="#" ng-click="ctrl.forecastModel(model.settings.name)">
+                    <i class="fa fa-clock-o"></i> Forecast
+                  </a>
+                </td>
+                <td>
+                  <a href="#" ng-click="ctrl.deleteModel(model.settings.name)">
                     <i class="fa fa-trash-o fa-fw"></i> Delete
                   </a>
                 </td>
