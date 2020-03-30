@@ -1,8 +1,9 @@
 import React from 'react';
 import { GraphWithLegend, Chart } from '@grafana/ui';
+import { GraphWithLegend2 } from './GraphWithLegend2';
 import { PanelProps } from '@grafana/data';
 import { Options } from './types';
-import { GraphPanelController, CreateBaselineButton } from './GraphPanelController';
+import { GraphPanelController, CreateBaselineButton, MLModelController } from './GraphPanelController';
 import { LegendDisplayMode } from '@grafana/ui/src/components/Legend/Legend';
 
 interface GraphPanelProps extends PanelProps<Options> {}
@@ -26,7 +27,7 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
   }
 
   const {
-    graph: { showLines, showBars, showPoints },
+    graph: { showLines, showBars, showPoints, isStacked, lineWidth },
     legend: legendOptions,
     tooltipOptions,
   } = options;
@@ -35,33 +36,41 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
     showBars,
     showLines,
     showPoints,
+    isStacked,
+    lineWidth,
     tooltipOptions,
   };
   const { asTable, isVisible, ...legendProps } = legendOptions;
 
-  if (options.modelName) {
-    const create_baseline_block =
-        <span className="panel-time-info">
-        ML Model: {options.modelName}
-        <a href="#"> <i class="fa fa-play"></i> Play</a>
-        <a href="#"> <i class="fa fa-clock-o"></i> Forecast</a>
-        </span>
-  } else {
-    const create_baseline_block =
-      <></>;
-  }
+  // let create_baseline_block = <></>;
+
+  // if (options.modelName) {
+  //   create_baseline_block =
+  //       <span className="panel-time-info">
+  //       ML Model: {options.modelName}
+  //       <a href="#"> <i class="fa fa-play"></i> Play</a>
+  //       <a href="#"> <i class="fa fa-clock-o"></i> Forecast</a>
+  //       </span>
+  // }
 
   return (
     <>
     <CreateBaselineButton
-        data={data}
-        timeRange={timeRange}
-        timeZone={timeZone}
-        panelOptions={options}
-        onOptionsChange={onOptionsChange}
-      >
-    </CreateBaselineButton>
-    {create_baseline_block}
+      data={data}
+      timeRange={timeRange}
+      timeZone={timeZone}
+      panelOptions={options}
+      onOptionsChange={onOptionsChange}
+      />
+
+    <MLModelController
+      data={data}
+      timeRange={timeRange}
+      timeZone={timeZone}
+      panelOptions={options}
+      onOptionsChange={onOptionsChange}
+      />
+
     <GraphPanelController
       data={data}
       timeZone={timeZone}
@@ -71,7 +80,7 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
     >
       {({ onSeriesToggle, onHorizontalRegionSelected, ...controllerApi }) => {
         return (
-          <GraphWithLegend
+          <GraphWithLegend2
             timeRange={timeRange}
             timeZone={timeZone}
             width={width}
@@ -88,7 +97,7 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
             {...controllerApi}
           >
             <Chart.Tooltip mode={tooltipOptions.mode} />
-          </GraphWithLegend>
+          </GraphWithLegend2>
         );
       }}
     </GraphPanelController>

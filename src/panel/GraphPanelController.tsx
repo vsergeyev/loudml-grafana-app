@@ -70,6 +70,9 @@ export class GraphPanelController extends React.Component<GraphPanelControllerPr
         props.options.fieldOptions
       ),
     };
+
+    this.panelId = props.data.request.panelId;
+    this.dashboardId = props.data.request.dashboardId;
   }
 
   static getDerivedStateFromProps(props: GraphPanelControllerProps, state: GraphPanelControllerState) {
@@ -158,6 +161,8 @@ export class GraphPanelController extends React.Component<GraphPanelControllerPr
         {({ onSeriesToggle, toggledSeries }) => {
           return children({
             series: toggledSeries,
+            panelId: this.panelId,
+            dashboardId: this.dashboardId,
             onSeriesColorChange: this.onSeriesColorChange,
             onSeriesAxisToggle: this.onSeriesAxisToggle,
             onToggleSort: this.onToggleSort,
@@ -171,6 +176,8 @@ export class GraphPanelController extends React.Component<GraphPanelControllerPr
 }
 
 export class LoudMLTooltip extends React.Component {
+  data: any;
+
   constructor(props: any) {
     super(props);
     this.data = props.data;
@@ -271,6 +278,11 @@ export class LoudMLTooltip extends React.Component {
 }
 
 export class CreateBaselineButton extends React.Component {
+  data: any;
+  dsName: string;
+  ds: LoudMLDatasource;
+  datasource: any;
+
   constructor(props: any) {
     super(props);
     this.data = props.data;
@@ -379,6 +391,25 @@ export class CreateBaselineButton extends React.Component {
     return Math.max(MIN_SPAN, Math.min(Math.ceil(86400/duration), MAX_SPAN))
   }
 
+  _trainModel(name: string) {
+    const loudml = this.ds.loudml;
+
+    try {
+      loudml.trainModel(name, this.data).then(result => {
+        window.console.log("trainModel", result)
+        appEvents.emit(AppEvents.alertSuccess, ['Model train job started on Loud ML server']);
+      }).catch(err => {
+        window.console.log("trainModel error", err)
+        appEvents.emit(AppEvents.alertError, ['Model train job error', err.data.message]);
+        return
+      });
+    } catch (error) {
+      console.error(error)
+      appEvents.emit(AppEvents.alertError, ['Model train job error', err.message]);
+    }
+
+  }
+
   _createAndTrainModel() {
     // Model Example:
     // {
@@ -472,50 +503,43 @@ export class CreateBaselineButton extends React.Component {
                   ),
           }
 
-          window.console.log("ML Model", model)
+          // window.console.log("ML Model", model)
           this.props.panelOptions.modelName = name;
           this.props.onOptionsChange(this.props.panelOptions);
 
-          try {
+          loudml.getModel(name).then(result => {
+            // Model already exists
+            // Let re-Train it on current dataframe
+            // window.console.log("getModel", result);
+            this.props.panelOptions.modelName = name;
+            this.props.onOptionsChange(this.props.panelOptions);
+            this._trainModel(name);
+
+          }).catch(err => {
+            // New Model
+            // Create, train
             loudml.createModel(model).then(result => {
-              window.console.log("createModel", result)
+              // window.console.log("createModel", result);
               loudml.createModelHook(model.name, loudml.createHook(ANOMALY_HOOK, model.default_bucket)).then(result => {
-                window.console.log("createModelHook", result)
+                // window.console.log("createModelHook", result);
                 // loudml.modelCreated(model)
                 appEvents.emit(AppEvents.alertSuccess, ['Model has been created on Loud ML server']);
 
                 this.props.panelOptions.modelName = name;
                 this.props.onOptionsChange(this.props.panelOptions);
-
-                try {
-                  loudml.trainModel(model.name, this.data).then(result => {
-                    window.console.log("trainModel", result)
-                    appEvents.emit(AppEvents.alertSuccess, ['Model train job started on Loud ML server']);
-                  }).catch(err => {
-                    window.console.log("trainModel error", err)
-                    appEvents.emit(AppEvents.alertError, ['Model train job error', err.data.message]);
-                    return
-                  });
-                } catch (error) {
-                  console.error(error)
-                  appEvents.emit(AppEvents.alertError, ['Model train job error', err.message]);
-                }
+                this._trainModel(name);
 
               }).catch(err => {
-                window.console.log("createModelHook error", err)
+                window.console.log("createModelHook error", err);
                 appEvents.emit(AppEvents.alertError, [err.message]);
                 return
               });
             }).catch(err => {
-              window.console.log("createModel error", err)
+              window.console.log("createModel error", err);
               appEvents.emit(AppEvents.alertError, ["Model create error", err.data]);
               return
             });
-          } catch (err) {
-            console.error(err)
-            appEvents.emit(AppEvents.alertError, ['Model create error', err.message]);
-            return
-          }
+          });
         // })
 
     }).catch(err => {
@@ -540,7 +564,7 @@ export class CreateBaselineButton extends React.Component {
   }
 
   onCreateBaselineClick() {
-    window.console.log(this);
+    // window.console.log(this);
 
     this.dsName = this.props.panelOptions.datasourceOptions.datasource;
 
@@ -551,7 +575,7 @@ export class CreateBaselineButton extends React.Component {
 
     this.getLoudMLDatasource().then(result => {
         this.ds = result;
-        window.console.log("getLoudMLDatasource", this.ds);
+        // window.console.log("getLoudMLDatasource", this.ds);
 
         // if (!this.ds.bucket) {
         //     appEvents.emit(AppEvents.alertError, ['Please choose Output bucket in Loud ML datasource settings']);
@@ -588,5 +612,159 @@ export class CreateBaselineButton extends React.Component {
       </Tooltip>
       </>
     )
+  }
+}
+
+export class MLModelController extends React.Component {
+  is_trained: bool;
+  is_running: bool;
+  model: any;
+  modelName: string;
+  dsName: string;
+  loudml: any;
+
+  constructor(props: any) {
+    super(props);
+    window.console.log('MLModelController init', props);
+    this.getLoudMLDatasource();
+  }
+
+  componentDidUpdate(prevProps) {
+    window.console.log('MLModelController update', this.props);
+    this.getLoudMLDatasource();
+  }
+
+  componentDidMount() {
+    this.intervalId = setInterval(this.getModel.bind(this), 15000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
+  },
+
+  getModel() {
+    if (!this.loudml && this.props.panelOptions.modelName) {
+      return
+    }
+
+    this.modelName = this.props.panelOptions.modelName;
+
+    this.loudml.getModel(this.modelName).then(result => {
+      window.console.log("ML getModel", result);
+      this.model = result[0];
+      // this.setState({});
+      this.props.onOptionsChange(this.props.panelOptions);
+    })
+  }
+
+  getLoudMLDatasource() {
+    if (this.dsName == this.props.panelOptions.datasourceOptions.datasource) {
+      return
+    }
+
+    this.dsName = this.props.panelOptions.datasourceOptions.datasource;
+
+    if (!this.dsName) {
+      return
+    }
+
+    getDataSourceSrv().loadDatasource(this.dsName).then(result => {
+      this.ds = result;
+      window.console.log("ML getLoudMLDatasource", this.ds);
+      this.loudml = this.ds.loudml;
+      this.getModel();
+    }).catch(err => {
+      window.console.log("Error getting Loud ML datasource", err);
+      return
+    });
+  }
+
+  toggleModelRun() {
+    if (this.model && this.model.settings && this.model.settings.run) {
+      this.loudml.stopModel(this.modelName).then(result => {
+        this.model.settings.run = false;
+        this.props.onOptionsChange(this.props.panelOptions);
+      });
+    } else {
+      this.loudml.startModel(this.modelName).then(result => {
+        this.model.settings.run = true;
+        this.props.onOptionsChange(this.props.panelOptions);
+      });
+    }
+  }
+
+  trainModel() {
+    if (this.model) {
+      try {
+        this.loudml.trainModel(this.modelName, this.props.data).then(result => {
+          window.console.log("ML trainModel", result)
+          appEvents.emit(AppEvents.alertSuccess, ['Model train job started on Loud ML server']);
+        }).catch(err => {
+          window.console.log("ML trainModel error", err)
+          appEvents.emit(AppEvents.alertError, ['Model train job error', err.data.message]);
+          return
+        });
+      } catch (error) {
+        console.error(error)
+        appEvents.emit(AppEvents.alertError, ['Model train job error', err.message]);
+      }
+    }
+  }
+
+  forecastModel() {
+    if (this.model) {
+      try {
+        this.loudml.trainModel(this.modelName, this.props.data).then(result => {
+          window.console.log("ML forecastModel", result)
+          appEvents.emit(AppEvents.alertSuccess, ['Model forecast job started on Loud ML server']);
+        }).catch(err => {
+          window.console.log("ML forecastModel error", err)
+          appEvents.emit(AppEvents.alertError, ['Model forecast job error', err.data.message]);
+          return
+        });
+      } catch (error) {
+        console.error(error)
+        appEvents.emit(AppEvents.alertError, ['Model forecast job error', err.message]);
+      }
+    }
+  }
+
+  render () {
+    const play_btn = (
+      this.model
+      && this.model.settings
+      && this.model.settings.run
+      && <a href="#" onClick={this.toggleModelRun.bind(this)}> <i className="fa fa-pause"></i> Stop</a>
+    ) || <a href="#" onClick={this.toggleModelRun.bind(this)}> <i className="fa fa-play"></i> Play</a>;
+
+    let model_trained = (
+      this.model
+      && this.model.state
+      && this.model.state.trained
+      && "Trained."
+    ) || "Not trained.";
+
+    if (this.model && this.model.training && (this.model.training.state == "running")) {
+      model_trained = "Training...";
+    }
+
+    if (this.modelName) {
+      return(
+        <span className="panel-time-info">
+          ML Model: {this.modelName} <span className="label">{model_trained}</span>
+          {play_btn}
+          <a href="#" onClick={this.trainModel.bind(this)}> <i className="fa fa-clock-o"></i> Train</a>
+          <a href="#" onClick={this.forecastModel.bind(this)}> <i className="fa fa-clock-o"></i> Forecast</a>
+
+          <Tooltip placement="top" content="Current time range selection will be used to Train / Forecast">
+            <span className="gf-form-help-icon">
+              <i className="fa fa-info-circle" />
+            </span>
+          </Tooltip>
+        </span>
+      )
+    } else {
+      return null
+    }
   }
 }

@@ -19,9 +19,17 @@
     "email": "vova.sergeyev@gmail.com"
   },
   "devDependencies": {
-    "@grafana/data": "next",
-    "@grafana/toolkit": "next",
-    "@grafana/ui": "next",
-    "@grafana/runtime": "next"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "slate": ">=0.55.0",
+    "@grafana/data": "^6.7.1",
+    "@grafana/runtime": "^6.7.1",
+    "@grafana/toolkit": "^6.7.1",
+    "@grafana/ui": "^6.7.1",
+    "@babel/core": "^7.0.0-0",
+    "slate-react": ">=0.22.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.8.3"
+  },
+  "dependencies": {
   }
 }

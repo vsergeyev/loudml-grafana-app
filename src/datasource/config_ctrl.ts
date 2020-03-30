@@ -39,22 +39,15 @@ export class LoudMLConfigCtrl {
 
   async refreshModels() {
     window.console.log("REFRESH MODELS!");
-    // window.console.log(this);
-    // window.console.log(this.$scope);
 
-    // this.$scope.$apply();
-
-    this.$scope.ctrl.modelsList = [{'settings': {'name': 'Loading...'}, 'state': {'trained': ''}}];
+    this.$scope.ctrl.modelsList = [{'is_loading': true, 'settings': {'name': 'Loading...'}, 'state': {'trained': ''}}];
 
     const ds = (await getDataSourceSrv().loadDatasource(this.current.name)) as LoudMLDatasource;
-    // window.console.log(ds);
 
     try {
       ds.query({'url': '/models'}).then(
         (response) => {
-          // window.console.log(this);
           this.$scope.ctrl.modelsList = response;
-          //window.console.log(this.$scope.ctrl.modelsList);
           this.$scope.$apply();
         }
       );
@@ -69,8 +62,6 @@ export class LoudMLConfigCtrl {
     } catch(err) {
       console.error(err);
     }
-
-    //window.console.log(this.$scope.ctrl.modelsList);
   }
 
   addModel() {

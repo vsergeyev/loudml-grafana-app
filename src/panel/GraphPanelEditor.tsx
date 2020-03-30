@@ -27,7 +27,7 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
 
   constructor(props) {
     super(props)
-    window.console.log("GraphPanelEditor", props);
+    // window.console.log("GraphPanelEditor", props);
   }
 
   datasourcesList = function() {
@@ -95,6 +95,16 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
     this.onGraphOptionsChange({ showPoints: !this.props.options.graph.showPoints });
   };
 
+  onToggleisStacked = () => {
+    this.onGraphOptionsChange({ isStacked: !this.props.options.graph.isStacked });
+  }
+
+  onChangeLineWidth = (value: any) => {
+    this.onGraphOptionsChange({ lineWidth: value.value });
+    // this.props.options.graph.lineWidth = value.value;
+    this.setState({ value: value.value });
+  };
+
   onDefaultsChange = (field: FieldConfig) => {
     this.props.onOptionsChange({
       ...this.props.options,
@@ -107,7 +117,7 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
 
   render() {
     const {
-      graph: { showBars, showPoints, showLines },
+      graph: { showBars, showPoints, showLines, isStacked, lineWidth },
       tooltipOptions: { mode },
       datasourceOptions: { datasource, input_bucket, output_bucket },
     } = this.props.options;
@@ -124,14 +134,7 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
 
     return (
       <>
-        <div className="section gf-form-group">
-          <h5 className="section-heading">Draw Modes</h5>
-          <Switch label="Lines" labelClass="width-5" checked={showLines} onChange={this.onToggleLines} />
-          <Switch label="Bars" labelClass="width-5" checked={showBars} onChange={this.onToggleBars} />
-          <Switch label="Points" labelClass="width-5" checked={showPoints} onChange={this.onTogglePoints} />
-        </div>
-        <div className="section gf-form-group">
-          <h5 className="section-heading">Loud ML</h5>
+        <PanelOptionsGroup title="Loud ML">
           <div className="gf-form max-width-40">
             <span className="gf-form-label width-10">Loud ML Server</span>
             <Select
@@ -167,8 +170,37 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
             />
           </div>
           <p>Specify a bucket to store ML training results (It should be in Loud ML YAML config)</p>
+        </PanelOptionsGroup>
 
-        </div>
+        <PanelOptionsGroup title="Draw">
+          <div className="section gf-form-group">
+            <h5 className="section-heading">Draw Modes</h5>
+            <Switch label="Lines" labelClass="width-5" checked={showLines} onChange={this.onToggleLines} />
+            <Switch label="Bars" labelClass="width-5" checked={showBars} onChange={this.onToggleBars} />
+            <Switch label="Points" labelClass="width-5" checked={showPoints} onChange={this.onTogglePoints} />
+          </div>
+          <div className="section gf-form-group">
+            <h5 className="section-heading">Mode Options</h5>
+            <div className="gf-form max-width-20">
+              <span className="gf-form-label width-8">Line Width</span>
+              <Select
+                className="width-5"
+                value={{ value: lineWidth, label: lineWidth }}
+                onChange={value => {
+                  this.onChangeLineWidth({ value: value.value as any });
+                }}
+                options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(t=>({value: t, label: t}))}
+                />
+            </div>
+          </div>
+          <div className="section gf-form-group">
+            <h5 className="section-heading">Stacking & Null value</h5>
+            <div className="gf-form max-width-20">
+              <Switch label="Stack" labelClass="width-5" checked={isStacked} onChange={this.onToggleisStacked} />
+            </div>
+          </div>
+        </PanelOptionsGroup>
+
         <PanelOptionsGrid>
           <PanelOptionsGroup title="Field">
             <FieldPropertiesEditor

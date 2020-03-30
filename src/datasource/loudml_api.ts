@@ -35,7 +35,7 @@ export default class LoudMLAPI {
     return this._query('GET', url, params);
   }
 
-  private async _query(method: string, url: string, data?: any, data_as_params: false) {
+  private async _query(method: string, url: string, data?: any, data_as_params?: false) {
     method = method.toUpperCase();
     let options: any = {
       method,
@@ -92,6 +92,10 @@ export default class LoudMLAPI {
     return this._query('POST', '/models', model)
   }
 
+  getModel = async name => {
+    return this._query('GET', `/models/${name}`)
+  }
+
   deleteModel = async name => {
     return this._query('DELETE', `/models/${name}`)
   }
@@ -114,6 +118,18 @@ export default class LoudMLAPI {
       ...DEFAULT_START_OPTIONS,
     }
     return this._query('POST', `/models/${name}/_train`, params, true)
+  }
+
+  forecastModel = async (name, data) => {
+    const {from, to} = data.timeRange.raw;
+    const params = {
+      from,
+      to,
+      save_output_data: true,
+      output_bucket: 'loudml',
+      bg: true,
+    }
+    return this._query('POST', `/models/${name}/_forecast`, params, true)
   }
 
   trainModel = async (name, data) => {
