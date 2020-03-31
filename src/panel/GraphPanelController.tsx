@@ -28,6 +28,24 @@ import {
   ANOMALY_HOOK
 } from '../datasource/types';
 
+import {
+  extract_tooltip_feature,
+  extract_group_by,
+  extract_fill_value,
+  extract_format_tags,
+  extract_is_valid,
+  extract_model_database,
+  extract_model_measurement,
+  extract_model_select,
+  extract_model_feature,
+  extract_model_func,
+  extract_model_fill,
+  extract_model_time_format,
+  extract_model_time,
+  extract_model_tags,
+  extract_model_tags_map
+} from './extractors';
+
 
 interface GraphPanelControllerAPI {
   series: GraphSeriesXY[];
@@ -182,66 +200,66 @@ export class LoudMLTooltip extends React.Component {
     super(props);
     this.data = props.data;
 
-    window.console.log('LoudMLTooltip init', props);
-  }
-
-  formatFeature(value) {
-    // window.console.log('Feature Value', value);
-    const selectField = value.filter(o => o.type==='field');
-    return selectField.map(o => o.params.join(', ')).join('; ')
-  }
-
-  formatGroupBy(value: any) {
-    // window.console.log('Group By Value', value);
-    const groupBy = value.filter(o => o.type==='time');
-    return groupBy.map(o => [o.type, o.params].join(': ')).join(', ')
-  }
-
-  formatFillValue(value: any) {
-    // window.console.log('Fill Value', value);
-    const fill = value.filter(o => o.type==='fill');
-    return fill.map(o => [o.type, o.params].join(': ')).join(', ')
-  }
-
-  formatTags(value: any) {
-    // window.console.log('Tags Value', value);
-    return value.map(o => [o.key, o.operator, o.value].join(' ')).join(', ')
+    // window.console.log('LoudMLTooltip init', props);
   }
 
   render () {
     // window.console.log('groupBy', this.data.request.targets[0].groupBy);
 
+    // const feature = (
+    //   (
+    //     this.data.request.targets
+    //     // &&this.data.request.targets.length===1
+    //     &&this.data.request.targets[0].select
+    //     &&this.data.request.targets[0].select.length===1
+    //     &&this.formatFeature(this.data.request.targets[0].select[0])
+    //   )
+    // )|| 'Select one field'
+
     const feature = (
       (
         this.data.request.targets
-        // &&this.data.request.targets.length===1
-        &&this.data.request.targets[0].select
-        &&this.data.request.targets[0].select.length===1
-        &&this.formatFeature(this.data.request.targets[0].select[0])
+        &&this.data.request.targets.length>0
+        &&extract_tooltip_feature(this.data.request.targets[0])
       )
     )|| 'Select one field'
+
+    // const interval = (
+    //   (
+    //     this.data.request.targets
+    //     // &&this.data.request.targets.length===1
+    //     &&this.data.request.targets[0].groupBy
+    //     &&this.formatGroupBy(this.data.request.targets[0].groupBy)
+    //   )
+    // )|| 'Select a \'Group by\' value'
 
     const interval = (
       (
         this.data.request.targets
-        // &&this.data.request.targets.length===1
-        &&this.data.request.targets[0].groupBy
-        &&this.formatGroupBy(this.data.request.targets[0].groupBy)
+        &&this.data.request.targets.length>0
+        &&extract_group_by(this.data.request.targets[0])
       )
     )|| 'Select a \'Group by\' value'
 
+    // const fill_value = (
+    //     this.data.request.targets
+    //     // &&this.data.request.targets.length===1
+    //     &&this.data.request.targets[0].groupBy
+    //     &&this.formatFillValue(this.data.request.targets[0].groupBy)
+    // )|| 'Select a \'Fill\' value'
+
     const fill_value = (
         this.data.request.targets
-        // &&this.data.request.targets.length===1
-        &&this.data.request.targets[0].groupBy
-        &&this.formatFillValue(this.data.request.targets[0].groupBy)
+        &&this.data.request.targets.length>0
+        &&extract_fill_value(this.data.request.targets[0])
     )|| 'Select a \'Fill\' value'
 
+    // TODO: extractor for Tags
     const tags_value = (
         this.data.request.targets
         // &&this.data.request.targets.length===1
         &&this.data.request.targets[0].tags
-        &&this.formatTags(this.data.request.targets[0].tags)
+        &&extract_format_tags(this.data.request.targets[0])
     )|| '(Optional) Select a \'Tag(s)\' in WHERE statement'
 
     return (
@@ -297,59 +315,9 @@ export class CreateBaselineButton extends React.Component {
   isValid() {
     return (
       this.data.request.targets
-      // &&this.data.request.targets.length===1
-      &&this.data.request.targets[0].select
-      &&this.data.request.targets[0].select.length===1
+      &&this.data.request.targets.length>0
+      &&extract_is_valid(this.data.request.targets[0])
     )
-  }
-
-  _formatSelect(value: any) {
-    const selectFunc = value.filter(o => o.type!=='field');
-    const selectField = value.filter(o => o.type==='field');
-
-    return selectFunc.map(o => o.type).join('_') + '_' + selectField.map(o => o.params.join('_')).join('_')
-  }
-
-  _formatTags(value: any) {
-    return value.map(o => [o.key, o.value].join('_')).join('_')
-  }
-
-  _formatTime(value: any) {
-    const groupBy = value.filter(o => o.type==='time');
-    return groupBy.map(o => [o.type, o.params].join('_')).join('_')
-  }
-
-  _get_time(value: any) {
-    const time = value.filter(o => o.type==='time');
-    if (time.length !== 1) {
-      return DEFAULT_MODEL.interval;
-    }
-    return time[0].params[0];
-  }
-
-  _get_feature(value: any) {
-    const field = value.filter(o => o.type==='field');
-    if (field.length === 0) {
-      // TODO: check how we ended up with empty field and allowed user to click ML Button
-      return "";
-    }
-    return field[0].params[0];
-  }
-
-  _get_func(value: any) {
-    const func = value.filter(o => o.type!=='field');
-    if (func.length === 0) {
-      return "";
-    }
-    return func[0].type;
-  }
-
-  _get_fill(value: any) {
-    const fill = value.filter(o => o.type==='fill');
-    if (fill.length === 0) {
-      return "null";
-    }
-    return fill[0].params[0];
   }
 
   normalizeInterval(bucketInterval: any) {
@@ -465,18 +433,18 @@ export class CreateBaselineButton extends React.Component {
           window.console.log("Input Bucket", bucket);
 
           const name = [
-              this.datasource.database,
-              source.measurement,
-              this._formatSelect(source.select[0]),
-              this._formatTags(source.tags),
-              this._formatTime(source.groupBy),
-          ].join('_')
+              extract_model_database(this.datasource),
+              extract_model_measurement(source),
+              extract_model_select(source),
+              extract_model_tags(source),
+              extract_model_time_format(source),
+          ].join('_').replace(/\./g, "_")
 
-          window.console.log("New ML Model name", name)
+          // window.console.log("New ML Model name", name)
 
           // Group By Value – [{params: ["5m"], type: "time"}, {params: ["linear"], type: "fill"}]
           // Let parse a "5m" time from it
-          const time = this._get_time(source.groupBy);
+          const time = extract_model_time(source);
           const model = {
               ...DEFAULT_MODEL,
               max_evals: 10,
@@ -487,23 +455,23 @@ export class CreateBaselineButton extends React.Component {
               bucket_interval: time,
               features: fields.map(
                   (field) => ({
-                          name: this._formatSelect(field.select[0]),
-                          measurement: field.measurement,
-                          field: this._get_feature(field.select[0]),
-                          metric: this._get_func(field.select[0]),
+                          name: extract_model_select(field),
+                          measurement: extract_model_measurement(field),
+                          field: extract_model_feature(field),
+                          metric: extract_model_func(field), // aggregator, avg/mean
                           io: 'io',
-                          default: this._get_fill(source.groupBy),
-                          match_all: field.tags.map(
-                              (tag) => ({
-                                      tag: tag.key,
-                                      value: tag.value,
-                                  })
-                              ),
+                          default: extract_model_fill(source),
+                          match_all: extract_model_tags_map(field), // .tags && field.tags.map(
+                              // (tag) => ({
+                              //         tag: tag.key,
+                              //         value: tag.value,
+                              //     })
+                              // )) || [],
                       })
                   ),
           }
 
-          // window.console.log("ML Model", model)
+          window.console.log("ML Model", model)
           this.props.panelOptions.modelName = name;
           this.props.onOptionsChange(this.props.panelOptions);
 
@@ -625,12 +593,12 @@ export class MLModelController extends React.Component {
 
   constructor(props: any) {
     super(props);
-    window.console.log('MLModelController init', props);
+    // window.console.log('MLModelController init', props);
     this.getLoudMLDatasource();
   }
 
   componentDidUpdate(prevProps) {
-    window.console.log('MLModelController update', this.props);
+    // window.console.log('MLModelController update', this.props);
     this.getLoudMLDatasource();
   }
 
@@ -643,14 +611,15 @@ export class MLModelController extends React.Component {
   },
 
   getModel() {
-    if (!this.loudml && this.props.panelOptions.modelName) {
+    if (!this.loudml || this.props.panelOptions.modelName.length==0) {
       return
     }
 
     this.modelName = this.props.panelOptions.modelName;
+    // window.console.log("ML getModel", this.modelName);
 
     this.loudml.getModel(this.modelName).then(result => {
-      window.console.log("ML getModel", result);
+      // window.console.log("ML getModel", result);
       this.model = result[0];
       // this.setState({});
       this.props.onOptionsChange(this.props.panelOptions);
@@ -670,7 +639,7 @@ export class MLModelController extends React.Component {
 
     getDataSourceSrv().loadDatasource(this.dsName).then(result => {
       this.ds = result;
-      window.console.log("ML getLoudMLDatasource", this.ds);
+      // window.console.log("ML getLoudMLDatasource", this.ds);
       this.loudml = this.ds.loudml;
       this.getModel();
     }).catch(err => {
@@ -714,7 +683,7 @@ export class MLModelController extends React.Component {
   forecastModel() {
     if (this.model) {
       try {
-        this.loudml.trainModel(this.modelName, this.props.data).then(result => {
+        this.loudml.forecastModel(this.modelName, this.props.data).then(result => {
           window.console.log("ML forecastModel", result)
           appEvents.emit(AppEvents.alertSuccess, ['Model forecast job started on Loud ML server']);
         }).catch(err => {

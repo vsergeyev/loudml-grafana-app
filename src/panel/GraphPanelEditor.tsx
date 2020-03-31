@@ -99,9 +99,18 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
     this.onGraphOptionsChange({ isStacked: !this.props.options.graph.isStacked });
   }
 
+  onChangeFill = (value: any) => {
+    this.onGraphOptionsChange({ fill: value.value });
+    this.setState({ value: value.value });
+  };
+
+  onChangeFillGradient = (value: any) => {
+    this.onGraphOptionsChange({ fillGradient: value.value });
+    this.setState({ value: value.value });
+  };
+
   onChangeLineWidth = (value: any) => {
     this.onGraphOptionsChange({ lineWidth: value.value });
-    // this.props.options.graph.lineWidth = value.value;
     this.setState({ value: value.value });
   };
 
@@ -117,20 +126,10 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
 
   render() {
     const {
-      graph: { showBars, showPoints, showLines, isStacked, lineWidth },
+      graph: { showBars, showPoints, showLines, isStacked, lineWidth, fill, fillGradient },
       tooltipOptions: { mode },
       datasourceOptions: { datasource, input_bucket, output_bucket },
     } = this.props.options;
-
-    // if (this.props.options.modelName) {
-    //   const model_block =
-    //     <div className="gf-form max-width-40">
-    //       <span className="gf-form-label width-10">ML Model</span>
-    //       <Input value={this.props.options.modelName} className="gf-form-input" type="text" />
-    //     </div>;
-    // } else {
-    //   const model_block = <></>;
-    // }
 
     return (
       <>
@@ -181,6 +180,29 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
           </div>
           <div className="section gf-form-group">
             <h5 className="section-heading">Mode Options</h5>
+            <div className="gf-form max-width-20">
+              <span className="gf-form-label width-8">Fill</span>
+              <Select
+                className="width-5"
+                value={{ value: fill, label: fill }}
+                onChange={value => {
+                  this.onChangeFill({ value: value.value as any });
+                }}
+                options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(t=>({value: t, label: t}))}
+                />
+            </div>
+            <div className="gf-form max-width-20">
+              <span className="gf-form-label width-8">Fill Gradient</span>
+              <Select
+                className="width-5"
+                value={{ value: fillGradient, label: fillGradient }}
+                onChange={value => {
+                  this.onChangeFillGradient({ value: value.value as any });
+                }}
+                options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(t=>({value: t, label: t}))}
+                />
+            </div>
+
             <div className="gf-form max-width-20">
               <span className="gf-form-label width-8">Line Width</span>
               <Select

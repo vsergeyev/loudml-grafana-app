@@ -29,6 +29,8 @@ export interface GraphOptions {
   showPoints: boolean;
   isStacked: boolean;
   lineWidth: number;
+  fill: number;
+  fillGradient: number;
 }
 
 export interface GraphDatasourceOptions {
@@ -56,6 +58,8 @@ export const defaults: Options = {
     showPoints: false,
     isStacked: false,
     lineWidth: 1,
+    fill: 1,
+    fillGradient: 0,
   },
   legend: {
     asTable: false,

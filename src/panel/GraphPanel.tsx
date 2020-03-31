@@ -27,7 +27,7 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
   }
 
   const {
-    graph: { showLines, showBars, showPoints, isStacked, lineWidth },
+    graph: { showLines, showBars, showPoints, isStacked, lineWidth, fill, fillGradient },
     legend: legendOptions,
     tooltipOptions,
   } = options;
@@ -38,20 +38,11 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
     showPoints,
     isStacked,
     lineWidth,
+    fill,
+    fillGradient,
     tooltipOptions,
   };
   const { asTable, isVisible, ...legendProps } = legendOptions;
-
-  // let create_baseline_block = <></>;
-
-  // if (options.modelName) {
-  //   create_baseline_block =
-  //       <span className="panel-time-info">
-  //       ML Model: {options.modelName}
-  //       <a href="#"> <i class="fa fa-play"></i> Play</a>
-  //       <a href="#"> <i class="fa fa-clock-o"></i> Forecast</a>
-  //       </span>
-  // }
 
   return (
     <>
@@ -84,7 +75,7 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
             timeRange={timeRange}
             timeZone={timeZone}
             width={width}
-            height={height-30} // TODO: -30 is to ajust graph height with CreateBaselineButton, need better calc
+            height={height-50} // TODO: -50 is to ajust graph height with CreateBaselineButton, need better calc
             displayMode={asTable ? LegendDisplayMode.Table : LegendDisplayMode.List}
             isLegendVisible={isVisible}
             sortLegendBy={legendOptions.sortBy}

@@ -15,6 +15,11 @@ https://github.com/regel/loudml
 Loud ML Panel - is a version of Grafana's default Graph Panel with a "Create Baseline" button
 to create ML model in 1-click.
 
+Currently 1-click ML button ("Create Baseline") can produce model from:
+
+ * InfluxDB datasource
+ * OpenTSDB datasource
+
 Loud ML Datasource - is a connector to Loud ML server. It has capabilities to show models and jobs on server. You can add new and edit existing models.
 
 # Prerequisites

@@ -38,7 +38,7 @@ const getGraphWithLegendStyles = stylesFactory(({ placement }: GraphWithLegendPr
     flex-grow: 1;
   `,
   legendContainer: css`
-    padding: 10px 0;
+    padding: 25px 0;
     max-height: ${placement === 'under' ? '35%' : 'none'};
   `,
 }));
@@ -72,6 +72,8 @@ export const GraphWithLegend2: React.FunctionComponent<GraphWithLegendProps> = (
     hideZero,
     isStacked,
     lineWidth,
+    fill,
+    fillGradient,
     onHorizontalRegionSelected,
     timeZone,
     children,
@@ -109,6 +111,8 @@ export const GraphWithLegend2: React.FunctionComponent<GraphWithLegendProps> = (
           key={isLegendVisible ? 'legend-visible' : 'legend-invisible'}
           isStacked={isStacked}
           lineWidth={lineWidth}
+          fill={fill}
+          fillGradient={fillGradient}
           panelId={panelId}
           dashboardId={dashboardId}
           onHorizontalRegionSelected={onHorizontalRegionSelected}
