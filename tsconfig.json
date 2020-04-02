@@ -23,7 +23,7 @@
     }
   },
   "linterOptions": {
-    "exclude": ["./dist/*", "./node_modules/*"]
+    "exclude": ["./dist/**", "./node_modules/**"]
   },
   "exclude": ["node_modules"],
 }

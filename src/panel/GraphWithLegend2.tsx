@@ -77,8 +77,7 @@ export const GraphWithLegend2: React.FunctionComponent<GraphWithLegendProps> = (
     onHorizontalRegionSelected,
     timeZone,
     children,
-    panelId,
-    dashboardId,
+    panelChrome
   } = props;
   const { graphContainer, wrapper, legendContainer } = getGraphWithLegendStyles(props);
 
@@ -113,8 +112,7 @@ export const GraphWithLegend2: React.FunctionComponent<GraphWithLegendProps> = (
           lineWidth={lineWidth}
           fill={fill}
           fillGradient={fillGradient}
-          panelId={panelId}
-          dashboardId={dashboardId}
+          panelChrome={panelChrome}
           onHorizontalRegionSelected={onHorizontalRegionSelected}
         >
           {children}

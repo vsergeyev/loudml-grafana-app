@@ -3,8 +3,9 @@ import { BackendSrv } from 'grafana/app/core/services/backend_srv';
 import LoudMLAPI from './loudml_api';
 
 
-export class LoudMLDatasource {
-  private loudml: LoudMLAPI;
+export default class LoudMLDatasource {
+  loudml: LoudMLAPI;
+  bucket: string;
 
   jsonData: any;
 
@@ -33,3 +34,5 @@ export class LoudMLDatasource {
     return [];
   }
 }
+
+export { LoudMLDatasource }

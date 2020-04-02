@@ -86,11 +86,8 @@ export class GraphPanelController extends React.Component<GraphPanelControllerPr
         props.options.graph,
         props.options.legend,
         props.options.fieldOptions
-      ),
+      )
     };
-
-    this.panelId = props.data.request.panelId;
-    this.dashboardId = props.data.request.dashboardId;
   }
 
   static getDerivedStateFromProps(props: GraphPanelControllerProps, state: GraphPanelControllerState) {
@@ -173,19 +170,19 @@ export class GraphPanelController extends React.Component<GraphPanelControllerPr
   render() {
     const { children } = this.props;
     const { graphSeriesModel } = this.state;
+    const panelChrome = this._reactInternalFiber._debugOwner._debugOwner._debugOwner.stateNode;
 
     return (
       <GraphSeriesToggler series={graphSeriesModel}>
         {({ onSeriesToggle, toggledSeries }) => {
           return children({
             series: toggledSeries,
-            panelId: this.panelId,
-            dashboardId: this.dashboardId,
             onSeriesColorChange: this.onSeriesColorChange,
             onSeriesAxisToggle: this.onSeriesAxisToggle,
             onToggleSort: this.onToggleSort,
             onSeriesToggle: onSeriesToggle,
             onHorizontalRegionSelected: this.onHorizontalRegionSelected,
+            panelChrome: panelChrome,
           });
         }}
       </GraphSeriesToggler>
@@ -241,13 +238,6 @@ export class LoudMLTooltip extends React.Component {
       )
     )|| 'Select a \'Group by\' value'
 
-    // const fill_value = (
-    //     this.data.request.targets
-    //     // &&this.data.request.targets.length===1
-    //     &&this.data.request.targets[0].groupBy
-    //     &&this.formatFillValue(this.data.request.targets[0].groupBy)
-    // )|| 'Select a \'Fill\' value'
-
     const fill_value = (
         this.data.request.targets
         &&this.data.request.targets.length>0
@@ -257,10 +247,8 @@ export class LoudMLTooltip extends React.Component {
     // TODO: extractor for Tags
     const tags_value = (
         this.data.request.targets
-        // &&this.data.request.targets.length===1
-        &&this.data.request.targets[0].tags
         &&extract_format_tags(this.data.request.targets[0])
-    )|| '(Optional) Select a \'Tag(s)\' in WHERE statement'
+    )|| '(Optional) Select \'Tag(s)\' or WHERE statement'
 
     return (
       <div className='small'>
@@ -304,6 +292,8 @@ export class CreateBaselineButton extends React.Component {
   constructor(props: any) {
     super(props);
     this.data = props.data;
+    this.ds = null;
+    this.dsName = null;
     window.console.log('CreateBaselineButton init', props);
   }
 
@@ -584,8 +574,8 @@ export class CreateBaselineButton extends React.Component {
 }
 
 export class MLModelController extends React.Component {
-  is_trained: bool;
-  is_running: bool;
+  is_trained: boolean;
+  is_running: boolean;
   model: any;
   modelName: string;
   dsName: string;
@@ -608,7 +598,7 @@ export class MLModelController extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.intervalId);
-  },
+  }
 
   getModel() {
     if (!this.loudml || this.props.panelOptions.modelName.length==0) {

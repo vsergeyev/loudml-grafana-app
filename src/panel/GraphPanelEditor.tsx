@@ -1,4 +1,4 @@
-//// Libraries
+// Libraries
 import _ from 'lodash';
 import React, { PureComponent } from 'react';
 

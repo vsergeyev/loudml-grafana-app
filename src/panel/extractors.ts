@@ -5,30 +5,54 @@ import {
   DEFAULT_MODEL,
 } from '../datasource/types';
 
-export function extract_tooltip_feature(target: any) {
+export function extract_tooltip_feature(target: any): any {
   if (target.select) {
-    // InfluxDB or so
-    return (
-      target.select.length===1
-      &&_formatFeature(target.select[0])
-    )|| false
-  } else {
-    // OpenTSDB or so
-    if (target.metric) {
-      return target.metric
+    // InfluxDB or PostgreSQL or so
+    if (target.measurement) {
+      // InfluxDB
+      return target.measurement + ": " + _formatFeature(target.select[0])
     }
+
+    if (target.table) {
+      // PostgreSQL
+      return target.table + ": " + target.select[0]
+        .filter(o => o.type==='column')
+        .map(o => o.params.join(', ')).join('; ')
+    }
+  }
+
+  if (target.metric) {
+    // OpenTSDB or so
+    return target.metric
+  }
+
+  if (target.expr) {
+    // Prometheus or so
+    return target.expr
   }
 }
 
-export function extract_group_by(target: any) {
+export function extract_group_by(target: any): any {
   if (target.groupBy) {
     // InfluxDB or so
     return _formatGroupBy(target.groupBy)
-  } else {
+  }
+
+  if (target.group) {
+    // PostgreSQL or so
+    return target.group
+      .filter(o => o.type==='time')
+      .map(o => [o.type, o.params[0]].join(': ')).join(', ')
+  }
+
+  if (target.aggregator && target.downsampleInterval && target.downsampleAggregator) {
     // OpenTSDB or so
-    if (target.aggregator && target.downsampleInterval && target.downsampleAggregator) {
-      return target.aggregator + ":" + target.downsampleInterval + "-" + target.downsampleAggregator + "-nan"
-    }
+    return target.aggregator + ":" + target.downsampleInterval + "-" + target.downsampleAggregator + "-nan"
+  }
+
+  if (target.expr) {
+    // Prometheus or so
+    return target.interval || "auto"
   }
 }
 
@@ -36,9 +60,17 @@ export function extract_fill_value(target: any) {
   if (target.groupBy) {
     // InfluxDB or so
     return _formatFillValue(target.groupBy)
-  } else {
-    // OpenTSDB or so
-    return "nan";
+  }
+
+  if (target.group) {
+    // PostgreSQL or so
+    return target.group
+      .filter(o => o.type==='time')
+      .map(o => o.params[1]).join(', ')
+  }
+
+  // OpenTSDB or Prometheus or so
+  return "nan";
   }
 }
 
@@ -63,17 +95,29 @@ export function extract_format_tags(target: any) {
     }
     return res.join(', ');
   }
+
+  if (target.where) {
+    // PostgreSQL or so
+    return target.where
+      .filter(o => o.type==='expression')
+      .map(o => o.params.join(' ')).join(', ')
+  }
 }
 
 export function extract_is_valid(target: any) {
   if (target.select) {
     // InfluxDB or so
     return target.select.length===1
-  } else {
+  }
+
+  if (target.metric) {
     // OpenTSDB or so
-    if (target.metric) {
-      return true
-    }
+    return true
+  }
+
+  if (target.expr) {
+    // Prometheus or so
+    return true
   }
 }
 
@@ -90,21 +134,30 @@ export function extract_model_measurement(target: any) {
   if (target.measurement) {
     // InfluxDB or so
     return target.measurement;
-  } else {
+  }
+
+  if (target.metric) {
     // OpenTSDB or so
     return target.metric;
   }
+
+  return "auto"
 }
 
 export function extract_model_select(target: any) {
   if (target.select) {
     // InfluxDB or so
     return _formatSelect(target.select[0])
-  } else {
+  }
+
+  if (target.metric && target.aggregator) {
     // OpenTSDB or so
-    if (target.metric && target.aggregator) {
-      return target.aggregator + "_" + target.metric.replace(/\./g, "_")
-    }
+    return target.aggregator + "_" + target.metric.replace(/\./g, "_")
+  }
+
+  if (target.expr) {
+    // Prometheus or so
+    return string_to_slug(target.expr)
   }
 }
 
@@ -112,9 +165,16 @@ export function extract_model_feature(target: any) {
   if (target.select) {
     // InfluxDB or so
     return _get_feature(target.select[0])
-  } else {
+  }
+
+  if (target.metric) {
     // OpenTSDB or so
     return target.metric
+  }
+
+  if (target.expr) {
+    // Prometheus or so
+    return target.expr
   }
 }
 
@@ -122,10 +182,14 @@ export function extract_model_func(target: any) {
   if (target.select) {
     // InfluxDB or so
     return _get_func(target.select[0])
-  } else {
+  }
+
+  if (target.aggregator) {
     // OpenTSDB or so
     return target.aggregator
   }
+
+  return "avg"
 }
 
 export function extract_model_fill(target: any) {
@@ -143,8 +207,8 @@ export function extract_model_time_format(target: any) {
     // InfluxDB or so
     return _formatTime(target.groupBy)
   } else {
-    // OpenTSDB or so
-    return target.downsampleInterval
+    // OpenTSDB or Prometheus or so
+    return target.downsampleInterval || target.interval || "auto"
   }
 }
 
@@ -153,8 +217,8 @@ export function extract_model_time(target: any) {
     // InfluxDB or so
     return _get_time(target.groupBy)
   } else {
-    // OpenTSDB or so
-    return target.downsampleInterval
+    // OpenTSDB or Prometheus or so
+    return target.downsampleInterval || target.interval || "20m"
   }
 }
 
@@ -177,14 +241,16 @@ export function extract_model_tags(target: any) {
         res.push(key + "_" + target.tags[key]);
       }
     }
-    return res.join('_');
+    return res.join('_')
   }
+
+  return ""
 }
 
 export function extract_model_tags_map(target: any) {
   if (target.tags && target.tags.map) {
     // InfluxDB or so
-    return tags.map(
+    return target.tags.map(
                     (tag) => ({
                                 tag: tag.key,
                                 value: tag.value,
@@ -208,8 +274,10 @@ export function extract_model_tags_map(target: any) {
         res.push({tag: key, value: target.tags[key]});
       }
     }
-    return res;
+    return res
   }
+
+  return []
 }
 
 // Internal parser functions -------------------------------------------------
@@ -279,4 +347,22 @@ function _get_time(value: any) {
 
 function _formatTags(value: any) {
   return value.map(o => [o.key, o.value].join('_')).join('_')
+}
+
+function string_to_slug(str: any) {
+  str = str.replace(/^\s+|\s+$/g, '');
+  str = str.toLowerCase();
+
+  // remove accents, swap ñ for n, etc
+  var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+  var to   = "aaaaeeeeiiiioooouuuunc------";
+  for (var i=0, l=from.length ; i<l ; i++) {
+      str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+  }
+
+  str = str.replace(/[^a-z0-9 -]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '_');
+
+  return str;
 }

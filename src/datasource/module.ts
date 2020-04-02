@@ -11,14 +11,3 @@ export {
   ConfigCtrl,
   QueryCtrl
 };
-
-
-// const pluginExports = {
-//   ConfigCtrl,
-//   QueryCtrl
-// };
-
-// const plugin = new DataSourcePlugin<LoudMLDatasource, LoudMLQuery, LoudMLOptions>(LoudMLDatasource);
-// plugin.setComponentsFromLegacyExports(pluginExports);
-
-// export { plugin };
