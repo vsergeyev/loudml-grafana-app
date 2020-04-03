@@ -159,10 +159,5 @@ export default class LoudMLAPI {
         lower: from,
         upper: to,
     }
-    // const regex = /[ \(\)]/g
-    // return {
-    //     lower: (from||'now()').replace(regex, ''),
-    //     upper: (to||'now()').replace(regex, ''),
-    // }
   }
 }

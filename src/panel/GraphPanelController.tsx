@@ -196,23 +196,9 @@ export class LoudMLTooltip extends React.Component {
   constructor(props: any) {
     super(props);
     this.data = props.data;
-
-    // window.console.log('LoudMLTooltip init', props);
   }
 
   render () {
-    // window.console.log('groupBy', this.data.request.targets[0].groupBy);
-
-    // const feature = (
-    //   (
-    //     this.data.request.targets
-    //     // &&this.data.request.targets.length===1
-    //     &&this.data.request.targets[0].select
-    //     &&this.data.request.targets[0].select.length===1
-    //     &&this.formatFeature(this.data.request.targets[0].select[0])
-    //   )
-    // )|| 'Select one field'
-
     const feature = (
       (
         this.data.request.targets
@@ -220,15 +206,6 @@ export class LoudMLTooltip extends React.Component {
         &&extract_tooltip_feature(this.data.request.targets[0])
       )
     )|| 'Select one field'
-
-    // const interval = (
-    //   (
-    //     this.data.request.targets
-    //     // &&this.data.request.targets.length===1
-    //     &&this.data.request.targets[0].groupBy
-    //     &&this.formatGroupBy(this.data.request.targets[0].groupBy)
-    //   )
-    // )|| 'Select a \'Group by\' value'
 
     const interval = (
       (
@@ -533,12 +510,6 @@ export class CreateBaselineButton extends React.Component {
 
     this.getLoudMLDatasource().then(result => {
         this.ds = result;
-        // window.console.log("getLoudMLDatasource", this.ds);
-
-        // if (!this.ds.bucket) {
-        //     appEvents.emit(AppEvents.alertError, ['Please choose Output bucket in Loud ML datasource settings']);
-        //     return
-        // }
 
         if (this.isValid()) {
           this._createAndTrainModel();
@@ -555,7 +526,7 @@ export class CreateBaselineButton extends React.Component {
 
   render () {
     const data = this.data;
-    // window.console.log(this.isValid());
+
     return(
       <>
       <Button size="sm" className="btn btn-inverse" disabled={!this.isValid()}
@@ -609,11 +580,11 @@ export class MLModelController extends React.Component {
     // window.console.log("ML getModel", this.modelName);
 
     this.loudml.getModel(this.modelName).then(result => {
-      // window.console.log("ML getModel", result);
       this.model = result[0];
-      // this.setState({});
       this.props.onOptionsChange(this.props.panelOptions);
-    })
+    }).catch(err => {
+      window.console.log("Error getting Loud ML model", err);
+    });
   }
 
   getLoudMLDatasource() {
@@ -629,7 +600,6 @@ export class MLModelController extends React.Component {
 
     getDataSourceSrv().loadDatasource(this.dsName).then(result => {
       this.ds = result;
-      // window.console.log("ML getLoudMLDatasource", this.ds);
       this.loudml = this.ds.loudml;
       this.getModel();
     }).catch(err => {
