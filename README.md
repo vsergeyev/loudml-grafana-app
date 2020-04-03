@@ -3,7 +3,7 @@
 Visualization panel and datasource for Grafana to connect with Loud ML AI solution for ICT and IoT
 automation. https://loudml.io
 
-![LoudML Panel in Grafana](docs/loudml_grafana_app.png)
+![LoudML Panel in Grafana](docs/loudml_grafana_panel.png)
 
 ![LoudML Datasource in Grafana](docs/loudml_grafana_datasource.png)
 
