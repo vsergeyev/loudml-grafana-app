@@ -32,6 +32,8 @@ Loud ML Datasource - is a connector to Loud ML server. It has capabilities to sh
 
 In order to use Loud ML with Grafana you need to have a buckets in **loudml.yml** to reflect Grafana datasource(s) used in LoudML Graph
 
+![LoudML Panel Configuration in Grafana](docs/loudml_props.png)
+
 Example: I have InfluxDB datasource with **telegraf** database as an input and will use **loudml** database as output for ML model predictions/forecasting/anomalies:
 
     buckets:
@@ -67,7 +69,7 @@ InfluxDB **loudmlannotations** here specified to store annotations. (By default 
 
     SELECT "text" FROM "autogen"."annotations" WHERE $timeFilter
 
-
+![LoudML Annotations in Grafana](docs/loudml_annotations.png)
 
 # Support
 
