@@ -20,7 +20,7 @@ Watch this video on YouTube:
 " target="_blank"><img src="http://img.youtube.com/vi/bxfU1N3ut70/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="850" border="10" /></a>
 
-Loud ML (https://loudml.io/) uses Tensor Flow and Keras as a backend. It works with VAE models, combines the best of unsupervised and supervised learning. Based on a work "Unsupervised Anomaly Detection via Variational Auto-Encoderfor Seasonal KPIs in Web Applications" (https://arxiv.org/pdf/1802.03903.pdf) algorythm is best suitable to closely monitor various KPIs (DB connections, page views, number of online users, number of orders, etc).
+<a href="https://loudml.io/">Loud ML</a> use a Tensor Flow and Keras as a backend. It works with VAE models, combines the best of unsupervised and supervised learning. Based on a work "Unsupervised Anomaly Detection via Variational Auto-Encoderfor Seasonal KPIs in Web Applications" algorythm is best suitable to closely monitor various KPIs (DB connections, page views, number of online users, number of orders, etc).
 
 Per ML algorythm documentation:
 
@@ -76,7 +76,8 @@ InfluxDB **loudmlannotations** here specified to store annotations. (By default 
 
 # Links
 
- * Creating a model for system usage metric https://www.youtube.com/watch?v=bxfU1N3ut70
- * Loud ML github.com/regel/loudml/
- * Forecasting time series with 1-click machine learning https://medium.com/loud-ml/forecasting-time-series-with-1-click-machine-learning-inside-the-tick-stack-c15dedb15035
- * Applying Machine Learning Models to InfluxDB https://medium.com/@dganais/applying-machine-learning-models-to-influxdb-with-loud-ml-docker-for-time-series-predictions-c4ffa4fc5174
+ * <a href="https://www.youtube.com/watch?v=bxfU1N3ut70">Creating a model for system usage metric</a> 
+ * <a href="https://github.com/regel/loudml/">Loud ML</a>
+ * <a href="https://arxiv.org/pdf/1802.03903.pdf">Unsupervised Anomaly Detection via Variational Auto-Encoderfor Seasonal KPIs in Web Applications</a>
+ * <a href="https://medium.com/loud-ml/forecasting-time-series-with-1-click-machine-learning-inside-the-tick-stack-c15dedb15035">Forecasting time series with 1-click machine learning</a>
+ * <a href="https://medium.com/@dganais/applying-machine-learning-models-to-influxdb-with-loud-ml-docker-for-time-series-predictions-c4ffa4fc5174">Applying Machine Learning Models to InfluxDB</a> 
