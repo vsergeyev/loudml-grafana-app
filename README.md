@@ -19,6 +19,7 @@ Currently 1-click ML button ("Create Baseline") can produce model from:
 
  * InfluxDB datasource
  * OpenTSDB datasource
+ * Prometheus datasource (very draft)
 
 Loud ML Datasource - is a connector to Loud ML server. It has capabilities to show models and jobs on server. You can add new and edit existing models.
 
@@ -26,6 +27,47 @@ Loud ML Datasource - is a connector to Loud ML server. It has capabilities to sh
 
     * Loud ML server https://github.com/regel/loudml
     * Grafana >= 5.4.0
+
+# Configuration
+
+In order to use Loud ML with Grafana you need to have a buckets in **loudml.yml** to reflect Grafana datasource(s) used in LoudML Graph
+
+Example: I have InfluxDB datasource with **telegraf** database as an input and will use **loudml** database as output for ML model predictions/forecasting/anomalies:
+
+    buckets:
+     - name: loudml
+       type: influxdb
+       addr: 127.0.0.1:8086
+       database: loudml
+       retention_policy: autogen
+       measurement: loudml
+       annotation_db: loudmlannotations
+     - name: influxdb1
+       type: influxdb
+       addr: 127.0.0.1:8086
+       database: telegraf
+       retention_policy: autogen
+       measurement: loudml
+     - name: data
+       type: influxdb
+       addr: 127.0.0.1:8086
+       database: data
+       retention_policy: autogen
+       measurement: sinus
+     - name: opentsdb1
+       type: opentsdb
+       addr: 127.0.0.1:4242
+       retention_policy: autogen
+     - name: prom1
+       type: prometheus
+       addr: 127.0.0.1:9090
+       retention_policy: autogen
+
+InfluxDB **loudmlannotations** here specified to store annotations. (By default Loud ML server will store annotations in **chronograf** database). So on Grafana dashboard annotations/anomalies from Loud ML should be configured as:
+
+    SELECT "text" FROM "autogen"."annotations" WHERE $timeFilter
+
+
 
 # Support
 
