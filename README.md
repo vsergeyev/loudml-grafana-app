@@ -10,6 +10,17 @@ automation. https://loudml.io
 Loud ML is an open source inference engine for metrics and events, and the fastest way to embed machine learning in your time series application. This includes APIs for storing and querying data, processing it in the background for ML or detecting outliers for alerting purposes, and more.
 https://github.com/regel/loudml
 
+# Installation
+
+ * Plugin should be placed in `.../grafana/data/plugins`
+ * git clone https://github.com/vsergeyev/loudml-grafana-app.git
+ * cd loudml-grafana-app
+ * yarn
+ * yarn dev --watch
+ * restart Grafana
+ * LoudML app should be in plugins list, you may need to activate it
+ * enjoy :)
+
 # What inside
 
 Loud ML Panel - is a version of Grafana's default Graph Panel with a "Create Baseline" button
