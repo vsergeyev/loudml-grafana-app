@@ -30,6 +30,11 @@ export function extract_tooltip_feature(target: any): any {
     // Prometheus or so
     return target.expr
   }
+
+  if (target.query && target.bucketAggs && target.metrics && target.metrics.length > 0) {
+    // Elasticsearch or so
+    return target.metrics[0].type + ": " + target.metrics[0].field
+  }
 }
 
 export function extract_group_by(target: any): any {
@@ -53,6 +58,14 @@ export function extract_group_by(target: any): any {
   if (target.expr) {
     // Prometheus or so
     return target.interval || "auto"
+  }
+
+  if (target.query && target.bucketAggs && target.bucketAggs.length>0) {
+    // Elasticsearch or so
+    if (target.bucketAggs[0].settings) {
+      return target.bucketAggs[0].settings.interval;
+    }
+    return "auto"
   }
 }
 
@@ -102,6 +115,11 @@ export function extract_format_tags(target: any) {
       .filter(o => o.type==='expression')
       .map(o => o.params.join(' ')).join(', ')
   }
+
+  if (target.query) {
+    // Elasticsearch or so
+    return target.query
+  }
 }
 
 export function extract_is_valid(target: any) {
@@ -119,15 +137,26 @@ export function extract_is_valid(target: any) {
     // Prometheus or so
     return true
   }
+
+  if (target.query && target.bucketAggs && target.metrics && target.metrics.length > 0) {
+    // Elasticsearch or so
+    return true
+  }
 }
 
 export function extract_model_database(datasource: any) {
   // console.log(datasource);
   if (datasource.database) {
+    // InfluxDB
     return datasource.database;
-  } else {
-    return datasource.name.toLowerCase().replace(/-/g, "_");
   }
+
+  if (datasource.index) {
+    // Elasticsearch
+    return datasource.index;
+  }
+
+  return datasource.name.toLowerCase().replace(/-/g, "_");
 }
 
 export function extract_model_measurement(target: any) {
@@ -139,6 +168,11 @@ export function extract_model_measurement(target: any) {
   if (target.metric) {
     // OpenTSDB or so
     return target.metric;
+  }
+
+  if (target.query && target.bucketAggs && target.metrics && target.metrics.length > 0) {
+    // Elasticsearch or so
+    return target.metrics[0].type;
   }
 
   return "auto"
@@ -153,6 +187,11 @@ export function extract_model_select(target: any) {
   if (target.metric && target.aggregator) {
     // OpenTSDB or so
     return target.aggregator + "_" + target.metric.replace(/\./g, "_")
+  }
+
+  if (target.query && target.bucketAggs && target.metrics && target.metrics.length > 0) {
+    // Elasticsearch or so
+    return target.metrics[0].type + "_" + target.metrics[0].field.replace(/\./g, "_")
   }
 
   if (target.expr) {
@@ -172,6 +211,11 @@ export function extract_model_feature(target: any) {
     return target.metric
   }
 
+  if (target.query && target.bucketAggs && target.metrics && target.metrics.length > 0) {
+    // Elasticsearch or so
+    return target.metrics[0].field
+  }
+
   if (target.expr) {
     // Prometheus or so
     return target.expr
@@ -187,6 +231,11 @@ export function extract_model_func(target: any) {
   if (target.aggregator) {
     // OpenTSDB or so
     return target.aggregator
+  }
+
+  if (target.query && target.bucketAggs && target.metrics && target.metrics.length > 0) {
+    // Elasticsearch or so
+    return target.metrics[0].type
   }
 
   return "avg"
@@ -216,10 +265,15 @@ export function extract_model_time(target: any) {
   if (target.groupBy) {
     // InfluxDB or so
     return _get_time(target.groupBy)
-  } else {
-    // OpenTSDB or Prometheus or so
-    return target.downsampleInterval || target.interval || "20m"
   }
+
+  if (target.query && target.bucketAggs && target.bucketAggs.length > 0 && target.bucketAggs[0].settings) {
+    // Elasticsearch or so
+    return target.bucketAggs[0].settings.interval
+  }
+
+  // else - OpenTSDB or Prometheus or so
+  return target.downsampleInterval || target.interval || "20m"
 }
 
 export function extract_model_tags(target: any) {

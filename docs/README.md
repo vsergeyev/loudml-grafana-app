@@ -14,10 +14,17 @@ Create a ML models in 1-click with "Create Baseline" button on graph.
  * run a prediction
  * observe anomalies (as annotations on graph)
 
+Currently 1-click ML button ("Create Baseline") can produce model from:
+
+ * InfluxDB datasource
+ * OpenTSDB datasource
+ * Elasticsearch datasource (beta)
+ * Prometheus datasource (very draft)
+
 Watch this video on YouTube:
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=bxfU1N3ut70
-" target="_blank"><img src="http://img.youtube.com/vi/bxfU1N3ut70/0.jpg" 
+" target="_blank"><img src="http://img.youtube.com/vi/bxfU1N3ut70/0.jpg"
 alt="IMAGE ALT TEXT HERE" width="850" border="10" /></a>
 
 <a href="https://loudml.io/">Loud ML</a> use a Tensor Flow and Keras as a backend. It works with VAE models, combines the best of unsupervised and supervised learning. Based on a work "Unsupervised Anomaly Detection via Variational Auto-Encoderfor Seasonal KPIs in Web Applications" algorythm is best suitable to closely monitor various KPIs (DB connections, page views, number of online users, number of orders, etc).
@@ -76,8 +83,8 @@ InfluxDB **loudmlannotations** here specified to store annotations. (By default 
 
 # Links
 
- * <a href="https://www.youtube.com/watch?v=bxfU1N3ut70">Creating a model for system usage metric</a> 
+ * <a href="https://www.youtube.com/watch?v=bxfU1N3ut70">Creating a model for system usage metric</a>
  * <a href="https://github.com/regel/loudml/">Loud ML</a>
  * <a href="https://arxiv.org/pdf/1802.03903.pdf">Unsupervised Anomaly Detection via Variational Auto-Encoderfor Seasonal KPIs in Web Applications</a>
  * <a href="https://medium.com/loud-ml/forecasting-time-series-with-1-click-machine-learning-inside-the-tick-stack-c15dedb15035">Forecasting time series with 1-click machine learning</a>
- * <a href="https://medium.com/@dganais/applying-machine-learning-models-to-influxdb-with-loud-ml-docker-for-time-series-predictions-c4ffa4fc5174">Applying Machine Learning Models to InfluxDB</a> 
+ * <a href="https://medium.com/@dganais/applying-machine-learning-models-to-influxdb-with-loud-ml-docker-for-time-series-predictions-c4ffa4fc5174">Applying Machine Learning Models to InfluxDB</a>

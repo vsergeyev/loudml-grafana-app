@@ -30,6 +30,7 @@ Currently 1-click ML button ("Create Baseline") can produce model from:
 
  * InfluxDB datasource
  * OpenTSDB datasource
+ * Elasticsearch datasource (beta)
  * Prometheus datasource (very draft)
 
 Loud ML Datasource - is a connector to Loud ML server. It has capabilities to show models and jobs on server. You can add new and edit existing models.

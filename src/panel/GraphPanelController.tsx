@@ -233,9 +233,9 @@ export class LoudMLTooltip extends React.Component {
           <br />
           This will create a new model, and run training to fit the baseline to your data.
           <br />
-          You can visualise the baseline, and forecast future data using the Query tab in panel once training is completed.
+          You can visualise the baseline, and forecast future data once training is completed.
+          To run model click on <i className="fa fa-play"></i> Play button.
           <br />
-          Click on Play button to run model.
           <br />
           Use Mixed Query, leave first query with source data as is.
           Then add a query from datasource equal to Loud ML output bucket (ex. "loudml").
