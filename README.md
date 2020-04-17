@@ -3,9 +3,9 @@
 Visualization panel and datasource for Grafana to connect with Loud ML AI solution for ICT and IoT
 automation. https://loudml.io
 
-![LoudML Panel in Grafana](docs/loudml_grafana_panel.png)
+![LoudML Panel in Grafana](https://raw.githubusercontent.com/vsergeyev/loudml-grafana-app/master/docs/loudml_grafana_panel.png)
 
-![LoudML Datasource in Grafana](docs/loudml_grafana_datasource.png)
+![LoudML Datasource in Grafana](https://raw.githubusercontent.com/vsergeyev/loudml-grafana-app/master/docs/loudml_grafana_datasource.png)
 
 Loud ML is an open source inference engine for metrics and events, and the fastest way to embed machine learning in your time series application. This includes APIs for storing and querying data, processing it in the background for ML or detecting outliers for alerting purposes, and more.
 https://github.com/regel/loudml
