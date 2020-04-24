@@ -170,7 +170,12 @@ export class GraphPanelController extends React.Component<GraphPanelControllerPr
   render() {
     const { children } = this.props;
     const { graphSeriesModel } = this.state;
-    const panelChrome = this._reactInternalFiber._debugOwner._debugOwner._debugOwner.stateNode;
+    let panelChrome = null;
+    try {
+      panelChrome = this._reactInternalFiber._debugOwner._debugOwner._debugOwner.stateNode;
+    } catch(e){
+      window.console.log(e);
+    }
 
     return (
       <GraphSeriesToggler series={graphSeriesModel}>

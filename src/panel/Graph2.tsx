@@ -43,33 +43,34 @@ export class Graph2 extends Graph {
     const promises = [];
     const dsPromises = [];
     const range = props.timeRange;
-    this.dashboard = props.panelChrome.props.dashboard;
+    if (props.panelChrome) {
+      this.dashboard = props.panelChrome.props.dashboard;
 
-    Promise.all([this.getGlobalAnnotations(range)])
-      .then(results => {
-        this.annotations = flattenDeep(results[0]);
-        // filter out annotations that do not belong to requesting panel
-        this.annotations = this.annotations.filter(item => {
-          // if event has panel id and query is of type dashboard then panel and requesting panel id must match
-          if (item.panelId && item.source.type === 'dashboard') {
-            return item.panelId === props.panelChrome.props.panel.id;
+      Promise.all([this.getGlobalAnnotations(range)])
+        .then(results => {
+          this.annotations = flattenDeep(results[0]);
+          // filter out annotations that do not belong to requesting panel
+          this.annotations = this.annotations.filter(item => {
+            // if event has panel id and query is of type dashboard then panel and requesting panel id must match
+            if (item.panelId && item.source.type === 'dashboard') {
+              return item.panelId === props.panelChrome.props.panel.id;
+            }
+            return true;
+          });
+
+          this.annotations = this.dedupAnnotations(this.annotations);
+          this.draw();
+          // console.log(this.annotations);
+        })
+        .catch(err => {
+          if (!err.message && err.data && err.data.message) {
+            err.message = err.data.message;
           }
-          return true;
+          console.log('AnnotationSrv.query error', err);
+          appEvents.emit(AppEvents.alertError, ['Annotation Query Failed', err.message || err]);
+          return [];
         });
-
-        this.annotations = this.dedupAnnotations(this.annotations);
-        this.draw();
-        // console.log(this.annotations);
-      })
-      .catch(err => {
-        if (!err.message && err.data && err.data.message) {
-          err.message = err.data.message;
-        }
-        console.log('AnnotationSrv.query error', err);
-        appEvents.emit(AppEvents.alertError, ['Annotation Query Failed', err.message || err]);
-        return [];
-      });
-
+    }
   }
 
   getGlobalAnnotations(range: any) {
