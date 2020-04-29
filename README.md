@@ -1,6 +1,6 @@
 # LoudML Grafana Application
 
-Visualization panel and datasource for Grafana to connect with Loud ML AI solution for ICT and IoT
+Visualization panel and datasource for Grafana 6.7.x to connect with Loud ML AI solution for ICT and IoT
 automation. https://loudml.io
 
 ![LoudML Panel in Grafana](https://raw.githubusercontent.com/vsergeyev/loudml-grafana-app/master/docs/loudml_grafana_panel.png)
@@ -44,7 +44,7 @@ Loud ML Datasource - is a connector to Loud ML server. It has capabilities to sh
 
 In order to use Loud ML with Grafana you need to have a buckets in **loudml.yml** to reflect Grafana datasource(s) used in LoudML Graph
 
-![LoudML Panel Configuration in Grafana](docs/loudml_props.png)
+![LoudML Panel Configuration in Grafana](https://raw.githubusercontent.com/vsergeyev/loudml-grafana-app/master/docs/loudml_props.png)
 
 Example: I have InfluxDB datasource with **telegraf** database as an input and will use **loudml** database as output for ML model predictions/forecasting/anomalies:
 
@@ -81,7 +81,7 @@ InfluxDB **loudmlannotations** here specified to store annotations. (By default 
 
     SELECT "text" FROM "autogen"."annotations" WHERE $timeFilter
 
-![LoudML Annotations in Grafana](docs/loudml_annotations.png)
+![LoudML Annotations in Grafana](https://raw.githubusercontent.com/vsergeyev/loudml-grafana-app/master/docs/loudml_annotations.png)
 
 # Support
 
