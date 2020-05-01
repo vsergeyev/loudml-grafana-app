@@ -58,17 +58,17 @@ export const MAX_SPAN = 100;
 export const DEFAULT_ANOMALY_TYPE = [
   { text: 'low', value: 'low' },
   { text: 'high', value: 'high' },
-  { text: 'low/high', value: 'low_high' }
+  { text: 'low/high', value: 'low_high' },
 ];
 
 export const ANOMALY_HOOK_NAME = 'add_annotation';
 
 export const ANOMALY_HOOK = {
-  'type': 'annotations',
-  'name': ANOMALY_HOOK_NAME,
-  'config': {
-    'id': null,
-    'type': 'loudml',
-    'bucket': null,
+  type: 'annotations',
+  name: ANOMALY_HOOK_NAME,
+  config: {
+    id: null,
+    type: 'loudml',
+    bucket: null,
   },
 };

@@ -1,3 +1,3 @@
-import { ConfigCtrl } from './config/config_ctrl'
+import { ConfigCtrl } from './config/config_ctrl';
 
 export { ConfigCtrl };

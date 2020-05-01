@@ -14,7 +14,7 @@ export default class LoudMLDatasource {
   }
 
   async query(options: any) {
-    const { url, params? } = options;
+    const { url, params } = options;
     const response = await this.loudml.get(url, params);
     return response;
   }
@@ -31,4 +31,4 @@ export default class LoudMLDatasource {
   }
 }
 
-export { LoudMLDatasource }
+export { LoudMLDatasource };

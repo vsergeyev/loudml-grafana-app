@@ -5,7 +5,7 @@ class ConfigCtrl {
   appModel: any;
 
   constructor() {
-    if(this.appModel.jsonData === undefined) {
+    if (this.appModel.jsonData === undefined) {
       this.appModel.jsonData = {};
     }
   }

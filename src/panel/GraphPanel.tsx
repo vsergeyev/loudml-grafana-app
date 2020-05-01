@@ -46,52 +46,34 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
 
   return (
     <>
-    <CreateBaselineButton
-      data={data}
-      timeRange={timeRange}
-      timeZone={timeZone}
-      panelOptions={options}
-      onOptionsChange={onOptionsChange}
-      />
+      <CreateBaselineButton data={data} timeRange={timeRange} timeZone={timeZone} panelOptions={options} onOptionsChange={onOptionsChange} />
 
-    <MLModelController
-      data={data}
-      timeRange={timeRange}
-      timeZone={timeZone}
-      panelOptions={options}
-      onOptionsChange={onOptionsChange}
-      />
+      <MLModelController data={data} timeRange={timeRange} timeZone={timeZone} panelOptions={options} onOptionsChange={onOptionsChange} />
 
-    <GraphPanelController
-      data={data}
-      timeZone={timeZone}
-      options={options}
-      onOptionsChange={onOptionsChange}
-      onChangeTimeRange={onChangeTimeRange}
-    >
-      {({ onSeriesToggle, onHorizontalRegionSelected, ...controllerApi }) => {
-        return (
-          <GraphWithLegend2
-            timeRange={timeRange}
-            timeZone={timeZone}
-            width={width}
-            height={height-50} // TODO: -50 is to ajust graph height with CreateBaselineButton, need better calc
-            displayMode={asTable ? LegendDisplayMode.Table : LegendDisplayMode.List}
-            isLegendVisible={isVisible}
-            sortLegendBy={legendOptions.sortBy}
-            sortLegendDesc={legendOptions.sortDesc}
-            onSeriesToggle={onSeriesToggle}
-            onHorizontalRegionSelected={onHorizontalRegionSelected}
-            onClick={onHorizontalRegionSelected}
-            {...graphProps}
-            {...legendProps}
-            {...controllerApi}
-          >
-            <Chart.Tooltip mode={tooltipOptions.mode} />
-          </GraphWithLegend2>
-        );
-      }}
-    </GraphPanelController>
+      <GraphPanelController data={data} timeZone={timeZone} options={options} onOptionsChange={onOptionsChange} onChangeTimeRange={onChangeTimeRange}>
+        {({ onSeriesToggle, onHorizontalRegionSelected, ...controllerApi }) => {
+          return (
+            <GraphWithLegend2
+              timeRange={timeRange}
+              timeZone={timeZone}
+              width={width}
+              height={height - 50} // TODO: -50 is to ajust graph height with CreateBaselineButton, need better calc
+              displayMode={asTable ? LegendDisplayMode.Table : LegendDisplayMode.List}
+              isLegendVisible={isVisible}
+              sortLegendBy={legendOptions.sortBy}
+              sortLegendDesc={legendOptions.sortDesc}
+              onSeriesToggle={onSeriesToggle}
+              onHorizontalRegionSelected={onHorizontalRegionSelected}
+              onClick={onHorizontalRegionSelected}
+              {...graphProps}
+              {...legendProps}
+              {...controllerApi}
+            >
+              <Chart.Tooltip mode={tooltipOptions.mode} />
+            </GraphWithLegend2>
+          );
+        }}
+      </GraphPanelController>
     </>
   );
 };

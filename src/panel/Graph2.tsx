@@ -9,22 +9,8 @@ import cloneDeep from 'lodash/cloneDeep';
 
 import appEvents from 'grafana/app/core/app_events';
 import { getDataSourceSrv, getBackendSrv } from '@grafana/runtime';
-import {
-  getValueFormat,
-  formattedValueToString,
-  AnnotationEvent,
-  DataSourceApi,
-  AppEvents
-} from '@grafana/data';
-import {
-  Graph,
-  OK_COLOR,
-  ALERTING_COLOR,
-  NO_DATA_COLOR,
-  PENDING_COLOR,
-  DEFAULT_ANNOTATION_COLOR,
-  REGION_FILL_ALPHA,
-} from '@grafana/ui';
+import { getValueFormat, formattedValueToString, AnnotationEvent, DataSourceApi, AppEvents } from '@grafana/data';
+import { Graph, OK_COLOR, ALERTING_COLOR, NO_DATA_COLOR, PENDING_COLOR, DEFAULT_ANNOTATION_COLOR, REGION_FILL_ALPHA } from '@grafana/ui';
 
 export class Graph2 extends Graph {
   dashboard: any;
@@ -135,7 +121,6 @@ export class Graph2 extends Graph {
     return event.eventType === 'panel-alert';
   }
 
-
   translateQueryResult(annotation: any, results: any) {
     // if annotation has snapshotData
     // make clone and remove it
@@ -176,7 +161,7 @@ export class Graph2 extends Graph {
           position: index === 1 ? 'left' : 'right',
           min,
           tickDecimals,
-          tickFormatter: this.tickFormatter
+          tickFormatter: this.tickFormatter,
         };
       }),
       yAxisConfig => yAxisConfig.index
