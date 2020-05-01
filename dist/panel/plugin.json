@@ -1,0 +1,11 @@
+{
+  "type": "panel",
+  "name": "Loud ML Graph",
+  "id": "loudml-graph-panel",
+  "info": {
+    "logos": {
+      "small": "../grafana-loudml-app/img/logo.png",
+      "large": "../grafana-loudml-app/img/logo.png"
+    }
+  }
+}
