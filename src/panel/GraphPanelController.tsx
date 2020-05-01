@@ -1,5 +1,5 @@
 import React from 'react';
-import moment from 'moment'
+import moment from 'moment';
 
 import { GraphSeriesToggler, Button, Tooltip } from '@grafana/ui';
 import { PanelData, GraphSeriesXY, AbsoluteTimeRange, TimeZone, AppEvents } from '@grafana/data';
@@ -25,7 +25,7 @@ import {
   MAX_SPAN,
   DEFAULT_ANOMALY_TYPE,
   ANOMALY_HOOK_NAME,
-  ANOMALY_HOOK
+  ANOMALY_HOOK,
 } from '../datasource/types';
 
 import {
@@ -43,9 +43,8 @@ import {
   extract_model_time_format,
   extract_model_time,
   extract_model_tags,
-  extract_model_tags_map
+  extract_model_tags_map,
 } from './extractors';
-
 
 interface GraphPanelControllerAPI {
   series: GraphSeriesXY[];
@@ -86,7 +85,7 @@ export class GraphPanelController extends React.Component<GraphPanelControllerPr
         props.options.graph,
         props.options.legend,
         props.options.fieldOptions
-      )
+      ),
     };
   }
 
@@ -173,7 +172,7 @@ export class GraphPanelController extends React.Component<GraphPanelControllerPr
     let panelChrome = null;
     try {
       panelChrome = this._reactInternalFiber._debugOwner._debugOwner._debugOwner.stateNode;
-    } catch(e){
+    } catch (e) {
       window.console.log(e);
     }
 
@@ -203,34 +202,30 @@ export class LoudMLTooltip extends React.Component {
     this.data = props.data;
   }
 
-  render () {
+  render() {
     const feature = (
-      (
-        this.data.request.targets
-        &&this.data.request.targets.length>0
-        &&extract_tooltip_feature(this.data.request.targets[0])
-      )
-    )|| 'Select one field'
+      this.data.request.targets
+      &&this.data.request.targets.length>0
+      &&extract_tooltip_feature(this.data.request.targets[0])
+    ) || 'Select one field'
 
     const interval = (
-      (
-        this.data.request.targets
-        &&this.data.request.targets.length>0
-        &&extract_group_by(this.data.request.targets[0])
-      )
-    )|| 'Select a \'Group by\' value'
+      this.data.request.targets
+      &&this.data.request.targets.length>0
+      &&extract_group_by(this.data.request.targets[0])
+    ) || 'Select a \'Group by\' value'
 
     const fill_value = (
-        this.data.request.targets
-        &&this.data.request.targets.length>0
-        &&extract_fill_value(this.data.request.targets[0])
-    )|| 'Select a \'Fill\' value'
+      this.data.request.targets
+      &&this.data.request.targets.length>0
+      &&extract_fill_value(this.data.request.targets[0])
+    ) || 'Select a \'Fill\' value'
 
     // TODO: extractor for Tags
     const tags_value = (
-        this.data.request.targets
-        &&extract_format_tags(this.data.request.targets[0])
-    )|| '(Optional) Select \'Tag(s)\' or WHERE statement'
+      this.data.request.targets
+      &&extract_format_tags(this.data.request.targets[0])
+    ) || '(Optional) Select \'Tag(s)\' or WHERE statement'
 
     return (
       <div className='small'>
@@ -268,7 +263,7 @@ export class LoudMLTooltip extends React.Component {
           <code>{fill_value}</code>
         </p>
       </div>
-    )
+    );
   }
 }
 
@@ -308,33 +303,27 @@ export class CreateBaselineButton extends React.Component {
 
     const duration = moment.duration(parseInt(interval[1], 10), interval[2]).asSeconds();
     if (!duration) {
-        return MIN_INTERVAL_UNIT;
+      return MIN_INTERVAL_UNIT;
     }
 
-    const normalized = Math.max(
-        MIN_INTERVAL_SECOND,
-        Math.min(
-            duration,
-            MAX_INTERVAL_SECOND
-        )
-    )
+    const normalized = Math.max(MIN_INTERVAL_SECOND, Math.min(duration, MAX_INTERVAL_SECOND));
     return `${normalized}s`;
   }
 
   normalizeSpan(bucketInterval: any) {
     // span = max(10, min(24h/bucketInterval, 100))
-    const regex = /(\d+)(.*)/
+    const regex = /(\d+)(.*)/;
     const interval = regex.exec(bucketInterval);
     if (!interval) {
-        return MIN_SPAN;
+      return MIN_SPAN;
     }
 
-    const duration = moment.duration(parseInt(interval[1], 10), interval[2]).asSeconds()
+    const duration = moment.duration(parseInt(interval[1], 10), interval[2]).asSeconds();
     if (!duration) {
-        return MIN_SPAN;
+      return MIN_SPAN;
     }
 
-    return Math.max(MIN_SPAN, Math.min(Math.ceil(86400/duration), MAX_SPAN));
+    return Math.max(MIN_SPAN, Math.min(Math.ceil(86400 / duration), MAX_SPAN));
   }
 
   _trainModel(name: string) {
@@ -342,10 +331,10 @@ export class CreateBaselineButton extends React.Component {
 
     try {
       loudml.trainModel(name, this.data).then(result => {
-        window.console.log("trainModel", result);
+        window.console.log('trainModel', result);
         appEvents.emit(AppEvents.alertSuccess, ['Model train job started on Loud ML server']);
       }).catch(err => {
-        window.console.log("trainModel error", err);
+        window.console.log('trainModel error', err);
         appEvents.emit(AppEvents.alertError, ['Model train job error', err.data.message]);
         return;
       });
@@ -353,7 +342,6 @@ export class CreateBaselineButton extends React.Component {
       console.error(error);
       appEvents.emit(AppEvents.alertError, ['Model train job error', err.message]);
     }
-
   }
 
   _createAndTrainModel() {
@@ -395,8 +383,6 @@ export class CreateBaselineButton extends React.Component {
 
     this.getDatasource(source.datasource).then(result => {
       this.datasource = result;
-      window.console.log("getDatasource", this.datasource);
-
       // TODO: find a way to pass all this.datasource connection params to Loud ML server
       // This will allow to auto create bucket to store ML Model training results
 
@@ -407,87 +393,84 @@ export class CreateBaselineButton extends React.Component {
       //   this.datasource
       // ).then(result => {
       //     const bucket = result;
-          const bucket = this.props.panelOptions.datasourceOptions.input_bucket;
-          window.console.log("Input Bucket", bucket);
+      const bucket = this.props.panelOptions.datasourceOptions.input_bucket;
+      window.console.log('Input Bucket', bucket);
 
-          const name = [
-              extract_model_database(this.datasource),
-              extract_model_measurement(source),
-              extract_model_select(source),
-              extract_model_tags(source),
-              extract_model_time_format(source),
-          ].join('_').replace(/\./g, "_")
+      const name = [
+        extract_model_database(this.datasource),
+        extract_model_measurement(source),
+        extract_model_select(source),
+        extract_model_tags(source),
+        extract_model_time_format(source),
+      ].join('_').replace(/\./g, "_")
 
-          // window.console.log("New ML Model name", name)
+      // window.console.log("New ML Model name", name);
 
-          // Group By Value – [{params: ["5m"], type: "time"}, {params: ["linear"], type: "fill"}]
-          // Let parse a "5m" time from it
-          const time = extract_model_time(source);
-          const model = {
-              ...DEFAULT_MODEL,
-              max_evals: 10,
-              name: name,
-              interval: this.normalizeInterval(time),
-              span: this.normalizeSpan(time),
-              default_bucket: bucket, //bucket.name - if we will use createAndGetBucket()
-              bucket_interval: time,
-              features: fields.map(
-                  (field) => ({
-                          name: extract_model_select(field),
-                          measurement: extract_model_measurement(field),
-                          field: extract_model_feature(field),
-                          metric: extract_model_func(field), // aggregator, avg/mean
-                          io: 'io',
-                          default: extract_model_fill(source),
-                          match_all: extract_model_tags_map(field), // .tags && field.tags.map(
-                              // (tag) => ({
-                              //         tag: tag.key,
-                              //         value: tag.value,
-                              //     })
-                              // )) || [],
-                      })
-                  ),
-          }
+      // Group By Value – [{params: ["5m"], type: "time"}, {params: ["linear"], type: "fill"}]
+      // Let parse a "5m" time from it
+      const time = extract_model_time(source);
+      const model = {
+        ...DEFAULT_MODEL,
+        max_evals: 10,
+        name: name,
+        interval: this.normalizeInterval(time),
+        span: this.normalizeSpan(time),
+        default_bucket: bucket, //bucket.name - if we will use createAndGetBucket()
+        bucket_interval: time,
+        features: fields.map(
+            (field) => ({
+                    name: extract_model_select(field),
+                    measurement: extract_model_measurement(field),
+                    field: extract_model_feature(field),
+                    metric: extract_model_func(field), // aggregator, avg/mean
+                    io: 'io',
+                    default: extract_model_fill(source),
+                    match_all: extract_model_tags_map(field), // .tags && field.tags.map(
+                        // (tag) => ({
+                        //         tag: tag.key,
+                        //         value: tag.value,
+                        //     })
+                        // )) || [],
+                })
+            ),
+      }
 
-          window.console.log("ML Model", model)
-          this.props.panelOptions.modelName = name;
-          this.props.onOptionsChange(this.props.panelOptions);
+      window.console.log('ML Model', model);
+      this.props.panelOptions.modelName = name;
+      this.props.onOptionsChange(this.props.panelOptions);
 
-          loudml.getModel(name).then(result => {
-            // Model already exists
-            // Let re-Train it on current dataframe
-            // window.console.log("getModel", result);
+      loudml.getModel(name).then(result => {
+        // Model already exists
+        // Let re-Train it on current dataframe
+        // window.console.log("getModel", result);
+        this.props.panelOptions.modelName = name;
+        this.props.onOptionsChange(this.props.panelOptions);
+        this._trainModel(name);
+      }).catch(err => {
+        // New Model
+        // Create, train
+        loudml.createModel(model).then(result => {
+          // window.console.log("createModel", result);
+          loudml.createModelHook(model.name, loudml.createHook(ANOMALY_HOOK, model.default_bucket)).then(result => {
+            // window.console.log("createModelHook", result);
+            // loudml.modelCreated(model)
+            appEvents.emit(AppEvents.alertSuccess, ['Model has been created on Loud ML server']);
+
             this.props.panelOptions.modelName = name;
             this.props.onOptionsChange(this.props.panelOptions);
             this._trainModel(name);
-
           }).catch(err => {
-            // New Model
-            // Create, train
-            loudml.createModel(model).then(result => {
-              // window.console.log("createModel", result);
-              loudml.createModelHook(model.name, loudml.createHook(ANOMALY_HOOK, model.default_bucket)).then(result => {
-                // window.console.log("createModelHook", result);
-                // loudml.modelCreated(model)
-                appEvents.emit(AppEvents.alertSuccess, ['Model has been created on Loud ML server']);
-
-                this.props.panelOptions.modelName = name;
-                this.props.onOptionsChange(this.props.panelOptions);
-                this._trainModel(name);
-
-              }).catch(err => {
-                window.console.log("createModelHook error", err);
-                appEvents.emit(AppEvents.alertError, [err.message]);
-                return;
-              });
-            }).catch(err => {
-              window.console.log("createModel error", err);
-              appEvents.emit(AppEvents.alertError, ["Model create error", err.data]);
-              return;
-            });
+            window.console.log("createModelHook error", err);
+            appEvents.emit(AppEvents.alertError, [err.message]);
+            return;
           });
+        }).catch(err => {
+          window.console.log("createModel error", err);
+          appEvents.emit(AppEvents.alertError, ["Model create error", err.data]);
+          return;
+        });
+      });
         // })
-
     }).catch(err => {
       console.error(err);
       appEvents.emit(AppEvents.alertError, [err.message]);
@@ -529,7 +512,7 @@ export class CreateBaselineButton extends React.Component {
         }
 
     }).catch(err => {
-      window.console.log("Error getting Loud ML datasource", err);
+      window.console.log('Error getting Loud ML datasource', err);
       appEvents.emit(AppEvents.alertError, [err.message]);
       return;
     });
@@ -594,7 +577,7 @@ export class MLModelController extends React.Component {
       this.model = result[0];
       this.props.onOptionsChange(this.props.panelOptions);
     }).catch(err => {
-      window.console.log("Error getting Loud ML model", err);
+      window.console.log('Error getting Loud ML model', err);
     });
   }
 
@@ -614,7 +597,7 @@ export class MLModelController extends React.Component {
       this.loudml = this.ds.loudml;
       this.getModel();
     }).catch(err => {
-      window.console.log("Error getting Loud ML datasource", err);
+      window.console.log('Error getting Loud ML datasource', err);
       return;
     });
   }
@@ -637,15 +620,16 @@ export class MLModelController extends React.Component {
     if (this.model) {
       try {
         this.loudml.trainModel(this.modelName, this.props.data).then(result => {
-          window.console.log("ML trainModel", result)
+          window.console.log('ML trainModel', result);
           appEvents.emit(AppEvents.alertSuccess, ['Model train job started on Loud ML server']);
-        }).catch(err => {
-          window.console.log("ML trainModel error", err)
+        })
+        .catch(err => {
+          window.console.log('ML trainModel error', err);
           appEvents.emit(AppEvents.alertError, ['Model train job error', err.data.message]);
           return;
         });
       } catch (error) {
-        console.error(error)
+        console.error(error);
         appEvents.emit(AppEvents.alertError, ['Model train job error', err.message]);
       }
     }
@@ -655,21 +639,22 @@ export class MLModelController extends React.Component {
     if (this.model) {
       try {
         this.loudml.forecastModel(this.modelName, this.props.data).then(result => {
-          window.console.log("ML forecastModel", result)
+          window.console.log('ML forecastModel', result);
           appEvents.emit(AppEvents.alertSuccess, ['Model forecast job started on Loud ML server']);
-        }).catch(err => {
-          window.console.log("ML forecastModel error", err)
+        })
+        .catch(err => {
+          window.console.log('ML forecastModel error', err);
           appEvents.emit(AppEvents.alertError, ['Model forecast job error', err.data.message]);
           return;
         });
       } catch (error) {
-        console.error(error)
+        console.error(error);
         appEvents.emit(AppEvents.alertError, ['Model forecast job error', err.message]);
       }
     }
   }
 
-  render () {
+  render (){
     const play_btn = (
       this.model
       && this.model.settings
@@ -681,28 +666,31 @@ export class MLModelController extends React.Component {
       this.model
       && this.model.state
       && this.model.state.trained
-      && "Trained."
-    ) || "Not trained.";
+      && 'Trained.'
+    ) || 'Not trained.';
 
-    if (this.model && this.model.training && (this.model.training.state == "running")) {
-      model_trained = "Training...";
+    if (this.model && this.model.training && this.model.training.state === 'running') {
+      model_trained = 'Training...';
     }
 
     if (this.modelName) {
-      return(
+      return (
         <span className="panel-time-info">
           ML Model: {this.modelName} <span className="label">{model_trained}</span>
           {play_btn}
-          <a href="#" onClick={this.trainModel.bind(this)}> <i className="fa fa-clock-o"></i> Train</a>
-          <a href="#" onClick={this.forecastModel.bind(this)}> <i className="fa fa-clock-o"></i> Forecast</a>
-
+          <a href="#" onClick={this.trainModel.bind(this)}>
+            <i className="fa fa-clock-o"></i> Train
+          </a>
+          <a href="#" onClick={this.forecastModel.bind(this)}>
+            <i className="fa fa-clock-o"></i> Forecast
+          </a>
           <Tooltip placement="top" content="Current time range selection will be used to Train / Forecast">
             <span className="gf-form-help-icon">
               <i className="fa fa-info-circle" />
             </span>
           </Tooltip>
         </span>
-      )
+      );
     } else {
       return null;
     }

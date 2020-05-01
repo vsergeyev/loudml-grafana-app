@@ -1,3 +1,4 @@
+/*eslint-disable */
 // Data extractor functions
 // to parse selected data/queries into features, groupBy and params for Loud ML Model
 
@@ -84,7 +85,6 @@ export function extract_fill_value(target: any) {
 
   // OpenTSDB or Prometheus or so
   return "nan";
-  }
 }
 
 export function extract_format_tags(target: any) {

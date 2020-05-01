@@ -20,7 +20,7 @@ import {
   MAX_SPAN,
   DEFAULT_ANOMALY_TYPE,
   ANOMALY_HOOK_NAME,
-  ANOMALY_HOOK
+  ANOMALY_HOOK,
 } from './types';
 
 export default class LoudMLAPI {
@@ -38,9 +38,9 @@ export default class LoudMLAPI {
     method = method.toUpperCase();
     let options: any = {
       method,
-      url: this.url + url
+      url: this.url + url,
     };
-    if(method === 'GET' || method === 'DELETE' || data_as_params) {
+    if (method === 'GET' || method === 'DELETE' || data_as_params) {
       options.params = data;
     } else {
       options.data = data;
@@ -53,62 +53,58 @@ export default class LoudMLAPI {
   }
 
   createAndGetBucket = async (database, retentionPolicy, measurement, source) => {
-    const {host, port} = this.splitAddr('http://localhost:8086', 8086); //source.url, 8086)
-    const bucketName = [
-        database,
-        retentionPolicy,
-        measurement,
-    ].join('_');
+    const { host, port } = this.splitAddr('http://localhost:8086', 8086); //source.url, 8086)
+    const bucketName = [database, retentionPolicy, measurement].join('_');
     const settings = {
-        type: source.type,
-        name: bucketName,
-        retention_policy: retentionPolicy,
-        database,
-        measurement,
-        addr: `${host}:${port}`,
-        username: source.username,
-        password: source.password,
-    }
+      type: source.type,
+      name: bucketName,
+      retention_policy: retentionPolicy,
+      database,
+      measurement,
+      addr: `${host}:${port}`,
+      username: source.username,
+      password: source.password,
+    };
 
     await this._query('POST', '/buckets', settings);
     const response = await this._query('GET', `/buckets/${bucketName}`);
 
     return response[0];
-  }
+  };
 
   splitAddr = (url, port) => {
     // extract host and port from url address
-    const re = /(https?:)?(\/\/)?([\w\.]*):?(\d*)?/
-    const res = re.exec(url)
+    const re = /(https?:)?(\/\/)?([\w\.]*):?(\d*)?/;
+    const res = re.exec(url);
     return {
-        host: res[3],
-        port: res[4]||port,
-    }
-  }
+      host: res[3],
+      port: res[4] || port,
+    };
+  };
 
   createModel = async model => {
     // POST model JSON to /models
     return this._query('POST', '/models', model);
-  }
+  };
 
   getModel = async name => {
     return this._query('GET', `/models/${name}`);
-  }
+  };
 
   deleteModel = async name => {
     return this._query('DELETE', `/models/${name}`);
-  }
+  };
 
   createHook = (hook, bucket) => {
-    const h = {...hook}
-    h.config.bucket = bucket
-    return h
-  }
+    const h = { ...hook };
+    h.config.bucket = bucket;
+    return h;
+  };
 
   createModelHook = async (name, hook) => {
     // POST model hook to /models/${name}/hooks
     return this._query('POST', `/models/${name}/hooks`, hook);
-  }
+  };
 
   trainAndStartModel = async (name, from, to) => {
     const params = {
@@ -117,10 +113,10 @@ export default class LoudMLAPI {
       ...DEFAULT_START_OPTIONS,
     };
     return this._query('POST', `/models/${name}/_train`, params, true);
-  }
+  };
 
   forecastModel = async (name, data) => {
-    const {from, to} = data.timeRange.raw;
+    const { from, to } = data.timeRange.raw;
     const params = {
       from,
       to,
@@ -129,33 +125,30 @@ export default class LoudMLAPI {
       bg: true,
     };
     return this._query('POST', `/models/${name}/_forecast`, params, true);
-  }
+  };
 
   trainModel = async (name, data) => {
-    const {
-        lower,
-        upper
-    } = this.convertTimeRange(data.timeRange);
+    const { lower, upper } = this.convertTimeRange(data.timeRange);
     return await this.trainAndStartModel(name, lower, upper);
-  }
+  };
 
-  startModel = async (name) => {
+  startModel = async name => {
     const params = {
       ...DEFAULT_START_OPTIONS,
     };
     return this._query('POST', `/models/${name}/_start`, params, true);
-  }
+  };
 
-  stopModel = async (name) => {
+  stopModel = async name => {
     const params = {};
     return this._query('POST', `/models/${name}/_stop`, params, true);
-  }
+  };
 
   convertTimeRange = timeRange => {
-    const {from, to} = timeRange.raw;
+    const { from, to } = timeRange.raw;
     return {
-        lower: from,
-        upper: to,
+      lower: from,
+      upper: to,
     };
-  }
+  };
 }
