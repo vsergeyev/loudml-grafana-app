@@ -288,7 +288,6 @@ export class CreateBaselineButton extends React.Component {
 
   componentDidUpdate(prevProps) {
     this.data = this.props.data;
-    // window.console.log('BaselineButton update', this.data);
   }
 
   isValid() {
@@ -296,20 +295,20 @@ export class CreateBaselineButton extends React.Component {
       this.data.request.targets
       &&this.data.request.targets.length>0
       &&extract_is_valid(this.data.request.targets[0])
-    )
+    );
   }
 
   normalizeInterval(bucketInterval: any) {
     // interval = max(5, min(bucketIntervak, 60))
     const regex = /(\d+)(.*)/
-    const interval = regex.exec(bucketInterval)
+    const interval = regex.exec(bucketInterval);
     if (!interval) {
-        return MIN_INTERVAL_UNIT
+        return MIN_INTERVAL_UNIT;
     }
 
-    const duration = moment.duration(parseInt(interval[1], 10), interval[2]).asSeconds()
+    const duration = moment.duration(parseInt(interval[1], 10), interval[2]).asSeconds();
     if (!duration) {
-        return MIN_INTERVAL_UNIT
+        return MIN_INTERVAL_UNIT;
     }
 
     const normalized = Math.max(
@@ -319,23 +318,23 @@ export class CreateBaselineButton extends React.Component {
             MAX_INTERVAL_SECOND
         )
     )
-    return `${normalized}s`
+    return `${normalized}s`;
   }
 
   normalizeSpan(bucketInterval: any) {
     // span = max(10, min(24h/bucketInterval, 100))
     const regex = /(\d+)(.*)/
-    const interval = regex.exec(bucketInterval)
+    const interval = regex.exec(bucketInterval);
     if (!interval) {
-        return MIN_SPAN
+        return MIN_SPAN;
     }
 
     const duration = moment.duration(parseInt(interval[1], 10), interval[2]).asSeconds()
     if (!duration) {
-        return MIN_SPAN
+        return MIN_SPAN;
     }
 
-    return Math.max(MIN_SPAN, Math.min(Math.ceil(86400/duration), MAX_SPAN))
+    return Math.max(MIN_SPAN, Math.min(Math.ceil(86400/duration), MAX_SPAN));
   }
 
   _trainModel(name: string) {
@@ -343,15 +342,15 @@ export class CreateBaselineButton extends React.Component {
 
     try {
       loudml.trainModel(name, this.data).then(result => {
-        window.console.log("trainModel", result)
+        window.console.log("trainModel", result);
         appEvents.emit(AppEvents.alertSuccess, ['Model train job started on Loud ML server']);
       }).catch(err => {
-        window.console.log("trainModel error", err)
+        window.console.log("trainModel error", err);
         appEvents.emit(AppEvents.alertError, ['Model train job error', err.data.message]);
-        return
+        return;
       });
     } catch (error) {
-      console.error(error)
+      console.error(error);
       appEvents.emit(AppEvents.alertError, ['Model train job error', err.message]);
     }
 
@@ -479,12 +478,12 @@ export class CreateBaselineButton extends React.Component {
               }).catch(err => {
                 window.console.log("createModelHook error", err);
                 appEvents.emit(AppEvents.alertError, [err.message]);
-                return
+                return;
               });
             }).catch(err => {
               window.console.log("createModel error", err);
               appEvents.emit(AppEvents.alertError, ["Model create error", err.data]);
-              return
+              return;
             });
           });
         // })
@@ -492,7 +491,7 @@ export class CreateBaselineButton extends React.Component {
     }).catch(err => {
       console.error(err);
       appEvents.emit(AppEvents.alertError, [err.message]);
-      return
+      return;
     });
   }
 
@@ -517,7 +516,7 @@ export class CreateBaselineButton extends React.Component {
 
     if (!this.dsName) {
       appEvents.emit(AppEvents.alertError, ['Please choose Loud ML Server in panel settings']);
-      return
+      return;
     }
 
     this.getLoudMLDatasource().then(result => {
@@ -532,7 +531,7 @@ export class CreateBaselineButton extends React.Component {
     }).catch(err => {
       window.console.log("Error getting Loud ML datasource", err);
       appEvents.emit(AppEvents.alertError, [err.message]);
-      return
+      return;
     });
   }
 
@@ -585,7 +584,7 @@ export class MLModelController extends React.Component {
 
   getModel() {
     if (!this.loudml || this.props.panelOptions.modelName.length==0) {
-      return
+      return;
     }
 
     this.modelName = this.props.panelOptions.modelName;
@@ -601,13 +600,13 @@ export class MLModelController extends React.Component {
 
   getLoudMLDatasource() {
     if (this.dsName == this.props.panelOptions.datasourceOptions.datasource) {
-      return
+      return;
     }
 
     this.dsName = this.props.panelOptions.datasourceOptions.datasource;
 
     if (!this.dsName) {
-      return
+      return;
     }
 
     getDataSourceSrv().loadDatasource(this.dsName).then(result => {
@@ -616,7 +615,7 @@ export class MLModelController extends React.Component {
       this.getModel();
     }).catch(err => {
       window.console.log("Error getting Loud ML datasource", err);
-      return
+      return;
     });
   }
 
@@ -643,7 +642,7 @@ export class MLModelController extends React.Component {
         }).catch(err => {
           window.console.log("ML trainModel error", err)
           appEvents.emit(AppEvents.alertError, ['Model train job error', err.data.message]);
-          return
+          return;
         });
       } catch (error) {
         console.error(error)
@@ -661,7 +660,7 @@ export class MLModelController extends React.Component {
         }).catch(err => {
           window.console.log("ML forecastModel error", err)
           appEvents.emit(AppEvents.alertError, ['Model forecast job error', err.data.message]);
-          return
+          return;
         });
       } catch (error) {
         console.error(error)
@@ -705,7 +704,7 @@ export class MLModelController extends React.Component {
         </span>
       )
     } else {
-      return null
+      return null;
     }
   }
 }

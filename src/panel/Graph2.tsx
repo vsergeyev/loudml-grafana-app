@@ -8,10 +8,7 @@ import flattenDeep from 'lodash/flattenDeep';
 import cloneDeep from 'lodash/cloneDeep';
 
 import appEvents from 'grafana/app/core/app_events';
-import {
-  getDataSourceSrv,
-  getBackendSrv
-} from '@grafana/runtime';
+import { getDataSourceSrv, getBackendSrv } from '@grafana/runtime';
 import {
   getValueFormat,
   formattedValueToString,
@@ -29,7 +26,6 @@ import {
   REGION_FILL_ALPHA,
 } from '@grafana/ui';
 
-
 export class Graph2 extends Graph {
   dashboard: any;
   datasourcePromises: any;
@@ -37,8 +33,7 @@ export class Graph2 extends Graph {
   annotations: AnnotationEvent[];
 
   constructor(props) {
-    super(props)
-    // window.console.log(props.panelChrome);
+    super(props);
 
     const promises = [];
     const dsPromises = [];
@@ -60,7 +55,6 @@ export class Graph2 extends Graph {
 
           this.annotations = this.dedupAnnotations(this.annotations);
           this.draw();
-          // console.log(this.annotations);
         })
         .catch(err => {
           if (!err.message && err.data && err.data.message) {

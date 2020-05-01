@@ -8,7 +8,6 @@ import configTemplate from './partials/config.html';
 import LoudMLDatasource from './datasource';
 import { DEFAULT_MODEL } from './types';
 
-
 export class LoudMLConfigCtrl {
   public static template = configTemplate;
   public ACCESS_OPTIONS = [
@@ -38,23 +37,18 @@ export class LoudMLConfigCtrl {
   }
 
   async refreshModels() {
-    window.console.log("REFRESH MODELS!");
-
     this.$scope.ctrl.modelsList = [{'is_loading': true, 'settings': {'name': 'Loading...'}, 'state': {'trained': ''}}];
 
     const ds = (await getDataSourceSrv().loadDatasource(this.current.name)) as LoudMLDatasource;
 
     try {
-      ds.query({'url': '/models'}).then(
-        (response) => {
+      ds.query({'url': '/models'}).then(response => {
           this.$scope.ctrl.modelsList = response;
           this.$scope.$apply();
         }
       );
 
-      ds.query({'url': '/jobs'}).then(
-        (response) => {
-          // window.console.log(this);
+      ds.query({'url': '/jobs'}).then(response => {
           this.$scope.ctrl.jobsList = response;
           this.$scope.$apply();
         }
@@ -65,7 +59,6 @@ export class LoudMLConfigCtrl {
   }
 
   addModel() {
-    window.console.log("ADD MODEL");
     const model = DEFAULT_MODEL;
     appEvents.emit('show-modal', {
       src: '/public/plugins/grafana-loudml-app/datasource/partials/add_model.html',
@@ -75,7 +68,6 @@ export class LoudMLConfigCtrl {
   }
 
   editModel(name: any) {
-    window.console.log("EDIT MODEL");
     window.console.log(name);
     const model = this.$scope.ctrl.modelsList.find(el => el.settings.name == name);
     window.console.log(model);
@@ -89,12 +81,10 @@ export class LoudMLConfigCtrl {
   }
 
   async startModel(name: any) {
-    window.console.log("START MODEL");
     const ds = (await getDataSourceSrv().loadDatasource(this.current.name)) as LoudMLDatasource;
 
     try {
-      ds.loudml.startModel(name).then(
-        (response) => {
+      ds.loudml.startModel(name).then(response => {
           window.console.log(response);
           appEvents.emit(AppEvents.alertSuccess, ['Model has been started on Loud ML server']);
           this.refreshModels();
@@ -107,12 +97,10 @@ export class LoudMLConfigCtrl {
   }
 
   async stopModel(name: any) {
-    window.console.log("STOP MODEL");
     const ds = (await getDataSourceSrv().loadDatasource(this.current.name)) as LoudMLDatasource;
 
     try {
-      ds.loudml.stopModel(name).then(
-        (response) => {
+      ds.loudml.stopModel(name).then(response => {
           window.console.log(response);
           appEvents.emit(AppEvents.alertSuccess, ['Model has been stoped on Loud ML server']);
           this.refreshModels();
@@ -125,20 +113,18 @@ export class LoudMLConfigCtrl {
   }
 
   async forecastModel(name: any) {
-    window.console.log("FORECAST MODEL");
+    window.console.log('FORECAST MODEL');
   }
 
   async trainModel(name: any) {
-    window.console.log("TRAIN MODEL");
+    window.console.log('TRAIN MODEL');
   }
 
   async deleteModel(name: any) {
-    window.console.log("DELETE MODEL");
     const ds = (await getDataSourceSrv().loadDatasource(this.current.name)) as LoudMLDatasource;
 
     try {
-      ds.loudml.deleteModel(name).then(
-        (response) => {
+      ds.loudml.deleteModel(name).then(response => {
           window.console.log(response);
           appEvents.emit(AppEvents.alertSuccess, ['Model has been deleted on Loud ML server']);
           this.refreshModels();

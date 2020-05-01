@@ -23,7 +23,6 @@ import {
   ANOMALY_HOOK
 } from './types';
 
-
 export default class LoudMLAPI {
   private url: string;
 
@@ -54,12 +53,12 @@ export default class LoudMLAPI {
   }
 
   createAndGetBucket = async (database, retentionPolicy, measurement, source) => {
-    const {host, port} = this.splitAddr('http://localhost:8086', 8086) //source.url, 8086)
+    const {host, port} = this.splitAddr('http://localhost:8086', 8086); //source.url, 8086)
     const bucketName = [
         database,
         retentionPolicy,
         measurement,
-    ].join('_')
+    ].join('_');
     const settings = {
         type: source.type,
         name: bucketName,
@@ -71,8 +70,8 @@ export default class LoudMLAPI {
         password: source.password,
     }
 
-    await this._query('POST', '/buckets', settings)
-    const response = await this._query('GET', `/buckets/${bucketName}`)
+    await this._query('POST', '/buckets', settings);
+    const response = await this._query('GET', `/buckets/${bucketName}`);
 
     return response[0];
   }
@@ -89,15 +88,15 @@ export default class LoudMLAPI {
 
   createModel = async model => {
     // POST model JSON to /models
-    return this._query('POST', '/models', model)
+    return this._query('POST', '/models', model);
   }
 
   getModel = async name => {
-    return this._query('GET', `/models/${name}`)
+    return this._query('GET', `/models/${name}`);
   }
 
   deleteModel = async name => {
-    return this._query('DELETE', `/models/${name}`)
+    return this._query('DELETE', `/models/${name}`);
   }
 
   createHook = (hook, bucket) => {
@@ -108,7 +107,7 @@ export default class LoudMLAPI {
 
   createModelHook = async (name, hook) => {
     // POST model hook to /models/${name}/hooks
-    return this._query('POST', `/models/${name}/hooks`, hook)
+    return this._query('POST', `/models/${name}/hooks`, hook);
   }
 
   trainAndStartModel = async (name, from, to) => {
@@ -116,8 +115,8 @@ export default class LoudMLAPI {
       from,
       to,
       ...DEFAULT_START_OPTIONS,
-    }
-    return this._query('POST', `/models/${name}/_train`, params, true)
+    };
+    return this._query('POST', `/models/${name}/_train`, params, true);
   }
 
   forecastModel = async (name, data) => {
@@ -128,36 +127,35 @@ export default class LoudMLAPI {
       save_output_data: true,
       output_bucket: 'loudml',
       bg: true,
-    }
-    return this._query('POST', `/models/${name}/_forecast`, params, true)
+    };
+    return this._query('POST', `/models/${name}/_forecast`, params, true);
   }
 
   trainModel = async (name, data) => {
     const {
         lower,
         upper
-    } = this.convertTimeRange(data.timeRange)
-
-    return await this.trainAndStartModel(name, lower, upper)
+    } = this.convertTimeRange(data.timeRange);
+    return await this.trainAndStartModel(name, lower, upper);
   }
 
   startModel = async (name) => {
     const params = {
       ...DEFAULT_START_OPTIONS,
-    }
-    return this._query('POST', `/models/${name}/_start`, params, true)
+    };
+    return this._query('POST', `/models/${name}/_start`, params, true);
   }
 
   stopModel = async (name) => {
-    const params = {}
-    return this._query('POST', `/models/${name}/_stop`, params, true)
+    const params = {};
+    return this._query('POST', `/models/${name}/_stop`, params, true);
   }
 
   convertTimeRange = timeRange => {
-    const {from, to} = timeRange.raw
+    const {from, to} = timeRange.raw;
     return {
         lower: from,
         upper: to,
-    }
+    };
   }
 }
