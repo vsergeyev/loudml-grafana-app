@@ -1,4 +1,4 @@
 declare module '*.html' {
-  const contents: string
-  export = contents
+  const contents: string;
+  export = contents;
 }

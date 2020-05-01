@@ -72,7 +72,7 @@ export const defaults: Options = {
   datasourceOptions: {
     datasource: '',
     input_bucket: '',
-    output_bucket: 'loudml'
+    output_bucket: 'loudml',
   },
-  modelName: ''
+  modelName: '',
 };

@@ -1,5 +1,4 @@
 // Libraries
-
 import React from 'react';
 import { css } from 'emotion';
 import { GraphSeriesValue } from '@grafana/data';
@@ -77,7 +76,7 @@ export const GraphWithLegend2: React.FunctionComponent<GraphWithLegendProps> = (
     onHorizontalRegionSelected,
     timeZone,
     children,
-    panelChrome
+    panelChrome,
   } = props;
   const { graphContainer, wrapper, legendContainer } = getGraphWithLegendStyles(props);
 
@@ -140,8 +139,6 @@ export const GraphWithLegend2: React.FunctionComponent<GraphWithLegendProps> = (
           </CustomScrollbar>
         </div>
       )}
-
-
     </div>
   );
 };

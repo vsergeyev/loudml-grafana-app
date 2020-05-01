@@ -46,18 +46,8 @@ export const GraphLegendEditor: React.FunctionComponent<GraphLegendEditorProps> 
     <PanelOptionsGroup title="Legend">
       <div className="section gf-form-group">
         <h4>Options</h4>
-        <Switch
-          label="Show legend"
-          labelClass={`width-${labelWidth}`}
-          checked={options.isVisible}
-          onChange={onOptionToggle('isVisible')}
-        />
-        <Switch
-          label="Display as table"
-          labelClass={`width-${labelWidth}`}
-          checked={options.asTable}
-          onChange={onOptionToggle('asTable')}
-        />
+        <Switch label="Show legend" labelClass={`width-${labelWidth}`} checked={options.isVisible} onChange={onOptionToggle('isVisible')} />
+        <Switch label="Display as table" labelClass={`width-${labelWidth}`} checked={options.asTable} onChange={onOptionToggle('asTable')} />
         <Switch
           label="To the right"
           labelClass={`width-${labelWidth}`}
@@ -69,12 +59,7 @@ export const GraphLegendEditor: React.FunctionComponent<GraphLegendEditorProps> 
       <div className="section gf-form-group">
         <h4>Show</h4>
         <div className="gf-form">
-          <StatsPicker
-            allowMultiple={true}
-            stats={options.stats ? options.stats : []}
-            onChange={onStatsChanged}
-            placeholder={'Pick Values'}
-          />
+          <StatsPicker allowMultiple={true} stats={options.stats ? options.stats : []} onChange={onStatsChanged} placeholder={'Pick Values'} />
         </div>
 
         <div className="gf-form">

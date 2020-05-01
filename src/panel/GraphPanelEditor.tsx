@@ -7,17 +7,7 @@ import { getDataSourceSrv } from '@grafana/runtime';
 
 // Types
 import { PanelEditorProps, FieldConfig, DataSourceSelectItem } from '@grafana/data';
-import {
-  Switch,
-  LegendOptions,
-  GraphTooltipOptions,
-  PanelOptionsGrid,
-  PanelOptionsGroup,
-  FieldPropertiesEditor,
-  Select,
-  Input,
-} from '@grafana/ui';
-
+import { Switch, LegendOptions, GraphTooltipOptions, PanelOptionsGrid, PanelOptionsGroup, FieldPropertiesEditor, Select, Input } from '@grafana/ui';
 
 import { Options, GraphOptions, GraphDatasourceOptions } from './types';
 import { GraphLegendEditor } from './GraphLegendEditor';
@@ -26,21 +16,20 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
   datasources: DataSourceSelectItem[] = getDataSourceSrv().getMetricSources();
 
   constructor(props) {
-    super(props)
-    // window.console.log("GraphPanelEditor", props);
+    super(props);
   }
 
   datasourcesList = function() {
     var res = new Array({ label: 'Not selected', value: '' });
 
-    this.datasources.forEach(function (val) {
-      if (val.meta.id === "loudml-datasource") {
-        res.push({label: val.name, value: val.value});
+    this.datasources.forEach(function(val) {
+      if (val.meta.id === 'loudml-datasource') {
+        res.push({ label: val.name, value: val.value });
       }
     });
 
     return res;
-  }
+  };
 
   onChangeDataSource = (value: any) => {
     this.props.options.datasourceOptions.datasource = value.value;
@@ -49,7 +38,7 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
 
   onChangeInputBucket = (event: any) => {
     this.props.options.datasourceOptions.input_bucket = event.target.value;
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value });
   };
 
   onBlurInputBucket = () => {
@@ -58,7 +47,7 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
 
   onChangeOutputBucket = (event: any) => {
     this.props.options.datasourceOptions.output_bucket = event.target.value;
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value });
   };
 
   onBlurOutputBucket = () => {
@@ -97,7 +86,7 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
 
   onToggleisStacked = () => {
     this.onGraphOptionsChange({ isStacked: !this.props.options.graph.isStacked });
-  }
+  };
 
   onChangeFill = (value: any) => {
     this.onGraphOptionsChange({ fill: value.value });
@@ -137,18 +126,19 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
           <div className="gf-form max-width-40">
             <span className="gf-form-label width-10">Loud ML Server</span>
             <Select
-                value={{ value: datasource, label: datasource }}
-                onChange={value => {
-                  this.onChangeDataSource({ value: value.value as any });
-                }}
-                options={this.datasourcesList()}
-              />
+              value={{ value: datasource, label: datasource }}
+              onChange={value => {
+                this.onChangeDataSource({ value: value.value as any });
+              }}
+              options={this.datasourcesList()}
+            />
           </div>
           <div className="gf-form max-width-40">
             <span className="gf-form-label width-10">Input Bucket</span>
             <Input
               value={this.props.options.datasourceOptions.input_bucket}
-              className="gf-form-input" type="text"
+              className="gf-form-input"
+              type="text"
               placeholder="Datasource/Database used in Query"
               min-length="0"
               onBlur={this.onBlurInputBucket}
@@ -161,7 +151,8 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
             <span className="gf-form-label width-10">Output Bucket</span>
             <Input
               value={this.props.options.datasourceOptions.output_bucket}
-              className="gf-form-input" type="text"
+              className="gf-form-input"
+              type="text"
               placeholder="Database to store ML Model training results"
               min-length="0"
               onBlur={this.onBlurOutputBucket}
@@ -188,8 +179,8 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
                 onChange={value => {
                   this.onChangeFill({ value: value.value as any });
                 }}
-                options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(t=>({value: t, label: t}))}
-                />
+                options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(t => ({ value: t, label: t }))}
+              />
             </div>
             <div className="gf-form max-width-20">
               <span className="gf-form-label width-8">Fill Gradient</span>
@@ -199,8 +190,8 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
                 onChange={value => {
                   this.onChangeFillGradient({ value: value.value as any });
                 }}
-                options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(t=>({value: t, label: t}))}
-                />
+                options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(t => ({ value: t, label: t }))}
+              />
             </div>
 
             <div className="gf-form max-width-20">
@@ -211,8 +202,8 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
                 onChange={value => {
                   this.onChangeLineWidth({ value: value.value as any });
                 }}
-                options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(t=>({value: t, label: t}))}
-                />
+                options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(t => ({ value: t, label: t }))}
+              />
             </div>
           </div>
           <div className="section gf-form-group">
@@ -225,11 +216,7 @@ export class GraphPanelEditor extends PureComponent<PanelEditorProps<Options>> {
 
         <PanelOptionsGrid>
           <PanelOptionsGroup title="Field">
-            <FieldPropertiesEditor
-              showMinMax={false}
-              onChange={this.onDefaultsChange}
-              value={this.props.options.fieldOptions.defaults}
-            />
+            <FieldPropertiesEditor showMinMax={false} onChange={this.onDefaultsChange} value={this.props.options.fieldOptions.defaults} />
           </PanelOptionsGroup>
           <PanelOptionsGroup title="Tooltip">
             <Select
