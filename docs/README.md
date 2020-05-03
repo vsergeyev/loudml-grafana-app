@@ -33,6 +33,42 @@ Per ML algorythm documentation:
 
 `Donut is an unsupervisedanomaly detection algorithm based on VAE. It greatly outperforms a state-of-arts super-vised ensemble approach and a baseline VAE approach, and its best F-scores range from 0.75 to 0.9 for the studied KPIs from a top global Internet company. ... Unlike discriminative models which are designed for just one pur-pose (e.g., a classifier is designed for just computing the classifi-cation probabilityp(y|x)), generative models like VAE can derivevarious outputs. `
 
+# Installation
+
+A) Give it a try with Docker
+
+      sudo docker run -d \
+      -p 3000:3000 \
+      --name=grafana \
+      -e "GF_INSTALL_PLUGINS=https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.1.0.zip;grafana-loudml-app" \
+      grafana/grafana
+
+B) In existing Grafana container
+
+  * Connect to your Grafana server if necessary (e.g. via SSH).
+  * Go to plugins directory (usually data/plugins under Grafana installation or /var/lib/grafana/plugins)
+    
+        cd /var/lib/grafana/plugins
+  * Download grafana-loudml-app-1.1.0.zip zip file:
+  
+        wget https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.1.0.zip
+  * Unpack it there
+  
+        unzip grafana-loudml-app-1.1.0.zip
+  * You may remove the downloaded archive
+  * Restart Grafana
+
+C) From sources
+
+ * Plugin should be placed in `.../grafana/data/plugins`
+ * git clone https://github.com/vsergeyev/loudml-grafana-app.git
+ * cd loudml-grafana-app
+ * yarn
+ * yarn dev --watch
+ * restart Grafana
+ * LoudML app should be in plugins list, you may need to activate it
+ * enjoy :)
+
 # Prerequisites
 
     * Loud ML server https://github.com/regel/loudml
