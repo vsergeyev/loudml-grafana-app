@@ -24,13 +24,13 @@ B) In existing Grafana container
 
   * Connect to your Grafana server if necessary (e.g. via SSH).
   * Go to plugins directory (usually data/plugins under Grafana installation or /var/lib/grafana/plugins)
-    
+
         cd /var/lib/grafana/plugins
   * Download grafana-loudml-app-1.1.0.zip zip file:
-  
+
         wget https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.1.0.zip
   * Unpack it there
-  
+
         unzip grafana-loudml-app-1.1.0.zip
   * You may remove the downloaded archive
   * Restart Grafana
@@ -110,4 +110,9 @@ InfluxDB **loudmlannotations** here specified to store annotations. (By default 
 
 # Support
 
-Please post issue to tracker or contact me via vova.sergeyev at gmail.com.
+Please post issue to tracker or contact me via vova.sergeyev at gmail.com
+
+# Changelog
+
+ * 1.2.0 New capabilities: LoudML datasource - add scheduled job; list of scheduled jobs.
+ * 1.1.0 Initial public release

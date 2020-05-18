@@ -177,7 +177,10 @@
           <tbody>
             <tr ng-repeat="job in ctrl.scheduledList">
                 <td>
-                  {{job.name}}
+                  <a href="#" ng-click="ctrl.editJob(job.name)">
+                    <i class="fa fa-pencil fa-fw"></i>
+                    {{job.name}}
+                  </a>
                 </td>
                 <td>
                   {{job.method}}
@@ -193,12 +196,19 @@
                     at {{job.every.at}}
                   </span>
                 </td>
-                <td ng-show="job.last_run_timestamp">
-                  {{job.status_code}}
-                  <span ng-show="job.error">
-                    <br />
-                    Error: {{job.error}}
+                <td>
+                  <span ng-show="job.last_run_timestamp">
+                    OK: {{job.ok}}; Result: {{job.status_code}}
+                    <span ng-show="job.error">
+                      <br />
+                      Error: {{job.error}}
+                    </span>
                   </span>
+                </td>
+                <td>
+                  <a href="#" ng-click="ctrl.deleteJob(job.name)">
+                    <i class="fa fa-trash-o fa-fw"></i> Delete
+                  </a>
                 </td>
             </tr>
           </tbody>
@@ -234,7 +244,7 @@
         </table>
       </div>
     </div>
-  <div class="grafana-info-box m-t-2" ng-show="ctrl.modelsList.length===0">
+  <div class="grafana-info-box m-t-2" ng-show="ctrl.jobsList.length===0">
       No jobs to show. Click refresh to update data from Loud ML server
   </div>
 

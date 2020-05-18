@@ -74,10 +74,7 @@ export class LoudMLConfigCtrl {
   }
 
   editModel(name: any) {
-    window.console.log(name);
     const model = this.$scope.ctrl.modelsList.find(el => el.settings.name === name);
-    window.console.log(model);
-
     // appEvents.emit(CoreEvents.showModal, {
     appEvents.emit('show-modal', {
       src: '/public/plugins/grafana-loudml-app/datasource/partials/edit_model.html',
@@ -96,19 +93,48 @@ export class LoudMLConfigCtrl {
     });
   }
 
+  editJob(name: any) {
+    this.job = this.$scope.ctrl.scheduledList.find(el => el.name === name);
+    if (this.job.params) {
+      this.job.params = JSON.stringify(this.job.params);
+    }
+
+    if (this.job.json) {
+      this.job.json = JSON.stringify(this.job.json);
+    }
+
+    appEvents.emit('show-modal', {
+      src: '/public/plugins/grafana-loudml-app/datasource/partials/add_job.html',
+      modalClass: 'confirm-modal',
+      model: this
+    });
+  }
+
   async scheduleJob() {
-    window.console.log(this.job);
     const ds = (await getDataSourceSrv().loadDatasource(this.current.name)) as LoudMLDatasource;
-    try {
-      ds.loudml.scheduleJob(this.job).then(response => {
+    ds.loudml.scheduleJob(this.job)
+      .then(response => {
         window.console.log(response);
         appEvents.emit(AppEvents.alertSuccess, ['Job has been scheduled on Loud ML server']);
         this.refreshModels();
+      })
+      .catch(error => {
+        console.log(error);
+        appEvents.emit(AppEvents.alertError, ['Job schedule error', error.statusText]);
       });
-    } catch (err) {
-      console.error(err);
-      appEvents.emit(AppEvents.alertError, ['Job schedule error', err]);
-    }
+  }
+
+  async deleteJob(name: any) {
+    const ds = (await getDataSourceSrv().loadDatasource(this.current.name)) as LoudMLDatasource;
+    ds.loudml.deleteJob(name)
+      .then(response => {
+        window.console.log(response);
+        appEvents.emit(AppEvents.alertSuccess, ['Scheduled job has been deleted on Loud ML server']);
+        this.refreshModels();
+      })
+      .catch(error => {
+        appEvents.emit(AppEvents.alertError, ['Job delete error', error.statusText]);
+      }
   }
 
   async startModel(name: any) {

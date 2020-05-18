@@ -149,21 +149,37 @@ export default class LoudMLAPI {
       ...job,
     };
 
+    window.console.log(params);
     params.every.count = parseInt(params.every.count) || 1;
 
     if (!params.params) {
       delete params.params;
+    } else {
+      params.params = JSON.parse(params.params);
     }
 
     if (!params.json) {
       delete params.json;
+    } else {
+      params.json = JSON.parse(params.json);
     }
 
     if (!params.every.at) {
       delete params.every.at;
     }
 
+    delete params["$$hashKey"]
+    delete params.ok
+    delete params.error
+    delete params.status_code
+    delete params.last_run_timestamp
+
+    window.console.log(params);
     return this._query('POST', `/scheduled_jobs`, params);
+  };
+
+  deleteJob = async name => {
+    return this._query('DELETE', `/scheduled_jobs/${name}`);
   };
 
   convertTimeRange = timeRange => {

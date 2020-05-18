@@ -18,8 +18,8 @@
       {"name": "License", "url": "https://github.com/vsergeyev/loudml-grafana-app/blob/master/LICENSE"}
     ],
     "screenshots": [],
-    "version": "1.1.0",
-    "updated": "05/01/2020"
+    "version": "1.2.0",
+    "updated": "05/19/2020"
   },
 
   "includes": [
