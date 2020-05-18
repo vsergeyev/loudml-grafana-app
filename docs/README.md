@@ -40,21 +40,21 @@ A) Give it a try with Docker
       sudo docker run -d \
       -p 3000:3000 \
       --name=grafana \
-      -e "GF_INSTALL_PLUGINS=https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.1.0.zip;grafana-loudml-app" \
+      -e "GF_INSTALL_PLUGINS=https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.2.0.zip;grafana-loudml-app" \
       grafana/grafana
 
 B) In existing Grafana container
 
   * Connect to your Grafana server if necessary (e.g. via SSH).
   * Go to plugins directory (usually data/plugins under Grafana installation or /var/lib/grafana/plugins)
-    
+
         cd /var/lib/grafana/plugins
-  * Download grafana-loudml-app-1.1.0.zip zip file:
-  
-        wget https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.1.0.zip
+  * Download grafana-loudml-app-1.2.0.zip zip file:
+
+        wget https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.2.0.zip
   * Unpack it there
-  
-        unzip grafana-loudml-app-1.1.0.zip
+
+        unzip grafana-loudml-app-1.2.0.zip
   * You may remove the downloaded archive
   * Restart Grafana
 
@@ -124,3 +124,8 @@ InfluxDB **loudmlannotations** here specified to store annotations. (By default 
  * <a href="https://arxiv.org/pdf/1802.03903.pdf">Unsupervised Anomaly Detection via Variational Auto-Encoderfor Seasonal KPIs in Web Applications</a>
  * <a href="https://medium.com/loud-ml/forecasting-time-series-with-1-click-machine-learning-inside-the-tick-stack-c15dedb15035">Forecasting time series with 1-click machine learning</a>
  * <a href="https://medium.com/@dganais/applying-machine-learning-models-to-influxdb-with-loud-ml-docker-for-time-series-predictions-c4ffa4fc5174">Applying Machine Learning Models to InfluxDB</a>
+
+# Changelog
+
+ * 1.2.0 New capabilities: LoudML datasource - add scheduled job; list of scheduled jobs.
+ * 1.1.0 Initial public release

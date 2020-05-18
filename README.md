@@ -17,7 +17,7 @@ A) Give it a try with Docker
       sudo docker run -d \
       -p 3000:3000 \
       --name=grafana \
-      -e "GF_INSTALL_PLUGINS=https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.1.0.zip;grafana-loudml-app" \
+      -e "GF_INSTALL_PLUGINS=https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.2.0.zip;grafana-loudml-app" \
       grafana/grafana
 
 B) In existing Grafana container
@@ -26,12 +26,12 @@ B) In existing Grafana container
   * Go to plugins directory (usually data/plugins under Grafana installation or /var/lib/grafana/plugins)
 
         cd /var/lib/grafana/plugins
-  * Download grafana-loudml-app-1.1.0.zip zip file:
+  * Download grafana-loudml-app-1.2.0.zip zip file:
 
-        wget https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.1.0.zip
+        wget https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.2.0.zip
   * Unpack it there
 
-        unzip grafana-loudml-app-1.1.0.zip
+        unzip grafana-loudml-app-1.2.0.zip
   * You may remove the downloaded archive
   * Restart Grafana
 
