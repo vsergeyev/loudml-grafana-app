@@ -35,9 +35,9 @@ export const DEFAULT_JOB = {
   every: {
     count: 1,
     unit: '',
-    at: ''
-  }
-}
+    at: '',
+  },
+};
 
 export const DEFAULT_FEATURE = {
   name: '',

@@ -150,7 +150,7 @@ export default class LoudMLAPI {
     };
 
     window.console.log(params);
-    params.every.count = parseInt(params.every.count) || 1;
+    params.every.count = parseInt(params.every.count, 10) || 1;
 
     if (!params.params) {
       delete params.params;
@@ -168,11 +168,11 @@ export default class LoudMLAPI {
       delete params.every.at;
     }
 
-    delete params["$$hashKey"]
-    delete params.ok
-    delete params.error
-    delete params.status_code
-    delete params.last_run_timestamp
+    delete params['$$hashKey'];
+    delete params.ok;
+    delete params.error;
+    delete params.status_code;
+    delete params.last_run_timestamp;
 
     window.console.log(params);
     return this._query('POST', `/scheduled_jobs`, params);

@@ -89,7 +89,7 @@ export class LoudMLConfigCtrl {
     appEvents.emit('show-modal', {
       src: '/public/plugins/grafana-loudml-app/datasource/partials/add_job.html',
       modalClass: 'confirm-modal',
-      model: this
+      model: this,
     });
   }
 
@@ -106,13 +106,14 @@ export class LoudMLConfigCtrl {
     appEvents.emit('show-modal', {
       src: '/public/plugins/grafana-loudml-app/datasource/partials/add_job.html',
       modalClass: 'confirm-modal',
-      model: this
+      model: this,
     });
   }
 
   async scheduleJob() {
     const ds = (await getDataSourceSrv().loadDatasource(this.current.name)) as LoudMLDatasource;
-    ds.loudml.scheduleJob(this.job)
+    ds.loudml
+      .scheduleJob(this.job)
       .then(response => {
         window.console.log(response);
         appEvents.emit(AppEvents.alertSuccess, ['Job has been scheduled on Loud ML server']);
@@ -126,7 +127,8 @@ export class LoudMLConfigCtrl {
 
   async deleteJob(name: any) {
     const ds = (await getDataSourceSrv().loadDatasource(this.current.name)) as LoudMLDatasource;
-    ds.loudml.deleteJob(name)
+    ds.loudml
+      .deleteJob(name)
       .then(response => {
         window.console.log(response);
         appEvents.emit(AppEvents.alertSuccess, ['Scheduled job has been deleted on Loud ML server']);
@@ -134,7 +136,7 @@ export class LoudMLConfigCtrl {
       })
       .catch(error => {
         appEvents.emit(AppEvents.alertError, ['Job delete error', error.statusText]);
-      }
+      });
   }
 
   async startModel(name: any) {
