@@ -1,0 +1,135 @@
+<div class="modal-body">
+    <div class="modal-header">
+        <h2 class="modal-header-title">
+            <i class="fa fa-info-circle"></i>
+            <span class="p-l-1">Schedule a Job</span>
+        </h2>
+
+        <a class="modal-header-close" ng-click="dismiss();">
+            <i class="fa fa-remove"></i>
+        </a>
+    </div>
+
+
+    <div class="modal-content">
+        <div class="gf-form-group">
+          <h3 class="page-heading">General</h3>
+
+          <div class="gf-form max-width-40">
+            <span class="gf-form-label width-20">Name</span>
+            <input
+              class="gf-form-input" type="text"
+              ng-model='model.job.name'
+              min-length="0"
+              required="required"
+              ng-blur=""
+            />
+          </div>
+
+          <div class="gf-form max-width-40">
+            <span class="gf-form-label width-20">Method</span>
+            <div class="gf-form-select-wrapper">
+              <select
+                class="gf-form-input"
+                ng-model="model.job.method"
+                ng-options="f as f for f in ['get', 'post', 'head', 'patch', 'delete']"
+              />
+            </div>
+          </div>
+
+          <div class="gf-form max-width-40">
+            <span class="gf-form-label width-20">Relative URL</span>
+            <input
+              class="gf-form-input" type="text"
+              ng-model='model.job.relative_url'
+              min-length="0"
+              required="required"
+              ng-blur=""
+            />
+          </div>
+
+          <div class="gf-form max-width-40">
+            <span class="gf-form-label width-20">Params (optional)</span>
+            <input
+              class="gf-form-input" type="text"
+              ng-model='model.job.params'
+              min-length="0"
+              required
+              ng-blur=""
+            />
+          </div>
+
+          <div class="gf-form max-width-40">
+            <span class="gf-form-label width-20">JSON payload (optional)</span>
+            <input
+              class="gf-form-input" type="text"
+              ng-model='model.job.json'
+              min-length="0"
+              required
+              ng-blur=""
+            />
+          </div>
+
+        </div>
+
+        <div class="gf-form-group">
+          <h3 class="page-heading">Time</h3>
+
+          <div class="gf-form max-width-40">
+            <span class="gf-form-label width-20">Count</span>
+            <input
+              class="gf-form-input" type="number"
+              ng-model='model.job.every.count'
+              min-length="0"
+              required="required"
+              ng-blur=""
+            />
+          </div>
+
+          <div class="gf-form max-width-40">
+            <span class="gf-form-label width-20">Unit</span>
+            <div class="gf-form-select-wrapper">
+              <select
+                class="gf-form-input"
+                ng-model="model.job.every.unit"
+                ng-options="f as f for f in ['second',
+                  'seconds',
+                  'minute',
+                  'minutes',
+                  'hour',
+                  'hours',
+                  'day',
+                  'days',
+                  'week',
+                  'weeks',
+                  'monday',
+                  'tuesday',
+                  'wednesday',
+                  'thursday',
+                  'friday',
+                  'saturday',
+                  'sunday',]"
+              />
+            </div>
+          </div>
+
+          <div class="gf-form max-width-40">
+            <span class="gf-form-label width-20">At (optional, ex. 20:00)</span>
+            <input
+              class="gf-form-input" type="text"
+              ng-model='model.job.every.at'
+              min-length="0"
+              required
+              ng-blur=""
+            />
+          </div>
+        </div>
+
+      <button type="button" class="btn btn-secondary" ng-click="model.scheduleJob(); dismiss();">
+        Schedule a Job
+      </button>
+
+    </div>
+
+</div>
+

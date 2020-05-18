@@ -113,6 +113,11 @@
       <i class="fa fa-pencil fa-fw"></i>
       Add Model
     </button>
+
+    <button type="button" class="btn btn-secondary" ng-click="ctrl.addJob()">
+      <i class="fa fa-pencil fa-fw"></i>
+      Schedule a Job
+    </button>
   </div>
 
   <div class="table-panel-container">
@@ -163,6 +168,45 @@
     </div>
   <div class="grafana-info-box m-t-2" ng-show="ctrl.modelsList.length===0">
       No models to show. Click refresh to update data from Loud ML server
+  </div>
+
+  <div class="table-panel-container">
+    <div class="table-panel-header-bg">Scheduled Jobs</div>
+      <div class="table-panel-scroll">
+        <table class="table-panel-table">
+          <tbody>
+            <tr ng-repeat="job in ctrl.scheduledList">
+                <td>
+                  {{job.name}}
+                </td>
+                <td>
+                  {{job.method}}
+                </td>
+                <td>
+                  {{job.relative_url}}
+                </td>
+                <td>
+                  Every {{job.every.count}}
+                  {{job.every.unit}}
+
+                  <span ng-show="job.every.at">
+                    at {{job.every.at}}
+                  </span>
+                </td>
+                <td ng-show="job.last_run_timestamp">
+                  {{job.status_code}}
+                  <span ng-show="job.error">
+                    <br />
+                    Error: {{job.error}}
+                  </span>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <div class="grafana-info-box m-t-2" ng-show="ctrl.scheduledList.length===0">
+      No scheduled jobs to show. Click refresh to update data from Loud ML server
   </div>
 
   <div class="table-panel-container">

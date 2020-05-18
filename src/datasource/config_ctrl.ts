@@ -6,7 +6,7 @@ import appEvents from 'grafana/app/core/app_events';
 import LoudMLAPI from './loudml_api';
 import configTemplate from './partials/config.html';
 import LoudMLDatasource from './datasource';
-import { DEFAULT_MODEL } from './types';
+import { DEFAULT_MODEL, DEFAULT_JOB } from './types';
 
 export class LoudMLConfigCtrl {
   static template = configTemplate;
@@ -20,6 +20,8 @@ export class LoudMLConfigCtrl {
   showAccessHelp = false;
   modelsList = [];
   jobsList = [];
+  scheduledList = [];
+  job: any;
 
   constructor(private $scope: any) {
     // window.console.log($scope);
@@ -51,8 +53,14 @@ export class LoudMLConfigCtrl {
         this.$scope.ctrl.jobsList = response;
         this.$scope.$apply();
       });
+
+      ds.query({ url: '/scheduled_jobs', params: {} }).then(response => {
+        this.$scope.ctrl.scheduledList = response;
+        this.$scope.$apply();
+      });
     } catch (err) {
       console.error(err);
+      appEvents.emit(AppEvents.alertError, [err]);
     }
   }
 
@@ -76,6 +84,31 @@ export class LoudMLConfigCtrl {
       modalClass: 'confirm-modal',
       model: model,
     });
+  }
+
+  addJob() {
+    this.job = Object.assign({}, DEFAULT_JOB);
+
+    appEvents.emit('show-modal', {
+      src: '/public/plugins/grafana-loudml-app/datasource/partials/add_job.html',
+      modalClass: 'confirm-modal',
+      model: this
+    });
+  }
+
+  async scheduleJob() {
+    window.console.log(this.job);
+    const ds = (await getDataSourceSrv().loadDatasource(this.current.name)) as LoudMLDatasource;
+    try {
+      ds.loudml.scheduleJob(this.job).then(response => {
+        window.console.log(response);
+        appEvents.emit(AppEvents.alertSuccess, ['Job has been scheduled on Loud ML server']);
+        this.refreshModels();
+      });
+    } catch (err) {
+      console.error(err);
+      appEvents.emit(AppEvents.alertError, ['Job schedule error', err]);
+    }
   }
 
   async startModel(name: any) {

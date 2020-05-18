@@ -9410,6 +9410,18 @@ exports.DEFAULT_MODEL = {
   span: 10,
   type: exports.MODEL_TYPE_LIST[0].type
 };
+exports.DEFAULT_JOB = {
+  name: '',
+  method: 'get',
+  relative_url: '',
+  params: '',
+  json: '',
+  every: {
+    count: 1,
+    unit: '',
+    at: ''
+  }
+};
 exports.DEFAULT_FEATURE = {
   name: '',
   measurement: null,

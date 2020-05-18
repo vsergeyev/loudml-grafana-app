@@ -12,6 +12,31 @@ https://github.com/regel/loudml
 
 # Installation
 
+A) Give it a try with Docker
+
+      sudo docker run -d \
+      -p 3000:3000 \
+      --name=grafana \
+      -e "GF_INSTALL_PLUGINS=https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.1.0.zip;grafana-loudml-app" \
+      grafana/grafana
+
+B) In existing Grafana container
+
+  * Connect to your Grafana server if necessary (e.g. via SSH).
+  * Go to plugins directory (usually data/plugins under Grafana installation or /var/lib/grafana/plugins)
+    
+        cd /var/lib/grafana/plugins
+  * Download grafana-loudml-app-1.1.0.zip zip file:
+  
+        wget https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.1.0.zip
+  * Unpack it there
+  
+        unzip grafana-loudml-app-1.1.0.zip
+  * You may remove the downloaded archive
+  * Restart Grafana
+
+C) From sources
+
  * Plugin should be placed in `.../grafana/data/plugins`
  * git clone https://github.com/vsergeyev/loudml-grafana-app.git
  * cd loudml-grafana-app

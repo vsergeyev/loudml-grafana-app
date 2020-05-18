@@ -26,6 +26,19 @@ export const DEFAULT_MODEL = {
   type: MODEL_TYPE_LIST[0].type,
 };
 
+export const DEFAULT_JOB = {
+  name: '',
+  method: 'get',
+  relative_url: '',
+  params: '',
+  json: '',
+  every: {
+    count: 1,
+    unit: '',
+    at: ''
+  }
+}
+
 export const DEFAULT_FEATURE = {
   name: '',
   measurement: null,

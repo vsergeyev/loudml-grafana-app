@@ -144,6 +144,28 @@ export default class LoudMLAPI {
     return this._query('POST', `/models/${name}/_stop`, params, true);
   };
 
+  scheduleJob = async job => {
+    let params = {
+      ...job,
+    };
+
+    params.every.count = parseInt(params.every.count) || 1;
+
+    if (!params.params) {
+      delete params.params;
+    }
+
+    if (!params.json) {
+      delete params.json;
+    }
+
+    if (!params.every.at) {
+      delete params.every.at;
+    }
+
+    return this._query('POST', `/scheduled_jobs`, params);
+  };
+
   convertTimeRange = timeRange => {
     const { from, to } = timeRange.raw;
     return {
