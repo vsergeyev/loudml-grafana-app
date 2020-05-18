@@ -1125,7 +1125,7 @@ var LoudMLAPI = /*#__PURE__*/function () {
               case 0:
                 params = Object.assign({}, job);
                 window.console.log(params);
-                params.every.count = parseInt(params.every.count) || 1;
+                params.every.count = parseInt(params.every.count, 10) || 1;
 
                 if (!params.params) {
                   delete params.params;
@@ -1143,7 +1143,7 @@ var LoudMLAPI = /*#__PURE__*/function () {
                   delete params.every.at;
                 }
 
-                delete params["$$hashKey"];
+                delete params['$$hashKey'];
                 delete params.ok;
                 delete params.error;
                 delete params.status_code;

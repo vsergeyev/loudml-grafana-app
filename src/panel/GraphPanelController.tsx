@@ -206,7 +206,7 @@ export class LoudMLTooltip extends React.Component {
   render() {
     const feature =
       (this.data.request.targets && this.data.request.targets.length > 0 && extract_tooltip_feature(this.data.request.targets[0])) ||
-      'Select one field';
+      'Select one or more fields';
 
     const interval =
       (this.data.request.targets && this.data.request.targets.length > 0 && extract_group_by(this.data.request.targets[0])) ||
@@ -236,7 +236,7 @@ export class LoudMLTooltip extends React.Component {
           clause and select your model name.
         </p>
         <p>
-          <b>Feature:</b>
+          <b>Feature(s):</b>
           <br />
           <code>{feature}</code>
         </p>
@@ -370,7 +370,7 @@ export class CreateBaselineButton extends React.Component {
     // }
 
     const source = this.data.request.targets[0];
-    const fields = [source];
+    const fields = source.select || [source];
     const loudml = this.ds.loudml;
 
     this.getDatasource(source.datasource)
@@ -387,19 +387,18 @@ export class CreateBaselineButton extends React.Component {
         // ).then(result => {
         //     const bucket = result;
         const bucket = this.props.panelOptions.datasourceOptions.input_bucket;
-        window.console.log('Input Bucket', bucket);
-
+        const measurement = extract_model_measurement(source);
+        const fill = extract_model_fill(source);
+        const match_all = extract_model_tags_map(source);
         const name = [
           extract_model_database(this.datasource),
-          extract_model_measurement(source),
-          extract_model_select(source),
+          measurement,
+          extract_model_select(source, fields[0]), // will use 1st metric to name model - fields[0]
           extract_model_tags(source),
           extract_model_time_format(source),
         ]
           .join('_')
           .replace(/\./g, '_');
-
-        // window.console.log("New ML Model name", name);
 
         // Group By Value – [{params: ["5m"], type: "time"}, {params: ["linear"], type: "fill"}]
         // Let parse a "5m" time from it
@@ -413,18 +412,13 @@ export class CreateBaselineButton extends React.Component {
           default_bucket: bucket, //bucket.name - if we will use createAndGetBucket()
           bucket_interval: time,
           features: fields.map(field => ({
-            name: extract_model_select(field),
-            measurement: extract_model_measurement(field),
-            field: extract_model_feature(field),
-            metric: extract_model_func(field), // aggregator, avg/mean
+            name: extract_model_select(source, field),
+            measurement: measurement,
+            field: extract_model_feature(source, field),
+            metric: extract_model_func(source, field), // aggregator, avg/mean
             io: 'io',
-            default: extract_model_fill(source),
-            match_all: extract_model_tags_map(field), // .tags && field.tags.map(
-            // (tag) => ({
-            //         tag: tag.key,
-            //         value: tag.value,
-            //     })
-            // )) || [],
+            default: fill,
+            match_all: match_all,
           })),
         };
 

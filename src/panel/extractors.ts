@@ -11,7 +11,10 @@ export function extract_tooltip_feature(target: any): any {
     // InfluxDB or PostgreSQL or so
     if (target.measurement) {
       // InfluxDB
-      return target.measurement + ": " + _formatFeature(target.select[0])
+      return target.measurement + ": " + target.select
+        .map(o => _formatFeature(o))
+        .join(', ');
+      // return target.measurement + ": " + _formatFeature(target.select[0])
     }
 
     if (target.table) {
@@ -125,7 +128,7 @@ export function extract_format_tags(target: any) {
 export function extract_is_valid(target: any) {
   if (target.select) {
     // InfluxDB or so
-    return target.select.length===1
+    return true
   }
 
   if (target.metric) {
@@ -175,35 +178,35 @@ export function extract_model_measurement(target: any) {
     return target.metrics[0].type;
   }
 
-  return "auto"
+  return "auto";
 }
 
-export function extract_model_select(target: any) {
+export function extract_model_select(target: any, field: any) {
   if (target.select) {
     // InfluxDB or so
-    return _formatSelect(target.select[0])
+    return _formatSelect(field);
   }
 
   if (target.metric && target.aggregator) {
     // OpenTSDB or so
-    return target.aggregator + "_" + target.metric.replace(/\./g, "_")
+    return target.aggregator + "_" + target.metric.replace(/\./g, "_");
   }
 
   if (target.query && target.bucketAggs && target.metrics && target.metrics.length > 0) {
     // Elasticsearch or so
-    return target.metrics[0].type + "_" + target.metrics[0].field.replace(/\./g, "_")
+    return target.metrics[0].type + "_" + target.metrics[0].field.replace(/\./g, "_");
   }
 
   if (target.expr) {
     // Prometheus or so
-    return string_to_slug(target.expr)
+    return string_to_slug(target.expr);
   }
 }
 
-export function extract_model_feature(target: any) {
+export function extract_model_feature(target: any, field: any) {
   if (target.select) {
     // InfluxDB or so
-    return _get_feature(target.select[0])
+    return _get_feature(field)
   }
 
   if (target.metric) {
@@ -222,10 +225,10 @@ export function extract_model_feature(target: any) {
   }
 }
 
-export function extract_model_func(target: any) {
+export function extract_model_func(target: any, field: any) {
   if (target.select) {
     // InfluxDB or so
-    return _get_func(target.select[0])
+    return _get_func(field)
   }
 
   if (target.aggregator) {

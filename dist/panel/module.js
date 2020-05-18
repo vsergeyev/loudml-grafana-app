@@ -10455,7 +10455,7 @@ var LoudMLTooltip = /*#__PURE__*/function (_react_1$default$Comp2) {
   _createClass(LoudMLTooltip, [{
     key: "render",
     value: function render() {
-      var feature = this.data.request.targets && this.data.request.targets.length > 0 && extractors_1.extract_tooltip_feature(this.data.request.targets[0]) || 'Select one field';
+      var feature = this.data.request.targets && this.data.request.targets.length > 0 && extractors_1.extract_tooltip_feature(this.data.request.targets[0]) || 'Select one or more fields';
       var interval = this.data.request.targets && this.data.request.targets.length > 0 && extractors_1.extract_group_by(this.data.request.targets[0]) || "Select a 'Group by' value";
       var fill_value = this.data.request.targets && this.data.request.targets.length > 0 && extractors_1.extract_fill_value(this.data.request.targets[0]) || "Select a 'Fill' value"; // TODO: extractor for Tags
 
@@ -10464,7 +10464,7 @@ var LoudMLTooltip = /*#__PURE__*/function (_react_1$default$Comp2) {
         className: "small"
       }, react_1["default"].createElement("p", null, "Use your current data selection to baseline normal metric behavior using a machine learning task.", react_1["default"].createElement("br", null), "This will create a new model, and run training to fit the baseline to your data.", react_1["default"].createElement("br", null), "You can visualise the baseline, and forecast future data once training is completed. To run model click on ", react_1["default"].createElement("i", {
         className: "fa fa-play"
-      }), ' ', "Play button.", react_1["default"].createElement("br", null), react_1["default"].createElement("br", null), "Use Mixed Query, leave first query with source data as is. Then add a query from datasource equal to Loud ML output bucket (ex. \"loudml\"). In output database will be present metrics \"lower_mean_*\", \"upper_mean_\" and \"@mean_\". To filter results by your model please use WHERE clause and select your model name."), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Feature:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, feature)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "groupBy bucket interval:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, interval)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Match all:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, tags_value)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Fill value:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, fill_value)));
+      }), ' ', "Play button.", react_1["default"].createElement("br", null), react_1["default"].createElement("br", null), "Use Mixed Query, leave first query with source data as is. Then add a query from datasource equal to Loud ML output bucket (ex. \"loudml\"). In output database will be present metrics \"lower_mean_*\", \"upper_mean_\" and \"@mean_\". To filter results by your model please use WHERE clause and select your model name."), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Feature(s):"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, feature)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "groupBy bucket interval:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, interval)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Match all:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, tags_value)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Fill value:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, fill_value)));
     }
   }]);
 
@@ -10594,7 +10594,7 @@ var CreateBaselineButton = /*#__PURE__*/function (_react_1$default$Comp3) {
       //     "type": "donut"
       // }
       var source = this.data.request.targets[0];
-      var fields = [source];
+      var fields = source.select || [source];
       var loudml = this.ds.loudml;
       this.getDatasource(source.datasource).then(function (result) {
         _this5.datasource = result; // TODO: find a way to pass all this.datasource connection params to Loud ML server
@@ -10608,9 +10608,10 @@ var CreateBaselineButton = /*#__PURE__*/function (_react_1$default$Comp3) {
         //     const bucket = result;
 
         var bucket = _this5.props.panelOptions.datasourceOptions.input_bucket;
-        window.console.log('Input Bucket', bucket);
-        var name = [extractors_1.extract_model_database(_this5.datasource), extractors_1.extract_model_measurement(source), extractors_1.extract_model_select(source), extractors_1.extract_model_tags(source), extractors_1.extract_model_time_format(source)].join('_').replace(/\./g, '_'); // window.console.log("New ML Model name", name);
-        // Group By Value – [{params: ["5m"], type: "time"}, {params: ["linear"], type: "fill"}]
+        var measurement = extractors_1.extract_model_measurement(source);
+        var fill = extractors_1.extract_model_fill(source);
+        var match_all = extractors_1.extract_model_tags_map(source);
+        var name = [extractors_1.extract_model_database(_this5.datasource), measurement, extractors_1.extract_model_select(source, fields[0]), extractors_1.extract_model_tags(source), extractors_1.extract_model_time_format(source)].join('_').replace(/\./g, '_'); // Group By Value – [{params: ["5m"], type: "time"}, {params: ["linear"], type: "fill"}]
         // Let parse a "5m" time from it
 
         var time = extractors_1.extract_model_time(source);
@@ -10623,13 +10624,13 @@ var CreateBaselineButton = /*#__PURE__*/function (_react_1$default$Comp3) {
           bucket_interval: time,
           features: fields.map(function (field) {
             return {
-              name: extractors_1.extract_model_select(field),
-              measurement: extractors_1.extract_model_measurement(field),
-              field: extractors_1.extract_model_feature(field),
-              metric: extractors_1.extract_model_func(field),
+              name: extractors_1.extract_model_select(source, field),
+              measurement: measurement,
+              field: extractors_1.extract_model_feature(source, field),
+              metric: extractors_1.extract_model_func(source, field),
               io: 'io',
-              "default": extractors_1.extract_model_fill(source),
-              match_all: extractors_1.extract_model_tags_map(field)
+              "default": fill,
+              match_all: match_all
             };
           })
         });
@@ -11540,7 +11541,9 @@ function extract_tooltip_feature(target) {
     // InfluxDB or PostgreSQL or so
     if (target.measurement) {
       // InfluxDB
-      return target.measurement + ": " + _formatFeature(target.select[0]);
+      return target.measurement + ": " + target.select.map(function (o) {
+        return _formatFeature(o);
+      }).join(', '); // return target.measurement + ": " + _formatFeature(target.select[0])
     }
 
     if (target.table) {
@@ -11676,7 +11679,7 @@ exports.extract_format_tags = extract_format_tags;
 function extract_is_valid(target) {
   if (target.select) {
     // InfluxDB or so
-    return target.select.length === 1;
+    return true;
   }
 
   if (target.metric) {
@@ -11735,10 +11738,10 @@ function extract_model_measurement(target) {
 
 exports.extract_model_measurement = extract_model_measurement;
 
-function extract_model_select(target) {
+function extract_model_select(target, field) {
   if (target.select) {
     // InfluxDB or so
-    return _formatSelect(target.select[0]);
+    return _formatSelect(field);
   }
 
   if (target.metric && target.aggregator) {
@@ -11759,10 +11762,10 @@ function extract_model_select(target) {
 
 exports.extract_model_select = extract_model_select;
 
-function extract_model_feature(target) {
+function extract_model_feature(target, field) {
   if (target.select) {
     // InfluxDB or so
-    return _get_feature(target.select[0]);
+    return _get_feature(field);
   }
 
   if (target.metric) {
@@ -11783,10 +11786,10 @@ function extract_model_feature(target) {
 
 exports.extract_model_feature = extract_model_feature;
 
-function extract_model_func(target) {
+function extract_model_func(target, field) {
   if (target.select) {
     // InfluxDB or so
-    return _get_func(target.select[0]);
+    return _get_func(field);
   }
 
   if (target.aggregator) {
