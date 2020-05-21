@@ -11810,11 +11810,17 @@ exports.extract_model_func = extract_model_func;
 function extract_model_fill(target) {
   if (target.groupBy) {
     // InfluxDB or so
-    return _get_fill(target.groupBy);
-  } else {
-    // OpenTSDB or so
-    return 0; // TODO
-  }
+    var f = _get_fill(target.groupBy);
+
+    if (f == "0") {
+      return 0;
+    }
+
+    return f;
+  } // OpenTSDB or so
+
+
+  return 0; // TODO
 }
 
 exports.extract_model_fill = extract_model_fill;

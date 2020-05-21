@@ -247,11 +247,14 @@ export function extract_model_func(target: any, field: any) {
 export function extract_model_fill(target: any) {
   if (target.groupBy) {
     // InfluxDB or so
-    return _get_fill(target.groupBy)
-  } else {
-    // OpenTSDB or so
-    return 0 // TODO
+    const f = _get_fill(target.groupBy);
+    if (f == "0") {
+      return 0;
+    }
+    return f;
   }
+  // OpenTSDB or so
+  return 0 // TODO
 }
 
 export function extract_model_time_format(target: any) {
