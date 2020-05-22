@@ -49,7 +49,7 @@ B) In existing Grafana container
   * Go to plugins directory (usually data/plugins under Grafana installation or /var/lib/grafana/plugins)
 
         cd /var/lib/grafana/plugins
-  * Download grafana-loudml-app-1.3.0.zip zip file:
+  * Download loudml-grafana-app-1.4.0.zip zip file:
 
         wget https://github.com/vsergeyev/loudml-grafana-app/raw/master/loudml-grafana-app-1.4.0.zip
   * Unpack it there
