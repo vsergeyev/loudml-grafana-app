@@ -5,8 +5,8 @@
   "metrics": true,
   "info": {
     "logos": {
-      "small": "../grafana-loudml-app/img/logo.png",
-      "large": "../grafana-loudml-app/img/logo.png"
+      "small": "../loudml-grafana-app/img/logo.png",
+      "large": "../loudml-grafana-app/img/logo.png"
     }
   }
 }

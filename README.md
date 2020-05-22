@@ -17,7 +17,7 @@ A) Give it a try with Docker
       sudo docker run -d \
       -p 3000:3000 \
       --name=grafana \
-      -e "GF_INSTALL_PLUGINS=https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.3.0.zip;grafana-loudml-app" \
+      -e "GF_INSTALL_PLUGINS=https://github.com/vsergeyev/loudml-grafana-app/raw/master/loudml-grafana-app-1.4.0.zip;loudml-grafana-app" \
       grafana/grafana
 
 B) In existing Grafana container
@@ -26,12 +26,12 @@ B) In existing Grafana container
   * Go to plugins directory (usually data/plugins under Grafana installation or /var/lib/grafana/plugins)
 
         cd /var/lib/grafana/plugins
-  * Download grafana-loudml-app-1.3.0.zip zip file:
+  * Download loudml-grafana-app-1.4.0.zip zip file:
 
-        wget https://github.com/vsergeyev/loudml-grafana-app/raw/master/grafana-loudml-app-1.3.0.zip
+        wget https://github.com/vsergeyev/loudml-grafana-app/raw/master/loudml-grafana-app-1.4.0.zip
   * Unpack it there
 
-        unzip grafana-loudml-app-1.3.0.zip
+        unzip loudml-grafana-app-1.4.0.zip
   * You may remove the downloaded archive
   * Restart Grafana
 
@@ -114,6 +114,7 @@ Please post issue to tracker or contact me via vova.sergeyev at gmail.com
 
 # Changelog
 
+ * 1.4.0 Changed ID to correct format "loudml-grafana-app"; Fixes code style follow guidelines.
  * 1.3.0 Fixed issue #5 with fill(0); New capabilities: multiple metrics/features per ML model (for InfluxDB data).
  * 1.2.0 New capabilities: LoudML datasource - add scheduled job; list of scheduled jobs.
  * 1.1.0 Initial public release

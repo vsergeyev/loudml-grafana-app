@@ -1,7 +1,7 @@
 {
   "type": "app",
   "name": "Loud ML app",
-  "id": "grafana-loudml-app",
+  "id": "loudml-grafana-app",
 
   "info": {
     "description": "Loud ML app: Visualization panel and datasource for Grafana to connect with Loud ML AI",
@@ -18,8 +18,8 @@
       {"name": "License", "url": "https://github.com/vsergeyev/loudml-grafana-app/blob/master/LICENSE"}
     ],
     "screenshots": [],
-    "version": "1.2.0",
-    "updated": "05/19/2020"
+    "version": "1.4.0",
+    "updated": "05/22/2020"
   },
 
   "includes": [

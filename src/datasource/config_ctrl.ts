@@ -24,8 +24,6 @@ export class LoudMLConfigCtrl {
   job: any;
 
   constructor(private $scope: any) {
-    // window.console.log($scope);
-
     if (this.$scope.current === undefined) {
       this.$scope.current = {
         url: '',
@@ -67,7 +65,7 @@ export class LoudMLConfigCtrl {
   addModel() {
     const model = DEFAULT_MODEL;
     appEvents.emit('show-modal', {
-      src: '/public/plugins/grafana-loudml-app/datasource/partials/add_model.html',
+      src: '/public/plugins/loudml-grafana-app/datasource/partials/add_model.html',
       modalClass: 'confirm-modal',
       model: model,
     });
@@ -77,7 +75,7 @@ export class LoudMLConfigCtrl {
     const model = this.$scope.ctrl.modelsList.find(el => el.settings.name === name);
     // appEvents.emit(CoreEvents.showModal, {
     appEvents.emit('show-modal', {
-      src: '/public/plugins/grafana-loudml-app/datasource/partials/edit_model.html',
+      src: '/public/plugins/loudml-grafana-app/datasource/partials/edit_model.html',
       modalClass: 'confirm-modal',
       model: model,
     });
@@ -87,7 +85,7 @@ export class LoudMLConfigCtrl {
     this.job = Object.assign({}, DEFAULT_JOB);
 
     appEvents.emit('show-modal', {
-      src: '/public/plugins/grafana-loudml-app/datasource/partials/add_job.html',
+      src: '/public/plugins/loudml-grafana-app/datasource/partials/add_job.html',
       modalClass: 'confirm-modal',
       model: this,
     });
@@ -104,7 +102,7 @@ export class LoudMLConfigCtrl {
     }
 
     appEvents.emit('show-modal', {
-      src: '/public/plugins/grafana-loudml-app/datasource/partials/add_job.html',
+      src: '/public/plugins/loudml-grafana-app/datasource/partials/add_job.html',
       modalClass: 'confirm-modal',
       model: this,
     });
