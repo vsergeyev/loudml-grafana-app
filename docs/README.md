@@ -37,11 +37,19 @@ Per ML algorythm documentation:
 
 A) Give it a try with Docker
 
-      sudo docker run -d \
+      docker run -d \
       -p 3000:3000 \
       --name=grafana \
       -e "GF_INSTALL_PLUGINS=https://github.com/vsergeyev/loudml-grafana-app/raw/master/loudml-grafana-app-1.4.0.zip;loudml-grafana-app" \
       grafana/grafana
+
+Setup LoudML if needed (please refer to https://hub.docker.com/r/loudml/loudml for config.yml setup)
+
+      docker run -p 8077:8077 \
+      -v $PWD/lib/loudml:/var/lib/loudml:rw \
+      -v $PWD/config.yml:/etc/loudml/config.yml:ro \
+      -ti \
+      loudml/loudml
 
 B) In existing Grafana container
 
