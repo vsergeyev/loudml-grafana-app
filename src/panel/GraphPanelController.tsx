@@ -82,7 +82,7 @@ export class GraphPanelController extends React.Component<GraphPanelControllerPr
       graphSeriesModel: getGraphSeriesModel(
         props.data.series,
         props.timeZone,
-        props.options.series,
+        props.options.series || {},
         props.options.graph,
         props.options.legend,
         props.options.fieldOptions
@@ -96,7 +96,7 @@ export class GraphPanelController extends React.Component<GraphPanelControllerPr
       graphSeriesModel: getGraphSeriesModel(
         props.data.series,
         props.timeZone,
-        props.options.series,
+        props.options.series || {},
         props.options.graph,
         props.options.legend,
         props.options.fieldOptions
@@ -526,7 +526,7 @@ export class CreateBaselineButton extends React.Component {
           Create Baseline
         </Button>
         <Tooltip placement="top" content={<LoudMLTooltip data={data} />}>
-          <span className="gf-form-help-icon">
+          <span className="gf-form-btn">
             <i className="fa fa-info-circle" />
           </span>
         </Tooltip>
@@ -685,14 +685,14 @@ export class MLModelController extends React.Component {
         <span className="panel-time-info">
           ML Model: {this.modelName} <span className="label">{model_trained}</span>
           {play_btn}
-          <a href="#" onClick={this.trainModel.bind(this)}>
+          <a href="#" className="gf-form-btn" onClick={this.trainModel.bind(this)}>
             <i className="fa fa-clock-o"></i> Train
           </a>
-          <a href="#" onClick={this.forecastModel.bind(this)}>
+          <a href="#" className="gf-form-btn" onClick={this.forecastModel.bind(this)}>
             <i className="fa fa-clock-o"></i> Forecast
           </a>
           <Tooltip placement="top" content="Current time range selection will be used to Train / Forecast">
-            <span className="gf-form-help-icon">
+            <span className="gf-form-btn">
               <i className="fa fa-info-circle" />
             </span>
           </Tooltip>

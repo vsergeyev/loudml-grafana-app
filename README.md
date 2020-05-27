@@ -1,6 +1,6 @@
 # LoudML Grafana Application
 
-Visualization panel and datasource for Grafana 6.7.x to connect with Loud ML AI solution for ICT and IoT
+Visualization panel and datasource for Grafana 6.7.x - 7.x to connect with Loud ML AI solution for ICT and IoT
 automation. https://loudml.io
 
 ![LoudML Panel in Grafana](https://raw.githubusercontent.com/vsergeyev/loudml-grafana-app/master/docs/loudml_grafana_panel.png)
@@ -11,6 +11,8 @@ Loud ML is an open source inference engine for metrics and events, and the faste
 https://github.com/regel/loudml
 
 # Installation
+
+Default assumption - you use Grafana 6.x. For Grafana 7.x please use appropriate ZIP file.
 
 A) Give it a try with Docker
 
@@ -43,7 +45,7 @@ B) In existing Grafana container
   * You may remove the downloaded archive
   * Restart Grafana
 
-C) From sources
+C) From sources (note - github latest is for Grafana 7.x)
 
  * Plugin should be placed in `.../grafana/data/plugins`
  * git clone https://github.com/vsergeyev/loudml-grafana-app.git

@@ -35,6 +35,8 @@ Per ML algorythm documentation:
 
 # Installation
 
+Default assumption - you use Grafana 6.x. For Grafana 7.x please use appropriate ZIP file.
+
 A) Give it a try with Docker
 
       docker run -d \
@@ -66,7 +68,7 @@ B) In existing Grafana container
   * You may remove the downloaded archive
   * Restart Grafana
 
-C) From sources
+C) From sources (note - github latest is for Grafana 7.x)
 
  * Plugin should be placed in `.../grafana/data/plugins`
  * git clone https://github.com/vsergeyev/loudml-grafana-app.git
