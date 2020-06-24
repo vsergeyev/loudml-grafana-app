@@ -382,6 +382,7 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
     this.modelsList = [];
     this.jobsList = [];
     this.scheduledList = [];
+    this.buckets = [];
 
     if (this.$scope.current === undefined) {
       this.$scope.current = {
@@ -396,6 +397,10 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
     value: function toggleAccessHelp() {
       this.showAccessHelp = !this.showAccessHelp;
     }
+    /**
+     * Displays list of ML models and jobs on server
+     */
+
   }, {
     key: "refreshModels",
     value: function refreshModels() {
@@ -447,6 +452,12 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
 
                     _this.$scope.$apply();
                   });
+                  ds.query({
+                    url: '/buckets',
+                    params: {}
+                  }).then(function (response) {
+                    _this.$scope.ctrl.buckets = response;
+                  });
                 } catch (err) {
                   console.error(err);
                   app_events_1["default"].emit(data_1.AppEvents.alertError, [err]);
@@ -460,14 +471,20 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
         }, _callee, this);
       }));
     }
+    /**
+     * Displays new ML model dialog
+     */
+
   }, {
     key: "addModel",
     value: function addModel() {
-      var model = types_1.DEFAULT_MODEL;
+      this.model = Object.assign(Object.assign(Object.assign({}, types_1.DEFAULT_MODEL), {
+        features: [Object.assign({}, types_1.DEFAULT_FEATURE)]
+      }));
       app_events_1["default"].emit('show-modal', {
         src: '/public/plugins/loudml-grafana-app/datasource/partials/add_model.html',
         modalClass: 'confirm-modal',
-        model: model
+        model: this
       });
     }
   }, {
@@ -475,14 +492,93 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
     value: function editModel(name) {
       var model = this.$scope.ctrl.modelsList.find(function (el) {
         return el.settings.name === name;
-      }); // appEvents.emit(CoreEvents.showModal, {
+      });
+      this.model = model.settings; // appEvents.emit(CoreEvents.showModal, {
 
       app_events_1["default"].emit('show-modal', {
-        src: '/public/plugins/loudml-grafana-app/datasource/partials/edit_model.html',
+        src: '/public/plugins/loudml-grafana-app/datasource/partials/add_model.html',
         modalClass: 'confirm-modal',
-        model: model
+        model: this
       });
     }
+    /**
+     * Posts dialog data to LoudML server
+     */
+
+  }, {
+    key: "addModelPost",
+    value: function addModelPost() {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var _this2 = this;
+
+        var ds;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                console.log(this.model);
+
+                if (this.model.features[0]["default"] != "previous") {
+                  this.model.features[0]["default"] = 0;
+                }
+
+                delete this.model.features[0].$$hashKey;
+                _context2.next = 5;
+                return runtime_1.getDataSourceSrv().loadDatasource(this.current.name);
+
+              case 5:
+                ds = _context2.sent;
+                ds.loudml.getModel(this.model.name).then(function (result) {
+                  // Model already exists
+                  // Let remove it and recreate
+                  ds.loudml.deleteModel(_this2.model.name).then(function (response) {
+                    ds.loudml.createModel(_this2.model).then(function (result) {
+                      ds.loudml.createModelHook(_this2.model.name, ds.loudml.createHook(types_1.ANOMALY_HOOK, _this2.model.default_bucket)).then(function (result) {
+                        app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been updated on Loud ML server']);
+
+                        _this2.refreshModels();
+                      })["catch"](function (err) {
+                        window.console.log('createModelHook error', err);
+                        app_events_1["default"].emit(data_1.AppEvents.alertError, [err.message]);
+                        return;
+                      });
+                    })["catch"](function (err) {
+                      window.console.log('createModel error', err);
+                      app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model create error', err.data]);
+                      return;
+                    });
+                  });
+                })["catch"](function (err) {
+                  // New model
+                  ds.loudml.createModel(_this2.model).then(function (result) {
+                    ds.loudml.createModelHook(_this2.model.name, ds.loudml.createHook(types_1.ANOMALY_HOOK, _this2.model.default_bucket)).then(function (result) {
+                      app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been created on Loud ML server']);
+
+                      _this2.refreshModels();
+                    })["catch"](function (err) {
+                      window.console.log('createModelHook error', err);
+                      app_events_1["default"].emit(data_1.AppEvents.alertError, [err.message]);
+                      return;
+                    });
+                  })["catch"](function (err) {
+                    window.console.log('createModel error', err);
+                    app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model create error', err.data]);
+                    return;
+                  });
+                });
+
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+    }
+    /**
+     * Displays new job dialog
+     */
+
   }, {
     key: "addJob",
     value: function addJob() {
@@ -493,6 +589,10 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
         model: this
       });
     }
+    /**
+     * Displays edit job dialog
+     */
+
   }, {
     key: "editJob",
     value: function editJob(name) {
@@ -514,43 +614,13 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
         model: this
       });
     }
+    /**
+     * Posts job data to LoudML server
+     */
+
   }, {
     key: "scheduleJob",
     value: function scheduleJob() {
-      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-        var _this2 = this;
-
-        var ds;
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return runtime_1.getDataSourceSrv().loadDatasource(this.current.name);
-
-              case 2:
-                ds = _context2.sent;
-                ds.loudml.scheduleJob(this.job).then(function (response) {
-                  window.console.log(response);
-                  app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Job has been scheduled on Loud ML server']);
-
-                  _this2.refreshModels();
-                })["catch"](function (error) {
-                  console.log(error);
-                  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Job schedule error', error.statusText]);
-                });
-
-              case 4:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-    }
-  }, {
-    key: "deleteJob",
-    value: function deleteJob(name) {
       return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
         var _this3 = this;
 
@@ -564,13 +634,14 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
 
               case 2:
                 ds = _context3.sent;
-                ds.loudml.deleteJob(name).then(function (response) {
+                ds.loudml.scheduleJob(this.job).then(function (response) {
                   window.console.log(response);
-                  app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Scheduled job has been deleted on Loud ML server']);
+                  app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Job has been scheduled on Loud ML server']);
 
                   _this3.refreshModels();
                 })["catch"](function (error) {
-                  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Job delete error', error.statusText]);
+                  console.log(error);
+                  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Job schedule error', error.statusText]);
                 });
 
               case 4:
@@ -581,9 +652,13 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
         }, _callee3, this);
       }));
     }
+    /**
+     * Deletes  job on LoudML server
+     */
+
   }, {
-    key: "startModel",
-    value: function startModel(name) {
+    key: "deleteJob",
+    value: function deleteJob(name) {
       return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
         var _this4 = this;
 
@@ -597,18 +672,14 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
 
               case 2:
                 ds = _context4.sent;
+                ds.loudml.deleteJob(name).then(function (response) {
+                  window.console.log(response);
+                  app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Scheduled job has been deleted on Loud ML server']);
 
-                try {
-                  ds.loudml.startModel(name).then(function (response) {
-                    window.console.log(response);
-                    app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been started on Loud ML server']);
-
-                    _this4.refreshModels();
-                  });
-                } catch (err) {
-                  console.error(err);
-                  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model start error', err]);
-                }
+                  _this4.refreshModels();
+                })["catch"](function (error) {
+                  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Job delete error', error.statusText]);
+                });
 
               case 4:
               case "end":
@@ -619,8 +690,8 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
       }));
     }
   }, {
-    key: "stopModel",
-    value: function stopModel(name) {
+    key: "startModel",
+    value: function startModel(name) {
       return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
         var _this5 = this;
 
@@ -636,15 +707,15 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
                 ds = _context5.sent;
 
                 try {
-                  ds.loudml.stopModel(name).then(function (response) {
+                  ds.loudml.startModel(name).then(function (response) {
                     window.console.log(response);
-                    app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been stoped on Loud ML server']);
+                    app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been started on Loud ML server']);
 
                     _this5.refreshModels();
                   });
                 } catch (err) {
                   console.error(err);
-                  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model stop error', err]);
+                  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model start error', err]);
                 }
 
               case 4:
@@ -656,32 +727,51 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
       }));
     }
   }, {
-    key: "forecastModel",
-    value: function forecastModel(name) {
+    key: "stopModel",
+    value: function stopModel(name) {
       return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+        var _this6 = this;
+
+        var ds;
         return regeneratorRuntime.wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                window.console.log('FORECAST MODEL');
+                _context6.next = 2;
+                return runtime_1.getDataSourceSrv().loadDatasource(this.current.name);
 
-              case 1:
+              case 2:
+                ds = _context6.sent;
+
+                try {
+                  ds.loudml.stopModel(name).then(function (response) {
+                    window.console.log(response);
+                    app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been stoped on Loud ML server']);
+
+                    _this6.refreshModels();
+                  });
+                } catch (err) {
+                  console.error(err);
+                  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model stop error', err]);
+                }
+
+              case 4:
               case "end":
                 return _context6.stop();
             }
           }
-        }, _callee6);
+        }, _callee6, this);
       }));
     }
   }, {
-    key: "trainModel",
-    value: function trainModel(name) {
+    key: "forecastModel",
+    value: function forecastModel(name) {
       return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
         return regeneratorRuntime.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                window.console.log('TRAIN MODEL');
+                window.console.log('FORECAST MODEL');
 
               case 1:
               case "end":
@@ -692,28 +782,46 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
       }));
     }
   }, {
-    key: "deleteModel",
-    value: function deleteModel(name) {
+    key: "trainModel",
+    value: function trainModel(name) {
       return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
-        var _this6 = this;
-
-        var ds;
         return regeneratorRuntime.wrap(function _callee8$(_context8) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
-                _context8.next = 2;
+                window.console.log('TRAIN MODEL');
+
+              case 1:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
+      }));
+    }
+  }, {
+    key: "deleteModel",
+    value: function deleteModel(name) {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+        var _this7 = this;
+
+        var ds;
+        return regeneratorRuntime.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                _context9.next = 2;
                 return runtime_1.getDataSourceSrv().loadDatasource(this.current.name);
 
               case 2:
-                ds = _context8.sent;
+                ds = _context9.sent;
 
                 try {
                   ds.loudml.deleteModel(name).then(function (response) {
                     window.console.log(response);
                     app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been deleted on Loud ML server']);
 
-                    _this6.refreshModels();
+                    _this7.refreshModels();
                   });
                 } catch (err) {
                   console.error(err);
@@ -722,10 +830,10 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
 
               case 4:
               case "end":
-                return _context8.stop();
+                return _context9.stop();
             }
           }
-        }, _callee8, this);
+        }, _callee9, this);
       }));
     }
   }]);
@@ -1288,7 +1396,7 @@ exports.ConfigCtrl = config_ctrl_1.LoudMLConfigCtrl;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"gf-form-group\">\n  <h3 class=\"page-heading\">HTTP</h3>\n  <div class=\"gf-form-group\">\n    <div class=\"gf-form-inline\">\n      <div class=\"gf-form max-width-30\">\n        <span class=\"gf-form-label width-10\">Loud ML Server URL</span>\n        <input\n          class=\"gf-form-input\" type=\"text\"\n          placeholder=\"http://localhost:8077\"\n          ng-model='ctrl.current.url'\n          min-length=\"0\"\n          ng-pattern=\"/^(ftp|http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?$/\"\n          required\n          ng-blur=\"\"\n        />\n        <info-popover mode=\"right-absolute\">\n          <p>Specify a complete Loud ML Server HTTP URL (for example http://your_loudml_server:8077)</p>\n          <span ng-show=\"ctrl.current.access === 'direct'\">\n            Your access method is <em>Browser</em>, this means the URL\n            needs to be accessible from the browser.\n          </span>\n          <span ng-show=\"ctrl.current.access === 'proxy'\">\n            Your access method is <em>Server</em>, this means the URL\n            needs to be accessible from the grafana backend/server.\n          </span>\n        </info-popover>\n      </div>\n    </div>\n\n    <!-- <div class=\"gf-form-inline\">\n      <div class=\"gf-form max-width-30\">\n        <span class=\"gf-form-label width-10\">Output bucket</span>\n        <input\n          class=\"gf-form-input\" type=\"text\"\n          placeholder=\"loudml\"\n          ng-model='ctrl.current.jsonData.bucket'\n          min-length=\"0\"\n          required\n          ng-blur=\"\"\n        />\n        <info-popover mode=\"right-absolute\">\n          <p>Specify a bucket to store ML data (one of InfluxDB buckets from Loud ML YAML config)</p>\n        </info-popover>\n      </div>\n    </div> -->\n\n    <div class=\"gf-form-inline\">\n      <div class=\"gf-form max-width-30\">\n        <span class=\"gf-form-label width-10\">Access</span>\n        <div class=\"gf-form-select-wrapper max-width-24\">\n          <select\n            class=\"gf-form-input\"\n            ng-model=\"ctrl.current.access\"\n            ng-options=\"f.key as f.value for f in ctrl.ACCESS_OPTIONS\"\n          />\n        </div>\n      </div>\n      <div class=\"gf-form\">\n        <label class=\"gf-form-label query-keyword pointer\" ng-click=\"ctrl.toggleAccessHelp()\">\n          Help&nbsp;\n          <i class=\"fa fa-caret-down\" ng-show=\"ctrl.showAccessHelp\"></i>\n          <i class=\"fa fa-caret-right\" ng-hide=\"ctrl.showAccessHelp\">&nbsp;</i>\n        </label>\n      </div>\n    </div>\n\n    <div class=\"grafana-info-box m-t-2\" ng-show=\"ctrl.showAccessHelp\">\n      <p>\n        Access mode controls how requests to the data source will be handled.\n        <strong><i>Server</i></strong> access mode should be the preferred way if nothing else stated.\n      </p>\n      <div class=\"alert-title\">Server access mode (Default):</div>\n      <p>\n        All requests will be made from the browser to Grafana backend/server which in turn will\n        forward the requests to the data source and by that circumvent possible\n        Cross-Origin Resource Sharing (CORS) requirements.\n        The URL needs to be accessible from the grafana backend/server if you select this access mode.\n      </p>\n      <div class=\"alert-title\">Browser access mode:</div>\n      <p>\n        All requests will be made from the browser directly to the data source and may be subject to\n        Cross-Origin Resource Sharing (CORS) requirements. The URL needs to be accessible from the browser\n        if you select this access mode.\n      </p>\n    </div>\n\n    <div class=\"gf-form-inline\" ng-if=\"ctrl.current.access=='proxy'\">\n      <div class=\"gf-form\">\n        <span class=\"gf-form-label width-10\">Whitelisted Cookies</span>\n        <bootstrap-tagsinput\n          ng-model=\"ctrl.current.jsonData.keepCookies\"\n          width-class=\"width-20\" tagclass=\"label label-tag\"\n          placeholder=\"Add Name\"\n        />\n        <info-popover mode=\"right-absolute\">\n          Grafana Proxy deletes forwarded cookies by default. Specify cookies by name\n          that should be forwarded to the data source.\n        </info-popover>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"gf-form-group\">\n  <h3 class=\"page-heading\">Manage Machine Learning Tasks</h3>\n  <div class=\"gf-form-group\">\n    <button type=\"button\" class=\"btn btn-secondary\" ng-click=\"ctrl.refreshModels()\">\n      <i class=\"fa fa-refresh fa-fw\"></i>\n      Refresh models and jobs from Loud ML server\n    </button>\n\n    <button type=\"button\" class=\"btn btn-secondary\" ng-click=\"ctrl.addModel()\">\n      <i class=\"fa fa-pencil fa-fw\"></i>\n      Add Model\n    </button>\n\n    <button type=\"button\" class=\"btn btn-secondary\" ng-click=\"ctrl.addJob()\">\n      <i class=\"fa fa-pencil fa-fw\"></i>\n      Schedule a Job\n    </button>\n  </div>\n\n  <div class=\"table-panel-container\">\n    <div class=\"table-panel-header-bg\">Models</div>\n      <div class=\"table-panel-scroll\">\n        <table class=\"table-panel-table\">\n          <tbody>\n            <tr ng-repeat=\"model in ctrl.modelsList\">\n                <td>\n                  <a href=\"#\" ng-click=\"ctrl.editModel(model.settings.name)\">\n                    <i class=\"fa fa-pencil fa-fw\"></i>\n                    {{model.settings.name}}\n                  </a>\n                </td>\n                <td ng-hide=\"model.is_loading\">\n                  <span ng-show=\"model.settings.run\">Running.</span>\n                  <span ng-show=\"model.state.trained\">Trained.</span>\n                  <span ng-hide=\"model.state.trained\">Not trained.</span>\n                </td>\n                <td ng-hide=\"model.is_loading\">\n                  <a href=\"#\" ng-click=\"ctrl.startModel(model.settings.name)\" ng-hide=\"model.settings.run\">\n                    <i class=\"fa fa-play\"></i> Play\n                  </a>\n\n                  <a href=\"#\" ng-click=\"ctrl.stopModel(model.settings.name)\" ng-show=\"model.settings.run\">\n                    <i class=\"fa fa-pause\"></i> Stop\n                  </a>\n                </td>\n                <!-- <td ng-hide=\"model.is_loading\">\n                  <a href=\"#\" ng-click=\"ctrl.trainModel(model.settings.name)\">\n                    <i class=\"fa fa-clock-o\"></i> Train\n                  </a>\n                </td>\n                <td ng-hide=\"model.is_loading\">\n                  <a href=\"#\" ng-click=\"ctrl.forecastModel(model.settings.name)\">\n                    <i class=\"fa fa-clock-o\"></i> Forecast\n                  </a>\n                </td> -->\n                <td ng-hide=\"model.is_loading\">\n                  <a href=\"#\" ng-click=\"ctrl.deleteModel(model.settings.name)\">\n                    <i class=\"fa fa-trash-o fa-fw\"></i> Delete\n                  </a>\n                </td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  <div class=\"grafana-info-box m-t-2\" ng-show=\"ctrl.modelsList.length===0\">\n      No models to show. Click refresh to update data from Loud ML server\n  </div>\n\n  <div class=\"table-panel-container\">\n    <div class=\"table-panel-header-bg\">Scheduled Jobs</div>\n      <div class=\"table-panel-scroll\">\n        <table class=\"table-panel-table\">\n          <tbody>\n            <tr ng-repeat=\"job in ctrl.scheduledList\">\n                <td>\n                  <a href=\"#\" ng-click=\"ctrl.editJob(job.name)\">\n                    <i class=\"fa fa-pencil fa-fw\"></i>\n                    {{job.name}}\n                  </a>\n                </td>\n                <td>\n                  {{job.method}}\n                </td>\n                <td>\n                  {{job.relative_url}}\n                </td>\n                <td>\n                  Every {{job.every.count}}\n                  {{job.every.unit}}\n\n                  <span ng-show=\"job.every.at\">\n                    at {{job.every.at}}\n                  </span>\n                </td>\n                <td>\n                  <span ng-show=\"job.last_run_timestamp\">\n                    OK: {{job.ok}}; Result: {{job.status_code}}\n                    <span ng-show=\"job.error\">\n                      <br />\n                      Error: {{job.error}}\n                    </span>\n                  </span>\n                </td>\n                <td>\n                  <a href=\"#\" ng-click=\"ctrl.deleteJob(job.name)\">\n                    <i class=\"fa fa-trash-o fa-fw\"></i> Delete\n                  </a>\n                </td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  <div class=\"grafana-info-box m-t-2\" ng-show=\"ctrl.scheduledList.length===0\">\n      No scheduled jobs to show. Click refresh to update data from Loud ML server\n  </div>\n\n  <div class=\"table-panel-container\">\n    <div class=\"table-panel-header-bg\">Jobs</div>\n      <div class=\"table-panel-scroll\">\n        <table class=\"table-panel-table\">\n          <tbody>\n            <tr ng-repeat=\"job in ctrl.jobsList\">\n                <td>\n                  {{job.model}}\n                </td>\n                <td>\n                  {{job.start_date}}\n                </td>\n                <td>\n                  {{job.type}}\n                </td>\n                <td>\n                  {{job.state}}\n                  <br />\n                  {{job.error}}\n                </td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  <div class=\"grafana-info-box m-t-2\" ng-show=\"ctrl.jobsList.length===0\">\n      No jobs to show. Click refresh to update data from Loud ML server\n  </div>\n\n</div>\n";
+module.exports = "<div class=\"gf-form-group\">\n  <h3 class=\"page-heading\">HTTP</h3>\n  <div class=\"gf-form-group\">\n    <div class=\"gf-form-inline\">\n      <div class=\"gf-form max-width-30\">\n        <span class=\"gf-form-label width-10\">Loud ML Server URL</span>\n        <input\n          class=\"gf-form-input\" type=\"text\"\n          placeholder=\"http://localhost:8077\"\n          ng-model='ctrl.current.url'\n          min-length=\"0\"\n          ng-pattern=\"/^(ftp|http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?$/\"\n          required\n          ng-blur=\"\"\n        />\n        <info-popover mode=\"right-absolute\">\n          <p>Specify a complete Loud ML Server HTTP URL (for example http://your_loudml_server:8077)</p>\n          <span ng-show=\"ctrl.current.access === 'direct'\">\n            Your access method is <em>Browser</em>, this means the URL\n            needs to be accessible from the browser.\n          </span>\n          <span ng-show=\"ctrl.current.access === 'proxy'\">\n            Your access method is <em>Server</em>, this means the URL\n            needs to be accessible from the grafana backend/server.\n          </span>\n        </info-popover>\n      </div>\n    </div>\n\n    <div class=\"gf-form-inline\">\n      <div class=\"gf-form max-width-30\">\n        <span class=\"gf-form-label width-10\">Access</span>\n        <div class=\"gf-form-select-wrapper max-width-24\">\n          <select\n            class=\"gf-form-input\"\n            ng-model=\"ctrl.current.access\"\n            ng-options=\"f.key as f.value for f in ctrl.ACCESS_OPTIONS\"\n          />\n        </div>\n      </div>\n      <div class=\"gf-form\">\n        <label class=\"gf-form-label query-keyword pointer\" ng-click=\"ctrl.toggleAccessHelp()\">\n          Help&nbsp;\n          <i class=\"fa fa-caret-down\" ng-show=\"ctrl.showAccessHelp\"></i>\n          <i class=\"fa fa-caret-right\" ng-hide=\"ctrl.showAccessHelp\">&nbsp;</i>\n        </label>\n      </div>\n    </div>\n\n    <div class=\"grafana-info-box m-t-2\" ng-show=\"ctrl.showAccessHelp\">\n      <p>\n        Access mode controls how requests to the data source will be handled.\n        <strong><i>Server</i></strong> access mode should be the preferred way if nothing else stated.\n      </p>\n      <div class=\"alert-title\">Server access mode (Default):</div>\n      <p>\n        All requests will be made from the browser to Grafana backend/server which in turn will\n        forward the requests to the data source and by that circumvent possible\n        Cross-Origin Resource Sharing (CORS) requirements.\n        The URL needs to be accessible from the grafana backend/server if you select this access mode.\n      </p>\n      <div class=\"alert-title\">Browser access mode:</div>\n      <p>\n        All requests will be made from the browser directly to the data source and may be subject to\n        Cross-Origin Resource Sharing (CORS) requirements. The URL needs to be accessible from the browser\n        if you select this access mode.\n      </p>\n    </div>\n\n    <div class=\"gf-form-inline\" ng-if=\"ctrl.current.access=='proxy'\">\n      <div class=\"gf-form\">\n        <span class=\"gf-form-label width-10\">Whitelisted Cookies</span>\n        <bootstrap-tagsinput\n          ng-model=\"ctrl.current.jsonData.keepCookies\"\n          width-class=\"width-20\" tagclass=\"label label-tag\"\n          placeholder=\"Add Name\"\n        />\n        <info-popover mode=\"right-absolute\">\n          Grafana Proxy deletes forwarded cookies by default. Specify cookies by name\n          that should be forwarded to the data source.\n        </info-popover>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"gf-form-group\">\n  <h3 class=\"page-heading\">Manage Machine Learning Tasks</h3>\n  <div class=\"gf-form-group\">\n    <button type=\"button\" class=\"btn btn-secondary\" ng-click=\"ctrl.refreshModels()\">\n      <i class=\"fa fa-refresh fa-fw\"></i>\n      Refresh models and jobs from Loud ML server\n    </button>\n\n    <button type=\"button\" class=\"btn btn-secondary\" ng-click=\"ctrl.addModel()\">\n      <i class=\"fa fa-pencil fa-fw\"></i>\n      Add Model\n    </button>\n\n    <button type=\"button\" class=\"btn btn-secondary\" ng-click=\"ctrl.addJob()\">\n      <i class=\"fa fa-pencil fa-fw\"></i>\n      Schedule a Job\n    </button>\n  </div>\n\n  <div class=\"table-panel-container\">\n    <div class=\"table-panel-header-bg\">Models</div>\n      <div class=\"table-panel-scroll\">\n        <table class=\"table-panel-table\">\n          <tbody>\n            <tr ng-repeat=\"model in ctrl.modelsList\">\n                <td>\n                  <a href=\"#\" ng-click=\"ctrl.editModel(model.settings.name)\">\n                    <i class=\"fa fa-pencil fa-fw\"></i>\n                    {{model.settings.name}}\n                  </a>\n                </td>\n                <td ng-hide=\"model.is_loading\">\n                  <span ng-show=\"model.settings.run\">Running.</span>\n                  <span ng-show=\"model.state.trained\">Trained.</span>\n                  <span ng-hide=\"model.state.trained\">Not trained.</span>\n                </td>\n                <td ng-hide=\"model.is_loading\">\n                  <a href=\"#\" ng-click=\"ctrl.startModel(model.settings.name)\" ng-hide=\"model.settings.run\">\n                    <i class=\"fa fa-play\"></i> Play\n                  </a>\n\n                  <a href=\"#\" ng-click=\"ctrl.stopModel(model.settings.name)\" ng-show=\"model.settings.run\">\n                    <i class=\"fa fa-pause\"></i> Stop\n                  </a>\n                </td>\n                <!-- <td ng-hide=\"model.is_loading\">\n                  <a href=\"#\" ng-click=\"ctrl.trainModel(model.settings.name)\">\n                    <i class=\"fa fa-clock-o\"></i> Train\n                  </a>\n                </td>\n                <td ng-hide=\"model.is_loading\">\n                  <a href=\"#\" ng-click=\"ctrl.forecastModel(model.settings.name)\">\n                    <i class=\"fa fa-clock-o\"></i> Forecast\n                  </a>\n                </td> -->\n                <td ng-hide=\"model.is_loading\">\n                  <a href=\"#\" ng-click=\"ctrl.deleteModel(model.settings.name)\">\n                    <i class=\"fa fa-trash-o fa-fw\"></i> Delete\n                  </a>\n                </td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  <div class=\"grafana-info-box m-t-2\" ng-show=\"ctrl.modelsList.length===0\">\n      No models to show. Click refresh to update data from Loud ML server\n  </div>\n\n  <div class=\"table-panel-container\">\n    <div class=\"table-panel-header-bg\">Scheduled Jobs</div>\n      <div class=\"table-panel-scroll\">\n        <table class=\"table-panel-table\">\n          <tbody>\n            <tr ng-repeat=\"job in ctrl.scheduledList\">\n                <td>\n                  <a href=\"#\" ng-click=\"ctrl.editJob(job.name)\">\n                    <i class=\"fa fa-pencil fa-fw\"></i>\n                    {{job.name}}\n                  </a>\n                </td>\n                <td>\n                  {{job.method}}\n                </td>\n                <td>\n                  {{job.relative_url}}\n                </td>\n                <td>\n                  Every {{job.every.count}}\n                  {{job.every.unit}}\n\n                  <span ng-show=\"job.every.at\">\n                    at {{job.every.at}}\n                  </span>\n                </td>\n                <td>\n                  <span ng-show=\"job.last_run_timestamp\">\n                    OK: {{job.ok}}; Result: {{job.status_code}}\n                    <span ng-show=\"job.error\">\n                      <br />\n                      Error: {{job.error}}\n                    </span>\n                  </span>\n                </td>\n                <td>\n                  <a href=\"#\" ng-click=\"ctrl.deleteJob(job.name)\">\n                    <i class=\"fa fa-trash-o fa-fw\"></i> Delete\n                  </a>\n                </td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  <div class=\"grafana-info-box m-t-2\" ng-show=\"ctrl.scheduledList.length===0\">\n      No scheduled jobs to show. Click refresh to update data from Loud ML server\n  </div>\n\n  <div class=\"table-panel-container\">\n    <div class=\"table-panel-header-bg\">Jobs</div>\n      <div class=\"table-panel-scroll\">\n        <table class=\"table-panel-table\">\n          <tbody>\n            <tr ng-repeat=\"job in ctrl.jobsList\">\n                <td>\n                  {{job.model}}\n                </td>\n                <td>\n                  {{job.start_date}}\n                </td>\n                <td>\n                  {{job.type}}\n                </td>\n                <td>\n                  {{job.state}}\n                  <br />\n                  {{job.error}}\n                </td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  <div class=\"grafana-info-box m-t-2\" ng-show=\"ctrl.jobsList.length===0\">\n      No jobs to show. Click refresh to update data from Loud ML server\n  </div>\n\n</div>\n";
 
 /***/ }),
 

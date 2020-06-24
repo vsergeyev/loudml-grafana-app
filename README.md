@@ -124,6 +124,7 @@ Please post issue to tracker or contact me via vova.sergeyev at gmail.com
 
 # Changelog
 
+ * 1.5.0 Added capability to add and edit models on Loud ML Datasource page.
  * 1.4.0 Changed ID to correct format "loudml-grafana-app"; Fixes code style follow guidelines.
  * 1.3.0 Fixed issue #5 with fill(0); New capabilities: multiple metrics/features per ML model (for InfluxDB data).
  * 1.2.0 New capabilities: LoudML datasource - add scheduled job; list of scheduled jobs.

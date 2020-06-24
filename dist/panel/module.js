@@ -69144,7 +69144,7 @@ function datasourcesList() {
   });
   var datasources = runtime_1.getDataSourceSrv().getMetricSources();
   datasources.forEach(function (val) {
-    if (val.meta.id === "loudml-datasource") {
+    if (val.meta.id === 'loudml-datasource') {
       res.push({
         label: val.name,
         value: val.value

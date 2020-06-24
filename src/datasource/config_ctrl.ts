@@ -6,7 +6,13 @@ import appEvents from 'grafana/app/core/app_events';
 import LoudMLAPI from './loudml_api';
 import configTemplate from './partials/config.html';
 import LoudMLDatasource from './datasource';
-import { DEFAULT_MODEL, DEFAULT_JOB } from './types';
+import {
+  DEFAULT_MODEL,
+  DEFAULT_JOB,
+  DEFAULT_FEATURE,
+  ANOMALY_HOOK_NAME,
+  ANOMALY_HOOK,
+} from './types';
 
 export class LoudMLConfigCtrl {
   static template = configTemplate;
@@ -21,7 +27,9 @@ export class LoudMLConfigCtrl {
   modelsList = [];
   jobsList = [];
   scheduledList = [];
+  buckets = [];
   job: any;
+  model: any;
 
   constructor(private $scope: any) {
     if (this.$scope.current === undefined) {
@@ -36,6 +44,9 @@ export class LoudMLConfigCtrl {
     this.showAccessHelp = !this.showAccessHelp;
   }
 
+  /**
+   * Displays list of ML models and jobs on server
+   */
   async refreshModels() {
     this.$scope.ctrl.modelsList = [{ is_loading: true, settings: { name: 'Loading...' }, state: { trained: '' } }];
 
@@ -56,31 +67,115 @@ export class LoudMLConfigCtrl {
         this.$scope.ctrl.scheduledList = response;
         this.$scope.$apply();
       });
+
+      ds.query({ url: '/buckets', params: {} }).then(response => {
+        this.$scope.ctrl.buckets = response;
+      });
     } catch (err) {
       console.error(err);
       appEvents.emit(AppEvents.alertError, [err]);
     }
   }
 
+  /**
+   * Displays new ML model dialog
+   */
   addModel() {
-    const model = DEFAULT_MODEL;
+    this.model = Object.assign({
+      ...DEFAULT_MODEL,
+      features: [
+        {
+          ...DEFAULT_FEATURE
+        }
+      ]
+    });
     appEvents.emit('show-modal', {
       src: '/public/plugins/loudml-grafana-app/datasource/partials/add_model.html',
       modalClass: 'confirm-modal',
-      model: model,
+      model: this,
     });
   }
 
   editModel(name: any) {
     const model = this.$scope.ctrl.modelsList.find(el => el.settings.name === name);
+    this.model = model.settings;
     // appEvents.emit(CoreEvents.showModal, {
     appEvents.emit('show-modal', {
-      src: '/public/plugins/loudml-grafana-app/datasource/partials/edit_model.html',
+      src: '/public/plugins/loudml-grafana-app/datasource/partials/add_model.html',
       modalClass: 'confirm-modal',
-      model: model,
+      model: this,
     });
   }
 
+  /**
+   * Posts dialog data to LoudML server
+   */
+  async addModelPost() {
+    console.log(this.model);
+
+    if (this.model.features[0].default != "previous") {
+      this.model.features[0].default = 0;
+    }
+
+    delete this.model.features[0].$$hashKey;
+
+    const ds = (await getDataSourceSrv().loadDatasource(this.current.name)) as LoudMLDatasource;
+    ds.loudml
+      .getModel(this.model.name)
+      .then(result => {
+        // Model already exists
+        // Let remove it and recreate
+        ds.loudml.deleteModel(this.model.name).then(response => {
+          ds.loudml
+            .createModel(this.model)
+            .then(result => {
+              ds.loudml
+                .createModelHook(this.model.name, ds.loudml.createHook(ANOMALY_HOOK, this.model.default_bucket))
+                .then(result => {
+                  appEvents.emit(AppEvents.alertSuccess, ['Model has been updated on Loud ML server']);
+                  this.refreshModels();
+                })
+                .catch(err => {
+                  window.console.log('createModelHook error', err);
+                  appEvents.emit(AppEvents.alertError, [err.message]);
+                  return;
+                });
+            })
+            .catch(err => {
+              window.console.log('createModel error', err);
+              appEvents.emit(AppEvents.alertError, ['Model create error', err.data]);
+              return;
+            });
+        });
+      })
+      .catch(err => {
+        // New model
+        ds.loudml
+          .createModel(this.model)
+          .then(result => {
+            ds.loudml
+              .createModelHook(this.model.name, ds.loudml.createHook(ANOMALY_HOOK, this.model.default_bucket))
+              .then(result => {
+                appEvents.emit(AppEvents.alertSuccess, ['Model has been created on Loud ML server']);
+                this.refreshModels();
+              })
+              .catch(err => {
+                window.console.log('createModelHook error', err);
+                appEvents.emit(AppEvents.alertError, [err.message]);
+                return;
+              });
+          })
+          .catch(err => {
+            window.console.log('createModel error', err);
+            appEvents.emit(AppEvents.alertError, ['Model create error', err.data]);
+            return;
+          });
+      });
+  }
+
+  /**
+   * Displays new job dialog
+   */
   addJob() {
     this.job = Object.assign({}, DEFAULT_JOB);
 
@@ -91,6 +186,9 @@ export class LoudMLConfigCtrl {
     });
   }
 
+  /**
+   * Displays edit job dialog
+   */
   editJob(name: any) {
     this.job = this.$scope.ctrl.scheduledList.find(el => el.name === name);
     if (this.job.params) {
@@ -108,6 +206,9 @@ export class LoudMLConfigCtrl {
     });
   }
 
+  /**
+   * Posts job data to LoudML server
+   */
   async scheduleJob() {
     const ds = (await getDataSourceSrv().loadDatasource(this.current.name)) as LoudMLDatasource;
     ds.loudml
@@ -123,6 +224,9 @@ export class LoudMLConfigCtrl {
       });
   }
 
+  /**
+   * Deletes  job on LoudML server
+   */
   async deleteJob(name: any) {
     const ds = (await getDataSourceSrv().loadDatasource(this.current.name)) as LoudMLDatasource;
     ds.loudml
