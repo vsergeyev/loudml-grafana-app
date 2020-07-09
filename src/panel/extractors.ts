@@ -76,7 +76,16 @@ export function extract_group_by(target: any): any {
 export function extract_fill_value(target: any) {
   if (target.groupBy) {
     // InfluxDB or so
-    return _formatFillValue(target.groupBy)
+    const f = _formatFillValue(target.groupBy)
+
+    if (f == "null") {
+      return null;
+    }
+    if (f == "none") {
+      return null;
+    }
+
+    return f;
   }
 
   if (target.group) {
@@ -87,7 +96,7 @@ export function extract_fill_value(target: any) {
   }
 
   // OpenTSDB or Prometheus or so
-  return "nan";
+  return null;
 }
 
 export function extract_format_tags(target: any) {
@@ -251,10 +260,16 @@ export function extract_model_fill(target: any) {
     if (f == "0") {
       return 0;
     }
+    if (f == "null") {
+      return null;
+    }
+    if (f == "none") {
+      return null;
+    }
     return f;
   }
   // OpenTSDB or so
-  return 0 // TODO
+  return null; // TODO
 }
 
 export function extract_model_time_format(target: any) {

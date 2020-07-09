@@ -68503,7 +68503,17 @@ exports.extract_group_by = extract_group_by;
 function extract_fill_value(target) {
   if (target.groupBy) {
     // InfluxDB or so
-    return _formatFillValue(target.groupBy);
+    var f = _formatFillValue(target.groupBy);
+
+    if (f == "null") {
+      return null;
+    }
+
+    if (f == "none") {
+      return null;
+    }
+
+    return f;
   }
 
   if (target.group) {
@@ -68516,7 +68526,7 @@ function extract_fill_value(target) {
   } // OpenTSDB or Prometheus or so
 
 
-  return "nan";
+  return null;
 }
 
 exports.extract_fill_value = extract_fill_value;
@@ -68705,11 +68715,19 @@ function extract_model_fill(target) {
       return 0;
     }
 
+    if (f == "null") {
+      return null;
+    }
+
+    if (f == "none") {
+      return null;
+    }
+
     return f;
   } // OpenTSDB or so
 
 
-  return 0; // TODO
+  return null; // TODO
 }
 
 exports.extract_model_fill = extract_model_fill;
