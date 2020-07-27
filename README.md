@@ -1,4 +1,4 @@
-# LoudML Grafana Application
+x # LoudML Grafana Application
 
 Visualization panel and datasource for Grafana 6.7.x - 7.x to connect with Loud ML AI solution for ICT and IoT
 automation. https://loudml.io
