@@ -435,6 +435,11 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
                     _this.$scope.ctrl.modelsList = response;
 
                     _this.$scope.$apply();
+                  })["catch"](function (err) {
+                    console.error(err.statusText);
+                    console.error("Long time ago, in a galaxy far far away...");
+                    console.log("https://www.google.com/search?q=parallel+worlds+michio+kaku");
+                    app_events_1["default"].emit(data_1.AppEvents.alertError, [err.statusText]);
                   });
                   ds.query({
                     url: '/jobs',
@@ -443,6 +448,8 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
                     _this.$scope.ctrl.jobsList = response;
 
                     _this.$scope.$apply();
+                  })["catch"](function (err) {
+                    app_events_1["default"].emit(data_1.AppEvents.alertError, [err.statusText]);
                   });
                   ds.query({
                     url: '/scheduled_jobs',
@@ -451,12 +458,16 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
                     _this.$scope.ctrl.scheduledList = response;
 
                     _this.$scope.$apply();
+                  })["catch"](function (err) {
+                    app_events_1["default"].emit(data_1.AppEvents.alertError, [err.statusText]);
                   });
                   ds.query({
                     url: '/buckets',
                     params: {}
                   }).then(function (response) {
                     _this.$scope.ctrl.buckets = response;
+                  })["catch"](function (err) {
+                    app_events_1["default"].emit(data_1.AppEvents.alertError, [err.statusText]);
                   });
                 } catch (err) {
                   console.error(err);
@@ -1112,17 +1123,18 @@ var LoudMLAPI = /*#__PURE__*/function () {
       }));
     };
 
-    this.trainAndStartModel = function (name, from, to) {
+    this.trainAndStartModel = function (name, from, to, output_bucket) {
       return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
         var params;
         return regeneratorRuntime.wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                params = Object.assign({
+                params = Object.assign(Object.assign({}, types_1.DEFAULT_START_OPTIONS), {
                   from: from,
-                  to: to
-                }, types_1.DEFAULT_START_OPTIONS);
+                  to: to,
+                  output_bucket: output_bucket
+                });
                 return _context6.abrupt("return", this._query('POST', "/models/".concat(name, "/_train"), params, true));
 
               case 2:
@@ -1134,7 +1146,7 @@ var LoudMLAPI = /*#__PURE__*/function () {
       }));
     };
 
-    this.forecastModel = function (name, data) {
+    this.forecastModel = function (name, data, output_bucket) {
       return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
         var _data$timeRange$raw, from, to, params;
 
@@ -1147,7 +1159,7 @@ var LoudMLAPI = /*#__PURE__*/function () {
                   from: from,
                   to: to,
                   save_output_data: true,
-                  output_bucket: 'loudml',
+                  output_bucket: output_bucket,
                   bg: true
                 };
                 return _context7.abrupt("return", this._query('POST', "/models/".concat(name, "/_forecast"), params, true));
@@ -1161,7 +1173,7 @@ var LoudMLAPI = /*#__PURE__*/function () {
       }));
     };
 
-    this.trainModel = function (name, data) {
+    this.trainModel = function (name, data, output_bucket) {
       return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
         var _this$convertTimeRang, lower, upper;
 
@@ -1171,7 +1183,7 @@ var LoudMLAPI = /*#__PURE__*/function () {
               case 0:
                 _this$convertTimeRang = this.convertTimeRange(data.timeRange), lower = _this$convertTimeRang.lower, upper = _this$convertTimeRang.upper;
                 _context8.next = 3;
-                return this.trainAndStartModel(name, lower, upper);
+                return this.trainAndStartModel(name, lower, upper, output_bucket);
 
               case 3:
                 return _context8.abrupt("return", _context8.sent);
@@ -1185,14 +1197,16 @@ var LoudMLAPI = /*#__PURE__*/function () {
       }));
     };
 
-    this.startModel = function (name) {
+    this.startModel = function (name, output_bucket) {
       return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
         var params;
         return regeneratorRuntime.wrap(function _callee9$(_context9) {
           while (1) {
             switch (_context9.prev = _context9.next) {
               case 0:
-                params = Object.assign({}, types_1.DEFAULT_START_OPTIONS);
+                params = Object.assign(Object.assign({}, types_1.DEFAULT_START_OPTIONS), {
+                  output_bucket: output_bucket
+                });
                 return _context9.abrupt("return", this._query('POST', "/models/".concat(name, "/_start"), params, true));
 
               case 2:

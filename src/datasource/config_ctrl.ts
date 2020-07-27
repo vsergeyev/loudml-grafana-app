@@ -53,24 +53,43 @@ export class LoudMLConfigCtrl {
     const ds = (await getDataSourceSrv().loadDatasource(this.current.name)) as LoudMLDatasource;
 
     try {
-      ds.query({ url: '/models', params: {} }).then(response => {
-        this.$scope.ctrl.modelsList = response;
-        this.$scope.$apply();
-      });
+      ds.query({ url: '/models', params: {} })
+        .then(response => {
+          this.$scope.ctrl.modelsList = response;
+          this.$scope.$apply();
+        })
+        .catch(err => {
+          console.error(err.statusText);
+          console.error("Long time ago, in a galaxy far far away...");
+          console.log("https://www.google.com/search?q=parallel+worlds+michio+kaku");
+          appEvents.emit(AppEvents.alertError, [err.statusText]);
+        });
 
-      ds.query({ url: '/jobs', params: {} }).then(response => {
-        this.$scope.ctrl.jobsList = response;
-        this.$scope.$apply();
-      });
+      ds.query({ url: '/jobs', params: {} })
+        .then(response => {
+          this.$scope.ctrl.jobsList = response;
+          this.$scope.$apply();
+        })
+        .catch(err => {
+          appEvents.emit(AppEvents.alertError, [err.statusText]);
+        });
 
-      ds.query({ url: '/scheduled_jobs', params: {} }).then(response => {
-        this.$scope.ctrl.scheduledList = response;
-        this.$scope.$apply();
-      });
+      ds.query({ url: '/scheduled_jobs', params: {} })
+        .then(response => {
+          this.$scope.ctrl.scheduledList = response;
+          this.$scope.$apply();
+        })
+        .catch(err => {
+          appEvents.emit(AppEvents.alertError, [err.statusText]);
+        });
 
-      ds.query({ url: '/buckets', params: {} }).then(response => {
-        this.$scope.ctrl.buckets = response;
-      });
+      ds.query({ url: '/buckets', params: {} })
+        .then(response => {
+          this.$scope.ctrl.buckets = response;
+        })
+        .catch(err => {
+          appEvents.emit(AppEvents.alertError, [err.statusText]);
+        });
     } catch (err) {
       console.error(err);
       appEvents.emit(AppEvents.alertError, [err]);

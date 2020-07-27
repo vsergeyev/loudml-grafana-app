@@ -315,12 +315,12 @@ export class CreateBaselineButton extends React.Component {
     return Math.max(MIN_SPAN, Math.min(Math.ceil(86400 / duration), MAX_SPAN));
   }
 
-  _trainModel(name: string) {
+  _trainModel(name: string, output_bucket: string) {
     const loudml = this.ds.loudml;
 
     try {
       loudml
-        .trainModel(name, this.data)
+        .trainModel(name, this.data, output_bucket)
         .then(result => {
           window.console.log('trainModel', result);
           appEvents.emit(AppEvents.alertSuccess, ['Model train job started on Loud ML server']);
@@ -387,6 +387,7 @@ export class CreateBaselineButton extends React.Component {
         // ).then(result => {
         //     const bucket = result;
         const bucket = this.props.panelOptions.datasourceOptions.input_bucket;
+        const output_bucket = this.props.panelOptions.datasourceOptions.output_bucket;
         const measurement = extract_model_measurement(source);
         const fill = extract_model_fill(source);
         const match_all = extract_model_tags_map(source);
@@ -434,7 +435,7 @@ export class CreateBaselineButton extends React.Component {
             // window.console.log("getModel", result);
             this.props.panelOptions.modelName = name;
             this.props.onOptionsChange(this.props.panelOptions);
-            this._trainModel(name);
+            this._trainModel(name, output_bucket);
           })
           .catch(err => {
             // New Model
@@ -452,7 +453,7 @@ export class CreateBaselineButton extends React.Component {
 
                     this.props.panelOptions.modelName = name;
                     this.props.onOptionsChange(this.props.panelOptions);
-                    this._trainModel(name);
+                    this._trainModel(name, output_bucket);
                   })
                   .catch(err => {
                     window.console.log('createModelHook error', err);
@@ -526,7 +527,7 @@ export class CreateBaselineButton extends React.Component {
           Create Baseline
         </Button>
         <Tooltip placement="top" content={<LoudMLTooltip data={data} />}>
-          <span className="gf-form-btn">
+          <span className="gf-form-help-icon">
             <i className="fa fa-info-circle" />
           </span>
         </Tooltip>
@@ -612,7 +613,9 @@ export class MLModelController extends React.Component {
         this.props.onOptionsChange(this.props.panelOptions);
       });
     } else {
-      this.loudml.startModel(this.modelName).then(result => {
+      const output_bucket = this.props.panelOptions.datasourceOptions.output_bucket;
+
+      this.loudml.startModel(this.modelName, output_bucket).then(result => {
         this.model.settings.run = true;
         this.props.onOptionsChange(this.props.panelOptions);
       });
@@ -621,9 +624,11 @@ export class MLModelController extends React.Component {
 
   trainModel() {
     if (this.model) {
+      const output_bucket = this.props.panelOptions.datasourceOptions.output_bucket;
+
       try {
         this.loudml
-          .trainModel(this.modelName, this.props.data)
+          .trainModel(this.modelName, this.props.data, output_bucket)
           .then(result => {
             window.console.log('ML trainModel', result);
             appEvents.emit(AppEvents.alertSuccess, ['Model train job started on Loud ML server']);
@@ -642,9 +647,11 @@ export class MLModelController extends React.Component {
 
   forecastModel() {
     if (this.model) {
+      const output_bucket = this.props.panelOptions.datasourceOptions.output_bucket;
+
       try {
         this.loudml
-          .forecastModel(this.modelName, this.props.data)
+          .forecastModel(this.modelName, this.props.data, output_bucket)
           .then(result => {
             window.console.log('ML forecastModel', result);
             appEvents.emit(AppEvents.alertSuccess, ['Model forecast job started on Loud ML server']);
@@ -685,14 +692,14 @@ export class MLModelController extends React.Component {
         <span className="panel-time-info">
           ML Model: {this.modelName} <span className="label">{model_trained}</span>
           {play_btn}
-          <a href="#" className="gf-form-btn" onClick={this.trainModel.bind(this)}>
+          <a href="#" className="gf-form-help-icon" onClick={this.trainModel.bind(this)}>
             <i className="fa fa-clock-o"></i> Train
           </a>
-          <a href="#" className="gf-form-btn" onClick={this.forecastModel.bind(this)}>
+          <a href="#" className="gf-form-help-icon" onClick={this.forecastModel.bind(this)}>
             <i className="fa fa-clock-o"></i> Forecast
           </a>
           <Tooltip placement="top" content="Current time range selection will be used to Train / Forecast">
-            <span className="gf-form-btn">
+            <span className="gf-form-help-icon">
               <i className="fa fa-info-circle" />
             </span>
           </Tooltip>

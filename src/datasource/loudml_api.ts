@@ -106,35 +106,37 @@ export default class LoudMLAPI {
     return this._query('POST', `/models/${name}/hooks`, hook);
   };
 
-  trainAndStartModel = async (name, from, to) => {
+  trainAndStartModel = async (name, from, to, output_bucket) => {
     const params = {
+      ...DEFAULT_START_OPTIONS,
       from,
       to,
-      ...DEFAULT_START_OPTIONS,
+      output_bucket: output_bucket,
     };
     return this._query('POST', `/models/${name}/_train`, params, true);
   };
 
-  forecastModel = async (name, data) => {
+  forecastModel = async (name, data, output_bucket) => {
     const { from, to } = data.timeRange.raw;
     const params = {
       from,
       to,
       save_output_data: true,
-      output_bucket: 'loudml',
+      output_bucket: output_bucket,
       bg: true,
     };
     return this._query('POST', `/models/${name}/_forecast`, params, true);
   };
 
-  trainModel = async (name, data) => {
+  trainModel = async (name, data, output_bucket) => {
     const { lower, upper } = this.convertTimeRange(data.timeRange);
-    return await this.trainAndStartModel(name, lower, upper);
+    return await this.trainAndStartModel(name, lower, upper, output_bucket);
   };
 
-  startModel = async name => {
+  startModel = async (name, output_bucket) => {
     const params = {
       ...DEFAULT_START_OPTIONS,
+      output_bucket: output_bucket,
     };
     return this._query('POST', `/models/${name}/_start`, params, true);
   };
