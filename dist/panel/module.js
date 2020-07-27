@@ -11585,7 +11585,13 @@ exports.extract_tooltip_feature = extract_tooltip_feature;
 function extract_group_by(target) {
   if (target.groupBy) {
     // InfluxDB or so
-    return _formatGroupBy(target.groupBy);
+    var res = _formatGroupBy(target.groupBy);
+
+    if (res == "time: $__interval") {
+      return "time: " + types_1.DEFAULT_MODEL.interval;
+    }
+
+    return res;
   }
 
   if (target.group) {
@@ -11854,7 +11860,15 @@ exports.extract_model_fill = extract_model_fill;
 function extract_model_time_format(target) {
   if (target.groupBy) {
     // InfluxDB or so
-    return _formatTime(target.groupBy);
+    var res = _formatTime(target.groupBy);
+
+    console.log(res);
+
+    if (res == "time_$__interval") {
+      return types_1.DEFAULT_MODEL.interval;
+    }
+
+    return res;
   } else {
     // OpenTSDB or Prometheus or so
     return target.downsampleInterval || target.interval || "auto";
@@ -11866,7 +11880,15 @@ exports.extract_model_time_format = extract_model_time_format;
 function extract_model_time(target) {
   if (target.groupBy) {
     // InfluxDB or so
-    return _get_time(target.groupBy);
+    var res = _get_time(target.groupBy);
+
+    console.log(res);
+
+    if (res == "$__interval") {
+      return types_1.DEFAULT_MODEL.interval;
+    }
+
+    return res;
   }
 
   if (target.query && target.bucketAggs && target.bucketAggs.length > 0 && target.bucketAggs[0].settings) {
