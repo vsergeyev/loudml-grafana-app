@@ -366,6 +366,16 @@ var config_html_1 = tslib_1.__importDefault(__webpack_require__(/*! ./partials/c
 
 var types_1 = __webpack_require__(/*! ./types */ "./datasource/types.ts");
 
+var POST_A_BUG_SAVE_PLANET = 'Be aware, it may be an alien bug. If so - save planet, post bug report at https://github.com/vsergeyev/loudml-grafana-app/issues (starship troopers will do the rest of bloody job for you)';
+
+function sorry_its_error(err) {
+  // Guys, it's really sorry
+  window.console.log('Model update error.');
+  window.console.log(POST_A_BUG_SAVE_PLANET);
+  window.console.log(err);
+  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model update error', err.data]);
+}
+
 var LoudMLConfigCtrl = /*#__PURE__*/function () {
   function LoudMLConfigCtrl($scope) {
     _classCallCheck(this, LoudMLConfigCtrl);
@@ -540,27 +550,36 @@ var LoudMLConfigCtrl = /*#__PURE__*/function () {
               case 5:
                 ds = _context2.sent;
                 ds.loudml.getModel(this.model.name).then(function (result) {
-                  // Model already exists
-                  // Let remove it and recreate
-                  ds.loudml.deleteModel(_this2.model.name).then(function (response) {
-                    ds.loudml.createModel(_this2.model).then(function (result) {
-                      ds.loudml.createModelHook(_this2.model.name, ds.loudml.createHook(types_1.ANOMALY_HOOK, _this2.model.default_bucket)).then(function (result) {
-                        app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been updated on Loud ML server']);
-
-                        _this2.refreshModels();
-                      })["catch"](function (err) {
-                        window.console.log('createModelHook error', err);
-                        app_events_1["default"].emit(data_1.AppEvents.alertError, [err.message]);
-                        return;
-                      });
-                    })["catch"](function (err) {
-                      window.console.log('createModel error', err);
-                      app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model create error', err.data]);
-                      return;
-                    });
-                  });
+                  console.log("Model exists, updating it...");
+                  ds.loudml.patchModel(_this2.model.name, _this2.model).then(function (result) {})["catch"](function (err) {
+                    sorry_its_error(err);
+                    return;
+                  }); //   // Let remove it and recreate
+                  //   ds.loudml.deleteModel(this.model.name).then(response => {
+                  //     ds.loudml
+                  //       .createModel(this.model)
+                  //       .then(result => {
+                  //         ds.loudml
+                  //           .createModelHook(this.model.name, ds.loudml.createHook(ANOMALY_HOOK, this.model.default_bucket))
+                  //           .then(result => {
+                  //             appEvents.emit(AppEvents.alertSuccess, ['Model has been updated on Loud ML server']);
+                  //             this.refreshModels();
+                  //           })
+                  //           .catch(err => {
+                  //             window.console.log('createModelHook error', err);
+                  //             appEvents.emit(AppEvents.alertError, [err.message]);
+                  //             return;
+                  //           });
+                  //       })
+                  //       .catch(err => {
+                  //         window.console.log('Model create error', err);
+                  //         appEvents.emit(AppEvents.alertError, ['Model create error', err.data]);
+                  //         return;
+                  //       });
+                  //   });
                 })["catch"](function (err) {
                   // New model
+                  console.log("New model, creating it...");
                   ds.loudml.createModel(_this2.model).then(function (result) {
                     ds.loudml.createModelHook(_this2.model.name, ds.loudml.createHook(types_1.ANOMALY_HOOK, _this2.model.default_bucket)).then(function (result) {
                       app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been created on Loud ML server']);
@@ -1066,13 +1085,13 @@ var LoudMLAPI = /*#__PURE__*/function () {
       }));
     };
 
-    this.getModel = function (name) {
+    this.patchModel = function (name, model) {
       return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                return _context3.abrupt("return", this._query('GET', "/models/".concat(name)));
+                return _context3.abrupt("return", this._query('PATCH', "/models/".concat(name), model));
 
               case 1:
               case "end":
@@ -1083,13 +1102,13 @@ var LoudMLAPI = /*#__PURE__*/function () {
       }));
     };
 
-    this.deleteModel = function (name) {
+    this.getModel = function (name) {
       return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                return _context4.abrupt("return", this._query('DELETE', "/models/".concat(name)));
+                return _context4.abrupt("return", this._query('GET', "/models/".concat(name)));
 
               case 1:
               case "end":
@@ -1100,19 +1119,13 @@ var LoudMLAPI = /*#__PURE__*/function () {
       }));
     };
 
-    this.createHook = function (hook, bucket) {
-      var h = Object.assign({}, hook);
-      h.config.bucket = bucket;
-      return h;
-    };
-
-    this.createModelHook = function (name, hook) {
+    this.deleteModel = function (name) {
       return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
         return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                return _context5.abrupt("return", this._query('POST', "/models/".concat(name, "/hooks"), hook));
+                return _context5.abrupt("return", this._query('DELETE', "/models/".concat(name)));
 
               case 1:
               case "end":
@@ -1123,21 +1136,21 @@ var LoudMLAPI = /*#__PURE__*/function () {
       }));
     };
 
-    this.trainAndStartModel = function (name, from, to, output_bucket) {
+    this.createHook = function (hook, bucket) {
+      var h = Object.assign({}, hook);
+      h.config.bucket = bucket;
+      return h;
+    };
+
+    this.createModelHook = function (name, hook) {
       return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
-        var params;
         return regeneratorRuntime.wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                params = Object.assign(Object.assign({}, types_1.DEFAULT_START_OPTIONS), {
-                  from: from,
-                  to: to,
-                  output_bucket: output_bucket
-                });
-                return _context6.abrupt("return", this._query('POST', "/models/".concat(name, "/_train"), params, true));
+                return _context6.abrupt("return", this._query('POST', "/models/".concat(name, "/hooks"), hook));
 
-              case 2:
+              case 1:
               case "end":
                 return _context6.stop();
             }
@@ -1146,13 +1159,36 @@ var LoudMLAPI = /*#__PURE__*/function () {
       }));
     };
 
-    this.forecastModel = function (name, data, output_bucket) {
+    this.trainAndStartModel = function (name, from, to, output_bucket) {
       return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
-        var _data$timeRange$raw, from, to, params;
-
+        var params;
         return regeneratorRuntime.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
+              case 0:
+                params = Object.assign(Object.assign({}, types_1.DEFAULT_START_OPTIONS), {
+                  from: from,
+                  to: to,
+                  output_bucket: output_bucket
+                });
+                return _context7.abrupt("return", this._query('POST', "/models/".concat(name, "/_train"), params, true));
+
+              case 2:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7, this);
+      }));
+    };
+
+    this.forecastModel = function (name, data, output_bucket) {
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+        var _data$timeRange$raw, from, to, params;
+
+        return regeneratorRuntime.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
               case 0:
                 _data$timeRange$raw = data.timeRange.raw, from = _data$timeRange$raw.from, to = _data$timeRange$raw.to;
                 params = {
@@ -1162,33 +1198,9 @@ var LoudMLAPI = /*#__PURE__*/function () {
                   output_bucket: output_bucket,
                   bg: true
                 };
-                return _context7.abrupt("return", this._query('POST', "/models/".concat(name, "/_forecast"), params, true));
+                return _context8.abrupt("return", this._query('POST', "/models/".concat(name, "/_forecast"), params, true));
 
               case 3:
-              case "end":
-                return _context7.stop();
-            }
-          }
-        }, _callee7, this);
-      }));
-    };
-
-    this.trainModel = function (name, data, output_bucket) {
-      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
-        var _this$convertTimeRang, lower, upper;
-
-        return regeneratorRuntime.wrap(function _callee8$(_context8) {
-          while (1) {
-            switch (_context8.prev = _context8.next) {
-              case 0:
-                _this$convertTimeRang = this.convertTimeRange(data.timeRange), lower = _this$convertTimeRang.lower, upper = _this$convertTimeRang.upper;
-                _context8.next = 3;
-                return this.trainAndStartModel(name, lower, upper, output_bucket);
-
-              case 3:
-                return _context8.abrupt("return", _context8.sent);
-
-              case 4:
               case "end":
                 return _context8.stop();
             }
@@ -1197,19 +1209,22 @@ var LoudMLAPI = /*#__PURE__*/function () {
       }));
     };
 
-    this.startModel = function (name, output_bucket) {
+    this.trainModel = function (name, data, output_bucket) {
       return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
-        var params;
+        var _this$convertTimeRang, lower, upper;
+
         return regeneratorRuntime.wrap(function _callee9$(_context9) {
           while (1) {
             switch (_context9.prev = _context9.next) {
               case 0:
-                params = Object.assign(Object.assign({}, types_1.DEFAULT_START_OPTIONS), {
-                  output_bucket: output_bucket
-                });
-                return _context9.abrupt("return", this._query('POST', "/models/".concat(name, "/_start"), params, true));
+                _this$convertTimeRang = this.convertTimeRange(data.timeRange), lower = _this$convertTimeRang.lower, upper = _this$convertTimeRang.upper;
+                _context9.next = 3;
+                return this.trainAndStartModel(name, lower, upper, output_bucket);
 
-              case 2:
+              case 3:
+                return _context9.abrupt("return", _context9.sent);
+
+              case 4:
               case "end":
                 return _context9.stop();
             }
@@ -1218,15 +1233,17 @@ var LoudMLAPI = /*#__PURE__*/function () {
       }));
     };
 
-    this.stopModel = function (name) {
+    this.startModel = function (name, output_bucket) {
       return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
         var params;
         return regeneratorRuntime.wrap(function _callee10$(_context10) {
           while (1) {
             switch (_context10.prev = _context10.next) {
               case 0:
-                params = {};
-                return _context10.abrupt("return", this._query('POST', "/models/".concat(name, "/_stop"), params, true));
+                params = Object.assign(Object.assign({}, types_1.DEFAULT_START_OPTIONS), {
+                  output_bucket: output_bucket
+                });
+                return _context10.abrupt("return", this._query('POST', "/models/".concat(name, "/_start"), params, true));
 
               case 2:
               case "end":
@@ -1237,12 +1254,31 @@ var LoudMLAPI = /*#__PURE__*/function () {
       }));
     };
 
-    this.scheduleJob = function (job) {
+    this.stopModel = function (name) {
       return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
         var params;
         return regeneratorRuntime.wrap(function _callee11$(_context11) {
           while (1) {
             switch (_context11.prev = _context11.next) {
+              case 0:
+                params = {};
+                return _context11.abrupt("return", this._query('POST', "/models/".concat(name, "/_stop"), params, true));
+
+              case 2:
+              case "end":
+                return _context11.stop();
+            }
+          }
+        }, _callee11, this);
+      }));
+    };
+
+    this.scheduleJob = function (job) {
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
+        var params;
+        return regeneratorRuntime.wrap(function _callee12$(_context12) {
+          while (1) {
+            switch (_context12.prev = _context12.next) {
               case 0:
                 params = Object.assign({}, job);
                 window.console.log(params);
@@ -1270,31 +1306,31 @@ var LoudMLAPI = /*#__PURE__*/function () {
                 delete params.status_code;
                 delete params.last_run_timestamp;
                 window.console.log(params);
-                return _context11.abrupt("return", this._query('POST', "/scheduled_jobs", params));
+                return _context12.abrupt("return", this._query('POST', "/scheduled_jobs", params));
 
               case 13:
-              case "end":
-                return _context11.stop();
-            }
-          }
-        }, _callee11, this);
-      }));
-    };
-
-    this.deleteJob = function (name) {
-      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
-        return regeneratorRuntime.wrap(function _callee12$(_context12) {
-          while (1) {
-            switch (_context12.prev = _context12.next) {
-              case 0:
-                return _context12.abrupt("return", this._query('DELETE', "/scheduled_jobs/".concat(name)));
-
-              case 1:
               case "end":
                 return _context12.stop();
             }
           }
         }, _callee12, this);
+      }));
+    };
+
+    this.deleteJob = function (name) {
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
+        return regeneratorRuntime.wrap(function _callee13$(_context13) {
+          while (1) {
+            switch (_context13.prev = _context13.next) {
+              case 0:
+                return _context13.abrupt("return", this._query('DELETE', "/scheduled_jobs/".concat(name)));
+
+              case 1:
+              case "end":
+                return _context13.stop();
+            }
+          }
+        }, _callee13, this);
       }));
     };
 
@@ -1314,29 +1350,29 @@ var LoudMLAPI = /*#__PURE__*/function () {
   _createClass(LoudMLAPI, [{
     key: "get",
     value: function get(url, params) {
-      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
-        return regeneratorRuntime.wrap(function _callee13$(_context13) {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
+        return regeneratorRuntime.wrap(function _callee14$(_context14) {
           while (1) {
-            switch (_context13.prev = _context13.next) {
+            switch (_context14.prev = _context14.next) {
               case 0:
-                return _context13.abrupt("return", this._query('GET', url, params));
+                return _context14.abrupt("return", this._query('GET', url, params));
 
               case 1:
               case "end":
-                return _context13.stop();
+                return _context14.stop();
             }
           }
-        }, _callee13, this);
+        }, _callee14, this);
       }));
     }
   }, {
     key: "_query",
     value: function _query(method, url, data, data_as_params) {
-      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee15() {
         var options, response, responseData;
-        return regeneratorRuntime.wrap(function _callee14$(_context14) {
+        return regeneratorRuntime.wrap(function _callee15$(_context15) {
           while (1) {
-            switch (_context14.prev = _context14.next) {
+            switch (_context15.prev = _context15.next) {
               case 0:
                 method = method.toUpperCase();
                 options = {
@@ -1350,20 +1386,20 @@ var LoudMLAPI = /*#__PURE__*/function () {
                   options.data = data;
                 }
 
-                _context14.next = 5;
+                _context15.next = 5;
                 return this.backendSrv.datasourceRequest(options);
 
               case 5:
-                response = _context14.sent;
+                response = _context15.sent;
                 responseData = response.data;
-                return _context14.abrupt("return", responseData);
+                return _context15.abrupt("return", responseData);
 
               case 8:
               case "end":
-                return _context14.stop();
+                return _context15.stop();
             }
           }
-        }, _callee14, this);
+        }, _callee15, this);
       }));
     }
   }]);

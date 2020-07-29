@@ -14,6 +14,16 @@ import {
   ANOMALY_HOOK,
 } from './types';
 
+const POST_A_BUG_SAVE_PLANET = 'Be aware, it may be an alien bug. If so - save planet, post bug report at https://github.com/vsergeyev/loudml-grafana-app/issues (starship troopers will do the rest of bloody job for you)';
+
+function sorry_its_error(err) {
+  // Guys, it's really sorry
+  window.console.log('Model update error.');
+  window.console.log(POST_A_BUG_SAVE_PLANET);
+  window.console.log(err);
+  appEvents.emit(AppEvents.alertError, ['Model update error', err.data]);
+}
+
 export class LoudMLConfigCtrl {
   static template = configTemplate;
   ACCESS_OPTIONS = [
@@ -142,33 +152,41 @@ export class LoudMLConfigCtrl {
     ds.loudml
       .getModel(this.model.name)
       .then(result => {
-        // Model already exists
-        // Let remove it and recreate
-        ds.loudml.deleteModel(this.model.name).then(response => {
-          ds.loudml
-            .createModel(this.model)
-            .then(result => {
-              ds.loudml
-                .createModelHook(this.model.name, ds.loudml.createHook(ANOMALY_HOOK, this.model.default_bucket))
-                .then(result => {
-                  appEvents.emit(AppEvents.alertSuccess, ['Model has been updated on Loud ML server']);
-                  this.refreshModels();
-                })
-                .catch(err => {
-                  window.console.log('createModelHook error', err);
-                  appEvents.emit(AppEvents.alertError, [err.message]);
-                  return;
-                });
-            })
-            .catch(err => {
-              window.console.log('createModel error', err);
-              appEvents.emit(AppEvents.alertError, ['Model create error', err.data]);
+        console.log("Model exists, updating it...");
+        ds.loudml
+          .patchModel(this.model.name, this.model)
+          .then(result => {})
+          .catch(err => {
+              sorry_its_error(err);
               return;
             });
-        });
-      })
+      //   // Let remove it and recreate
+      //   ds.loudml.deleteModel(this.model.name).then(response => {
+      //     ds.loudml
+      //       .createModel(this.model)
+      //       .then(result => {
+      //         ds.loudml
+      //           .createModelHook(this.model.name, ds.loudml.createHook(ANOMALY_HOOK, this.model.default_bucket))
+      //           .then(result => {
+      //             appEvents.emit(AppEvents.alertSuccess, ['Model has been updated on Loud ML server']);
+      //             this.refreshModels();
+      //           })
+      //           .catch(err => {
+      //             window.console.log('createModelHook error', err);
+      //             appEvents.emit(AppEvents.alertError, [err.message]);
+      //             return;
+      //           });
+      //       })
+      //       .catch(err => {
+      //         window.console.log('Model create error', err);
+      //         appEvents.emit(AppEvents.alertError, ['Model create error', err.data]);
+      //         return;
+      //       });
+      //   });
+       })
       .catch(err => {
         // New model
+        console.log("New model, creating it...");
         ds.loudml
           .createModel(this.model)
           .then(result => {

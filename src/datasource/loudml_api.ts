@@ -87,6 +87,10 @@ export default class LoudMLAPI {
     return this._query('POST', '/models', model);
   };
 
+  patchModel = async (name, model) => {
+    return this._query('PATCH', `/models/${name}`, model);
+  };
+
   getModel = async name => {
     return this._query('GET', `/models/${name}`);
   };
