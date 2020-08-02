@@ -12,7 +12,13 @@ https://github.com/regel/loudml
 
 # Installation
 
-Default assumption - you use Grafana 6.x. For Grafana 7.x please use appropriate ZIP file.
+Repository conventions:
+
+ * `master` branch is for Grafana 7
+ * `grafana/6.x` branch is for Grafana 6
+
+
+ZIP files has packaged plugin for each of Grafana version supported.
 
 A) Give it a try with Docker
 
@@ -45,7 +51,7 @@ B) In existing Grafana container
   * You may remove the downloaded archive
   * Restart Grafana
 
-C) From sources (note - github latest is for Grafana 7.x)
+C) From sources (note - default `master` branch is for Grafana 7.x)
 
  * Plugin should be placed in `.../grafana/data/plugins`
  * git clone https://github.com/vsergeyev/loudml-grafana-app.git
@@ -56,7 +62,7 @@ C) From sources (note - github latest is for Grafana 7.x)
  * LoudML app should be in plugins list, you may need to activate it
  * enjoy :)
 
-# What inside
+# Whats inside
 
 Loud ML Panel - is a version of Grafana's default Graph Panel with a "Create Baseline" button
 to create ML model in 1-click.
