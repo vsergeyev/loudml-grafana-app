@@ -1,4 +1,4 @@
-x # LoudML Grafana Application
+# LoudML Grafana Application
 
 Visualization panel and datasource for Grafana 6.7.x - 7.x to connect with Loud ML AI solution for ICT and IoT
 automation. https://loudml.io
@@ -12,14 +12,20 @@ https://github.com/regel/loudml
 
 # Installation
 
-Default assumption - you use Grafana 6.x. For Grafana 7.x please use appropriate ZIP file.
+Repository conventions:
+
+ * `master` branch is for Grafana 7
+ * `grafana/6.x` branch is for Grafana 6
+
+
+ZIP files has packaged plugin for each of Grafana version supported.
 
 A) Give it a try with Docker
 
       docker run -d \
       -p 3000:3000 \
       --name=grafana \
-      -e "GF_INSTALL_PLUGINS=https://github.com/vsergeyev/loudml-grafana-app/raw/master/loudml-grafana-app-1.6.0.zip;loudml-grafana-app" \
+      -e "GF_INSTALL_PLUGINS=https://github.com/vsergeyev/loudml-grafana-app/raw/master/loudml-grafana-app-latest.zip;loudml-grafana-app" \
       grafana/grafana
 
 Setup LoudML if needed (please refer to https://hub.docker.com/r/loudml/loudml for config.yml setup)
@@ -36,16 +42,16 @@ B) In existing Grafana container
   * Go to plugins directory (usually data/plugins under Grafana installation or /var/lib/grafana/plugins)
 
         cd /var/lib/grafana/plugins
-  * Download loudml-grafana-app-1.6.0.zip zip file:
+  * Download loudml-grafana-app-latest.zip zip file:
 
-        wget https://github.com/vsergeyev/loudml-grafana-app/raw/master/loudml-grafana-app-1.6.0.zip
+        wget https://github.com/vsergeyev/loudml-grafana-app/raw/master/loudml-grafana-app-latest.zip
   * Unpack it there
 
-        unzip loudml-grafana-app-1.6.0.zip
+        unzip loudml-grafana-app-latest.zip
   * You may remove the downloaded archive
   * Restart Grafana
 
-C) From sources (note - github latest is for Grafana 7.x)
+C) From sources (note - default `master` branch is for Grafana 7.x)
 
  * Plugin should be placed in `.../grafana/data/plugins`
  * git clone https://github.com/vsergeyev/loudml-grafana-app.git
@@ -56,7 +62,7 @@ C) From sources (note - github latest is for Grafana 7.x)
  * LoudML app should be in plugins list, you may need to activate it
  * enjoy :)
 
-# What inside
+# Whats inside
 
 Loud ML Panel - is a version of Grafana's default Graph Panel with a "Create Baseline" button
 to create ML model in 1-click.
@@ -124,6 +130,7 @@ Please post issue to tracker or contact me via vova.sergeyev at gmail.com
 
 # Changelog
 
+ * 1.6.0 Better Grafana 6.x compatibility. Fixed issue with output bucket.
  * 1.5.0 Added capability to add and edit models on Loud ML Datasource page.
  * 1.4.0 Changed ID to correct format "loudml-grafana-app"; Fixes code style follow guidelines.
  * 1.3.0 Fixed issue #5 with fill(0); New capabilities: multiple metrics/features per ML model (for InfluxDB data).
