@@ -280,7 +280,7 @@ export function extract_model_time_format(target: any) {
   if (target.groupBy) {
     // InfluxDB or so
     let res = _formatTime(target.groupBy);
-    console.log(res);
+    // console.log(res);
     if (res == "time_$__interval" ) {
       return DEFAULT_MODEL.interval;
     }
@@ -295,7 +295,7 @@ export function extract_model_time(target: any) {
   if (target.groupBy) {
     // InfluxDB or so
     let res = _get_time(target.groupBy);
-    console.log(res);
+    // console.log(res);
     if (res == "$__interval" ) {
       return DEFAULT_MODEL.interval;
     }

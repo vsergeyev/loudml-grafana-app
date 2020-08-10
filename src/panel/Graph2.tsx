@@ -24,6 +24,8 @@ export class Graph2 extends Graph {
     const promises = [];
     const dsPromises = [];
     const range = props.timeRange;
+    this.annotations = [];
+
     if (props.panelChrome) {
       this.dashboard = props.panelChrome.props.dashboard;
 

@@ -88,6 +88,13 @@ export class GraphPanelController extends React.Component<GraphPanelControllerPr
         props.options.fieldOptions
       ),
     };
+
+    window.console.log('-- LoudML Panel init --');
+    window.console.log(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    // TODO
   }
 
   static getDerivedStateFromProps(props: GraphPanelControllerProps, state: GraphPanelControllerState) {
@@ -197,13 +204,24 @@ export class GraphPanelController extends React.Component<GraphPanelControllerPr
 
 export class LoudMLTooltip extends React.Component {
   data: any;
+  datasourceOptions: any;
 
   constructor(props: any) {
     super(props);
     this.data = props.data;
+    this.datasourceOptions = props.datasourceOptions;
+  }
+
+  componentDidUpdate(prevProps) {
+    this.data = this.props.data;
+    this.datasourceOptions = this.props.datasourceOptions;
   }
 
   render() {
+    const datasource = this.datasourceOptions.datasource;
+    const input_bucket = this.datasourceOptions.input_bucket;
+    const output_bucket = this.datasourceOptions.output_bucket;
+
     const feature =
       (this.data.request.targets && this.data.request.targets.length > 0 && extract_tooltip_feature(this.data.request.targets[0])) ||
       'Select one or more fields';
@@ -254,6 +272,21 @@ export class LoudMLTooltip extends React.Component {
           <b>Fill value:</b>
           <br />
           <code>{fill_value}</code>
+        </p>
+        <p>
+          <b>LoudML server:</b>
+          <br />
+          <code>{datasource}</code>
+        </p>
+        <p>
+          <b>Input bucket:</b>
+          <br />
+          <code>{input_bucket}</code>
+        </p>
+        <p>
+          <b>Output bucket:</b>
+          <br />
+          <code>{output_bucket}</code>
         </p>
       </div>
     );
@@ -430,25 +463,19 @@ export class CreateBaselineButton extends React.Component {
         loudml
           .getModel(name)
           .then(result => {
-            // Model already exists
-            // Let re-Train it on current dataframe
-            // window.console.log("getModel", result);
+            window.console.log('ML model already exists. Let train it on the current dataframe');
             this.props.panelOptions.modelName = name;
             this.props.onOptionsChange(this.props.panelOptions);
             this._trainModel(name, output_bucket);
           })
           .catch(err => {
-            // New Model
-            // Create, train
+            window.console.log('New ML model case. Let create and train it.');
             loudml
               .createModel(model)
               .then(result => {
-                // window.console.log("createModel", result);
                 loudml
                   .createModelHook(model.name, loudml.createHook(ANOMALY_HOOK, model.default_bucket))
                   .then(result => {
-                    // window.console.log("createModelHook", result);
-                    // loudml.modelCreated(model)
                     appEvents.emit(AppEvents.alertSuccess, ['Model has been created on Loud ML server']);
 
                     this.props.panelOptions.modelName = name;
@@ -491,9 +518,14 @@ export class CreateBaselineButton extends React.Component {
   }
 
   onCreateBaselineClick() {
-    // window.console.log(this);
+    const datasourceOptions = this.props.panelOptions.datasourceOptions;
 
-    this.dsName = this.props.panelOptions.datasourceOptions.datasource;
+    window.console.log('-- Create Baseline --');
+    window.console.log('LoudML server:', datasourceOptions.datasource);
+    window.console.log('Input bucket:', datasourceOptions.input_bucket);
+    window.console.log('Output bucket:', datasourceOptions.output_bucket);
+
+    this.dsName = datasourceOptions.datasource;
 
     if (!this.dsName) {
       appEvents.emit(AppEvents.alertError, ['Please choose Loud ML Server in panel settings']);
@@ -519,6 +551,7 @@ export class CreateBaselineButton extends React.Component {
 
   render() {
     const data = this.data;
+    const datasourceOptions = this.props.panelOptions.datasourceOptions;
 
     return (
       <>
@@ -526,7 +559,7 @@ export class CreateBaselineButton extends React.Component {
           <i className="fa fa-graduation-cap fa-fw"></i>
           Create Baseline
         </Button>
-        <Tooltip placement="top" content={<LoudMLTooltip data={data} />}>
+        <Tooltip placement="top" content={<LoudMLTooltip data={data} datasourceOptions={datasourceOptions} />}>
           <span className="gf-form-help-icon">
             <i className="fa fa-info-circle" />
           </span>

@@ -9535,6 +9535,7 @@ var Graph2 = /*#__PURE__*/function (_ui_1$Graph) {
     var promises = [];
     var dsPromises = [];
     var range = props.timeRange;
+    _this.annotations = [];
 
     if (props.panelChrome) {
       _this.dashboard = props.panelChrome.props.dashboard;
@@ -10331,10 +10332,16 @@ var GraphPanelController = /*#__PURE__*/function (_react_1$default$Comp) {
     _this.state = {
       graphSeriesModel: getGraphSeriesModel_1.getGraphSeriesModel(props.data.series, props.timeZone, props.options.series || {}, props.options.graph, props.options.legend, props.options.fieldOptions)
     };
+    window.console.log('-- LoudML Panel init --');
+    window.console.log(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(GraphPanelController, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {// TODO
+    }
+  }, {
     key: "onSeriesOptionsUpdate",
     value: function onSeriesOptionsUpdate(label, optionsUpdate) {
       var _this$props = this.props,
@@ -10449,12 +10456,22 @@ var LoudMLTooltip = /*#__PURE__*/function (_react_1$default$Comp2) {
 
     _this3 = _possibleConstructorReturn(this, _getPrototypeOf(LoudMLTooltip).call(this, props));
     _this3.data = props.data;
+    _this3.datasourceOptions = props.datasourceOptions;
     return _this3;
   }
 
   _createClass(LoudMLTooltip, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      this.data = this.props.data;
+      this.datasourceOptions = this.props.datasourceOptions;
+    }
+  }, {
     key: "render",
     value: function render() {
+      var datasource = this.datasourceOptions.datasource;
+      var input_bucket = this.datasourceOptions.input_bucket;
+      var output_bucket = this.datasourceOptions.output_bucket;
       var feature = this.data.request.targets && this.data.request.targets.length > 0 && extractors_1.extract_tooltip_feature(this.data.request.targets[0]) || 'Select one or more fields';
       var interval = this.data.request.targets && this.data.request.targets.length > 0 && extractors_1.extract_group_by(this.data.request.targets[0]) || "Select a 'Group by' value";
       var fill_value = this.data.request.targets && this.data.request.targets.length > 0 && extractors_1.extract_fill_value(this.data.request.targets[0]) || "Select a 'Fill' value"; // TODO: extractor for Tags
@@ -10464,7 +10481,7 @@ var LoudMLTooltip = /*#__PURE__*/function (_react_1$default$Comp2) {
         className: "small"
       }, react_1["default"].createElement("p", null, "Use your current data selection to baseline normal metric behavior using a machine learning task.", react_1["default"].createElement("br", null), "This will create a new model, and run training to fit the baseline to your data.", react_1["default"].createElement("br", null), "You can visualise the baseline, and forecast future data once training is completed. To run model click on ", react_1["default"].createElement("i", {
         className: "fa fa-play"
-      }), ' ', "Play button.", react_1["default"].createElement("br", null), react_1["default"].createElement("br", null), "Use Mixed Query, leave first query with source data as is. Then add a query from datasource equal to Loud ML output bucket (ex. \"loudml\"). In output database will be present metrics \"lower_mean_*\", \"upper_mean_\" and \"@mean_\". To filter results by your model please use WHERE clause and select your model name."), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Feature(s):"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, feature)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "groupBy bucket interval:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, interval)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Match all:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, tags_value)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Fill value:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, fill_value)));
+      }), ' ', "Play button.", react_1["default"].createElement("br", null), react_1["default"].createElement("br", null), "Use Mixed Query, leave first query with source data as is. Then add a query from datasource equal to Loud ML output bucket (ex. \"loudml\"). In output database will be present metrics \"lower_mean_*\", \"upper_mean_\" and \"@mean_\". To filter results by your model please use WHERE clause and select your model name."), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Feature(s):"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, feature)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "groupBy bucket interval:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, interval)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Match all:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, tags_value)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Fill value:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, fill_value)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "LoudML server:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, datasource)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Input bucket:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, input_bucket)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Output bucket:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, output_bucket)));
     }
   }]);
 
@@ -10641,22 +10658,16 @@ var CreateBaselineButton = /*#__PURE__*/function (_react_1$default$Comp3) {
         _this5.props.onOptionsChange(_this5.props.panelOptions);
 
         loudml.getModel(name).then(function (result) {
-          // Model already exists
-          // Let re-Train it on current dataframe
-          // window.console.log("getModel", result);
+          window.console.log('ML model already exists. Let train it on the current dataframe');
           _this5.props.panelOptions.modelName = name;
 
           _this5.props.onOptionsChange(_this5.props.panelOptions);
 
           _this5._trainModel(name, output_bucket);
         })["catch"](function (err) {
-          // New Model
-          // Create, train
+          window.console.log('New ML model case. Let create and train it.');
           loudml.createModel(model).then(function (result) {
-            // window.console.log("createModel", result);
             loudml.createModelHook(model.name, loudml.createHook(types_1.ANOMALY_HOOK, model.default_bucket)).then(function (result) {
-              // window.console.log("createModelHook", result);
-              // loudml.modelCreated(model)
               app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been created on Loud ML server']);
               _this5.props.panelOptions.modelName = name;
 
@@ -10729,8 +10740,12 @@ var CreateBaselineButton = /*#__PURE__*/function (_react_1$default$Comp3) {
     value: function onCreateBaselineClick() {
       var _this6 = this;
 
-      // window.console.log(this);
-      this.dsName = this.props.panelOptions.datasourceOptions.datasource;
+      var datasourceOptions = this.props.panelOptions.datasourceOptions;
+      window.console.log('-- Create Baseline --');
+      window.console.log('LoudML server:', datasourceOptions.datasource);
+      window.console.log('Input bucket:', datasourceOptions.input_bucket);
+      window.console.log('Output bucket:', datasourceOptions.output_bucket);
+      this.dsName = datasourceOptions.datasource;
 
       if (!this.dsName) {
         app_events_1["default"].emit(data_1.AppEvents.alertError, ['Please choose Loud ML Server in panel settings']);
@@ -10755,6 +10770,7 @@ var CreateBaselineButton = /*#__PURE__*/function (_react_1$default$Comp3) {
     key: "render",
     value: function render() {
       var data = this.data;
+      var datasourceOptions = this.props.panelOptions.datasourceOptions;
       return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(ui_1.Button, {
         size: "sm",
         className: "btn btn-inverse",
@@ -10765,7 +10781,8 @@ var CreateBaselineButton = /*#__PURE__*/function (_react_1$default$Comp3) {
       }), "Create Baseline"), react_1["default"].createElement(ui_1.Tooltip, {
         placement: "top",
         content: react_1["default"].createElement(LoudMLTooltip, {
-          data: data
+          data: data,
+          datasourceOptions: datasourceOptions
         })
       }, react_1["default"].createElement("span", {
         className: "gf-form-help-icon"
@@ -11860,9 +11877,8 @@ exports.extract_model_fill = extract_model_fill;
 function extract_model_time_format(target) {
   if (target.groupBy) {
     // InfluxDB or so
-    var res = _formatTime(target.groupBy);
+    var res = _formatTime(target.groupBy); // console.log(res);
 
-    console.log(res);
 
     if (res == "time_$__interval") {
       return types_1.DEFAULT_MODEL.interval;
@@ -11880,9 +11896,8 @@ exports.extract_model_time_format = extract_model_time_format;
 function extract_model_time(target) {
   if (target.groupBy) {
     // InfluxDB or so
-    var res = _get_time(target.groupBy);
+    var res = _get_time(target.groupBy); // console.log(res);
 
-    console.log(res);
 
     if (res == "$__interval") {
       return types_1.DEFAULT_MODEL.interval;
