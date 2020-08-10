@@ -1377,13 +1377,15 @@ var LoudMLAPI = /*#__PURE__*/function () {
                 method = method.toUpperCase();
                 options = {
                   method: method,
-                  url: this.url + url
+                  url: this.url + url,
+                  headers: {}
                 };
 
                 if (method === 'GET' || method === 'DELETE' || data_as_params) {
                   options.params = data;
                 } else {
                   options.data = data;
+                  options.headers['Content-Type'] = 'application/json';
                 }
 
                 _context15.next = 5;

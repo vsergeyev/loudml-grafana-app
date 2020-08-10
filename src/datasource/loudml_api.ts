@@ -39,11 +39,13 @@ export default class LoudMLAPI {
     let options: any = {
       method,
       url: this.url + url,
+      headers: {},
     };
     if (method === 'GET' || method === 'DELETE' || data_as_params) {
       options.params = data;
     } else {
       options.data = data;
+      options.headers['Content-Type'] = 'application/json';
     }
 
     const response = await this.backendSrv.datasourceRequest(options);
