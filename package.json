@@ -1,6 +1,6 @@
 {
   "name": "loudml-grafana-app",
-  "version": "1.5.0",
+  "version": "1.7.0dev",
   "description": "Loud ML app: visualization panel for Grafana to connect with Loud ML AI",
   "scripts": {
     "build": "grafana-toolkit plugin:build",

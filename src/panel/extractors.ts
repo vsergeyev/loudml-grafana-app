@@ -44,7 +44,11 @@ export function extract_tooltip_feature(target: any): any {
 export function extract_group_by(target: any): any {
   if (target.groupBy) {
     // InfluxDB or so
-    return _formatGroupBy(target.groupBy)
+    let res = _formatGroupBy(target.groupBy);
+    if (res == "time: $__interval") {
+      return "time: " + DEFAULT_MODEL.interval;
+    }
+    return res;
   }
 
   if (target.group) {
@@ -275,7 +279,12 @@ export function extract_model_fill(target: any) {
 export function extract_model_time_format(target: any) {
   if (target.groupBy) {
     // InfluxDB or so
-    return _formatTime(target.groupBy)
+    let res = _formatTime(target.groupBy);
+    // console.log(res);
+    if (res == "time_$__interval" ) {
+      return DEFAULT_MODEL.interval;
+    }
+    return res;
   } else {
     // OpenTSDB or Prometheus or so
     return target.downsampleInterval || target.interval || "auto"
@@ -285,7 +294,12 @@ export function extract_model_time_format(target: any) {
 export function extract_model_time(target: any) {
   if (target.groupBy) {
     // InfluxDB or so
-    return _get_time(target.groupBy)
+    let res = _get_time(target.groupBy);
+    // console.log(res);
+    if (res == "$__interval" ) {
+      return DEFAULT_MODEL.interval;
+    }
+    return res;
   }
 
   if (target.query && target.bucketAggs && target.bucketAggs.length > 0 && target.bucketAggs[0].settings) {
