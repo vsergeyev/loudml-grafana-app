@@ -130,7 +130,7 @@ Please post issue to tracker or contact me via vova.sergeyev at gmail.com
 
 # Changelog
 
- * 1.7.0dev Fixed issue with updating model on a server (#19).
+ * 1.7.0dev Fixed issue with updating model on a server (#19). Fixed datasource config page in Grafana 7.x (#12).
  * 1.6.0 Better Grafana 6.x compatibility. Fixed issue with output bucket.
  * 1.5.0 Added capability to add and edit models on Loud ML Datasource page.
  * 1.4.0 Changed ID to correct format "loudml-grafana-app"; Fixes code style follow guidelines.

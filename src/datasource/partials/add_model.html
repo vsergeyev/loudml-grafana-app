@@ -28,10 +28,6 @@
               </p>
             </info-popover>
           </div>
-        </div>
-
-        <div class="gf-form-group">
-          <h3 class="page-heading">Parameters</h3>
 
           <div class="gf-form max-width-40">
             <span class="gf-form-label width-15">Model type</span>
@@ -57,8 +53,10 @@
             <info-popover mode="right-absolute">
               <p>
                 Available buckets:
-                <pre ng-repeat="bucket in model.buckets">{{bucket.name}}</pre>
-                <pre ng-show="model.buckets.length===0">It may be no buckets configured on LoudML server</pre>
+                <ul>
+                  <li ng-repeat="bucket in model.buckets">{{bucket.name}}</li>
+                  <li ng-show="model.buckets.length===0">It may be no buckets configured on LoudML server</li>
+                </ul>
               </p>
               <p>
                 Buckets should be configured on LoudML server in config.yml
@@ -113,7 +111,7 @@ buckets:
         </div>
 
         <div class="gf-form-group">
-          <h3 class="page-heading">Features</h3>
+          <h3 class="page-heading">Feature</h3>
 
           <div class="gf-form-group" ng-repeat="feature in model.model.features">
             <div class="gf-form max-width-40">
@@ -187,11 +185,9 @@ Metric - mean
                 <info-popover mode="right-absolute">
                   <p>
                     How to fill missing values:
-                    <pre>
-0
+                    <pre>0
 previous
-[leave empty]
-                    </pre>
+[leave empty]</pre>
                   </p>
                 </info-popover>
               </div>
@@ -200,7 +196,8 @@ previous
         </div>
 
         <div class="gf-form-group">
-          <h3 class="page-heading">Predictions</h3>
+
+          <strong>Predictions</strong>
 
           <div class="gf-form-inline">
             <div class="gf-form max-width-40">
@@ -222,10 +219,8 @@ previous
               />
             </div>
           </div>
-        </div>
 
-        <div class="gf-form-group">
-          <h3 class="page-heading">Anomalies</h3>
+          <strong>Anomalies</strong>
 
           <div class="gf-form-inline">
             <div class="gf-form max-width-40">
