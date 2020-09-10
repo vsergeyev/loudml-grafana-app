@@ -6,15 +6,10 @@ import appEvents from 'grafana/app/core/app_events';
 import LoudMLAPI from './loudml_api';
 import configTemplate from './partials/config.html';
 import LoudMLDatasource from './datasource';
-import {
-  DEFAULT_MODEL,
-  DEFAULT_JOB,
-  DEFAULT_FEATURE,
-  ANOMALY_HOOK_NAME,
-  ANOMALY_HOOK,
-} from './types';
+import { DEFAULT_MODEL, DEFAULT_JOB, DEFAULT_FEATURE, ANOMALY_HOOK_NAME, ANOMALY_HOOK } from './types';
 
-const POST_A_BUG_SAVE_PLANET = 'Be aware, it may be an alien bug. If so - save planet, post bug report at https://github.com/vsergeyev/loudml-grafana-app/issues (starship troopers will do the rest of bloody job for you)';
+const POST_A_BUG_SAVE_PLANET =
+  'Be aware, it may be an alien bug. If so - save planet, post bug report at https://github.com/vsergeyev/loudml-grafana-app/issues (starship troopers will do the rest of bloody job for you)';
 
 function sorry_its_error(err) {
   // Guys, it's really sorry
@@ -70,8 +65,8 @@ export class LoudMLConfigCtrl {
         })
         .catch(err => {
           console.error(err.statusText);
-          console.error("Long time ago, in a galaxy far far away...");
-          console.log("https://www.google.com/search?q=parallel+worlds+michio+kaku");
+          console.error('Long time ago, in a galaxy far far away...');
+          console.log('https://www.google.com/search?q=parallel+worlds+michio+kaku');
           appEvents.emit(AppEvents.alertError, [err.statusText]);
         });
 
@@ -114,9 +109,9 @@ export class LoudMLConfigCtrl {
       ...DEFAULT_MODEL,
       features: [
         {
-          ...DEFAULT_FEATURE
-        }
-      ]
+          ...DEFAULT_FEATURE,
+        },
+      ],
     });
     appEvents.emit('show-modal', {
       src: '/public/plugins/loudml-grafana-app/datasource/partials/add_model.html',
@@ -142,7 +137,7 @@ export class LoudMLConfigCtrl {
   async addModelPost() {
     console.log(this.model);
 
-    if (this.model.features[0].default != "previous") {
+    if (this.model.features[0].default !== 'previous') {
       this.model.features[0].default = 0;
     }
 
@@ -152,41 +147,41 @@ export class LoudMLConfigCtrl {
     ds.loudml
       .getModel(this.model.name)
       .then(result => {
-        console.log("Model exists, updating it...");
+        console.log('Model exists, updating it...');
         ds.loudml
           .patchModel(this.model.name, this.model)
           .then(result => {})
           .catch(err => {
-              sorry_its_error(err);
-              return;
-            });
-      //   // Let remove it and recreate
-      //   ds.loudml.deleteModel(this.model.name).then(response => {
-      //     ds.loudml
-      //       .createModel(this.model)
-      //       .then(result => {
-      //         ds.loudml
-      //           .createModelHook(this.model.name, ds.loudml.createHook(ANOMALY_HOOK, this.model.default_bucket))
-      //           .then(result => {
-      //             appEvents.emit(AppEvents.alertSuccess, ['Model has been updated on Loud ML server']);
-      //             this.refreshModels();
-      //           })
-      //           .catch(err => {
-      //             window.console.log('createModelHook error', err);
-      //             appEvents.emit(AppEvents.alertError, [err.message]);
-      //             return;
-      //           });
-      //       })
-      //       .catch(err => {
-      //         window.console.log('Model create error', err);
-      //         appEvents.emit(AppEvents.alertError, ['Model create error', err.data]);
-      //         return;
-      //       });
-      //   });
-       })
+            sorry_its_error(err);
+            return;
+          });
+        //   // Let remove it and recreate
+        //   ds.loudml.deleteModel(this.model.name).then(response => {
+        //     ds.loudml
+        //       .createModel(this.model)
+        //       .then(result => {
+        //         ds.loudml
+        //           .createModelHook(this.model.name, ds.loudml.createHook(ANOMALY_HOOK, this.model.default_bucket))
+        //           .then(result => {
+        //             appEvents.emit(AppEvents.alertSuccess, ['Model has been updated on Loud ML server']);
+        //             this.refreshModels();
+        //           })
+        //           .catch(err => {
+        //             window.console.log('createModelHook error', err);
+        //             appEvents.emit(AppEvents.alertError, [err.message]);
+        //             return;
+        //           });
+        //       })
+        //       .catch(err => {
+        //         window.console.log('Model create error', err);
+        //         appEvents.emit(AppEvents.alertError, ['Model create error', err.data]);
+        //         return;
+        //       });
+        //   });
+      })
       .catch(err => {
         // New model
-        console.log("New model, creating it...");
+        console.log('New model, creating it...');
         ds.loudml
           .createModel(this.model)
           .then(result => {
