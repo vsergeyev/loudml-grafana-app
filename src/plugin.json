@@ -18,8 +18,8 @@
       {"name": "License", "url": "https://github.com/vsergeyev/loudml-grafana-app/blob/master/LICENSE"}
     ],
     "screenshots": [
-      {"name": "LoudML graph panel", "path": "https://raw.githubusercontent.com/vsergeyev/loudml-grafana-app/master/docs/loudml_grafana_panel.png"},
-      {"name": "LoudML datasource", "path": "https://raw.githubusercontent.com/vsergeyev/loudml-grafana-app/master/docs/loudml_grafana_datasource.png"}
+      {"name": "LoudML graph panel", "path": "img/loudml_grafana_panel.png"},
+      {"name": "LoudML datasource", "path": "img/loudml_grafana_datasource.png"}
     ],
     "version": "1.7.1",
     "updated": "%TODAY%"
