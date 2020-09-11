@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*eslint-disable */
 // Data extractor functions
 // to parse selected data/queries into features, groupBy and params for Loud ML Model

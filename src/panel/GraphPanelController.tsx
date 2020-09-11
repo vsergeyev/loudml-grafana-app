@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*eslint no-restricted-imports: ["off"]*/
 import React from 'react';
 import moment from 'moment';

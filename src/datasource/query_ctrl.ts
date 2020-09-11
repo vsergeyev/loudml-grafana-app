@@ -1,3 +1,4 @@
+// @ts-nocheck
 import template from './partials/query_ctrl.html';
 
 import { QueryCtrl } from 'grafana/app/plugins/sdk';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getDataSourceSrv } from '@grafana/runtime';
 import { AppEvents } from '@grafana/data';
 import { CoreEvents } from 'grafana/app/types';

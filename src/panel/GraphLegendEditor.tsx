@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { LegendOptions, PanelOptionsGroup, Switch, Input, StatsPicker } from '@grafana/ui';
 

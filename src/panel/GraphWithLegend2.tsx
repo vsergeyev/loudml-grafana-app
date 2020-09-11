@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Libraries
 import React from 'react';
 import { css } from 'emotion';

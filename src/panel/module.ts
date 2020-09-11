@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { FieldConfigProperty, PanelPlugin } from '@grafana/data';
 import { getDataSourceSrv, GrafanaBootConfig } from '@grafana/runtime';
 

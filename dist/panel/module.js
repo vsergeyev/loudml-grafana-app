@@ -59666,97 +59666,65 @@ function __importDefault(mod) {
 /*!*******************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/Icon.tsx ***!
   \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Icon, getSvgSize */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Icon", function() { return Icon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSvgSize", function() { return getSvgSize; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var emotion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! emotion */ "emotion");
+/* harmony import */ var emotion__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(emotion__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _themes_stylesFactory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../themes/stylesFactory */ "../../../../packages/grafana-ui/src/themes/stylesFactory.ts");
+/* harmony import */ var _themes_ThemeContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../themes/ThemeContext */ "../../../../packages/grafana-ui/src/themes/ThemeContext.tsx");
+/* harmony import */ var _iconscout_react_unicons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @iconscout/react-unicons */ "../../../../node_modules/@iconscout/react-unicons/index.js");
+/* harmony import */ var _assets__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./assets */ "../../../../packages/grafana-ui/src/components/Icon/assets/index.ts");
 
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n      fill: ", ";\n    "]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n      vertical-align: middle;\n      display: inline-block;\n      margin-bottom: ", ";\n      fill: currentColor;\n    "]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n      display: inline-block;\n    "]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-var emotion_1 = __webpack_require__(/*! emotion */ "emotion");
-
-var data_1 = __webpack_require__(/*! @grafana/data */ "@grafana/data");
-
-var stylesFactory_1 = __webpack_require__(/*! ../../themes/stylesFactory */ "../../../../packages/grafana-ui/src/themes/stylesFactory.ts");
-
-var ThemeContext_1 = __webpack_require__(/*! ../../themes/ThemeContext */ "../../../../packages/grafana-ui/src/themes/ThemeContext.tsx"); //@ts-ignore
 
 
-var DefaultIcon = tslib_1.__importStar(__webpack_require__(/*! @iconscout/react-unicons */ "../../../../node_modules/@iconscout/react-unicons/index.js"));
 
-var MonoIcon = tslib_1.__importStar(__webpack_require__(/*! ./assets */ "../../../../packages/grafana-ui/src/components/Icon/assets/index.ts"));
+ //@ts-ignore
+
+
 
 var alwaysMonoIcons = ['grafana', 'favorite', 'heart-break', 'heart'];
-var getIconStyles = stylesFactory_1.stylesFactory(function (theme) {
+var getIconStyles = Object(_themes_stylesFactory__WEBPACK_IMPORTED_MODULE_4__["stylesFactory"])(function (theme) {
   return {
-    container: emotion_1.css(_templateObject()),
-    icon: emotion_1.css(_templateObject2(), theme.spacing.xxs),
-    orange: emotion_1.css(_templateObject3(), theme.palette.orange)
+    container: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["css"])(templateObject_1 || (templateObject_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n      display: inline-block;\n    "], ["\n      display: inline-block;\n    "]))),
+    icon: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["css"])(templateObject_2 || (templateObject_2 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n      vertical-align: middle;\n      display: inline-block;\n      margin-bottom: ", ";\n      fill: currentColor;\n    "], ["\n      vertical-align: middle;\n      display: inline-block;\n      margin-bottom: ", ";\n      fill: currentColor;\n    "])), theme.spacing.xxs),
+    orange: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["css"])(templateObject_3 || (templateObject_3 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n      fill: ", ";\n    "], ["\n      fill: ", ";\n    "])), theme.palette.orange)
   };
 });
-exports.Icon = react_1["default"].forwardRef(function (_a, ref) {
+var Icon = react__WEBPACK_IMPORTED_MODULE_1___default.a.forwardRef(function (_a, ref) {
   var _b;
 
-  var _a$size = _a.size,
-      size = _a$size === void 0 ? 'md' : _a$size,
-      _a$type = _a.type,
-      type = _a$type === void 0 ? 'default' : _a$type,
+  var _c;
+
+  var _d = _a.size,
+      size = _d === void 0 ? 'md' : _d,
+      _e = _a.type,
+      type = _e === void 0 ? 'default' : _e,
       name = _a.name,
       className = _a.className,
       style = _a.style,
-      divElementProps = tslib_1.__rest(_a, ["size", "type", "name", "className", "style"]);
+      divElementProps = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size", "type", "name", "className", "style"]);
 
-  var theme = ThemeContext_1.useTheme();
+  var theme = Object(_themes_ThemeContext__WEBPACK_IMPORTED_MODULE_5__["useTheme"])();
   var styles = getIconStyles(theme);
-  var svgSize = exports.getSvgSize(size);
+  var svgSize = getSvgSize(size);
   /* Temporary solution to display also font awesome icons */
 
-  var isFontAwesome = (_b = name) === null || _b === void 0 ? void 0 : _b.includes('fa-');
+  var isFontAwesome = (_c = name) === null || _c === void 0 ? void 0 : _c.includes('fa-');
 
   if (isFontAwesome) {
-    return react_1["default"].createElement("i", Object.assign({
-      className: emotion_1.cx(name, className)
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
+      className: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["cx"])(name, className)
     }, divElementProps, {
       style: style
     }));
@@ -59766,34 +59734,34 @@ exports.Icon = react_1["default"].forwardRef(function (_a, ref) {
     type = 'mono';
   }
 
-  var iconName = type === 'default' ? "Uil".concat(data_1.toPascalCase(name)) : data_1.toPascalCase(name);
+  var iconName = type === 'default' ? "Uil" + Object(_grafana_data__WEBPACK_IMPORTED_MODULE_3__["toPascalCase"])(name) : Object(_grafana_data__WEBPACK_IMPORTED_MODULE_3__["toPascalCase"])(name);
   /* Unicons don't have type definitions */
   //@ts-ignore
 
-  var Component = type === 'default' ? DefaultIcon[iconName] : MonoIcon[iconName];
+  var Component = type === 'default' ? _iconscout_react_unicons__WEBPACK_IMPORTED_MODULE_6__[iconName] : _assets__WEBPACK_IMPORTED_MODULE_7__[iconName];
 
   if (!Component) {
-    return react_1["default"].createElement("div", null);
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null);
   }
 
-  return react_1["default"].createElement("div", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     className: styles.container
   }, divElementProps, {
     ref: ref
-  }), type === 'default' && react_1["default"].createElement(Component, {
+  }), type === 'default' && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Component, {
     size: svgSize,
-    className: emotion_1.cx(styles.icon, className),
+    className: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["cx"])(styles.icon, className),
     style: style
-  }), type === 'mono' && react_1["default"].createElement(Component, {
+  }), type === 'mono' && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Component, {
     size: svgSize,
-    className: emotion_1.cx(styles.icon, _defineProperty({}, styles.orange, name === 'favorite'), className),
+    className: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["cx"])(styles.icon, (_b = {}, _b[styles.orange] = name === 'favorite', _b), className),
     style: style
   }));
 });
-exports.Icon.displayName = 'Icon';
+Icon.displayName = 'Icon';
 /* Transform string with px to number and add 2 pxs as path in svg is 2px smaller */
 
-exports.getSvgSize = function (size) {
+var getSvgSize = function getSvgSize(size) {
   switch (size) {
     case 'xs':
       return 12;
@@ -59817,6 +59785,7 @@ exports.getSvgSize = function (size) {
       return 48;
   }
 };
+var templateObject_1, templateObject_2, templateObject_3;
 
 /***/ }),
 
@@ -59824,50 +59793,47 @@ exports.getSvgSize = function (size) {
 /*!**************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/Apps.tsx ***!
   \**************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Apps */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Apps", function() { return Apps; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.Apps = function (_a) {
+var Apps = function Apps(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
     width: size,
     height: size
-  }, rest), react_1["default"].createElement("rect", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("rect", {
     width: "9",
     height: "9",
     x: "2",
     y: "2",
     rx: "1"
-  }), react_1["default"].createElement("rect", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("rect", {
     width: "9",
     height: "9",
     x: "2",
     y: "13",
     rx: "1",
     opacity: "0.6"
-  }), react_1["default"].createElement("rect", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("rect", {
     width: "9",
     height: "9",
     x: "13",
     y: "2",
     rx: "1",
     opacity: "0.6"
-  }), react_1["default"].createElement("rect", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("rect", {
     width: "9",
     height: "9",
     x: "13",
@@ -59883,34 +59849,31 @@ exports.Apps = function (_a) {
 /*!**************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/Bell.tsx ***!
   \**************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Bell */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Bell", function() { return Bell; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.Bell = function (_a) {
+var Bell = function Bell(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     enableBackground: "new 0 0 24 24",
     viewBox: "0 0 24 24",
     width: size,
     height: size
-  }, rest), react_1["default"].createElement("path", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     opacity: "0.6",
     d: "M18,13.18463V10c0-3.31372-2.68628-6-6-6s-6,2.68628-6,6v3.18463C4.83832,13.59863,4.00146,14.69641,4,16v2c0,0.00037,0,0.00073,0,0.00116C4.00031,18.5531,4.44806,19.00031,5,19h14c0.00037,0,0.00073,0,0.00116,0C19.5531,18.99969,20.00031,18.55194,20,18v-2C19.99854,14.69641,19.16168,13.59863,18,13.18463z"
-  }), react_1["default"].createElement("path", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M8.14233 19c.4472 1.72119 1.99689 2.99817 3.85767 3 1.86078-.00183 3.41046-1.27881 3.85767-3H8.14233zM12 4c.34149 0 .67413.03516 1 .08997V3c0-.55231-.44769-1-1-1s-1 .44769-1 1v1.08997C11.32587 4.03516 11.65851 4 12 4z"
   }));
 };
@@ -59921,31 +59884,28 @@ exports.Bell = function (_a) {
 /*!****************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/Circle.tsx ***!
   \****************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Circle */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Circle", function() { return Circle; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.Circle = function (_a) {
+var Circle = function Circle(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     enableBackground: "new 0 0 24 24",
     viewBox: "0 0 24 24",
     width: size,
     height: size
-  }, rest), react_1["default"].createElement("circle", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("circle", {
     cx: "12",
     cy: "12",
     r: "10"
@@ -59958,32 +59918,29 @@ exports.Circle = function (_a) {
 /*!*************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/Cog.tsx ***!
   \*************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Cog */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Cog", function() { return Cog; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.Cog = function (_a) {
+var Cog = function Cog(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
     width: size,
     height: size
-  }, rest), react_1["default"].createElement("path", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M21.31641,9.55176l-1.88672-.62891.88965-1.77832a.99983.99983,0,0,0-.1875-1.1543L18.01025,3.86816a.99981.99981,0,0,0-1.15429-.1875l-1.77832.88965-.62891-1.88672A1,1,0,0,0,13.5,2h-3a1,1,0,0,0-.94873.68359L8.92236,4.57031,7.144,3.68066a.99634.99634,0,0,0-1.15429.1875L3.86816,5.99023a.99983.99983,0,0,0-.1875,1.1543l.88965,1.77832-1.88672.62891A.9989.9989,0,0,0,2,10.5v3a.9989.9989,0,0,0,.68359.94824l1.88672.62891-.88965,1.77832a.99983.99983,0,0,0,.1875,1.1543l2.12159,2.12207a.99813.99813,0,0,0,1.15429.1875l1.77832-.88965.62891,1.88672A1,1,0,0,0,10.5,22h3a1,1,0,0,0,.94873-.68359l.62891-1.88672,1.77832.88965a.99994.99994,0,0,0,1.15429-.1875l2.12159-2.12207a.99983.99983,0,0,0,.1875-1.1543l-.88916-1.77832,1.88623-.62891A.9989.9989,0,0,0,22,13.5v-3A.9989.9989,0,0,0,21.31641,9.55176ZM12,15a3,3,0,1,1,3-3A3.00344,3.00344,0,0,1,12,15Z"
-  }), react_1["default"].createElement("path", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     opacity: "0.6",
     d: "M12,16a4,4,0,1,1,4-4A4.00427,4.00427,0,0,1,12,16Zm0-6a2,2,0,1,0,2,2A2.00229,2.00229,0,0,0,12,10Z"
   }));
@@ -59995,30 +59952,27 @@ exports.Cog = function (_a) {
 /*!******************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/Favorite.tsx ***!
   \******************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Favorite */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Favorite", function() { return Favorite; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.Favorite = function (_a) {
+var Favorite = function Favorite(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
     width: size,
     height: size
-  }, rest), react_1["default"].createElement("path", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M17.56249,21.55957a.99941.99941,0,0,1-.46581-.11523L12,18.76465,6.90332,21.44434a.9999.9999,0,0,1-1.45117-1.05372l.97363-5.67578-4.124-4.01953a.99965.99965,0,0,1,.55469-1.70508l5.69824-.82812,2.54883-5.16406a1.04012,1.04012,0,0,1,1.793,0l2.54883,5.16406,5.69824.82812a.99965.99965,0,0,1,.55469,1.70508l-4.124,4.01953.97363,5.67578a1.00024,1.00024,0,0,1-.98536,1.169Z"
   }));
 };
@@ -60029,30 +59983,27 @@ exports.Favorite = function (_a) {
 /*!****************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/Folder.tsx ***!
   \****************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Folder */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Folder", function() { return Folder; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.Folder = function (_a) {
+var Folder = function Folder(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
     width: size,
     height: size
-  }, rest), react_1["default"].createElement("path", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M19,21.5H5a3.00328,3.00328,0,0,1-3-3V5.5a3.00328,3.00328,0,0,1,3-3H9.55859A2.99629,2.99629,0,0,1,12.4043,4.55078L12.7207,5.5H19a3.00328,3.00328,0,0,1,3,3v10A3.00328,3.00328,0,0,1,19,21.5Z"
   }));
 };
@@ -60063,34 +60014,31 @@ exports.Folder = function (_a) {
 /*!********************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/FolderPlus.tsx ***!
   \********************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: FolderPlus */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FolderPlus", function() { return FolderPlus; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.FolderPlus = function (_a) {
+var FolderPlus = function FolderPlus(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     enableBackground: "new 0 0 24 24",
     viewBox: "0 0 24 24",
     width: size,
     height: size
-  }, rest), react_1["default"].createElement("path", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     opacity: "0.6",
     d: "M19,21.5H5a3.00328,3.00328,0,0,1-3-3V5.5a3.00328,3.00328,0,0,1,3-3H9.55859A2.99629,2.99629,0,0,1,12.4043,4.55078L12.7207,5.5H19a3.00328,3.00328,0,0,1,3,3v10A3.00328,3.00328,0,0,1,19,21.5Z"
-  }), react_1["default"].createElement("path", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M14,12.5H13v-1a1,1,0,0,0-2,0v1H10a1,1,0,0,0,0,2h1v1a1,1,0,0,0,2,0v-1h1a1,1,0,0,0,0-2Z"
   }));
 };
@@ -60101,47 +60049,44 @@ exports.FolderPlus = function (_a) {
 /*!*****************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/Grafana.tsx ***!
   \*****************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Grafana */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Grafana", function() { return Grafana; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.Grafana = function (_a) {
+var Grafana = function Grafana(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 85.12 92.46",
     height: size,
     width: size
-  }, rest), react_1["default"].createElement("defs", null, react_1["default"].createElement("linearGradient", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("defs", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("linearGradient", {
     id: "SVGID_1_",
     gradientUnits: "userSpaceOnUse",
     x1: "42.562",
     y1: "113.2595",
     x2: "42.562",
     y2: "28.7828"
-  }, react_1["default"].createElement("stop", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("stop", {
     offset: "0",
     style: {
       stopColor: '#FFF200'
     }
-  }), react_1["default"].createElement("stop", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("stop", {
     offset: "1",
     style: {
       stopColor: '#F15A29'
     }
-  }))), react_1["default"].createElement("path", {
+  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     fill: "url(#SVGID_1_)",
     d: "M85.01,40.8c-0.14-1.55-0.41-3.35-0.93-5.32c-0.51-1.97-1.28-4.13-2.39-6.37c-1.12-2.24-2.57-4.57-4.47-6.82\n    c-0.74-0.88-1.54-1.76-2.42-2.6c1.3-5.17-1.59-9.65-1.59-9.65c-4.98-0.31-8.14,1.54-9.31,2.39c-0.2-0.08-0.39-0.17-0.59-0.25\n    c-0.85-0.34-1.72-0.66-2.61-0.95c-0.89-0.28-1.81-0.54-2.74-0.76c-0.94-0.22-1.89-0.4-2.86-0.55c-0.17-0.03-0.34-0.05-0.51-0.07\n    C52.41,2.9,46.18,0,46.18,0c-6.95,4.41-8.27,10.57-8.27,10.57s-0.03,0.14-0.07,0.36c-0.38,0.11-0.77,0.22-1.15,0.34\n    c-0.53,0.16-1.06,0.36-1.59,0.55c-0.53,0.21-1.06,0.41-1.58,0.64c-1.05,0.45-2.09,0.96-3.1,1.53c-0.99,0.55-1.95,1.16-2.9,1.82\n    c-0.14-0.06-0.24-0.11-0.24-0.11c-9.62-3.68-18.17,0.75-18.17,0.75c-0.78,10.24,3.84,16.68,4.76,17.86\n    c-0.23,0.63-0.44,1.27-0.64,1.92c-0.71,2.32-1.24,4.7-1.57,7.16c-0.05,0.35-0.09,0.71-0.13,1.07C2.63,48.84,0,57.84,0,57.84\n    c7.42,8.53,16.07,9.06,16.07,9.06c0.01-0.01,0.02-0.01,0.02-0.02c1.1,1.96,2.37,3.83,3.8,5.57c0.6,0.73,1.23,1.43,1.88,2.11\n    c-2.71,7.74,0.38,14.18,0.38,14.18c8.26,0.31,13.69-3.61,14.83-4.52c0.82,0.28,1.66,0.53,2.5,0.74c2.54,0.65,5.14,1.04,7.74,1.15\n    c0.65,0.03,1.3,0.04,1.95,0.04l0.31,0l0.21-0.01l0.41-0.01l0.4-0.02l0.01,0.01c3.89,5.55,10.74,6.34,10.74,6.34\n    c4.87-5.13,5.15-10.22,5.15-11.33l0,0c0,0,0-0.04,0-0.07c0-0.09,0-0.15,0-0.15s0,0,0,0c0-0.08-0.01-0.15-0.01-0.23\n    c1.02-0.72,2-1.49,2.92-2.31c1.95-1.76,3.65-3.77,5.06-5.93c0.13-0.2,0.26-0.41,0.39-0.62c5.51,0.32,9.39-3.41,9.39-3.41\n    c-0.91-5.74-4.18-8.54-4.87-9.07l0,0c0,0-0.03-0.02-0.07-0.05c-0.04-0.03-0.06-0.05-0.06-0.05l0,0c-0.04-0.02-0.08-0.05-0.12-0.08\n    c0.03-0.35,0.06-0.69,0.08-1.04c0.04-0.62,0.06-1.24,0.06-1.85l0-0.46l0-0.23l0-0.12c0-0.16,0-0.1,0-0.16l-0.02-0.38l-0.03-0.52\n    c-0.01-0.18-0.02-0.34-0.04-0.5c-0.01-0.16-0.03-0.32-0.05-0.48l-0.06-0.48l-0.07-0.47c-0.09-0.63-0.21-1.26-0.36-1.88\n    c-0.58-2.47-1.54-4.82-2.82-6.93c-1.28-2.11-2.86-3.98-4.65-5.56c-1.79-1.58-3.79-2.85-5.9-3.79c-2.1-0.95-4.31-1.55-6.51-1.83\n    c-1.1-0.14-2.2-0.2-3.28-0.19l-0.41,0.01l-0.1,0c-0.03,0-0.15,0-0.14,0l-0.17,0.01l-0.4,0.03c-0.15,0.01-0.31,0.02-0.45,0.04\n    c-0.56,0.05-1.11,0.13-1.66,0.23c-2.18,0.41-4.24,1.2-6.06,2.28c-1.82,1.09-3.39,2.45-4.68,3.98c-1.28,1.54-2.28,3.24-2.96,5\n    c-0.69,1.76-1.07,3.58-1.18,5.35c-0.03,0.44-0.04,0.88-0.03,1.32c0,0.11,0,0.22,0.01,0.33l0.01,0.35c0.02,0.21,0.03,0.42,0.05,0.63\n    c0.09,0.9,0.25,1.75,0.49,2.58c0.48,1.66,1.25,3.15,2.2,4.43c0.95,1.28,2.08,2.33,3.28,3.15c1.2,0.82,2.49,1.41,3.76,1.79\n    c1.27,0.38,2.54,0.54,3.74,0.53c0.15,0,0.3,0,0.44-0.01c0.08,0,0.16-0.01,0.24-0.01c0.08,0,0.16-0.01,0.24-0.01\n    c0.13-0.01,0.25-0.03,0.38-0.04c0.03,0,0.07-0.01,0.11-0.01l0.12-0.02c0.08-0.01,0.15-0.02,0.23-0.03c0.16-0.02,0.29-0.05,0.43-0.08\n    c0.14-0.03,0.28-0.05,0.42-0.09c0.27-0.06,0.54-0.14,0.8-0.22c0.52-0.17,1.01-0.38,1.46-0.61c0.45-0.23,0.87-0.5,1.26-0.77\n    c0.11-0.08,0.22-0.16,0.33-0.25c0.42-0.33,0.48-0.94,0.15-1.35c-0.29-0.36-0.79-0.45-1.19-0.23c-0.1,0.05-0.2,0.11-0.3,0.16\n    c-0.35,0.17-0.71,0.32-1.09,0.45c-0.39,0.12-0.79,0.22-1.2,0.29c-0.21,0.03-0.42,0.06-0.63,0.08c-0.11,0.01-0.21,0.02-0.32,0.02\n    c-0.11,0-0.22,0.01-0.32,0.01c-0.1,0-0.21,0-0.31-0.01c-0.13-0.01-0.26-0.01-0.39-0.02c0,0-0.07,0-0.01,0l-0.04,0L51.4,61.6\n    c-0.06-0.01-0.12-0.01-0.17-0.02c-0.12-0.01-0.23-0.03-0.35-0.04c-0.93-0.13-1.88-0.4-2.79-0.82c-0.91-0.41-1.79-0.98-2.57-1.69\n    c-0.79-0.71-1.48-1.56-2.01-2.52c-0.54-0.96-0.92-2.03-1.09-3.16c-0.09-0.56-0.13-1.14-0.11-1.71c0.01-0.16,0.01-0.31,0.02-0.47\n    c0,0.04,0-0.02,0-0.03l0-0.06l0.01-0.12c0.01-0.08,0.01-0.15,0.02-0.23c0.03-0.31,0.08-0.62,0.13-0.92\n    c0.43-2.45,1.65-4.83,3.55-6.65c0.47-0.45,0.98-0.87,1.53-1.25c0.55-0.37,1.12-0.7,1.73-0.98c0.6-0.28,1.23-0.5,1.88-0.68\n    c0.65-0.17,1.31-0.29,1.98-0.35c0.34-0.03,0.67-0.04,1.01-0.04c0.09,0,0.16,0,0.23,0l0.27,0.01l0.17,0.01c0.07,0,0,0,0.03,0l0.07,0\n    l0.27,0.02c0.73,0.06,1.46,0.16,2.17,0.32c1.43,0.32,2.83,0.85,4.13,1.57c2.6,1.44,4.81,3.69,6.17,6.4c0.69,1.35,1.16,2.81,1.4,4.31\n    c0.06,0.38,0.1,0.76,0.13,1.14l0.02,0.29l0.01,0.29c0.01,0.1,0.01,0.19,0.01,0.29c0,0.09,0.01,0.2,0,0.27l0,0.25l-0.01,0.28\n    c-0.01,0.19-0.02,0.49-0.03,0.67c-0.03,0.42-0.07,0.83-0.12,1.24c-0.05,0.41-0.12,0.82-0.19,1.22c-0.08,0.4-0.17,0.81-0.27,1.21\n    c-0.2,0.8-0.46,1.59-0.76,2.36c-0.61,1.54-1.42,3-2.4,4.36c-1.96,2.7-4.64,4.9-7.69,6.29c-1.52,0.69-3.13,1.19-4.78,1.47\n    c-0.82,0.14-1.66,0.22-2.5,0.25l-0.15,0.01l-0.13,0l-0.27,0l-0.41,0l-0.21,0c0.11,0-0.02,0-0.01,0l-0.08,0\n    c-0.45-0.01-0.9-0.03-1.34-0.07c-1.79-0.13-3.55-0.45-5.27-0.95c-1.71-0.49-3.38-1.16-4.95-2c-3.14-1.68-5.95-3.98-8.15-6.76\n    c-1.11-1.38-2.07-2.87-2.87-4.43c-0.8-1.56-1.42-3.2-1.89-4.88c-0.46-1.68-0.75-3.39-0.86-5.12l-0.02-0.32l-0.01-0.08l0-0.07l0-0.14\n    l-0.01-0.28l0-0.07l0-0.1l0-0.2l-0.01-0.4l0-0.08c0,0.01,0,0.01,0-0.03l0-0.16c0-0.21,0.01-0.42,0.01-0.63\n    c0.03-0.85,0.1-1.73,0.21-2.61c0.11-0.88,0.26-1.76,0.44-2.63c0.18-0.87,0.39-1.74,0.64-2.59c0.49-1.71,1.1-3.36,1.82-4.92\n    c1.44-3.12,3.34-5.88,5.61-8.09c0.57-0.55,1.16-1.08,1.77-1.57c0.61-0.49,1.25-0.95,1.9-1.37c0.65-0.43,1.32-0.82,2.02-1.18\n    c0.34-0.19,0.7-0.35,1.05-0.52c0.18-0.08,0.36-0.16,0.53-0.24c0.18-0.08,0.36-0.16,0.54-0.23c0.72-0.3,1.46-0.56,2.21-0.8\n    c0.19-0.06,0.38-0.11,0.56-0.17c0.19-0.06,0.38-0.1,0.57-0.16c0.38-0.11,0.76-0.2,1.14-0.29c0.19-0.05,0.39-0.08,0.58-0.13\n    c0.19-0.04,0.38-0.08,0.58-0.12c0.19-0.04,0.39-0.07,0.58-0.11l0.29-0.05l0.29-0.04c0.2-0.03,0.39-0.06,0.59-0.09\n    c0.22-0.04,0.44-0.05,0.66-0.09c0.18-0.02,0.48-0.06,0.65-0.08c0.14-0.01,0.28-0.03,0.41-0.04l0.28-0.03l0.14-0.01l0.16-0.01\n    c0.22-0.01,0.44-0.03,0.66-0.04l0.33-0.02c0,0,0.12,0,0.02,0l0.07,0l0.14-0.01c0.19-0.01,0.38-0.02,0.56-0.03\n    c0.75-0.02,1.5-0.02,2.24,0c1.48,0.06,2.93,0.22,4.34,0.48c2.82,0.53,5.49,1.43,7.89,2.62c2.41,1.18,4.57,2.63,6.44,4.2\n    c0.12,0.1,0.23,0.2,0.35,0.3c0.11,0.1,0.23,0.2,0.34,0.3c0.23,0.2,0.44,0.41,0.66,0.61c0.22,0.2,0.43,0.41,0.64,0.62\n    c0.2,0.21,0.41,0.41,0.61,0.63c0.8,0.84,1.53,1.69,2.19,2.55c1.33,1.71,2.39,3.44,3.24,5.07c0.05,0.1,0.11,0.2,0.16,0.3\n    c0.05,0.1,0.1,0.2,0.15,0.3c0.1,0.2,0.2,0.4,0.29,0.6c0.09,0.2,0.19,0.39,0.27,0.59c0.09,0.2,0.17,0.39,0.25,0.58\n    c0.32,0.76,0.61,1.49,0.84,2.18c0.39,1.11,0.67,2.11,0.89,2.98c0.09,0.35,0.42,0.58,0.78,0.55c0.37-0.03,0.66-0.34,0.66-0.71\n    C85.14,43.15,85.11,42.05,85.01,40.8z"
   }));
@@ -60153,30 +60098,27 @@ exports.Grafana = function (_a) {
 /*!***************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/Heart.tsx ***!
   \***************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Heart */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Heart", function() { return Heart; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.Heart = function (_a) {
+var Heart = function Heart(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
     width: size,
     height: size
-  }, rest), react_1["default"].createElement("path", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M12,20.8623a2.75115,2.75115,0,0,1-1.94922-.80468L3.83691,13.84277A6.27238,6.27238,0,0,1,12,4.36328a6.27239,6.27239,0,0,1,8.16309,9.47949l-6.21338,6.21387A2.75,2.75,0,0,1,12,20.8623Z"
   }));
 };
@@ -60187,36 +60129,33 @@ exports.Heart = function (_a) {
 /*!********************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/HeartBreak.tsx ***!
   \********************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: HeartBreak */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeartBreak", function() { return HeartBreak; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.HeartBreak = function (_a) {
+var HeartBreak = function HeartBreak(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
     width: size,
     height: size
-  }, rest), react_1["default"].createElement("g", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
     id: "Layer_2",
     "data-name": "Layer 2"
-  }, react_1["default"].createElement("g", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("g", {
     id: "Layer_1-2",
     "data-name": "Layer 1"
-  }, react_1["default"].createElement("path", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M18.17,1.85h0A6.25,6.25,0,0,0,12.12.23L9.42,6.56l2.83.71a1,1,0,0,1,.67,1.41l-2,4a1,1,0,0,1-.9.56,1.13,1.13,0,0,1-.44-.1h0a1,1,0,0,1-.46-1.33l1.4-2.89-2.77-.7a1,1,0,0,1-.65-.53,1,1,0,0,1,0-.83L9.58,1a6.27,6.27,0,0,0-7.73,9.77L9.3,18.18a1,1,0,0,0,1.42,0h0l7.45-7.46A6.27,6.27,0,0,0,18.17,1.85Z"
   }))));
 };
@@ -60227,37 +60166,34 @@ exports.HeartBreak = function (_a) {
 /*!****************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/Import.tsx ***!
   \****************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Import */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Import", function() { return Import; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.Import = function (_a) {
+var Import = function Import(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     enableBackground: "new 0 0 24 24",
     viewBox: "0 0 24 24",
     width: size,
     height: size
-  }, rest), react_1["default"].createElement("svg", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     "enable-background": "new 0 0 24 24",
     viewBox: "0 0 24 24"
-  }, react_1["default"].createElement("path", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M19,22H5c-1.65611-0.00181-2.99819-1.34389-3-3v-4c0-0.55229,0.44772-1,1-1s1,0.44771,1,1v4c0.00037,0.55213,0.44787,0.99963,1,1h14c0.55213-0.00037,0.99963-0.44787,1-1v-4c0-0.55229,0.44772-1,1-1s1,0.44771,1,1v4C21.99819,20.65611,20.65611,21.99819,19,22z"
-  }), react_1["default"].createElement("path", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     opacity: "0.6",
     d: "M16.707,10.293c-0.39027-0.39048-1.02319-0.39065-1.41368-0.00038c-0.00013,0.00013-0.00026,0.00026-0.00038,0.00038L13,12.58594V3c0-0.55228-0.44771-1-1-1s-1,0.44772-1,1v9.58594L8.707,10.293c-0.39402-0.38691-1.02709-0.38116-1.414,0.01286c-0.38195,0.38896-0.38195,1.01218,0,1.40114l4,4c0.39028,0.39048,1.02321,0.39065,1.41369,0.00037c0.00012-0.00012,0.00025-0.00025,0.00037-0.00037l4-4c0.39045-0.3903,0.39058-1.02322,0.00028-1.41367C16.70723,10.29322,16.70712,10.29311,16.707,10.293z"
   })));
@@ -60269,87 +60205,84 @@ exports.Import = function (_a) {
 /*!******************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/PanelAdd.tsx ***!
   \******************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: PanelAdd */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PanelAdd", function() { return PanelAdd; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.PanelAdd = function (_a) {
+var PanelAdd = function PanelAdd(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     enableBackground: "new 0 0 117.8 64",
     viewBox: "0 0 117.8 64",
     xmlSpace: "preserve",
     width: size,
     height: size
-  }, rest), react_1["default"].createElement("linearGradient", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("linearGradient", {
     id: "SVGID_1_",
     gradientUnits: "userSpaceOnUse",
     x1: "96.4427",
     y1: "83.7013",
     x2: "96.4427",
     y2: "-9.4831"
-  }, react_1["default"].createElement("stop", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("stop", {
     offset: "0",
     style: {
       stopColor: '#FFF23A'
     }
-  }), react_1["default"].createElement("stop", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("stop", {
     offset: "4.010540e-02",
     style: {
       stopColor: '#FEE62D'
     }
-  }), react_1["default"].createElement("stop", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("stop", {
     offset: "0.1171",
     style: {
       stopColor: '#FED41A'
     }
-  }), react_1["default"].createElement("stop", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("stop", {
     offset: "0.1964",
     style: {
       stopColor: '#FDC90F'
     }
-  }), react_1["default"].createElement("stop", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("stop", {
     offset: "0.2809",
     style: {
       stopColor: '#FDC60B'
     }
-  }), react_1["default"].createElement("stop", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("stop", {
     offset: "0.6685",
     style: {
       stopColor: '#F28F3F'
     }
-  }), react_1["default"].createElement("stop", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("stop", {
     offset: "0.8876",
     style: {
       stopColor: '#ED693C'
     }
-  }), react_1["default"].createElement("stop", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("stop", {
     offset: "1",
     style: {
       stopColor: '#E83E39'
     }
-  })), react_1["default"].createElement("path", {
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M15.2,22.7H1.9c-1.1,0-1.9,0.9-1.9,1.9v37.5C0,63.2,0.9,64,1.9,64h13.3c1.1,0,1.9-0.9,1.9-1.9V24.6\n\t\tC17.1,23.5,16.3,22.7,15.2,22.7z"
-  }), react_1["default"].createElement("path", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M36.3,10.2H23c-1.1,0-1.9,0.9-1.9,1.9v50c0,1.1,0.9,1.9,1.9,1.9h13.3c1.1,0,1.9-0.9,1.9-1.9v-50\n\t\tC38.2,11.1,37.3,10.2,36.3,10.2z"
-  }), react_1["default"].createElement("path", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M57.3,32H44c-1.1,0-1.9,0.9-1.9,1.9v28.1c0,1.1,0.9,1.9,1.9,1.9h13.3c1.1,0,1.9-0.9,1.9-1.9V34\n\t\tC59.2,32.9,58.4,32,57.3,32z"
-  }), react_1["default"].createElement("path", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M70.1,38V26.1c0-3.4,2.7-6.1,6.1-6.1h4.1V2c0-1.1-0.9-1.9-1.9-1.9H65.1C64,0,63.1,0.9,63.1,2v60.1\n\t\tc0,1.1,0.9,1.9,1.9,1.9h13.3c1.1,0,1.9-0.9,1.9-1.9V44.1h-4.1C72.9,44.1,70.1,41.3,70.1,38z"
-  }), react_1["default"].createElement("path", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     fill: "url(#SVGID_1_)",
     d: "M116.7,24.9h-7.2h-0.5h-5.4V11.8c0-0.6-0.5-1.1-1.1-1.1H90.5c-0.6,0-1.1,0.5-1.1,1.1v13.1h-9.1h-4.1\n\t\tc-0.6,0-1.1,0.5-1.1,1.1V38c0,0.6,0.5,1.1,1.1,1.1h4.1h9.1v4.6v1.9v6.7c0,0.6,0.5,1.1,1.1,1.1h11.9c0.6,0,1.1-0.5,1.1-1.1V39.1\n\t\th13.1c0.6,0,1.1-0.5,1.1-1.1V26.1C117.8,25.5,117.3,24.9,116.7,24.9z"
   }));
@@ -60361,33 +60294,30 @@ exports.PanelAdd = function (_a) {
 /*!********************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/PlusSquare.tsx ***!
   \********************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: PlusSquare */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlusSquare", function() { return PlusSquare; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.PlusSquare = function (_a) {
+var PlusSquare = function PlusSquare(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     enableBackground: "new 0 0 24 24",
     viewBox: "0 0 24 24",
     width: size,
     height: size
-  }, rest), react_1["default"].createElement("path", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M17,11H13V7a1,1,0,0,0-2,0v4H7a1,1,0,0,0,0,2h4v4a1,1,0,0,0,2,0V13h4a1,1,0,0,0,0-2Z"
-  }), react_1["default"].createElement("path", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     opacity: "0.6",
     d: "M21,2H3A.99974.99974,0,0,0,2,3V21a.99974.99974,0,0,0,1,1H21a.99974.99974,0,0,0,1-1V3A.99974.99974,0,0,0,21,2ZM17,13H13v4a1,1,0,0,1-2,0V13H7a1,1,0,0,1,0-2h4V7a1,1,0,0,1,2,0v4h4a1,1,0,0,1,0,2Z"
   }));
@@ -60399,32 +60329,29 @@ exports.PlusSquare = function (_a) {
 /*!****************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/Shield.tsx ***!
   \****************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Shield */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Shield", function() { return Shield; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.Shield = function (_a) {
+var Shield = function Shield(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
     width: size,
     height: size
-  }, rest), react_1["default"].createElement("path", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M12,22a.9986.9986,0,0,1-.581-.18652l-3.6504-2.60743A9.01643,9.01643,0,0,1,4,11.88281v-7.457a1.00039,1.00039,0,0,1,1.20605-.97851,8.00088,8.00088,0,0,0,6.22168-1.26758.99888.99888,0,0,1,1.14454,0A7.9976,7.9976,0,0,0,18.794,3.44727,1.00039,1.00039,0,0,1,20,4.42578v7.457a9.01643,9.01643,0,0,1-3.76855,7.32324l-3.6504,2.60743A.9986.9986,0,0,1,12,22Z"
-  }), react_1["default"].createElement("path", {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     opacity: "0.6",
     d: "M10.84961,14.7002h0a.99927.99927,0,0,1-.707-.293L8.543,12.80664A.99989.99989,0,0,1,9.957,11.39258l.89258.89355L13.543,9.59277A.99989.99989,0,1,1,14.957,11.00684l-3.40039,3.40039A.99928.99928,0,0,1,10.84961,14.7002Z"
   }));
@@ -60436,31 +60363,28 @@ exports.Shield = function (_a) {
 /*!*********************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/SquareShape.tsx ***!
   \*********************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: SquareShape */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SquareShape", function() { return SquareShape; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-exports.SquareShape = function (_a) {
+var SquareShape = function SquareShape(_a) {
   var size = _a.size,
-      rest = tslib_1.__rest(_a, ["size"]);
+      rest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["size"]);
 
-  return react_1["default"].createElement("svg", Object.assign({
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
     xmlns: "http://www.w3.org/2000/svg",
     enableBackground: "new 0 0 24 24",
     viewBox: "0 0 24 24",
     width: size,
     height: size
-  }, rest), react_1["default"].createElement("rect", {
+  }, rest), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("rect", {
     width: "85%",
     height: "85%",
     x: "2",
@@ -60475,47 +60399,71 @@ exports.SquareShape = function (_a) {
 /*!**************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Icon/assets/index.ts ***!
   \**************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Apps, Cog, Shield, Favorite, Grafana, Bell, PlusSquare, FolderPlus, Folder, Import, PanelAdd, Circle, SquareShape, HeartBreak, Heart */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Apps__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Apps */ "../../../../packages/grafana-ui/src/components/Icon/assets/Apps.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Apps", function() { return _Apps__WEBPACK_IMPORTED_MODULE_0__["Apps"]; });
+
+/* harmony import */ var _Cog__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Cog */ "../../../../packages/grafana-ui/src/components/Icon/assets/Cog.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Cog", function() { return _Cog__WEBPACK_IMPORTED_MODULE_1__["Cog"]; });
+
+/* harmony import */ var _Shield__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Shield */ "../../../../packages/grafana-ui/src/components/Icon/assets/Shield.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Shield", function() { return _Shield__WEBPACK_IMPORTED_MODULE_2__["Shield"]; });
+
+/* harmony import */ var _Favorite__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Favorite */ "../../../../packages/grafana-ui/src/components/Icon/assets/Favorite.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Favorite", function() { return _Favorite__WEBPACK_IMPORTED_MODULE_3__["Favorite"]; });
+
+/* harmony import */ var _Grafana__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Grafana */ "../../../../packages/grafana-ui/src/components/Icon/assets/Grafana.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Grafana", function() { return _Grafana__WEBPACK_IMPORTED_MODULE_4__["Grafana"]; });
+
+/* harmony import */ var _Bell__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Bell */ "../../../../packages/grafana-ui/src/components/Icon/assets/Bell.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Bell", function() { return _Bell__WEBPACK_IMPORTED_MODULE_5__["Bell"]; });
+
+/* harmony import */ var _PlusSquare__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./PlusSquare */ "../../../../packages/grafana-ui/src/components/Icon/assets/PlusSquare.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PlusSquare", function() { return _PlusSquare__WEBPACK_IMPORTED_MODULE_6__["PlusSquare"]; });
+
+/* harmony import */ var _FolderPlus__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./FolderPlus */ "../../../../packages/grafana-ui/src/components/Icon/assets/FolderPlus.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FolderPlus", function() { return _FolderPlus__WEBPACK_IMPORTED_MODULE_7__["FolderPlus"]; });
+
+/* harmony import */ var _Folder__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Folder */ "../../../../packages/grafana-ui/src/components/Icon/assets/Folder.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Folder", function() { return _Folder__WEBPACK_IMPORTED_MODULE_8__["Folder"]; });
+
+/* harmony import */ var _Import__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Import */ "../../../../packages/grafana-ui/src/components/Icon/assets/Import.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Import", function() { return _Import__WEBPACK_IMPORTED_MODULE_9__["Import"]; });
+
+/* harmony import */ var _PanelAdd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./PanelAdd */ "../../../../packages/grafana-ui/src/components/Icon/assets/PanelAdd.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PanelAdd", function() { return _PanelAdd__WEBPACK_IMPORTED_MODULE_10__["PanelAdd"]; });
+
+/* harmony import */ var _Circle__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Circle */ "../../../../packages/grafana-ui/src/components/Icon/assets/Circle.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Circle", function() { return _Circle__WEBPACK_IMPORTED_MODULE_11__["Circle"]; });
+
+/* harmony import */ var _SquareShape__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./SquareShape */ "../../../../packages/grafana-ui/src/components/Icon/assets/SquareShape.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SquareShape", function() { return _SquareShape__WEBPACK_IMPORTED_MODULE_12__["SquareShape"]; });
+
+/* harmony import */ var _HeartBreak__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./HeartBreak */ "../../../../packages/grafana-ui/src/components/Icon/assets/HeartBreak.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HeartBreak", function() { return _HeartBreak__WEBPACK_IMPORTED_MODULE_13__["HeartBreak"]; });
+
+/* harmony import */ var _Heart__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Heart */ "../../../../packages/grafana-ui/src/components/Icon/assets/Heart.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Heart", function() { return _Heart__WEBPACK_IMPORTED_MODULE_14__["Heart"]; });
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
 
-tslib_1.__exportStar(__webpack_require__(/*! ./Apps */ "../../../../packages/grafana-ui/src/components/Icon/assets/Apps.tsx"), exports);
 
-tslib_1.__exportStar(__webpack_require__(/*! ./Cog */ "../../../../packages/grafana-ui/src/components/Icon/assets/Cog.tsx"), exports);
 
-tslib_1.__exportStar(__webpack_require__(/*! ./Shield */ "../../../../packages/grafana-ui/src/components/Icon/assets/Shield.tsx"), exports);
 
-tslib_1.__exportStar(__webpack_require__(/*! ./Favorite */ "../../../../packages/grafana-ui/src/components/Icon/assets/Favorite.tsx"), exports);
 
-tslib_1.__exportStar(__webpack_require__(/*! ./Grafana */ "../../../../packages/grafana-ui/src/components/Icon/assets/Grafana.tsx"), exports);
 
-tslib_1.__exportStar(__webpack_require__(/*! ./Bell */ "../../../../packages/grafana-ui/src/components/Icon/assets/Bell.tsx"), exports);
 
-tslib_1.__exportStar(__webpack_require__(/*! ./PlusSquare */ "../../../../packages/grafana-ui/src/components/Icon/assets/PlusSquare.tsx"), exports);
 
-tslib_1.__exportStar(__webpack_require__(/*! ./FolderPlus */ "../../../../packages/grafana-ui/src/components/Icon/assets/FolderPlus.tsx"), exports);
 
-tslib_1.__exportStar(__webpack_require__(/*! ./Folder */ "../../../../packages/grafana-ui/src/components/Icon/assets/Folder.tsx"), exports);
 
-tslib_1.__exportStar(__webpack_require__(/*! ./Import */ "../../../../packages/grafana-ui/src/components/Icon/assets/Import.tsx"), exports);
 
-tslib_1.__exportStar(__webpack_require__(/*! ./PanelAdd */ "../../../../packages/grafana-ui/src/components/Icon/assets/PanelAdd.tsx"), exports);
 
-tslib_1.__exportStar(__webpack_require__(/*! ./Circle */ "../../../../packages/grafana-ui/src/components/Icon/assets/Circle.tsx"), exports);
 
-tslib_1.__exportStar(__webpack_require__(/*! ./SquareShape */ "../../../../packages/grafana-ui/src/components/Icon/assets/SquareShape.tsx"), exports);
-
-tslib_1.__exportStar(__webpack_require__(/*! ./HeartBreak */ "../../../../packages/grafana-ui/src/components/Icon/assets/HeartBreak.tsx"), exports);
-
-tslib_1.__exportStar(__webpack_require__(/*! ./Heart */ "../../../../packages/grafana-ui/src/components/Icon/assets/Heart.tsx"), exports);
 
 /***/ }),
 
@@ -60523,46 +60471,32 @@ tslib_1.__exportStar(__webpack_require__(/*! ./Heart */ "../../../../packages/gr
 /*!***********************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Legend/Legend.tsx ***!
   \***********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: generateLegendItems, LegendDisplayMode, LegendList, LegendTable */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateLegendItems", function() { return generateLegendItems; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LegendDisplayMode", function() { return LegendDisplayMode; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _LegendList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LegendList */ "../../../../packages/grafana-ui/src/components/Legend/LegendList.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LegendList", function() { return _LegendList__WEBPACK_IMPORTED_MODULE_1__["LegendList"]; });
+
+/* harmony import */ var _LegendTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LegendTable */ "../../../../packages/grafana-ui/src/components/Legend/LegendTable.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LegendTable", function() { return _LegendTable__WEBPACK_IMPORTED_MODULE_2__["LegendTable"]; });
+
+/* harmony import */ var tinycolor2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tinycolor2 */ "../../../../node_modules/tinycolor2/tinycolor.js");
+/* harmony import */ var tinycolor2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(tinycolor2__WEBPACK_IMPORTED_MODULE_3__);
 
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var LegendList_1 = __webpack_require__(/*! ./LegendList */ "../../../../packages/grafana-ui/src/components/Legend/LegendList.tsx");
-
-exports.LegendList = LegendList_1.LegendList;
-
-var LegendTable_1 = __webpack_require__(/*! ./LegendTable */ "../../../../packages/grafana-ui/src/components/Legend/LegendTable.tsx");
-
-exports.LegendTable = LegendTable_1.LegendTable;
-
-var tinycolor2_1 = tslib_1.__importDefault(__webpack_require__(/*! tinycolor2 */ "../../../../node_modules/tinycolor2/tinycolor.js"));
-
-exports.generateLegendItems = function (numberOfSeries, statsToDisplay) {
+var generateLegendItems = function generateLegendItems(numberOfSeries, statsToDisplay) {
   var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
-  return _toConsumableArray(new Array(numberOfSeries)).map(function (item, i) {
+  return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__spread"])(new Array(numberOfSeries)).map(function (item, i) {
     return {
-      label: "".concat(alphabet[i].toUpperCase(), "-series"),
-      color: tinycolor2_1["default"].fromRatio({
+      label: alphabet[i].toUpperCase() + "-series",
+      color: tinycolor2__WEBPACK_IMPORTED_MODULE_3___default.a.fromRatio({
         h: i / alphabet.length,
         s: 1,
         v: 1
@@ -60573,13 +60507,14 @@ exports.generateLegendItems = function (numberOfSeries, statsToDisplay) {
     };
   });
 };
-
 var LegendDisplayMode;
 
 (function (LegendDisplayMode) {
   LegendDisplayMode["List"] = "list";
   LegendDisplayMode["Table"] = "table";
-})(LegendDisplayMode = exports.LegendDisplayMode || (exports.LegendDisplayMode = {}));
+})(LegendDisplayMode || (LegendDisplayMode = {}));
+
+
 
 /***/ }),
 
@@ -60587,126 +60522,81 @@ var LegendDisplayMode;
 /*!***************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Legend/LegendList.tsx ***!
   \***************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: LegendList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LegendList", function() { return LegendList; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _List_InlineList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../List/InlineList */ "../../../../packages/grafana-ui/src/components/List/InlineList.tsx");
+/* harmony import */ var _List_List__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../List/List */ "../../../../packages/grafana-ui/src/components/List/List.tsx");
+/* harmony import */ var emotion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! emotion */ "emotion");
+/* harmony import */ var emotion__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(emotion__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _themes_ThemeContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../themes/ThemeContext */ "../../../../packages/grafana-ui/src/themes/ThemeContext.tsx");
+/* harmony import */ var _themes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../themes */ "../../../../packages/grafana-ui/src/themes/index.ts");
 
 
-function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n    justify-content: flex-end;\n    flex-grow: 1;\n  "]);
 
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
 
-  return data;
-}
 
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n    display: flex;\n  "]);
 
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
 
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: space-between;\n    width: 100%;\n  "]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    padding-left: 10px;\n    display: flex;\n    font-size: ", ";\n    white-space: nowrap;\n  "]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importStar(__webpack_require__(/*! react */ "react"));
-
-var InlineList_1 = __webpack_require__(/*! ../List/InlineList */ "../../../../packages/grafana-ui/src/components/List/InlineList.tsx");
-
-var List_1 = __webpack_require__(/*! ../List/List */ "../../../../packages/grafana-ui/src/components/List/List.tsx");
-
-var emotion_1 = __webpack_require__(/*! emotion */ "emotion");
-
-var ThemeContext_1 = __webpack_require__(/*! ../../themes/ThemeContext */ "../../../../packages/grafana-ui/src/themes/ThemeContext.tsx");
-
-var themes_1 = __webpack_require__(/*! ../../themes */ "../../../../packages/grafana-ui/src/themes/index.ts");
-
-var getStyles = themes_1.stylesFactory(function (theme) {
+var getStyles = Object(_themes__WEBPACK_IMPORTED_MODULE_6__["stylesFactory"])(function (theme) {
   return {
-    item: emotion_1.css(_templateObject(), theme.typography.size.sm),
-    wrapper: emotion_1.css(_templateObject2()),
-    section: emotion_1.css(_templateObject3()),
-    sectionRight: emotion_1.css(_templateObject4())
+    item: Object(emotion__WEBPACK_IMPORTED_MODULE_4__["css"])(templateObject_1 || (templateObject_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n    padding-left: 10px;\n    display: flex;\n    font-size: ", ";\n    white-space: nowrap;\n  "], ["\n    padding-left: 10px;\n    display: flex;\n    font-size: ", ";\n    white-space: nowrap;\n  "])), theme.typography.size.sm),
+    wrapper: Object(emotion__WEBPACK_IMPORTED_MODULE_4__["css"])(templateObject_2 || (templateObject_2 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: space-between;\n    width: 100%;\n  "], ["\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: space-between;\n    width: 100%;\n  "]))),
+    section: Object(emotion__WEBPACK_IMPORTED_MODULE_4__["css"])(templateObject_3 || (templateObject_3 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n    display: flex;\n  "], ["\n    display: flex;\n  "]))),
+    sectionRight: Object(emotion__WEBPACK_IMPORTED_MODULE_4__["css"])(templateObject_4 || (templateObject_4 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n    justify-content: flex-end;\n    flex-grow: 1;\n  "], ["\n    justify-content: flex-end;\n    flex-grow: 1;\n  "])))
   };
 });
-
-exports.LegendList = function (_ref) {
-  var items = _ref.items,
-      itemRenderer = _ref.itemRenderer,
-      placement = _ref.placement,
-      className = _ref.className;
-  var theme = react_1.useContext(ThemeContext_1.ThemeContext);
+var LegendList = function LegendList(_a) {
+  var items = _a.items,
+      itemRenderer = _a.itemRenderer,
+      placement = _a.placement,
+      className = _a.className;
+  var theme = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_themes_ThemeContext__WEBPACK_IMPORTED_MODULE_5__["ThemeContext"]);
   var styles = getStyles(theme);
 
   var renderItem = function renderItem(item, index) {
-    return react_1["default"].createElement("span", {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
       className: styles.item
     }, itemRenderer ? itemRenderer(item, index) : item.label);
   };
 
   var getItemKey = function getItemKey(item) {
-    return "".concat(item.label);
+    return "" + item.label;
   };
 
-  return placement === 'under' ? react_1["default"].createElement("div", {
-    className: emotion_1.cx(styles.wrapper, className)
-  }, react_1["default"].createElement("div", {
+  return placement === 'under' ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: Object(emotion__WEBPACK_IMPORTED_MODULE_4__["cx"])(styles.wrapper, className)
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: styles.section
-  }, react_1["default"].createElement(InlineList_1.InlineList, {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_List_InlineList__WEBPACK_IMPORTED_MODULE_2__["InlineList"], {
     items: items.filter(function (item) {
       return item.yAxis === 1;
     }),
     renderItem: renderItem,
     getItemKey: getItemKey
-  })), react_1["default"].createElement("div", {
-    className: emotion_1.cx(styles.section, styles.sectionRight)
-  }, react_1["default"].createElement(InlineList_1.InlineList, {
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: Object(emotion__WEBPACK_IMPORTED_MODULE_4__["cx"])(styles.section, styles.sectionRight)
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_List_InlineList__WEBPACK_IMPORTED_MODULE_2__["InlineList"], {
     items: items.filter(function (item) {
       return item.yAxis !== 1;
     }),
     renderItem: renderItem,
     getItemKey: getItemKey
-  }))) : react_1["default"].createElement(List_1.List, {
+  }))) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_List_List__WEBPACK_IMPORTED_MODULE_3__["List"], {
     items: items,
     renderItem: renderItem,
     getItemKey: getItemKey,
     className: className
   });
 };
-
-exports.LegendList.displayName = 'LegendList';
+LegendList.displayName = 'LegendList';
+var templateObject_1, templateObject_2, templateObject_3, templateObject_4;
 
 /***/ }),
 
@@ -60714,88 +60604,55 @@ exports.LegendList.displayName = 'LegendList';
 /*!****************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/Legend/LegendTable.tsx ***!
   \****************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: LegendTable */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LegendTable", function() { return LegendTable; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var emotion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! emotion */ "emotion");
+/* harmony import */ var emotion__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(emotion__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Icon_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Icon/Icon */ "../../../../packages/grafana-ui/src/components/Icon/Icon.tsx");
+/* harmony import */ var _themes_ThemeContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../themes/ThemeContext */ "../../../../packages/grafana-ui/src/themes/ThemeContext.tsx");
 
 
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n                      margin-left: ", ";\n                    "]);
 
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
 
-  return data;
-}
 
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n                  color: ", ";\n                  font-weight: bold;\n                  text-align: right;\n                  cursor: pointer;\n                "]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n          width: 100%;\n          td {\n            padding: 2px 10px;\n          }\n        "]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importStar(__webpack_require__(/*! react */ "react"));
-
-var emotion_1 = __webpack_require__(/*! emotion */ "emotion");
-
-var Icon_1 = __webpack_require__(/*! ../Icon/Icon */ "../../../../packages/grafana-ui/src/components/Icon/Icon.tsx");
-
-var ThemeContext_1 = __webpack_require__(/*! ../../themes/ThemeContext */ "../../../../packages/grafana-ui/src/themes/ThemeContext.tsx");
-
-exports.LegendTable = function (_ref) {
-  var items = _ref.items,
-      columns = _ref.columns,
-      sortBy = _ref.sortBy,
-      sortDesc = _ref.sortDesc,
-      itemRenderer = _ref.itemRenderer,
-      className = _ref.className,
-      onToggleSort = _ref.onToggleSort;
-  var theme = react_1.useContext(ThemeContext_1.ThemeContext);
-  return react_1["default"].createElement("table", {
-    className: emotion_1.cx(emotion_1.css(_templateObject()), className)
-  }, react_1["default"].createElement("thead", null, react_1["default"].createElement("tr", null, columns.map(function (columnHeader) {
-    return react_1["default"].createElement("th", {
+var LegendTable = function LegendTable(_a) {
+  var items = _a.items,
+      columns = _a.columns,
+      sortBy = _a.sortBy,
+      sortDesc = _a.sortDesc,
+      itemRenderer = _a.itemRenderer,
+      className = _a.className,
+      onToggleSort = _a.onToggleSort;
+  var theme = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_themes_ThemeContext__WEBPACK_IMPORTED_MODULE_4__["ThemeContext"]);
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+    className: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["cx"])(Object(emotion__WEBPACK_IMPORTED_MODULE_2__["css"])(templateObject_1 || (templateObject_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n          width: 100%;\n          td {\n            padding: 2px 10px;\n          }\n        "], ["\n          width: 100%;\n          td {\n            padding: 2px 10px;\n          }\n        "]))), className)
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, columns.map(function (columnHeader) {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
       key: columnHeader,
-      className: emotion_1.css(_templateObject2(), theme.colors.textBlue),
+      className: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["css"])(templateObject_2 || (templateObject_2 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n                  color: ", ";\n                  font-weight: bold;\n                  text-align: right;\n                  cursor: pointer;\n                "], ["\n                  color: ", ";\n                  font-weight: bold;\n                  text-align: right;\n                  cursor: pointer;\n                "])), theme.colors.textBlue),
       onClick: function onClick() {
         if (onToggleSort) {
           onToggleSort(columnHeader);
         }
       }
-    }, columnHeader, sortBy === columnHeader && react_1["default"].createElement(Icon_1.Icon, {
-      className: emotion_1.css(_templateObject3(), theme.spacing.sm),
+    }, columnHeader, sortBy === columnHeader && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Icon_Icon__WEBPACK_IMPORTED_MODULE_3__["Icon"], {
+      className: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["css"])(templateObject_3 || (templateObject_3 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n                      margin-left: ", ";\n                    "], ["\n                      margin-left: ", ";\n                    "])), theme.spacing.sm),
       name: sortDesc ? 'angle-down' : 'angle-up'
     }));
-  }))), react_1["default"].createElement("tbody", null, items.map(function (item, index) {
-    return itemRenderer ? itemRenderer(item, index) : react_1["default"].createElement("tr", {
-      key: "".concat(item.label, "-").concat(index)
-    }, react_1["default"].createElement("td", null, item.label));
+  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, items.map(function (item, index) {
+    return itemRenderer ? itemRenderer(item, index) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
+      key: item.label + "-" + index
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.label));
   })));
 };
+var templateObject_1, templateObject_2, templateObject_3;
 
 /***/ }),
 
@@ -60803,112 +60660,65 @@ exports.LegendTable = function (_ref) {
 /*!***************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/List/AbstractList.tsx ***!
   \***************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: AbstractList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractList", function() { return AbstractList; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var emotion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! emotion */ "emotion");
+/* harmony import */ var emotion__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(emotion__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _themes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../themes */ "../../../../packages/grafana-ui/src/themes/index.ts");
 
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n    display: ", ";\n  "]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n  "]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-var emotion_1 = __webpack_require__(/*! emotion */ "emotion");
-
-var themes_1 = __webpack_require__(/*! ../../themes */ "../../../../packages/grafana-ui/src/themes/index.ts");
-
-var getStyles = themes_1.stylesFactory(function () {
-  var inlineList = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-  return {
-    list: emotion_1.css(_templateObject()),
-    item: emotion_1.css(_templateObject2(), inlineList && 'inline-block' || 'block')
-  };
-});
-
-var AbstractList = /*#__PURE__*/function (_react_1$default$Pure) {
-  _inherits(AbstractList, _react_1$default$Pure);
-
-  var _super = _createSuper(AbstractList);
-
-  function AbstractList(props) {
-    _classCallCheck(this, AbstractList);
-
-    return _super.call(this, props);
+var getStyles = Object(_themes__WEBPACK_IMPORTED_MODULE_3__["stylesFactory"])(function (inlineList) {
+  if (inlineList === void 0) {
+    inlineList = false;
   }
 
-  _createClass(AbstractList, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          items = _this$props.items,
-          renderItem = _this$props.renderItem,
-          getItemKey = _this$props.getItemKey,
-          className = _this$props.className,
-          inline = _this$props.inline;
-      var styles = getStyles(inline);
-      return react_1["default"].createElement("ul", {
-        className: emotion_1.cx(styles.list, className)
-      }, items.map(function (item, i) {
-        return react_1["default"].createElement("li", {
-          className: styles.item,
-          key: getItemKey ? getItemKey(item) : i
-        }, renderItem(item, i));
-      }));
-    }
-  }]);
+  return {
+    list: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["css"])(templateObject_1 || (templateObject_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n  "], ["\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n  "]))),
+    item: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["css"])(templateObject_2 || (templateObject_2 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n    display: ", ";\n  "], ["\n    display: ", ";\n  "])), inlineList && 'inline-block' || 'block')
+  };
+});
+
+var AbstractList =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(AbstractList, _super);
+
+  function AbstractList(props) {
+    return _super.call(this, props) || this;
+  }
+
+  AbstractList.prototype.render = function () {
+    var _a = this.props,
+        items = _a.items,
+        renderItem = _a.renderItem,
+        getItemKey = _a.getItemKey,
+        className = _a.className,
+        inline = _a.inline;
+    var styles = getStyles(inline);
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
+      className: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["cx"])(styles.list, className)
+    }, items.map(function (item, i) {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+        className: styles.item,
+        key: getItemKey ? getItemKey(item) : i
+      }, renderItem(item, i));
+    }));
+  };
 
   return AbstractList;
-}(react_1["default"].PureComponent);
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.PureComponent);
 
-exports.AbstractList = AbstractList;
+
+var templateObject_1, templateObject_2;
 
 /***/ }),
 
@@ -60916,68 +60726,39 @@ exports.AbstractList = AbstractList;
 /*!*************************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/List/InlineList.tsx ***!
   \*************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: InlineList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InlineList", function() { return InlineList; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _AbstractList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AbstractList */ "../../../../packages/grafana-ui/src/components/List/AbstractList.tsx");
 
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-var AbstractList_1 = __webpack_require__(/*! ./AbstractList */ "../../../../packages/grafana-ui/src/components/List/AbstractList.tsx");
-
-var InlineList = /*#__PURE__*/function (_react_1$default$Pure) {
-  _inherits(InlineList, _react_1$default$Pure);
-
-  var _super = _createSuper(InlineList);
+var InlineList =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(InlineList, _super);
 
   function InlineList() {
-    _classCallCheck(this, InlineList);
-
-    return _super.apply(this, arguments);
+    return _super !== null && _super.apply(this, arguments) || this;
   }
 
-  _createClass(InlineList, [{
-    key: "render",
-    value: function render() {
-      return react_1["default"].createElement(AbstractList_1.AbstractList, Object.assign({
-        inline: true
-      }, this.props));
-    }
-  }]);
+  InlineList.prototype.render = function () {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_AbstractList__WEBPACK_IMPORTED_MODULE_2__["AbstractList"], Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
+      inline: true
+    }, this.props));
+  };
 
   return InlineList;
-}(react_1["default"].PureComponent);
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.PureComponent);
 
-exports.InlineList = InlineList;
+
 
 /***/ }),
 
@@ -60985,66 +60766,37 @@ exports.InlineList = InlineList;
 /*!*******************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/components/List/List.tsx ***!
   \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: List */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "List", function() { return List; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _AbstractList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AbstractList */ "../../../../packages/grafana-ui/src/components/List/AbstractList.tsx");
 
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
-
-var AbstractList_1 = __webpack_require__(/*! ./AbstractList */ "../../../../packages/grafana-ui/src/components/List/AbstractList.tsx");
-
-var List = /*#__PURE__*/function (_react_1$default$Pure) {
-  _inherits(List, _react_1$default$Pure);
-
-  var _super = _createSuper(List);
+var List =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(List, _super);
 
   function List() {
-    _classCallCheck(this, List);
-
-    return _super.apply(this, arguments);
+    return _super !== null && _super.apply(this, arguments) || this;
   }
 
-  _createClass(List, [{
-    key: "render",
-    value: function render() {
-      return react_1["default"].createElement(AbstractList_1.AbstractList, Object.assign({}, this.props));
-    }
-  }]);
+  List.prototype.render = function () {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_AbstractList__WEBPACK_IMPORTED_MODULE_2__["AbstractList"], Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, this.props));
+  };
 
   return List;
-}(react_1["default"].PureComponent);
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.PureComponent);
 
-exports.List = List;
+
 
 /***/ }),
 
@@ -61052,64 +60804,64 @@ exports.List = List;
 /*!******************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/themes/ThemeContext.tsx ***!
   \******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: memoizedStyleCreators, ThemeContext, withTheme, useTheme, useStyles, mockThemeContext */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "memoizedStyleCreators", function() { return memoizedStyleCreators; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ThemeContext", function() { return ThemeContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "withTheme", function() { return withTheme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useTheme", function() { return useTheme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useStyles", function() { return useStyles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mockThemeContext", function() { return mockThemeContext; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! hoist-non-react-statics */ "../../../../node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js");
+/* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _getTheme__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getTheme */ "../../../../packages/grafana-ui/src/themes/getTheme.ts");
+/* harmony import */ var _stylesFactory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./stylesFactory */ "../../../../packages/grafana-ui/src/themes/stylesFactory.ts");
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
 
-var data_1 = __webpack_require__(/*! @grafana/data */ "@grafana/data");
 
-var hoist_non_react_statics_1 = tslib_1.__importDefault(__webpack_require__(/*! hoist-non-react-statics */ "../../../../node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js"));
 
-var react_1 = tslib_1.__importStar(__webpack_require__(/*! react */ "react"));
-
-var getTheme_1 = __webpack_require__(/*! ./getTheme */ "../../../../packages/grafana-ui/src/themes/getTheme.ts");
-
-var stylesFactory_1 = __webpack_require__(/*! ./stylesFactory */ "../../../../packages/grafana-ui/src/themes/stylesFactory.ts");
 /**
  * Mock used in tests
  */
 
-
 var ThemeContextMock = null; // Used by useStyles()
 
-exports.memoizedStyleCreators = new WeakMap(); // Use Grafana Dark theme by default
+var memoizedStyleCreators = new WeakMap(); // Use Grafana Dark theme by default
 
-exports.ThemeContext = react_1["default"].createContext(getTheme_1.getTheme(data_1.GrafanaThemeType.Dark));
-exports.ThemeContext.displayName = 'ThemeContext';
-
-exports.withTheme = function (Component) {
+var ThemeContext = react__WEBPACK_IMPORTED_MODULE_3___default.a.createContext(Object(_getTheme__WEBPACK_IMPORTED_MODULE_4__["getTheme"])(_grafana_data__WEBPACK_IMPORTED_MODULE_1__["GrafanaThemeType"].Dark));
+ThemeContext.displayName = 'ThemeContext';
+var withTheme = function withTheme(Component) {
   var WithTheme = function WithTheme(props) {
     /**
      * If theme context is mocked, let's use it instead of the original context
      * This is used in tests when mocking theme using mockThemeContext function defined below
      */
-    var ContextComponent = ThemeContextMock || exports.ThemeContext; // @ts-ignore
+    var ContextComponent = ThemeContextMock || ThemeContext; // @ts-ignore
 
-    return react_1["default"].createElement(ContextComponent.Consumer, null, function (theme) {
-      return react_1["default"].createElement(Component, Object.assign({}, props, {
+    return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(ContextComponent.Consumer, null, function (theme) {
+      return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Component, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, props, {
         theme: theme
       }));
     });
   };
 
-  WithTheme.displayName = "WithTheme(".concat(Component.displayName, ")");
-  hoist_non_react_statics_1["default"](WithTheme, Component);
+  WithTheme.displayName = "WithTheme(" + Component.displayName + ")";
+  hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_2___default()(WithTheme, Component);
   return WithTheme;
 };
-
 function useTheme() {
-  return react_1.useContext(ThemeContextMock || exports.ThemeContext);
+  return Object(react__WEBPACK_IMPORTED_MODULE_3__["useContext"])(ThemeContextMock || ThemeContext);
 }
-
-exports.useTheme = useTheme;
 /**
  * Hook for using memoized styles with access to the theme.
  *
@@ -61120,28 +60872,26 @@ exports.useTheme = useTheme;
 
 function useStyles(getStyles) {
   var theme = useTheme();
-  var memoizedStyleCreator = exports.memoizedStyleCreators.get(getStyles);
+  var memoizedStyleCreator = memoizedStyleCreators.get(getStyles);
 
   if (!memoizedStyleCreator) {
-    memoizedStyleCreator = stylesFactory_1.stylesFactory(getStyles);
-    exports.memoizedStyleCreators.set(getStyles, memoizedStyleCreator);
+    memoizedStyleCreator = Object(_stylesFactory__WEBPACK_IMPORTED_MODULE_5__["stylesFactory"])(getStyles);
+    memoizedStyleCreators.set(getStyles, memoizedStyleCreator);
   }
 
-  react_1.useEffect(function () {
+  Object(react__WEBPACK_IMPORTED_MODULE_3__["useEffect"])(function () {
     return function () {
-      exports.memoizedStyleCreators["delete"](getStyles);
+      memoizedStyleCreators["delete"](getStyles);
     };
   }, [getStyles]);
   return memoizedStyleCreator(theme);
 }
-
-exports.useStyles = useStyles;
 /**
  * Enables theme context  mocking
  */
 
-exports.mockThemeContext = function (theme) {
-  ThemeContextMock = react_1["default"].createContext(theme);
+var mockThemeContext = function mockThemeContext(theme) {
+  ThemeContextMock = react__WEBPACK_IMPORTED_MODULE_3___default.a.createContext(theme);
   return function () {
     ThemeContextMock = null;
   };
@@ -61153,23 +60903,20 @@ exports.mockThemeContext = function (theme) {
 /*!*********************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/themes/dark.ts ***!
   \*********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _default__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./default */ "../../../../packages/grafana-ui/src/themes/default.ts");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_2__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
 
-var default_1 = tslib_1.__importStar(__webpack_require__(/*! ./default */ "../../../../packages/grafana-ui/src/themes/default.ts"));
-
-var data_1 = __webpack_require__(/*! @grafana/data */ "@grafana/data");
-
-var basicColors = Object.assign(Object.assign({}, default_1.commonColorsPalette), {
+var basicColors = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, _default__WEBPACK_IMPORTED_MODULE_1__["commonColorsPalette"]), {
   black: '#000000',
   white: '#ffffff',
   dark1: '#141414',
@@ -61200,6 +60947,7 @@ var basicColors = Object.assign(Object.assign({}, default_1.commonColorsPalette)
   orange: '#eb7b18',
   orangeDark: '#ff780a'
 });
+
 var backgrounds = {
   bg1: basicColors.gray10,
   bg2: basicColors.gray15,
@@ -61248,12 +60996,13 @@ var form = {
   formCheckboxBgCheckedHover: basicColors.blue80,
   formCheckboxCheckmark: basicColors.gray25
 };
-var darkTheme = Object.assign(Object.assign({}, default_1["default"]), {
-  type: data_1.GrafanaThemeType.Dark,
+
+var darkTheme = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, _default__WEBPACK_IMPORTED_MODULE_1__["default"]), {
+  type: _grafana_data__WEBPACK_IMPORTED_MODULE_2__["GrafanaThemeType"].Dark,
   isDark: true,
   isLight: false,
   name: 'Grafana Dark',
-  palette: Object.assign(Object.assign({}, basicColors), {
+  palette: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, basicColors), {
     brandPrimary: basicColors.orange,
     brandSuccess: basicColors.greenBase,
     brandWarning: basicColors.orange,
@@ -61266,7 +61015,7 @@ var darkTheme = Object.assign(Object.assign({}, default_1["default"]), {
     warn: '#f79520',
     critical: basicColors.redBase
   }),
-  colors: Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, backgrounds), borders), form), textColors), {
+  colors: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, backgrounds), borders), form), textColors), {
     bodyBg: backgrounds.bg1,
     panelBg: backgrounds.bg1,
     pageHeaderBg: backgrounds.bg2,
@@ -61284,7 +61033,8 @@ var darkTheme = Object.assign(Object.assign({}, default_1["default"]), {
     listItem: 'none'
   }
 });
-exports["default"] = darkTheme;
+
+/* harmony default export */ __webpack_exports__["default"] = (darkTheme);
 
 /***/ }),
 
@@ -61292,16 +61042,13 @@ exports["default"] = darkTheme;
 /*!************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/themes/default.ts ***!
   \************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: commonColorsPalette, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.commonColorsPalette = {
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "commonColorsPalette", function() { return commonColorsPalette; });
+var commonColorsPalette = {
   // New greys palette used by next-gen form elements
   gray98: '#f7f8fa',
   gray97: '#f1f5f9',
@@ -61384,17 +61131,17 @@ var theme = {
     // Next-gen forms spacing variables
     // TODO: Move variables definition to respective components when implementing
     formSpacingBase: SPACING_BASE,
-    formMargin: "".concat(SPACING_BASE * 4, "px"),
-    formFieldsetMargin: "".concat(SPACING_BASE * 2, "px"),
+    formMargin: SPACING_BASE * 4 + "px",
+    formFieldsetMargin: SPACING_BASE * 2 + "px",
     formInputHeight: SPACING_BASE * 4,
     formButtonHeight: SPACING_BASE * 4,
-    formInputPaddingHorizontal: "".concat(SPACING_BASE, "px"),
+    formInputPaddingHorizontal: SPACING_BASE + "px",
     // Used for icons do define spacing between icon and input field
     // Applied on the right(prefix) or left(suffix)
-    formInputAffixPaddingHorizontal: "".concat(SPACING_BASE / 2, "px"),
-    formInputMargin: "".concat(SPACING_BASE * 2, "px"),
+    formInputAffixPaddingHorizontal: SPACING_BASE / 2 + "px",
+    formInputMargin: SPACING_BASE * 2 + "px",
     formLabelPadding: '0 0 0 2px',
-    formLabelMargin: "0 0 ".concat(SPACING_BASE / 2 + 'px', " 0"),
+    formLabelMargin: "0 0 " + (SPACING_BASE / 2 + 'px') + " 0",
     formValidationMessagePadding: '4px 8px',
     formValidationMessageMargin: '4px 0 0 0',
     inlineFormMargin: '4px'
@@ -61426,7 +61173,7 @@ var theme = {
     modal: 1060
   }
 };
-exports["default"] = theme;
+/* harmony default export */ __webpack_exports__["default"] = (theme);
 
 /***/ }),
 
@@ -61434,29 +61181,22 @@ exports["default"] = theme;
 /*!*************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/themes/getTheme.ts ***!
   \*************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: getTheme, mockTheme */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTheme", function() { return getTheme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mockTheme", function() { return mockTheme; });
+/* harmony import */ var _dark__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dark */ "../../../../packages/grafana-ui/src/themes/dark.ts");
+/* harmony import */ var _light__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./light */ "../../../../packages/grafana-ui/src/themes/light.ts");
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var dark_1 = tslib_1.__importDefault(__webpack_require__(/*! ./dark */ "../../../../packages/grafana-ui/src/themes/dark.ts"));
-
-var light_1 = tslib_1.__importDefault(__webpack_require__(/*! ./light */ "../../../../packages/grafana-ui/src/themes/light.ts"));
 
 var themeMock;
-
-exports.getTheme = function (name) {
-  return themeMock && themeMock(name) || (name === 'light' ? light_1["default"] : dark_1["default"]);
+var getTheme = function getTheme(name) {
+  return themeMock && themeMock(name) || (name === 'light' ? _light__WEBPACK_IMPORTED_MODULE_1__["default"] : _dark__WEBPACK_IMPORTED_MODULE_0__["default"]);
 };
-
-exports.mockTheme = function (mock) {
+var mockTheme = function mockTheme(mock) {
   themeMock = mock;
   return function () {
     themeMock = null;
@@ -61469,42 +61209,42 @@ exports.mockTheme = function (mock) {
 /*!**********************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/themes/index.ts ***!
   \**********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: stylesFactory, ThemeContext, withTheme, mockTheme, getTheme, selectThemeVariant, useTheme, mockThemeContext, useStyles, styleMixins */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ThemeContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ThemeContext */ "../../../../packages/grafana-ui/src/themes/ThemeContext.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ThemeContext", function() { return _ThemeContext__WEBPACK_IMPORTED_MODULE_0__["ThemeContext"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "withTheme", function() { return _ThemeContext__WEBPACK_IMPORTED_MODULE_0__["withTheme"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useTheme", function() { return _ThemeContext__WEBPACK_IMPORTED_MODULE_0__["useTheme"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mockThemeContext", function() { return _ThemeContext__WEBPACK_IMPORTED_MODULE_0__["mockThemeContext"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useStyles", function() { return _ThemeContext__WEBPACK_IMPORTED_MODULE_0__["useStyles"]; });
+
+/* harmony import */ var _getTheme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getTheme */ "../../../../packages/grafana-ui/src/themes/getTheme.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mockTheme", function() { return _getTheme__WEBPACK_IMPORTED_MODULE_1__["mockTheme"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getTheme", function() { return _getTheme__WEBPACK_IMPORTED_MODULE_1__["getTheme"]; });
+
+/* harmony import */ var _selectThemeVariant__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./selectThemeVariant */ "../../../../packages/grafana-ui/src/themes/selectThemeVariant.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "selectThemeVariant", function() { return _selectThemeVariant__WEBPACK_IMPORTED_MODULE_2__["selectThemeVariant"]; });
+
+/* harmony import */ var _stylesFactory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./stylesFactory */ "../../../../packages/grafana-ui/src/themes/stylesFactory.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "stylesFactory", function() { return _stylesFactory__WEBPACK_IMPORTED_MODULE_3__["stylesFactory"]; });
+
+/* harmony import */ var _mixins__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mixins */ "../../../../packages/grafana-ui/src/themes/mixins.ts");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "styleMixins", function() { return _mixins__WEBPACK_IMPORTED_MODULE_4__; });
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
 
-var ThemeContext_1 = __webpack_require__(/*! ./ThemeContext */ "../../../../packages/grafana-ui/src/themes/ThemeContext.tsx");
 
-exports.ThemeContext = ThemeContext_1.ThemeContext;
-exports.withTheme = ThemeContext_1.withTheme;
-exports.useTheme = ThemeContext_1.useTheme;
-exports.useStyles = ThemeContext_1.useStyles;
-exports.mockThemeContext = ThemeContext_1.mockThemeContext;
 
-var getTheme_1 = __webpack_require__(/*! ./getTheme */ "../../../../packages/grafana-ui/src/themes/getTheme.ts");
 
-exports.getTheme = getTheme_1.getTheme;
-exports.mockTheme = getTheme_1.mockTheme;
-
-var selectThemeVariant_1 = __webpack_require__(/*! ./selectThemeVariant */ "../../../../packages/grafana-ui/src/themes/selectThemeVariant.ts");
-
-exports.selectThemeVariant = selectThemeVariant_1.selectThemeVariant;
-
-var stylesFactory_1 = __webpack_require__(/*! ./stylesFactory */ "../../../../packages/grafana-ui/src/themes/stylesFactory.ts");
-
-exports.stylesFactory = stylesFactory_1.stylesFactory;
-
-var styleMixins = tslib_1.__importStar(__webpack_require__(/*! ./mixins */ "../../../../packages/grafana-ui/src/themes/mixins.ts"));
-
-exports.styleMixins = styleMixins;
 
 /***/ }),
 
@@ -61512,23 +61252,20 @@ exports.styleMixins = styleMixins;
 /*!**********************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/themes/light.ts ***!
   \**********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _default__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./default */ "../../../../packages/grafana-ui/src/themes/default.ts");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_2__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
 
-var default_1 = tslib_1.__importStar(__webpack_require__(/*! ./default */ "../../../../packages/grafana-ui/src/themes/default.ts"));
-
-var data_1 = __webpack_require__(/*! @grafana/data */ "@grafana/data");
-
-var basicColors = Object.assign(Object.assign({}, default_1.commonColorsPalette), {
+var basicColors = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, _default__WEBPACK_IMPORTED_MODULE_1__["commonColorsPalette"]), {
   black: '#000000',
   white: '#ffffff',
   dark1: '#1e2028',
@@ -61558,6 +61295,7 @@ var basicColors = Object.assign(Object.assign({}, default_1.commonColorsPalette)
   orange: '#ff7941',
   orangeDark: '#ed5700'
 });
+
 var backgrounds = {
   bg1: basicColors.white,
   bg2: basicColors.gray97,
@@ -61606,12 +61344,13 @@ var form = {
   formCheckboxBgCheckedHover: basicColors.blue80,
   formCheckboxCheckmark: basicColors.white
 };
-var lightTheme = Object.assign(Object.assign({}, default_1["default"]), {
-  type: data_1.GrafanaThemeType.Light,
+
+var lightTheme = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, _default__WEBPACK_IMPORTED_MODULE_1__["default"]), {
+  type: _grafana_data__WEBPACK_IMPORTED_MODULE_2__["GrafanaThemeType"].Light,
   isDark: false,
   isLight: true,
   name: 'Grafana Light',
-  palette: Object.assign(Object.assign({}, basicColors), {
+  palette: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, basicColors), {
     brandPrimary: basicColors.orange,
     brandSuccess: basicColors.greenBase,
     brandWarning: basicColors.orange,
@@ -61624,7 +61363,7 @@ var lightTheme = Object.assign(Object.assign({}, default_1["default"]), {
     warn: '#f79520',
     critical: basicColors.redShade
   }),
-  colors: Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, backgrounds), borders), textColors), form), {
+  colors: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, backgrounds), borders), textColors), form), {
     bodyBg: backgrounds.bg1,
     panelBg: backgrounds.bg1,
     pageHeaderBg: backgrounds.bg2,
@@ -61644,7 +61383,8 @@ var lightTheme = Object.assign(Object.assign({}, default_1["default"]), {
     listItem: 'none'
   }
 });
-exports["default"] = lightTheme;
+
+/* harmony default export */ __webpack_exports__["default"] = (lightTheme);
 
 /***/ }),
 
@@ -61652,46 +61392,33 @@ exports["default"] = lightTheme;
 /*!***********************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/themes/mixins.ts ***!
   \***********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: cardChrome, hoverColor, listItem, listItemSelected, focusCss */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var tinycolor2_1 = tslib_1.__importDefault(__webpack_require__(/*! tinycolor2 */ "../../../../node_modules/tinycolor2/tinycolor.js"));
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cardChrome", function() { return cardChrome; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hoverColor", function() { return hoverColor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listItem", function() { return listItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listItemSelected", function() { return listItemSelected; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "focusCss", function() { return focusCss; });
+/* harmony import */ var tinycolor2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tinycolor2 */ "../../../../node_modules/tinycolor2/tinycolor.js");
+/* harmony import */ var tinycolor2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tinycolor2__WEBPACK_IMPORTED_MODULE_0__);
 
 function cardChrome(theme) {
-  return "\n       background: ".concat(theme.colors.bg2, ";\n       &:hover {\n         background: ").concat(hoverColor(theme.colors.bg2, theme), ";\n       }\n       box-shadow: ").concat(theme.shadows.listItem, ";\n       border-radius: ").concat(theme.border.radius.md, ";\n    ");
+  return "\n       background: " + theme.colors.bg2 + ";\n       &:hover {\n         background: " + hoverColor(theme.colors.bg2, theme) + ";\n       }\n       box-shadow: " + theme.shadows.listItem + ";\n       border-radius: " + theme.border.radius.md + ";\n    ";
 }
-
-exports.cardChrome = cardChrome;
-
 function hoverColor(color, theme) {
-  return theme.isDark ? tinycolor2_1["default"](color).brighten(2).toString() : tinycolor2_1["default"](color).darken(2).toString();
+  return theme.isDark ? tinycolor2__WEBPACK_IMPORTED_MODULE_0___default()(color).brighten(2).toString() : tinycolor2__WEBPACK_IMPORTED_MODULE_0___default()(color).darken(2).toString();
 }
-
-exports.hoverColor = hoverColor;
-
 function listItem(theme) {
-  return "\n  background: ".concat(theme.colors.bg2, ";\n  &:hover {\n    background: ").concat(hoverColor(theme.colors.bg2, theme), ";\n  }\n  box-shadow: ").concat(theme.shadows.listItem, ";\n  border-radius: ").concat(theme.border.radius.md, ";\n");
+  return "\n  background: " + theme.colors.bg2 + ";\n  &:hover {\n    background: " + hoverColor(theme.colors.bg2, theme) + ";\n  }\n  box-shadow: " + theme.shadows.listItem + ";\n  border-radius: " + theme.border.radius.md + ";\n";
 }
-
-exports.listItem = listItem;
-
 function listItemSelected(theme) {
-  return "\n       background: ".concat(hoverColor(theme.colors.bg2, theme), ";\n       color: ").concat(theme.colors.textStrong, ";\n    ");
+  return "\n       background: " + hoverColor(theme.colors.bg2, theme) + ";\n       color: " + theme.colors.textStrong + ";\n    ";
 }
-
-exports.listItemSelected = listItemSelected;
-
-exports.focusCss = function (theme) {
-  return "\n  outline: 2px dotted transparent;\n  outline-offset: 2px;\n  box-shadow: 0 0 0 2px ".concat(theme.colors.bodyBg, ", 0 0 0px 4px ").concat(theme.colors.formFocusOutline, ";\n  transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);\n");
+var focusCss = function focusCss(theme) {
+  return "\n  outline: 2px dotted transparent;\n  outline-offset: 2px;\n  box-shadow: 0 0 0 2px " + theme.colors.bodyBg + ", 0 0 0px 4px " + theme.colors.formFocusOutline + ";\n  transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);\n";
 };
 
 /***/ }),
@@ -61700,20 +61427,17 @@ exports.focusCss = function (theme) {
 /*!***********************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/themes/selectThemeVariant.ts ***!
   \***********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: selectThemeVariant */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectThemeVariant", function() { return selectThemeVariant; });
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_0__);
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var data_1 = __webpack_require__(/*! @grafana/data */ "@grafana/data");
-
-exports.selectThemeVariant = function (variants, currentTheme) {
-  return variants[currentTheme || data_1.GrafanaThemeType.Dark];
+var selectThemeVariant = function selectThemeVariant(variants, currentTheme) {
+  return variants[currentTheme || _grafana_data__WEBPACK_IMPORTED_MODULE_0__["GrafanaThemeType"].Dark];
 };
 
 /***/ }),
@@ -61722,31 +61446,23 @@ exports.selectThemeVariant = function (variants, currentTheme) {
 /*!******************************************************************************************************!*\
   !*** /Users/vserh/go/src/github.com/grafana/grafana/packages/grafana-ui/src/themes/stylesFactory.ts ***!
   \******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: stylesFactory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../../../../node_modules/tslib/tslib.es6.js");
-
-var memoize_one_1 = tslib_1.__importDefault(__webpack_require__(/*! memoize-one */ "../../../../node_modules/memoize-one/dist/memoize-one.esm.js")); // import { KeyValue } from '@grafana/data';
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stylesFactory", function() { return stylesFactory; });
+/* harmony import */ var memoize_one__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! memoize-one */ "../../../../node_modules/memoize-one/dist/memoize-one.esm.js");
+ // import { KeyValue } from '@grafana/data';
 
 /**
  *  Creates memoized version of styles creator
  * @param stylesCreator function accepting dependencies based on which styles are created
  */
 
-
 function stylesFactory(stylesCreator) {
-  return memoize_one_1["default"](stylesCreator);
+  return Object(memoize_one__WEBPACK_IMPORTED_MODULE_0__["default"])(stylesCreator);
 }
-
-exports.stylesFactory = stylesFactory;
 
 /***/ }),
 
@@ -62620,7 +62336,8 @@ var Stack = __webpack_require__(/*! ./_Stack */ "../node_modules/lodash/_Stack.j
     isMap = __webpack_require__(/*! ./isMap */ "../node_modules/lodash/isMap.js"),
     isObject = __webpack_require__(/*! ./isObject */ "../node_modules/lodash/isObject.js"),
     isSet = __webpack_require__(/*! ./isSet */ "../node_modules/lodash/isSet.js"),
-    keys = __webpack_require__(/*! ./keys */ "../node_modules/lodash/keys.js");
+    keys = __webpack_require__(/*! ./keys */ "../node_modules/lodash/keys.js"),
+    keysIn = __webpack_require__(/*! ./keysIn */ "../node_modules/lodash/keysIn.js");
 
 /** Used to compose bitmasks for cloning. */
 var CLONE_DEEP_FLAG = 1,
@@ -64424,10 +64141,11 @@ function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
   if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
     return false;
   }
-  // Assume cyclic values are equal.
-  var stacked = stack.get(array);
-  if (stacked && stack.get(other)) {
-    return stacked == other;
+  // Check that cyclic values are equal.
+  var arrStacked = stack.get(array);
+  var othStacked = stack.get(other);
+  if (arrStacked && othStacked) {
+    return arrStacked == other && othStacked == array;
   }
   var index = -1,
       result = true,
@@ -64653,10 +64371,11 @@ function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
       return false;
     }
   }
-  // Assume cyclic values are equal.
-  var stacked = stack.get(object);
-  if (stacked && stack.get(other)) {
-    return stacked == other;
+  // Check that cyclic values are equal.
+  var objStacked = stack.get(object);
+  var othStacked = stack.get(other);
+  if (objStacked && othStacked) {
+    return objStacked == other && othStacked == object;
   }
   var result = true;
   stack.set(object, other);
@@ -69020,7 +68739,7 @@ else {}
 /*!******************************************!*\
   !*** ../node_modules/tslib/tslib.es6.js ***!
   \******************************************/
-/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet */
+/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __createBinding, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -69033,6 +68752,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__metadata", function() { return __metadata; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__awaiter", function() { return __awaiter; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__generator", function() { return __generator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__createBinding", function() { return __createBinding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__exportStar", function() { return __exportStar; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__values", function() { return __values; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__read", function() { return __read; });
@@ -69048,18 +68768,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldGet", function() { return __classPrivateFieldGet; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function() { return __classPrivateFieldSet; });
 /*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
+Copyright (c) Microsoft Corporation.
 
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
 
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 /* global Reflect, Promise */
 
@@ -69152,8 +68872,13 @@ function __generator(thisArg, body) {
     }
 }
 
+function __createBinding(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}
+
 function __exportStar(m, exports) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 
 function __values(o) {
@@ -69268,22 +68993,33 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
 /*!*****************************!*\
   !*** ./datasource/types.ts ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: DEFAULT_LOUDML_RP, MODEL_TYPE_LIST, DEFAULT_MODEL, DEFAULT_JOB, DEFAULT_FEATURE, DEFAULT_START_OPTIONS, MIN_INTERVAL_SECOND, MIN_INTERVAL_UNIT, MAX_INTERVAL_SECOND, MAX_INTERVAL_UNIT, MIN_SPAN, MAX_SPAN, DEFAULT_ANOMALY_TYPE, ANOMALY_HOOK_NAME, ANOMALY_HOOK */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.DEFAULT_LOUDML_RP = 'autogen';
-exports.MODEL_TYPE_LIST = [{
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_LOUDML_RP", function() { return DEFAULT_LOUDML_RP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MODEL_TYPE_LIST", function() { return MODEL_TYPE_LIST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_MODEL", function() { return DEFAULT_MODEL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_JOB", function() { return DEFAULT_JOB; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_FEATURE", function() { return DEFAULT_FEATURE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_START_OPTIONS", function() { return DEFAULT_START_OPTIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MIN_INTERVAL_SECOND", function() { return MIN_INTERVAL_SECOND; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MIN_INTERVAL_UNIT", function() { return MIN_INTERVAL_UNIT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAX_INTERVAL_SECOND", function() { return MAX_INTERVAL_SECOND; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAX_INTERVAL_UNIT", function() { return MAX_INTERVAL_UNIT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MIN_SPAN", function() { return MIN_SPAN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAX_SPAN", function() { return MAX_SPAN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_ANOMALY_TYPE", function() { return DEFAULT_ANOMALY_TYPE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ANOMALY_HOOK_NAME", function() { return ANOMALY_HOOK_NAME; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ANOMALY_HOOK", function() { return ANOMALY_HOOK; });
+var DEFAULT_LOUDML_RP = 'autogen';
+var MODEL_TYPE_LIST = [{
   name: 'Donut',
   type: 'donut',
   "default": true
 }];
-exports.DEFAULT_MODEL = {
+var DEFAULT_MODEL = {
   bucket_interval: '20m',
   default_bucket: null,
   features: [],
@@ -69292,9 +69028,9 @@ exports.DEFAULT_MODEL = {
   name: '',
   offset: '10s',
   span: 10,
-  type: exports.MODEL_TYPE_LIST[0].type
+  type: MODEL_TYPE_LIST[0].type
 };
-exports.DEFAULT_JOB = {
+var DEFAULT_JOB = {
   name: '',
   method: 'get',
   relative_url: '',
@@ -69306,7 +69042,7 @@ exports.DEFAULT_JOB = {
     at: ''
   }
 };
-exports.DEFAULT_FEATURE = {
+var DEFAULT_FEATURE = {
   name: '',
   measurement: null,
   field: null,
@@ -69316,18 +69052,18 @@ exports.DEFAULT_FEATURE = {
   anomaly_type: 'low_high',
   match_all: []
 };
-exports.DEFAULT_START_OPTIONS = {
+var DEFAULT_START_OPTIONS = {
   output_bucket: 'loudml',
   save_output_data: true,
   flag_abnormal_data: true
 };
-exports.MIN_INTERVAL_SECOND = 5;
-exports.MIN_INTERVAL_UNIT = "".concat(exports.MIN_INTERVAL_SECOND, "s");
-exports.MAX_INTERVAL_SECOND = 60;
-exports.MAX_INTERVAL_UNIT = "".concat(exports.MAX_INTERVAL_SECOND, "s");
-exports.MIN_SPAN = 10;
-exports.MAX_SPAN = 100;
-exports.DEFAULT_ANOMALY_TYPE = [{
+var MIN_INTERVAL_SECOND = 5;
+var MIN_INTERVAL_UNIT = MIN_INTERVAL_SECOND + "s";
+var MAX_INTERVAL_SECOND = 60;
+var MAX_INTERVAL_UNIT = MAX_INTERVAL_SECOND + "s";
+var MIN_SPAN = 10;
+var MAX_SPAN = 100;
+var DEFAULT_ANOMALY_TYPE = [{
   text: 'low',
   value: 'low'
 }, {
@@ -69337,10 +69073,10 @@ exports.DEFAULT_ANOMALY_TYPE = [{
   text: 'low/high',
   value: 'low_high'
 }];
-exports.ANOMALY_HOOK_NAME = 'add_annotation';
-exports.ANOMALY_HOOK = {
+var ANOMALY_HOOK_NAME = 'add_annotation';
+var ANOMALY_HOOK = {
   type: 'annotations',
-  name: exports.ANOMALY_HOOK_NAME,
+  name: ANOMALY_HOOK_NAME,
   config: {
     id: null,
     type: 'loudml',
@@ -69354,80 +69090,60 @@ exports.ANOMALY_HOOK = {
 /*!**************************!*\
   !*** ./panel/Graph2.tsx ***!
   \**************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Graph2, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Graph2", function() { return Graph2; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var tinycolor2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tinycolor2 */ "../node_modules/tinycolor2/tinycolor.js");
+/* harmony import */ var tinycolor2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(tinycolor2__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var lodash_uniqBy__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash/uniqBy */ "../node_modules/lodash/uniqBy.js");
+/* harmony import */ var lodash_uniqBy__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash_uniqBy__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var lodash_flattenDeep__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash/flattenDeep */ "../node_modules/lodash/flattenDeep.js");
+/* harmony import */ var lodash_flattenDeep__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash_flattenDeep__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var lodash_cloneDeep__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lodash/cloneDeep */ "../node_modules/lodash/cloneDeep.js");
+/* harmony import */ var lodash_cloneDeep__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash_cloneDeep__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! grafana/app/core/app_events */ "grafana/app/core/app_events");
+/* harmony import */ var grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _grafana_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @grafana/runtime */ "@grafana/runtime");
+/* harmony import */ var _grafana_runtime__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_grafana_runtime__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_11__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js"); // Libraries
+ // @ts-nocheck
+// Libraries
 
 
-var lodash_1 = tslib_1.__importDefault(__webpack_require__(/*! lodash */ "lodash"));
 
-var jquery_1 = tslib_1.__importDefault(__webpack_require__(/*! jquery */ "jquery"));
 
-var tinycolor2_1 = tslib_1.__importDefault(__webpack_require__(/*! tinycolor2 */ "../node_modules/tinycolor2/tinycolor.js"));
 
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
 
-var uniqBy_1 = tslib_1.__importDefault(__webpack_require__(/*! lodash/uniqBy */ "../node_modules/lodash/uniqBy.js"));
 
-var flattenDeep_1 = tslib_1.__importDefault(__webpack_require__(/*! lodash/flattenDeep */ "../node_modules/lodash/flattenDeep.js"));
 
-var cloneDeep_1 = tslib_1.__importDefault(__webpack_require__(/*! lodash/cloneDeep */ "../node_modules/lodash/cloneDeep.js"));
 
-var app_events_1 = tslib_1.__importDefault(__webpack_require__(/*! grafana/app/core/app_events */ "grafana/app/core/app_events"));
 
-var runtime_1 = __webpack_require__(/*! @grafana/runtime */ "@grafana/runtime");
 
-var data_1 = __webpack_require__(/*! @grafana/data */ "@grafana/data");
 
-var ui_1 = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
 
-var Graph2 = /*#__PURE__*/function (_ui_1$Graph) {
-  _inherits(Graph2, _ui_1$Graph);
-
-  var _super = _createSuper(Graph2);
+var Graph2 =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(Graph2, _super);
 
   function Graph2(props) {
-    var _this;
+    var _this = _super.call(this, props) || this;
 
-    _classCallCheck(this, Graph2);
-
-    _this = _super.call(this, props);
     var promises = [];
     var dsPromises = [];
     var range = props.timeRange;
@@ -69436,7 +69152,7 @@ var Graph2 = /*#__PURE__*/function (_ui_1$Graph) {
     if (props.panelChrome) {
       _this.dashboard = props.panelChrome.props.dashboard;
       Promise.all([_this.getGlobalAnnotations(range)]).then(function (results) {
-        _this.annotations = flattenDeep_1["default"](results[0]); // filter out annotations that do not belong to requesting panel
+        _this.annotations = lodash_flattenDeep__WEBPACK_IMPORTED_MODULE_6___default()(results[0]); // filter out annotations that do not belong to requesting panel
 
         _this.annotations = _this.annotations.filter(function (item) {
           // if event has panel id and query is of type dashboard then panel and requesting panel id must match
@@ -69455,7 +69171,7 @@ var Graph2 = /*#__PURE__*/function (_ui_1$Graph) {
         }
 
         console.log('AnnotationSrv.query error', err);
-        app_events_1["default"].emit(data_1.AppEvents.alertError, ['Annotation Query Failed', err.message || err]);
+        grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_8___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_10__["AppEvents"].alertError, ['Annotation Query Failed', err.message || err]);
         return [];
       });
     }
@@ -69463,415 +69179,411 @@ var Graph2 = /*#__PURE__*/function (_ui_1$Graph) {
     return _this;
   }
 
-  _createClass(Graph2, [{
-    key: "getGlobalAnnotations",
-    value: function getGlobalAnnotations(range) {
-      var _this2 = this;
+  Graph2.prototype.getGlobalAnnotations = function (range) {
+    var e_1, _a;
 
-      var promises = [];
-      var dsPromises = [];
+    var _this = this;
 
-      var _iterator = _createForOfIteratorHelper(this.dashboard.annotations.list),
-          _step;
+    var promises = [];
+    var dsPromises = [];
 
-      try {
-        var _loop = function _loop() {
-          var annotation = _step.value;
-
-          if (!annotation.enable) {
-            return "continue";
-          }
-
-          if (annotation.snapshotData) {
-            return {
-              v: _this2.translateQueryResult(annotation, annotation.snapshotData)
-            };
-          }
-
-          var datasourcePromise = runtime_1.getDataSourceSrv().get(annotation.datasource);
-          dsPromises.push(datasourcePromise);
-          promises.push(datasourcePromise.then(function (datasource) {
-            // issue query against data source
-            return datasource.annotationQuery({
-              range: range,
-              rangeRaw: range.raw,
-              annotation: annotation,
-              dashboard: _this2.dashboard
-            });
-          }).then(function (results) {
-            // store response in annotation object if this is a snapshot call
-            if (_this2.dashboard.snapshot) {
-              annotation.snapshotData = cloneDeep_1["default"](results);
-            } // translate result
-
-
-            return _this2.translateQueryResult(annotation, results);
-          }));
-        };
-
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var _ret = _loop();
-
-          switch (_ret) {
-            case "continue":
-              continue;
-
-            default:
-              if (_typeof(_ret) === "object") return _ret.v;
-          }
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
+    var _loop_1 = function _loop_1(annotation) {
+      if (!annotation.enable) {
+        return "continue";
       }
 
-      this.datasourcePromises = Promise.all(dsPromises);
-      this.globalAnnotationsPromise = Promise.all(promises);
-      return this.globalAnnotationsPromise;
-    }
-  }, {
-    key: "dedupAnnotations",
-    value: function dedupAnnotations(annotations) {
-      var _this3 = this;
-
-      var dedup = []; // Split events by annotationId property existence
-
-      var events = lodash_1["default"].partition(annotations, 'id');
-      var eventsById = lodash_1["default"].groupBy(events[0], 'id');
-      dedup = lodash_1["default"].map(eventsById, function (eventGroup) {
-        if (eventGroup.length > 1 && !lodash_1["default"].every(eventGroup, _this3.isPanelAlert)) {
-          // Get first non-panel alert
-          return lodash_1["default"].find(eventGroup, function (event) {
-            return event.eventType !== 'panel-alert';
-          });
-        } else {
-          return lodash_1["default"].head(eventGroup);
-        }
-      });
-      dedup = lodash_1["default"].concat(dedup, events[1]);
-      return dedup;
-    }
-  }, {
-    key: "isPanelAlert",
-    value: function isPanelAlert(event) {
-      return event.eventType === 'panel-alert';
-    }
-  }, {
-    key: "translateQueryResult",
-    value: function translateQueryResult(annotation, results) {
-      // if annotation has snapshotData
-      // make clone and remove it
       if (annotation.snapshotData) {
-        annotation = cloneDeep_1["default"](annotation);
-        delete annotation.snapshotData;
-      }
-
-      var _iterator2 = _createForOfIteratorHelper(results),
-          _step2;
-
-      try {
-        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var item = _step2.value;
-          item.source = annotation;
-          item.isRegion = item.timeEnd && item.time !== item.timeEnd;
-        }
-      } catch (err) {
-        _iterator2.e(err);
-      } finally {
-        _iterator2.f();
-      }
-
-      return results;
-    }
-  }, {
-    key: "tickFormatter",
-    value: function tickFormatter(val, axis) {
-      var formatter = data_1.getValueFormat('short');
-
-      if (!formatter) {
-        throw new Error("Unit '".concat(format, "' is not supported"));
-      }
-
-      return data_1.formattedValueToString(formatter(val, axis.tickDecimals, axis.scaledDecimals));
-    }
-  }, {
-    key: "getYAxes",
-    value: function getYAxes(series) {
-      var _this4 = this;
-
-      if (series.length === 0) {
-        return [{
-          show: true,
-          min: -1,
-          max: 1
-        }];
-      }
-
-      return uniqBy_1["default"](series.map(function (s) {
-        var index = s.yAxis ? s.yAxis.index : 1;
-        var min = s.yAxis && !isNaN(s.yAxis.min) ? s.yAxis.min : null;
-        var tickDecimals = s.yAxis && !isNaN(s.yAxis.tickDecimals) ? s.yAxis.tickDecimals : null;
         return {
-          show: true,
-          index: index,
-          position: index === 1 ? 'left' : 'right',
-          min: min,
-          tickDecimals: tickDecimals,
-          tickFormatter: _this4.tickFormatter
+          value: this_1.translateQueryResult(annotation, annotation.snapshotData)
         };
-      }), function (yAxisConfig) {
-        return yAxisConfig.index;
-      });
-    }
-  }, {
-    key: "getFillGradient",
-    value: function getFillGradient(amount) {
-      if (!amount) {
-        return null;
       }
 
-      return {
-        colors: [{
-          opacity: 0.0
-        }, {
-          opacity: amount / 10
-        }]
+      var datasourcePromise = Object(_grafana_runtime__WEBPACK_IMPORTED_MODULE_9__["getDataSourceSrv"])().get(annotation.datasource);
+      dsPromises.push(datasourcePromise);
+      promises.push(datasourcePromise.then(function (datasource) {
+        // issue query against data source
+        return datasource.annotationQuery({
+          range: range,
+          rangeRaw: range.raw,
+          annotation: annotation,
+          dashboard: _this.dashboard
+        });
+      }).then(function (results) {
+        // store response in annotation object if this is a snapshot call
+        if (_this.dashboard.snapshot) {
+          annotation.snapshotData = lodash_cloneDeep__WEBPACK_IMPORTED_MODULE_7___default()(results);
+        } // translate result
+
+
+        return _this.translateQueryResult(annotation, results);
+      }));
+    };
+
+    var this_1 = this;
+
+    try {
+      for (var _b = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(this.dashboard.annotations.list), _c = _b.next(); !_c.done; _c = _b.next()) {
+        var annotation = _c.value;
+
+        var state_1 = _loop_1(annotation);
+
+        if (_typeof(state_1) === "object") return state_1.value;
+      }
+    } catch (e_1_1) {
+      e_1 = {
+        error: e_1_1
       };
-    }
-  }, {
-    key: "translateFillOption",
-    value: function translateFillOption(fill) {
-      if (this.props.stack) {
-        return fill === 0 ? 0.001 : fill / 10;
-      } else {
-        return fill / 10;
-      }
-    }
-  }, {
-    key: "draw",
-    value: function draw() {
-      if (this.element === null) {
-        return;
-      }
-
-      var _this$props = this.props,
-          width = _this$props.width,
-          series = _this$props.series,
-          timeRange = _this$props.timeRange,
-          showLines = _this$props.showLines,
-          showBars = _this$props.showBars,
-          showPoints = _this$props.showPoints,
-          isStacked = _this$props.isStacked,
-          lineWidth = _this$props.lineWidth,
-          fill = _this$props.fill,
-          fillGradient = _this$props.fillGradient,
-          timeZone = _this$props.timeZone,
-          onHorizontalRegionSelected = _this$props.onHorizontalRegionSelected;
-
-      if (!width) {
-        return;
-      }
-
-      var ticks = width / 100;
-      var min = timeRange.from.valueOf();
-      var max = timeRange.to.valueOf();
-      var yaxes = this.getYAxes(series);
-      var flotOptions = {
-        legend: {
-          show: false
-        },
-        series: {
-          stack: isStacked,
-          lines: {
-            show: showLines,
-            fill: this.translateFillOption(fill),
-            fillColor: this.getFillGradient(fillGradient),
-            lineWidth: lineWidth,
-            zero: false
-          },
-          points: {
-            show: showPoints,
-            fill: 1,
-            fillColor: false,
-            radius: 2
-          },
-          bars: {
-            show: showBars,
-            fill: 1,
-            // Dividig the width by 1.5 to make the bars not touch each other
-            barWidth: showBars ? this.getBarWidth() / 1.5 : 1,
-            zero: false,
-            lineWidth: lineWidth
-          },
-          shadowSize: 0
-        },
-        xaxis: {
-          show: true,
-          mode: 'time',
-          min: min,
-          max: max,
-          label: 'Datetime',
-          ticks: ticks,
-          timeformat: timeFormat(ticks, min, max),
-          timezone: timeZone !== null && timeZone !== void 0 ? timeZone : DefaultTimeZone
-        },
-        yaxes: yaxes,
-        grid: {
-          minBorderMargin: 0,
-          markings: [],
-          backgroundColor: null,
-          borderWidth: 0,
-          hoverable: true,
-          clickable: true,
-          color: '#a1a1a1',
-          margin: {
-            left: 0,
-            right: 0
-          },
-          labelMarginX: 0,
-          mouseActiveRadius: 30
-        },
-        selection: {
-          mode: onHorizontalRegionSelected ? 'x' : null,
-          color: '#666'
-        },
-        crosshair: {
-          mode: 'x'
-        }
-      };
-      this.addFlotEvents(this.annotations, flotOptions);
-
+    } finally {
       try {
-        jquery_1["default"].plot(this.element, series.filter(function (s) {
-          return s.isVisible;
-        }), flotOptions);
-      } catch (err) {
-        console.log('Graph rendering error', err, flotOptions, series);
-        throw new Error('Error rendering panel');
+        if (_c && !_c.done && (_a = _b["return"])) _a.call(_b);
+      } finally {
+        if (e_1) throw e_1.error;
       }
     }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this5 = this;
 
-      var _this$props2 = this.props,
-          height = _this$props2.height,
-          width = _this$props2.width,
-          series = _this$props2.series;
-      var noDataToBeDisplayed = series.length === 0;
-      var tooltip = this.renderTooltip();
-      var context = this.renderContextMenu();
-      return react_1["default"].createElement("div", {
-        className: "graph-panel"
-      }, react_1["default"].createElement("div", {
-        className: "graph-panel__chart",
-        ref: function ref(e) {
-          return _this5.element = e;
-        },
-        style: {
-          height: height,
-          width: width
-        },
-        onMouseLeave: function onMouseLeave() {
-          _this5.setState({
-            isTooltipVisible: false
-          });
-        }
-      }), noDataToBeDisplayed && react_1["default"].createElement("div", {
-        className: "datapoints-warning"
-      }, "No data"), tooltip, context);
-    }
-  }, {
-    key: "addFlotEvents",
-    value: function addFlotEvents(annotations, flotOptions) {
-      if (!annotations) {
-        return;
+    this.datasourcePromises = Promise.all(dsPromises);
+    this.globalAnnotationsPromise = Promise.all(promises);
+    return this.globalAnnotationsPromise;
+  };
+
+  Graph2.prototype.dedupAnnotations = function (annotations) {
+    var _this = this;
+
+    var dedup = []; // Split events by annotationId property existence
+
+    var events = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.partition(annotations, 'id');
+
+    var eventsById = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.groupBy(events[0], 'id');
+
+    dedup = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.map(eventsById, function (eventGroup) {
+      if (eventGroup.length > 1 && !lodash__WEBPACK_IMPORTED_MODULE_1___default.a.every(eventGroup, _this.isPanelAlert)) {
+        // Get first non-panel alert
+        return lodash__WEBPACK_IMPORTED_MODULE_1___default.a.find(eventGroup, function (event) {
+          return event.eventType !== 'panel-alert';
+        });
+      } else {
+        return lodash__WEBPACK_IMPORTED_MODULE_1___default.a.head(eventGroup);
       }
+    });
+    dedup = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.concat(dedup, events[1]);
+    return dedup;
+  };
 
-      var types = {
-        $__alerting: {
-          color: ui_1.ALERTING_COLOR,
-          position: 'BOTTOM',
-          markerSize: 5
-        },
-        $__ok: {
-          color: ui_1.OK_COLOR,
-          position: 'BOTTOM',
-          markerSize: 5
-        },
-        $__no_data: {
-          color: ui_1.NO_DATA_COLOR,
-          position: 'BOTTOM',
-          markerSize: 5
-        },
-        $__pending: {
-          color: ui_1.PENDING_COLOR,
-          position: 'BOTTOM',
-          markerSize: 5
-        },
-        $__editing: {
-          color: ui_1.DEFAULT_ANNOTATION_COLOR,
-          position: 'BOTTOM',
-          markerSize: 5
-        }
-      }; // annotations from query
+  Graph2.prototype.isPanelAlert = function (event) {
+    return event.eventType === 'panel-alert';
+  };
 
-      annotations.map(function (item) {
-        // add properties used by jquery flot events
-        item.min = item.time;
-        item.max = item.time;
-        item.eventType = item.source.name;
+  Graph2.prototype.translateQueryResult = function (annotation, results) {
+    var e_2, _a; // if annotation has snapshotData
+    // make clone and remove it
 
-        if (item.newState) {
-          item.eventType = '$__' + item.newState;
-        } else {
-          if (!types[item.source.name]) {
-            types[item.source.name] = {
-              color: item.source.iconColor,
-              position: 'BOTTOM',
-              markerSize: 5
-            };
-          }
-        }
-      });
-      var regions = getRegions(annotations);
-      addRegionMarking(regions, flotOptions);
-      var eventSectionHeight = 20;
-      var eventSectionMargin = 7;
-      flotOptions.grid.eventSectionHeight = eventSectionMargin;
-      flotOptions.xaxis.eventSectionHeight = eventSectionHeight;
-      flotOptions.events = {
-        levels: lodash_1["default"].keys(types).length + 1,
-        data: annotations,
-        types: types,
-        manager: this
+
+    if (annotation.snapshotData) {
+      annotation = lodash_cloneDeep__WEBPACK_IMPORTED_MODULE_7___default()(annotation);
+      delete annotation.snapshotData;
+    }
+
+    try {
+      for (var results_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(results), results_1_1 = results_1.next(); !results_1_1.done; results_1_1 = results_1.next()) {
+        var item = results_1_1.value;
+        item.source = annotation;
+        item.isRegion = item.timeEnd && item.time !== item.timeEnd;
+      }
+    } catch (e_2_1) {
+      e_2 = {
+        error: e_2_1
       };
+    } finally {
+      try {
+        if (results_1_1 && !results_1_1.done && (_a = results_1["return"])) _a.call(results_1);
+      } finally {
+        if (e_2) throw e_2.error;
+      }
     }
-  }]);
+
+    return results;
+  };
+
+  Graph2.prototype.tickFormatter = function (val, axis) {
+    var formatter = Object(_grafana_data__WEBPACK_IMPORTED_MODULE_10__["getValueFormat"])('short');
+
+    if (!formatter) {
+      throw new Error("Unit '" + format + "' is not supported");
+    }
+
+    return Object(_grafana_data__WEBPACK_IMPORTED_MODULE_10__["formattedValueToString"])(formatter(val, axis.tickDecimals, axis.scaledDecimals));
+  };
+
+  Graph2.prototype.getYAxes = function (series) {
+    var _this = this;
+
+    if (series.length === 0) {
+      return [{
+        show: true,
+        min: -1,
+        max: 1
+      }];
+    }
+
+    return lodash_uniqBy__WEBPACK_IMPORTED_MODULE_5___default()(series.map(function (s) {
+      var index = s.yAxis ? s.yAxis.index : 1;
+      var min = s.yAxis && !isNaN(s.yAxis.min) ? s.yAxis.min : null;
+      var tickDecimals = s.yAxis && !isNaN(s.yAxis.tickDecimals) ? s.yAxis.tickDecimals : null;
+      return {
+        show: true,
+        index: index,
+        position: index === 1 ? 'left' : 'right',
+        min: min,
+        tickDecimals: tickDecimals,
+        tickFormatter: _this.tickFormatter
+      };
+    }), function (yAxisConfig) {
+      return yAxisConfig.index;
+    });
+  };
+
+  Graph2.prototype.getFillGradient = function (amount) {
+    if (!amount) {
+      return null;
+    }
+
+    return {
+      colors: [{
+        opacity: 0.0
+      }, {
+        opacity: amount / 10
+      }]
+    };
+  };
+
+  Graph2.prototype.translateFillOption = function (fill) {
+    if (this.props.stack) {
+      return fill === 0 ? 0.001 : fill / 10;
+    } else {
+      return fill / 10;
+    }
+  };
+
+  Graph2.prototype.draw = function () {
+    if (this.element === null) {
+      return;
+    }
+
+    var _a = this.props,
+        width = _a.width,
+        series = _a.series,
+        timeRange = _a.timeRange,
+        showLines = _a.showLines,
+        showBars = _a.showBars,
+        showPoints = _a.showPoints,
+        isStacked = _a.isStacked,
+        lineWidth = _a.lineWidth,
+        fill = _a.fill,
+        fillGradient = _a.fillGradient,
+        timeZone = _a.timeZone,
+        onHorizontalRegionSelected = _a.onHorizontalRegionSelected;
+
+    if (!width) {
+      return;
+    }
+
+    var ticks = width / 100;
+    var min = timeRange.from.valueOf();
+    var max = timeRange.to.valueOf();
+    var yaxes = this.getYAxes(series);
+    var flotOptions = {
+      legend: {
+        show: false
+      },
+      series: {
+        stack: isStacked,
+        lines: {
+          show: showLines,
+          fill: this.translateFillOption(fill),
+          fillColor: this.getFillGradient(fillGradient),
+          lineWidth: lineWidth,
+          zero: false
+        },
+        points: {
+          show: showPoints,
+          fill: 1,
+          fillColor: false,
+          radius: 2
+        },
+        bars: {
+          show: showBars,
+          fill: 1,
+          // Dividig the width by 1.5 to make the bars not touch each other
+          barWidth: showBars ? this.getBarWidth() / 1.5 : 1,
+          zero: false,
+          lineWidth: lineWidth
+        },
+        shadowSize: 0
+      },
+      xaxis: {
+        show: true,
+        mode: 'time',
+        min: min,
+        max: max,
+        label: 'Datetime',
+        ticks: ticks,
+        timeformat: timeFormat(ticks, min, max),
+        timezone: timeZone !== null && timeZone !== void 0 ? timeZone : DefaultTimeZone
+      },
+      yaxes: yaxes,
+      grid: {
+        minBorderMargin: 0,
+        markings: [],
+        backgroundColor: null,
+        borderWidth: 0,
+        hoverable: true,
+        clickable: true,
+        color: '#a1a1a1',
+        margin: {
+          left: 0,
+          right: 0
+        },
+        labelMarginX: 0,
+        mouseActiveRadius: 30
+      },
+      selection: {
+        mode: onHorizontalRegionSelected ? 'x' : null,
+        color: '#666'
+      },
+      crosshair: {
+        mode: 'x'
+      }
+    };
+    this.addFlotEvents(this.annotations, flotOptions);
+
+    try {
+      jquery__WEBPACK_IMPORTED_MODULE_2___default.a.plot(this.element, series.filter(function (s) {
+        return s.isVisible;
+      }), flotOptions);
+    } catch (err) {
+      console.log('Graph rendering error', err, flotOptions, series);
+      throw new Error('Error rendering panel');
+    }
+  };
+
+  Graph2.prototype.render = function () {
+    var _this = this;
+
+    var _a = this.props,
+        height = _a.height,
+        width = _a.width,
+        series = _a.series;
+    var noDataToBeDisplayed = series.length === 0;
+    var tooltip = this.renderTooltip();
+    var context = this.renderContextMenu();
+    return react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
+      className: "graph-panel"
+    }, react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
+      className: "graph-panel__chart",
+      ref: function ref(e) {
+        return _this.element = e;
+      },
+      style: {
+        height: height,
+        width: width
+      },
+      onMouseLeave: function onMouseLeave() {
+        _this.setState({
+          isTooltipVisible: false
+        });
+      }
+    }), noDataToBeDisplayed && react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
+      className: "datapoints-warning"
+    }, "No data"), tooltip, context);
+  };
+
+  Graph2.prototype.addFlotEvents = function (annotations, flotOptions) {
+    if (!annotations) {
+      return;
+    }
+
+    var types = {
+      $__alerting: {
+        color: _grafana_ui__WEBPACK_IMPORTED_MODULE_11__["ALERTING_COLOR"],
+        position: 'BOTTOM',
+        markerSize: 5
+      },
+      $__ok: {
+        color: _grafana_ui__WEBPACK_IMPORTED_MODULE_11__["OK_COLOR"],
+        position: 'BOTTOM',
+        markerSize: 5
+      },
+      $__no_data: {
+        color: _grafana_ui__WEBPACK_IMPORTED_MODULE_11__["NO_DATA_COLOR"],
+        position: 'BOTTOM',
+        markerSize: 5
+      },
+      $__pending: {
+        color: _grafana_ui__WEBPACK_IMPORTED_MODULE_11__["PENDING_COLOR"],
+        position: 'BOTTOM',
+        markerSize: 5
+      },
+      $__editing: {
+        color: _grafana_ui__WEBPACK_IMPORTED_MODULE_11__["DEFAULT_ANNOTATION_COLOR"],
+        position: 'BOTTOM',
+        markerSize: 5
+      }
+    }; // annotations from query
+
+    annotations.map(function (item) {
+      // add properties used by jquery flot events
+      item.min = item.time;
+      item.max = item.time;
+      item.eventType = item.source.name;
+
+      if (item.newState) {
+        item.eventType = '$__' + item.newState;
+      } else {
+        if (!types[item.source.name]) {
+          types[item.source.name] = {
+            color: item.source.iconColor,
+            position: 'BOTTOM',
+            markerSize: 5
+          };
+        }
+      }
+    });
+    var regions = getRegions(annotations);
+    addRegionMarking(regions, flotOptions);
+    var eventSectionHeight = 20;
+    var eventSectionMargin = 7;
+    flotOptions.grid.eventSectionHeight = eventSectionMargin;
+    flotOptions.xaxis.eventSectionHeight = eventSectionHeight;
+    flotOptions.events = {
+      levels: lodash__WEBPACK_IMPORTED_MODULE_1___default.a.keys(types).length + 1,
+      data: annotations,
+      types: types,
+      manager: this
+    };
+  };
 
   return Graph2;
-}(ui_1.Graph);
+}(_grafana_ui__WEBPACK_IMPORTED_MODULE_11__["Graph"]);
 
-exports.Graph2 = Graph2;
+
 
 function getRegions(events) {
-  return lodash_1["default"].filter(events, 'isRegion');
+  return lodash__WEBPACK_IMPORTED_MODULE_1___default.a.filter(events, 'isRegion');
 }
 
 function addRegionMarking(regions, flotOptions) {
   var markings = flotOptions.grid.markings;
-  var defaultColor = ui_1.DEFAULT_ANNOTATION_COLOR;
+  var defaultColor = _grafana_ui__WEBPACK_IMPORTED_MODULE_11__["DEFAULT_ANNOTATION_COLOR"];
   var fillColor;
-  lodash_1["default"].each(regions, function (region) {
+
+  lodash__WEBPACK_IMPORTED_MODULE_1___default.a.each(regions, function (region) {
     if (region.source) {
       fillColor = region.source.iconColor || defaultColor;
     } else {
       fillColor = defaultColor;
     }
 
-    fillColor = addAlphaToRGB(fillColor, ui_1.REGION_FILL_ALPHA);
+    fillColor = addAlphaToRGB(fillColor, _grafana_ui__WEBPACK_IMPORTED_MODULE_11__["REGION_FILL_ALPHA"]);
     markings.push({
       xaxis: {
         from: region.min,
@@ -69883,7 +69595,7 @@ function addRegionMarking(regions, flotOptions) {
 }
 
 function addAlphaToRGB(colorString, alpha) {
-  var color = tinycolor2_1["default"](colorString);
+  var color = tinycolor2__WEBPACK_IMPORTED_MODULE_3___default()(colorString);
 
   if (color.isValid()) {
     color.setAlpha(alpha);
@@ -69923,7 +69635,7 @@ function timeFormat(ticks, min, max) {
   return '%H:%M';
 }
 
-exports["default"] = Graph2;
+/* harmony default export */ __webpack_exports__["default"] = (Graph2);
 
 /***/ }),
 
@@ -69931,52 +69643,51 @@ exports["default"] = Graph2;
 /*!******************************!*\
   !*** ./panel/GraphPanel.tsx ***!
   \******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: GraphPanel */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GraphPanel", function() { return GraphPanel; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _GraphWithLegend2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./GraphWithLegend2 */ "./panel/GraphWithLegend2.tsx");
+/* harmony import */ var _GraphPanelController__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./GraphPanelController */ "./panel/GraphPanelController.tsx");
+/* harmony import */ var _grafana_ui_src_components_Legend_Legend__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @grafana/ui/src/components/Legend/Legend */ "../../../../packages/grafana-ui/src/components/Legend/Legend.tsx");
+ // @ts-nocheck
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var tslib_1 = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
 
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
 
-var ui_1 = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
 
-var GraphWithLegend2_1 = __webpack_require__(/*! ./GraphWithLegend2 */ "./panel/GraphWithLegend2.tsx");
-
-var GraphPanelController_1 = __webpack_require__(/*! ./GraphPanelController */ "./panel/GraphPanelController.tsx");
-
-var Legend_1 = __webpack_require__(/*! @grafana/ui/src/components/Legend/Legend */ "../../../../packages/grafana-ui/src/components/Legend/Legend.tsx");
-
-exports.GraphPanel = function (_ref) {
-  var data = _ref.data,
-      timeRange = _ref.timeRange,
-      timeZone = _ref.timeZone,
-      width = _ref.width,
-      height = _ref.height,
-      options = _ref.options,
-      onOptionsChange = _ref.onOptionsChange,
-      onChangeTimeRange = _ref.onChangeTimeRange;
+var GraphPanel = function GraphPanel(_a) {
+  var data = _a.data,
+      timeRange = _a.timeRange,
+      timeZone = _a.timeZone,
+      width = _a.width,
+      height = _a.height,
+      options = _a.options,
+      onOptionsChange = _a.onOptionsChange,
+      onChangeTimeRange = _a.onChangeTimeRange;
 
   if (!data) {
-    return react_1["default"].createElement("div", {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "panel-empty"
-    }, react_1["default"].createElement("p", null, "No data found in response"));
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "No data found in response"));
   }
 
-  var _options$graph = options.graph,
-      showLines = _options$graph.showLines,
-      showBars = _options$graph.showBars,
-      showPoints = _options$graph.showPoints,
-      isStacked = _options$graph.isStacked,
-      lineWidth = _options$graph.lineWidth,
-      fill = _options$graph.fill,
-      fillGradient = _options$graph.fillGradient,
+  var _b = options.graph,
+      showLines = _b.showLines,
+      showBars = _b.showBars,
+      showPoints = _b.showPoints,
+      isStacked = _b.isStacked,
+      lineWidth = _b.lineWidth,
+      fill = _b.fill,
+      fillGradient = _b.fillGradient,
       legendOptions = options.legend,
       tooltipOptions = options.tooltipOptions;
   var graphProps = {
@@ -69992,21 +69703,21 @@ exports.GraphPanel = function (_ref) {
 
   var asTable = legendOptions.asTable,
       isVisible = legendOptions.isVisible,
-      legendProps = tslib_1.__rest(legendOptions, ["asTable", "isVisible"]);
+      legendProps = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(legendOptions, ["asTable", "isVisible"]);
 
-  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(GraphPanelController_1.CreateBaselineButton, {
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_GraphPanelController__WEBPACK_IMPORTED_MODULE_4__["CreateBaselineButton"], {
     data: data,
     timeRange: timeRange,
     timeZone: timeZone,
     panelOptions: options,
     onOptionsChange: onOptionsChange
-  }), react_1["default"].createElement(GraphPanelController_1.MLModelController, {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_GraphPanelController__WEBPACK_IMPORTED_MODULE_4__["MLModelController"], {
     data: data,
     timeRange: timeRange,
     timeZone: timeZone,
     panelOptions: options,
     onOptionsChange: onOptionsChange
-  }), react_1["default"].createElement(GraphPanelController_1.GraphPanelController, {
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_GraphPanelController__WEBPACK_IMPORTED_MODULE_4__["GraphPanelController"], {
     data: data,
     timeZone: timeZone,
     options: options,
@@ -70015,21 +69726,21 @@ exports.GraphPanel = function (_ref) {
   }, function (_a) {
     var onSeriesToggle = _a.onSeriesToggle,
         onHorizontalRegionSelected = _a.onHorizontalRegionSelected,
-        controllerApi = tslib_1.__rest(_a, ["onSeriesToggle", "onHorizontalRegionSelected"]);
+        controllerApi = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["onSeriesToggle", "onHorizontalRegionSelected"]);
 
-    return react_1["default"].createElement(GraphWithLegend2_1.GraphWithLegend2, Object.assign({
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_GraphWithLegend2__WEBPACK_IMPORTED_MODULE_3__["GraphWithLegend2"], Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({
       timeRange: timeRange,
       timeZone: timeZone,
       width: width,
       height: height - 50,
-      displayMode: asTable ? Legend_1.LegendDisplayMode.Table : Legend_1.LegendDisplayMode.List,
+      displayMode: asTable ? _grafana_ui_src_components_Legend_Legend__WEBPACK_IMPORTED_MODULE_5__["LegendDisplayMode"].Table : _grafana_ui_src_components_Legend_Legend__WEBPACK_IMPORTED_MODULE_5__["LegendDisplayMode"].List,
       isLegendVisible: isVisible,
       sortLegendBy: legendOptions.sortBy,
       sortLegendDesc: legendOptions.sortDesc,
       onSeriesToggle: onSeriesToggle,
       onHorizontalRegionSelected: onHorizontalRegionSelected,
       onClick: onHorizontalRegionSelected
-    }, graphProps, legendProps, controllerApi), react_1["default"].createElement(ui_1.Chart.Tooltip, {
+    }, graphProps, legendProps, controllerApi), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["Chart"].Tooltip, {
       mode: tooltipOptions.mode
     }));
   }));
@@ -70041,741 +69752,680 @@ exports.GraphPanel = function (_ref) {
 /*!****************************************!*\
   !*** ./panel/GraphPanelController.tsx ***!
   \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: GraphPanelController, LoudMLTooltip, CreateBaselineButton, MLModelController */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GraphPanelController", function() { return GraphPanelController; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoudMLTooltip", function() { return LoudMLTooltip; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateBaselineButton", function() { return CreateBaselineButton; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MLModelController", function() { return MLModelController; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "moment");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _grafana_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @grafana/runtime */ "@grafana/runtime");
+/* harmony import */ var _grafana_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_grafana_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! grafana/app/core/app_events */ "grafana/app/core/app_events");
+/* harmony import */ var grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _getGraphSeriesModel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./getGraphSeriesModel */ "./panel/getGraphSeriesModel.ts");
+/* harmony import */ var _datasource_types__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../datasource/types */ "./datasource/types.ts");
+/* harmony import */ var _extractors__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./extractors */ "./panel/extractors.ts");
+ // @ts-nocheck
 
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
 /*eslint no-restricted-imports: ["off"]*/
 
 
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
 
-var moment_1 = tslib_1.__importDefault(__webpack_require__(/*! moment */ "moment"));
 
-var ui_1 = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
 
-var data_1 = __webpack_require__(/*! @grafana/data */ "@grafana/data");
 
-var runtime_1 = __webpack_require__(/*! @grafana/runtime */ "@grafana/runtime");
 
-var app_events_1 = tslib_1.__importDefault(__webpack_require__(/*! grafana/app/core/app_events */ "grafana/app/core/app_events"));
 
-var getGraphSeriesModel_1 = __webpack_require__(/*! ./getGraphSeriesModel */ "./panel/getGraphSeriesModel.ts");
 
-var types_1 = __webpack_require__(/*! ../datasource/types */ "./datasource/types.ts");
 
-var extractors_1 = __webpack_require__(/*! ./extractors */ "./panel/extractors.ts");
 
-var GraphPanelController = /*#__PURE__*/function (_react_1$default$Comp) {
-  _inherits(GraphPanelController, _react_1$default$Comp);
-
-  var _super = _createSuper(GraphPanelController);
+var GraphPanelController =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(GraphPanelController, _super);
 
   function GraphPanelController(props) {
-    var _this;
+    var _this = _super.call(this, props) || this;
 
-    _classCallCheck(this, GraphPanelController);
-
-    _this = _super.call(this, props);
-    _this.onSeriesColorChange = _this.onSeriesColorChange.bind(_assertThisInitialized(_this));
-    _this.onSeriesAxisToggle = _this.onSeriesAxisToggle.bind(_assertThisInitialized(_this));
-    _this.onToggleSort = _this.onToggleSort.bind(_assertThisInitialized(_this));
-    _this.onHorizontalRegionSelected = _this.onHorizontalRegionSelected.bind(_assertThisInitialized(_this));
+    _this.onSeriesColorChange = _this.onSeriesColorChange.bind(_this);
+    _this.onSeriesAxisToggle = _this.onSeriesAxisToggle.bind(_this);
+    _this.onToggleSort = _this.onToggleSort.bind(_this);
+    _this.onHorizontalRegionSelected = _this.onHorizontalRegionSelected.bind(_this);
     _this.state = {
-      graphSeriesModel: getGraphSeriesModel_1.getGraphSeriesModel(props.data.series, props.timeZone, props.options.series || {}, props.options.graph, props.options.legend, props.options.fieldOptions)
+      graphSeriesModel: Object(_getGraphSeriesModel__WEBPACK_IMPORTED_MODULE_7__["getGraphSeriesModel"])(props.data.series, props.timeZone, props.options.series || {}, props.options.graph, props.options.legend, props.options.fieldOptions)
     };
     window.console.log('-- LoudML Panel init --');
-    window.console.log(_assertThisInitialized(_this));
+    window.console.log(_this);
     return _this;
   }
 
-  _createClass(GraphPanelController, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {// TODO
-    }
-  }, {
-    key: "onSeriesOptionsUpdate",
-    value: function onSeriesOptionsUpdate(label, optionsUpdate) {
-      var _this$props = this.props,
-          onOptionsChange = _this$props.onOptionsChange,
-          options = _this$props.options;
-      var updatedSeriesOptions = Object.assign({}, options.series);
-      updatedSeriesOptions[label] = optionsUpdate;
-      onOptionsChange(Object.assign(Object.assign({}, options), {
-        series: updatedSeriesOptions
-      }));
-    }
-  }, {
-    key: "onSeriesAxisToggle",
-    value: function onSeriesAxisToggle(label, yAxis) {
-      var series = this.props.options.series;
-      var seriesOptionsUpdate = series[label] ? Object.assign(Object.assign({}, series[label]), {
-        yAxis: Object.assign(Object.assign({}, series[label].yAxis), {
-          index: yAxis
-        })
-      }) : {
-        yAxis: {
-          index: yAxis
-        }
-      };
-      this.onSeriesOptionsUpdate(label, seriesOptionsUpdate);
-    }
-  }, {
-    key: "onSeriesColorChange",
-    value: function onSeriesColorChange(label, color) {
-      var series = this.props.options.series;
-      var seriesOptionsUpdate = series[label] ? Object.assign(Object.assign({}, series[label]), {
-        color: color
-      }) : {
-        color: color
-      };
-      this.onSeriesOptionsUpdate(label, seriesOptionsUpdate);
-    }
-  }, {
-    key: "onToggleSort",
-    value: function onToggleSort(sortBy) {
-      var _this$props2 = this.props,
-          onOptionsChange = _this$props2.onOptionsChange,
-          options = _this$props2.options;
-      onOptionsChange(Object.assign(Object.assign({}, options), {
-        legend: Object.assign(Object.assign({}, options.legend), {
-          sortBy: sortBy,
-          sortDesc: sortBy === options.legend.sortBy ? !options.legend.sortDesc : false
-        })
-      }));
-    }
-  }, {
-    key: "onHorizontalRegionSelected",
-    value: function onHorizontalRegionSelected(from, to) {
-      var onChangeTimeRange = this.props.onChangeTimeRange;
-      onChangeTimeRange({
-        from: from,
-        to: to
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
+  GraphPanelController.prototype.componentDidUpdate = function (prevProps) {// TODO
+  };
 
-      var children = this.props.children;
-      var graphSeriesModel = this.state.graphSeriesModel;
-      var panelChrome = null;
+  GraphPanelController.getDerivedStateFromProps = function (props, state) {
+    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, state), {
+      graphSeriesModel: Object(_getGraphSeriesModel__WEBPACK_IMPORTED_MODULE_7__["getGraphSeriesModel"])(props.data.series, props.timeZone, props.options.series || {}, props.options.graph, props.options.legend, props.options.fieldOptions)
+    });
+  };
 
-      try {
-        panelChrome = this._reactInternalFiber._debugOwner._debugOwner._debugOwner.stateNode;
-      } catch (e) {
-        window.console.log(e);
+  GraphPanelController.prototype.onSeriesOptionsUpdate = function (label, optionsUpdate) {
+    var _a = this.props,
+        onOptionsChange = _a.onOptionsChange,
+        options = _a.options;
+
+    var updatedSeriesOptions = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, options.series);
+
+    updatedSeriesOptions[label] = optionsUpdate;
+    onOptionsChange(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, options), {
+      series: updatedSeriesOptions
+    }));
+  };
+
+  GraphPanelController.prototype.onSeriesAxisToggle = function (label, yAxis) {
+    var series = this.props.options.series;
+    var seriesOptionsUpdate = series[label] ? Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, series[label]), {
+      yAxis: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, series[label].yAxis), {
+        index: yAxis
+      })
+    }) : {
+      yAxis: {
+        index: yAxis
       }
+    };
+    this.onSeriesOptionsUpdate(label, seriesOptionsUpdate);
+  };
 
-      return react_1["default"].createElement(ui_1.GraphSeriesToggler, {
-        series: graphSeriesModel
-      }, function (_ref) {
-        var onSeriesToggle = _ref.onSeriesToggle,
-            toggledSeries = _ref.toggledSeries;
-        return children({
-          series: toggledSeries,
-          onSeriesColorChange: _this2.onSeriesColorChange,
-          onSeriesAxisToggle: _this2.onSeriesAxisToggle,
-          onToggleSort: _this2.onToggleSort,
-          onSeriesToggle: onSeriesToggle,
-          onHorizontalRegionSelected: _this2.onHorizontalRegionSelected,
-          panelChrome: panelChrome
-        });
-      });
+  GraphPanelController.prototype.onSeriesColorChange = function (label, color) {
+    var series = this.props.options.series;
+    var seriesOptionsUpdate = series[label] ? Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, series[label]), {
+      color: color
+    }) : {
+      color: color
+    };
+    this.onSeriesOptionsUpdate(label, seriesOptionsUpdate);
+  };
+
+  GraphPanelController.prototype.onToggleSort = function (sortBy) {
+    var _a = this.props,
+        onOptionsChange = _a.onOptionsChange,
+        options = _a.options;
+    onOptionsChange(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, options), {
+      legend: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, options.legend), {
+        sortBy: sortBy,
+        sortDesc: sortBy === options.legend.sortBy ? !options.legend.sortDesc : false
+      })
+    }));
+  };
+
+  GraphPanelController.prototype.onHorizontalRegionSelected = function (from, to) {
+    var onChangeTimeRange = this.props.onChangeTimeRange;
+    onChangeTimeRange({
+      from: from,
+      to: to
+    });
+  };
+
+  GraphPanelController.prototype.render = function () {
+    var _this = this;
+
+    var children = this.props.children;
+    var graphSeriesModel = this.state.graphSeriesModel;
+    var panelChrome = null;
+
+    try {
+      panelChrome = this._reactInternalFiber._debugOwner._debugOwner._debugOwner.stateNode;
+    } catch (e) {
+      window.console.log(e);
     }
-  }], [{
-    key: "getDerivedStateFromProps",
-    value: function getDerivedStateFromProps(props, state) {
-      return Object.assign(Object.assign({}, state), {
-        graphSeriesModel: getGraphSeriesModel_1.getGraphSeriesModel(props.data.series, props.timeZone, props.options.series || {}, props.options.graph, props.options.legend, props.options.fieldOptions)
+
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_3__["GraphSeriesToggler"], {
+      series: graphSeriesModel
+    }, function (_a) {
+      var onSeriesToggle = _a.onSeriesToggle,
+          toggledSeries = _a.toggledSeries;
+      return children({
+        series: toggledSeries,
+        onSeriesColorChange: _this.onSeriesColorChange,
+        onSeriesAxisToggle: _this.onSeriesAxisToggle,
+        onToggleSort: _this.onToggleSort,
+        onSeriesToggle: onSeriesToggle,
+        onHorizontalRegionSelected: _this.onHorizontalRegionSelected,
+        panelChrome: panelChrome
       });
-    }
-  }]);
+    });
+  };
 
   return GraphPanelController;
-}(react_1["default"].Component);
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
-exports.GraphPanelController = GraphPanelController;
 
-var LoudMLTooltip = /*#__PURE__*/function (_react_1$default$Comp2) {
-  _inherits(LoudMLTooltip, _react_1$default$Comp2);
 
-  var _super2 = _createSuper(LoudMLTooltip);
+var LoudMLTooltip =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(LoudMLTooltip, _super);
 
   function LoudMLTooltip(props) {
-    var _this3;
+    var _this = _super.call(this, props) || this;
 
-    _classCallCheck(this, LoudMLTooltip);
-
-    _this3 = _super2.call(this, props);
-    _this3.data = props.data;
-    _this3.datasourceOptions = props.datasourceOptions;
-    return _this3;
+    _this.data = props.data;
+    _this.datasourceOptions = props.datasourceOptions;
+    return _this;
   }
 
-  _createClass(LoudMLTooltip, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      this.data = this.props.data;
-      this.datasourceOptions = this.props.datasourceOptions;
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var datasource = this.datasourceOptions.datasource;
-      var input_bucket = this.datasourceOptions.input_bucket;
-      var output_bucket = this.datasourceOptions.output_bucket;
-      var feature = this.data.request.targets && this.data.request.targets.length > 0 && extractors_1.extract_tooltip_feature(this.data.request.targets[0]) || 'Select one or more fields';
-      var interval = this.data.request.targets && this.data.request.targets.length > 0 && extractors_1.extract_group_by(this.data.request.targets[0]) || "Select a 'Group by' value";
-      var fill_value = this.data.request.targets && this.data.request.targets.length > 0 && extractors_1.extract_fill_value(this.data.request.targets[0]) || "Select a 'Fill' value"; // TODO: extractor for Tags
+  LoudMLTooltip.prototype.componentDidUpdate = function (prevProps) {
+    this.data = this.props.data;
+    this.datasourceOptions = this.props.datasourceOptions;
+  };
 
-      var tags_value = this.data.request.targets && extractors_1.extract_format_tags(this.data.request.targets[0]) || "(Optional) Select 'Tag(s)' or WHERE statement";
-      return react_1["default"].createElement("div", {
-        className: "small"
-      }, react_1["default"].createElement("p", null, "Use your current data selection to baseline normal metric behavior using a machine learning task.", react_1["default"].createElement("br", null), "This will create a new model, and run training to fit the baseline to your data.", react_1["default"].createElement("br", null), "You can visualise the baseline, and forecast future data once training is completed. To run model click on ", react_1["default"].createElement("i", {
-        className: "fa fa-play"
-      }), ' ', "Play button.", react_1["default"].createElement("br", null), react_1["default"].createElement("br", null), "Use Mixed Query, leave first query with source data as is. Then add a query from datasource equal to Loud ML output bucket (ex. \"loudml\"). In output database will be present metrics \"lower_mean_*\", \"upper_mean_\" and \"@mean_\". To filter results by your model please use WHERE clause and select your model name."), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Feature(s):"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, feature)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "groupBy bucket interval:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, interval)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Match all:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, tags_value)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Fill value:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, fill_value)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "LoudML server:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, datasource)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Input bucket:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, input_bucket)), react_1["default"].createElement("p", null, react_1["default"].createElement("b", null, "Output bucket:"), react_1["default"].createElement("br", null), react_1["default"].createElement("code", null, output_bucket)));
-    }
-  }]);
+  LoudMLTooltip.prototype.render = function () {
+    var datasource = this.datasourceOptions.datasource;
+    var input_bucket = this.datasourceOptions.input_bucket;
+    var output_bucket = this.datasourceOptions.output_bucket;
+    var feature = this.data.request.targets && this.data.request.targets.length > 0 && Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_tooltip_feature"])(this.data.request.targets[0]) || 'Select one or more fields';
+    var interval = this.data.request.targets && this.data.request.targets.length > 0 && Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_group_by"])(this.data.request.targets[0]) || "Select a 'Group by' value";
+    var fill_value = this.data.request.targets && this.data.request.targets.length > 0 && Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_fill_value"])(this.data.request.targets[0]) || "Select a 'Fill' value"; // TODO: extractor for Tags
+
+    var tags_value = this.data.request.targets && Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_format_tags"])(this.data.request.targets[0]) || "(Optional) Select 'Tag(s)' or WHERE statement";
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "small"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Use your current data selection to baseline normal metric behavior using a machine learning task.", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), "This will create a new model, and run training to fit the baseline to your data.", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), "You can visualise the baseline, and forecast future data once training is completed. To run model click on ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+      className: "fa fa-play"
+    }), ' ', "Play button.", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), "Use Mixed Query, leave first query with source data as is. Then add a query from datasource equal to Loud ML output bucket (ex. \"loudml\"). In output database will be present metrics \"lower_mean_*\", \"upper_mean_\" and \"@mean_\". To filter results by your model please use WHERE clause and select your model name."), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("b", null, "Feature(s):"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("code", null, feature)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("b", null, "groupBy bucket interval:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("code", null, interval)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("b", null, "Match all:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("code", null, tags_value)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("b", null, "Fill value:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("code", null, fill_value)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("b", null, "LoudML server:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("code", null, datasource)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("b", null, "Input bucket:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("code", null, input_bucket)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("b", null, "Output bucket:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("code", null, output_bucket)));
+  };
 
   return LoudMLTooltip;
-}(react_1["default"].Component);
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
-exports.LoudMLTooltip = LoudMLTooltip;
 
-var CreateBaselineButton = /*#__PURE__*/function (_react_1$default$Comp3) {
-  _inherits(CreateBaselineButton, _react_1$default$Comp3);
 
-  var _super3 = _createSuper(CreateBaselineButton);
+var CreateBaselineButton =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(CreateBaselineButton, _super);
 
   function CreateBaselineButton(props) {
-    var _this4;
+    var _this = _super.call(this, props) || this;
 
-    _classCallCheck(this, CreateBaselineButton);
-
-    _this4 = _super3.call(this, props);
-    _this4.data = props.data;
-    _this4.ds = null;
-    _this4.dsName = null;
+    _this.data = props.data;
+    _this.ds = null;
+    _this.dsName = null;
     window.console.log('CreateBaselineButton init', props);
-    return _this4;
+    return _this;
   }
 
-  _createClass(CreateBaselineButton, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      this.data = this.props.data;
+  CreateBaselineButton.prototype.componentDidUpdate = function (prevProps) {
+    this.data = this.props.data;
+  };
+
+  CreateBaselineButton.prototype.isValid = function () {
+    return this.data.request.targets && this.data.request.targets.length > 0 && Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_is_valid"])(this.data.request.targets[0]);
+  };
+
+  CreateBaselineButton.prototype.normalizeInterval = function (bucketInterval) {
+    // interval = max(5, min(bucketIntervak, 60))
+    var regex = /(\d+)(.*)/;
+    var interval = regex.exec(bucketInterval);
+
+    if (!interval) {
+      return _datasource_types__WEBPACK_IMPORTED_MODULE_8__["MIN_INTERVAL_UNIT"];
     }
-  }, {
-    key: "isValid",
-    value: function isValid() {
-      return this.data.request.targets && this.data.request.targets.length > 0 && extractors_1.extract_is_valid(this.data.request.targets[0]);
+
+    var duration = moment__WEBPACK_IMPORTED_MODULE_2___default.a.duration(parseInt(interval[1], 10), interval[2]).asSeconds();
+
+    if (!duration) {
+      return _datasource_types__WEBPACK_IMPORTED_MODULE_8__["MIN_INTERVAL_UNIT"];
     }
-  }, {
-    key: "normalizeInterval",
-    value: function normalizeInterval(bucketInterval) {
-      // interval = max(5, min(bucketIntervak, 60))
-      var regex = /(\d+)(.*)/;
-      var interval = regex.exec(bucketInterval);
 
-      if (!interval) {
-        return types_1.MIN_INTERVAL_UNIT;
-      }
+    var normalized = Math.max(_datasource_types__WEBPACK_IMPORTED_MODULE_8__["MIN_INTERVAL_SECOND"], Math.min(duration, _datasource_types__WEBPACK_IMPORTED_MODULE_8__["MAX_INTERVAL_SECOND"]));
+    return normalized + "s";
+  };
 
-      var duration = moment_1["default"].duration(parseInt(interval[1], 10), interval[2]).asSeconds();
+  CreateBaselineButton.prototype.normalizeSpan = function (bucketInterval) {
+    // span = max(10, min(24h/bucketInterval, 100))
+    var regex = /(\d+)(.*)/;
+    var interval = regex.exec(bucketInterval);
 
-      if (!duration) {
-        return types_1.MIN_INTERVAL_UNIT;
-      }
-
-      var normalized = Math.max(types_1.MIN_INTERVAL_SECOND, Math.min(duration, types_1.MAX_INTERVAL_SECOND));
-      return "".concat(normalized, "s");
+    if (!interval) {
+      return _datasource_types__WEBPACK_IMPORTED_MODULE_8__["MIN_SPAN"];
     }
-  }, {
-    key: "normalizeSpan",
-    value: function normalizeSpan(bucketInterval) {
-      // span = max(10, min(24h/bucketInterval, 100))
-      var regex = /(\d+)(.*)/;
-      var interval = regex.exec(bucketInterval);
 
-      if (!interval) {
-        return types_1.MIN_SPAN;
-      }
+    var duration = moment__WEBPACK_IMPORTED_MODULE_2___default.a.duration(parseInt(interval[1], 10), interval[2]).asSeconds();
 
-      var duration = moment_1["default"].duration(parseInt(interval[1], 10), interval[2]).asSeconds();
-
-      if (!duration) {
-        return types_1.MIN_SPAN;
-      }
-
-      return Math.max(types_1.MIN_SPAN, Math.min(Math.ceil(86400 / duration), types_1.MAX_SPAN));
+    if (!duration) {
+      return _datasource_types__WEBPACK_IMPORTED_MODULE_8__["MIN_SPAN"];
     }
-  }, {
-    key: "_trainModel",
-    value: function _trainModel(name, output_bucket) {
-      var loudml = this.ds.loudml;
+
+    return Math.max(_datasource_types__WEBPACK_IMPORTED_MODULE_8__["MIN_SPAN"], Math.min(Math.ceil(86400 / duration), _datasource_types__WEBPACK_IMPORTED_MODULE_8__["MAX_SPAN"]));
+  };
+
+  CreateBaselineButton.prototype._trainModel = function (name, output_bucket) {
+    var loudml = this.ds.loudml;
+
+    try {
+      loudml.trainModel(name, this.data, output_bucket).then(function (result) {
+        window.console.log('trainModel', result);
+        grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertSuccess, ['Model train job started on Loud ML server']);
+      })["catch"](function (err) {
+        window.console.log('trainModel error', err);
+        grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertError, ['Model train job error', err.data.message]);
+        return;
+      });
+    } catch (error) {
+      console.error(error);
+      grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertError, ['Model train job error', err.message]);
+    }
+  };
+
+  CreateBaselineButton.prototype._createAndTrainModel = function () {
+    // Model Example:
+    // {
+    //     "bucket_interval": "5m",
+    //     "default_bucket": "telegraf_autogen_cpu",
+    //     "features": [
+    //         {
+    //             "name": "mean_usage_user",
+    //             "measurement": "cpu",
+    //             "field": "usage_user",
+    //             "metric": "mean",
+    //             "io": "io",
+    //             "default": null,
+    //             "match_all": [
+    //                 {
+    //                     "tag": "cpu",
+    //                     "value": "cpu-total"
+    //                 },
+    //                 {
+    //                     "tag": "host",
+    //                     "value": "macbook4823"
+    //                 }
+    //             ]
+    //         }
+    //     ],
+    //     "interval": "60s",
+    //     "max_evals": 10,
+    //     "name": "telegraf_cpu_mean_usage_user_cpu_cpu_total_host_macbook4823_5m",
+    //     "offset": "10s",
+    //     "span": 100,
+    //     "type": "donut"
+    // }
+    var _this = this;
+
+    var source = this.data.request.targets[0];
+    var fields = source.select || [source];
+    var loudml = this.ds.loudml;
+    this.getDatasource(source.datasource).then(function (result) {
+      _this.datasource = result; // TODO: find a way to pass all this.datasource connection params to Loud ML server
+      // This will allow to auto create bucket to store ML Model training results
+      // this.ds.loudml.createAndGetBucket(
+      //   this.datasource.database,
+      //   source.policy,
+      //   source.measurement,
+      //   this.datasource
+      // ).then(result => {
+      //     const bucket = result;
+
+      var bucket = _this.props.panelOptions.datasourceOptions.input_bucket;
+      var output_bucket = _this.props.panelOptions.datasourceOptions.output_bucket;
+      var measurement = Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_model_measurement"])(source);
+      var fill = Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_model_fill"])(source);
+      var match_all = Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_model_tags_map"])(source);
+      var name = [Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_model_database"])(_this.datasource), measurement, Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_model_select"])(source, fields[0]), Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_model_tags"])(source), Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_model_time_format"])(source)].join('_').replace(/\./g, '_'); // Group By Value – [{params: ["5m"], type: "time"}, {params: ["linear"], type: "fill"}]
+      // Let parse a "5m" time from it
+
+      var time = Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_model_time"])(source);
+
+      var model = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, _datasource_types__WEBPACK_IMPORTED_MODULE_8__["DEFAULT_MODEL"]), {
+        max_evals: 10,
+        name: name,
+        interval: _this.normalizeInterval(time),
+        span: _this.normalizeSpan(time),
+        default_bucket: bucket,
+        bucket_interval: time,
+        features: fields.map(function (field) {
+          return {
+            name: Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_model_select"])(source, field),
+            measurement: measurement,
+            field: Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_model_feature"])(source, field),
+            metric: Object(_extractors__WEBPACK_IMPORTED_MODULE_9__["extract_model_func"])(source, field),
+            io: 'io',
+            "default": fill,
+            match_all: match_all
+          };
+        })
+      });
+
+      window.console.log('ML Model', model);
+      _this.props.panelOptions.modelName = name;
+
+      _this.props.onOptionsChange(_this.props.panelOptions);
+
+      loudml.getModel(name).then(function (result) {
+        window.console.log('ML model already exists. Let train it on the current dataframe');
+        _this.props.panelOptions.modelName = name;
+
+        _this.props.onOptionsChange(_this.props.panelOptions);
+
+        _this._trainModel(name, output_bucket);
+      })["catch"](function (err) {
+        window.console.log('New ML model case. Let create and train it.');
+        loudml.createModel(model).then(function (result) {
+          loudml.createModelHook(model.name, loudml.createHook(_datasource_types__WEBPACK_IMPORTED_MODULE_8__["ANOMALY_HOOK"], model.default_bucket)).then(function (result) {
+            grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertSuccess, ['Model has been created on Loud ML server']);
+            _this.props.panelOptions.modelName = name;
+
+            _this.props.onOptionsChange(_this.props.panelOptions);
+
+            _this._trainModel(name, output_bucket);
+          })["catch"](function (err) {
+            window.console.log('createModelHook error', err);
+            grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertError, [err.message]);
+            return;
+          });
+        })["catch"](function (err) {
+          window.console.log('createModel error', err);
+          grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertError, ['Model create error', err.data]);
+          return;
+        });
+      }); // })
+    })["catch"](function (err) {
+      console.error(err);
+      grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertError, [err.message]);
+      return;
+    });
+  };
+
+  CreateBaselineButton.prototype.getDatasource = function (value) {
+    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            return [4
+            /*yield*/
+            , Object(_grafana_runtime__WEBPACK_IMPORTED_MODULE_5__["getDataSourceSrv"])().loadDatasource(value)];
+
+          case 1:
+            // TODO: Consider to use this to get proper URL, username
+            // getBackendSrv().get('api/datasources/' + 6)
+            // .then(ds => {
+            //   window.console.log(ds)
+            // })
+            return [2
+            /*return*/
+            , _a.sent()];
+        }
+      });
+    });
+  };
+
+  CreateBaselineButton.prototype.getLoudMLDatasource = function () {
+    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            return [4
+            /*yield*/
+            , Object(_grafana_runtime__WEBPACK_IMPORTED_MODULE_5__["getDataSourceSrv"])().loadDatasource(this.dsName)];
+
+          case 1:
+            return [2
+            /*return*/
+            , _a.sent()];
+        }
+      });
+    });
+  };
+
+  CreateBaselineButton.prototype.onCreateBaselineClick = function () {
+    var _this = this;
+
+    var datasourceOptions = this.props.panelOptions.datasourceOptions;
+    window.console.log('-- Create Baseline --');
+    window.console.log('LoudML server:', datasourceOptions.datasource);
+    window.console.log('Input bucket:', datasourceOptions.input_bucket);
+    window.console.log('Output bucket:', datasourceOptions.output_bucket);
+    this.dsName = datasourceOptions.datasource;
+
+    if (!this.dsName) {
+      grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertError, ['Please choose Loud ML Server in panel settings']);
+      return;
+    }
+
+    this.getLoudMLDatasource().then(function (result) {
+      _this.ds = result;
+
+      if (_this.isValid()) {
+        _this._createAndTrainModel();
+      } else {
+        grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertError, ['In Query settings please choose One metric; Group by != auto; Fill != linear']);
+      }
+    })["catch"](function (err) {
+      window.console.log('Error getting Loud ML datasource', err);
+      grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertError, [err.message]);
+      return;
+    });
+  };
+
+  CreateBaselineButton.prototype.render = function () {
+    var data = this.data;
+    var datasourceOptions = this.props.panelOptions.datasourceOptions;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+      size: "sm",
+      className: "btn btn-inverse",
+      disabled: !this.isValid(),
+      onClick: this.onCreateBaselineClick.bind(this)
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+      className: "fa fa-graduation-cap fa-fw"
+    }), "Create Baseline"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_3__["Tooltip"], {
+      placement: "top",
+      content: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(LoudMLTooltip, {
+        data: data,
+        datasourceOptions: datasourceOptions
+      })
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "gf-form-help-icon"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+      className: "fa fa-info-circle"
+    }))));
+  };
+
+  return CreateBaselineButton;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+
+
+var MLModelController =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(MLModelController, _super);
+
+  function MLModelController(props) {
+    var _this = _super.call(this, props) || this; // window.console.log('MLModelController init', props);
+
+
+    _this.getLoudMLDatasource();
+
+    return _this;
+  }
+
+  MLModelController.prototype.componentDidUpdate = function (prevProps) {
+    // window.console.log('MLModelController update', this.props);
+    this.getLoudMLDatasource();
+  };
+
+  MLModelController.prototype.componentDidMount = function () {
+    this.intervalId = setInterval(this.getModel.bind(this), 15000);
+  };
+
+  MLModelController.prototype.componentWillUnmount = function () {
+    clearInterval(this.intervalId);
+  };
+
+  MLModelController.prototype.getModel = function () {
+    var _this = this;
+
+    if (!this.loudml || this.props.panelOptions.modelName.length === 0) {
+      return;
+    }
+
+    this.modelName = this.props.panelOptions.modelName; // window.console.log("ML getModel", this.modelName);
+
+    this.loudml.getModel(this.modelName).then(function (result) {
+      _this.model = result[0];
+
+      _this.props.onOptionsChange(_this.props.panelOptions);
+    })["catch"](function (err) {
+      window.console.log('Error getting Loud ML model', err);
+    });
+  };
+
+  MLModelController.prototype.getLoudMLDatasource = function () {
+    var _this = this;
+
+    if (this.dsName === this.props.panelOptions.datasourceOptions.datasource) {
+      return;
+    }
+
+    this.dsName = this.props.panelOptions.datasourceOptions.datasource;
+
+    if (!this.dsName) {
+      return;
+    }
+
+    Object(_grafana_runtime__WEBPACK_IMPORTED_MODULE_5__["getDataSourceSrv"])().loadDatasource(this.dsName).then(function (result) {
+      _this.ds = result;
+      _this.loudml = _this.ds.loudml;
+
+      _this.getModel();
+    })["catch"](function (err) {
+      window.console.log('Error getting Loud ML datasource', err);
+      return;
+    });
+  };
+
+  MLModelController.prototype.toggleModelRun = function () {
+    var _this = this;
+
+    if (this.model && this.model.settings && this.model.settings.run) {
+      this.loudml.stopModel(this.modelName).then(function (result) {
+        _this.model.settings.run = false;
+
+        _this.props.onOptionsChange(_this.props.panelOptions);
+      });
+    } else {
+      var output_bucket = this.props.panelOptions.datasourceOptions.output_bucket;
+      this.loudml.startModel(this.modelName, output_bucket).then(function (result) {
+        _this.model.settings.run = true;
+
+        _this.props.onOptionsChange(_this.props.panelOptions);
+      });
+    }
+  };
+
+  MLModelController.prototype.trainModel = function () {
+    if (this.model) {
+      var output_bucket = this.props.panelOptions.datasourceOptions.output_bucket;
 
       try {
-        loudml.trainModel(name, this.data, output_bucket).then(function (result) {
-          window.console.log('trainModel', result);
-          app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model train job started on Loud ML server']);
+        this.loudml.trainModel(this.modelName, this.props.data, output_bucket).then(function (result) {
+          window.console.log('ML trainModel', result);
+          grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertSuccess, ['Model train job started on Loud ML server']);
         })["catch"](function (err) {
-          window.console.log('trainModel error', err);
-          app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model train job error', err.data.message]);
+          window.console.log('ML trainModel error', err);
+          grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertError, ['Model train job error', err.data.message]);
           return;
         });
       } catch (error) {
         console.error(error);
-        app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model train job error', err.message]);
+        grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertError, ['Model train job error', err.message]);
       }
     }
-  }, {
-    key: "_createAndTrainModel",
-    value: function _createAndTrainModel() {
-      var _this5 = this;
+  };
 
-      // Model Example:
-      // {
-      //     "bucket_interval": "5m",
-      //     "default_bucket": "telegraf_autogen_cpu",
-      //     "features": [
-      //         {
-      //             "name": "mean_usage_user",
-      //             "measurement": "cpu",
-      //             "field": "usage_user",
-      //             "metric": "mean",
-      //             "io": "io",
-      //             "default": null,
-      //             "match_all": [
-      //                 {
-      //                     "tag": "cpu",
-      //                     "value": "cpu-total"
-      //                 },
-      //                 {
-      //                     "tag": "host",
-      //                     "value": "macbook4823"
-      //                 }
-      //             ]
-      //         }
-      //     ],
-      //     "interval": "60s",
-      //     "max_evals": 10,
-      //     "name": "telegraf_cpu_mean_usage_user_cpu_cpu_total_host_macbook4823_5m",
-      //     "offset": "10s",
-      //     "span": 100,
-      //     "type": "donut"
-      // }
-      var source = this.data.request.targets[0];
-      var fields = source.select || [source];
-      var loudml = this.ds.loudml;
-      this.getDatasource(source.datasource).then(function (result) {
-        _this5.datasource = result; // TODO: find a way to pass all this.datasource connection params to Loud ML server
-        // This will allow to auto create bucket to store ML Model training results
-        // this.ds.loudml.createAndGetBucket(
-        //   this.datasource.database,
-        //   source.policy,
-        //   source.measurement,
-        //   this.datasource
-        // ).then(result => {
-        //     const bucket = result;
+  MLModelController.prototype.forecastModel = function () {
+    if (this.model) {
+      var output_bucket = this.props.panelOptions.datasourceOptions.output_bucket;
 
-        var bucket = _this5.props.panelOptions.datasourceOptions.input_bucket;
-        var output_bucket = _this5.props.panelOptions.datasourceOptions.output_bucket;
-        var measurement = extractors_1.extract_model_measurement(source);
-        var fill = extractors_1.extract_model_fill(source);
-        var match_all = extractors_1.extract_model_tags_map(source);
-        var name = [extractors_1.extract_model_database(_this5.datasource), measurement, extractors_1.extract_model_select(source, fields[0]), extractors_1.extract_model_tags(source), extractors_1.extract_model_time_format(source)].join('_').replace(/\./g, '_'); // Group By Value – [{params: ["5m"], type: "time"}, {params: ["linear"], type: "fill"}]
-        // Let parse a "5m" time from it
-
-        var time = extractors_1.extract_model_time(source);
-        var model = Object.assign(Object.assign({}, types_1.DEFAULT_MODEL), {
-          max_evals: 10,
-          name: name,
-          interval: _this5.normalizeInterval(time),
-          span: _this5.normalizeSpan(time),
-          default_bucket: bucket,
-          bucket_interval: time,
-          features: fields.map(function (field) {
-            return {
-              name: extractors_1.extract_model_select(source, field),
-              measurement: measurement,
-              field: extractors_1.extract_model_feature(source, field),
-              metric: extractors_1.extract_model_func(source, field),
-              io: 'io',
-              "default": fill,
-              match_all: match_all
-            };
-          })
-        });
-        window.console.log('ML Model', model);
-        _this5.props.panelOptions.modelName = name;
-
-        _this5.props.onOptionsChange(_this5.props.panelOptions);
-
-        loudml.getModel(name).then(function (result) {
-          window.console.log('ML model already exists. Let train it on the current dataframe');
-          _this5.props.panelOptions.modelName = name;
-
-          _this5.props.onOptionsChange(_this5.props.panelOptions);
-
-          _this5._trainModel(name, output_bucket);
+      try {
+        this.loudml.forecastModel(this.modelName, this.props.data, output_bucket).then(function (result) {
+          window.console.log('ML forecastModel', result);
+          grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertSuccess, ['Model forecast job started on Loud ML server']);
         })["catch"](function (err) {
-          window.console.log('New ML model case. Let create and train it.');
-          loudml.createModel(model).then(function (result) {
-            loudml.createModelHook(model.name, loudml.createHook(types_1.ANOMALY_HOOK, model.default_bucket)).then(function (result) {
-              app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been created on Loud ML server']);
-              _this5.props.panelOptions.modelName = name;
-
-              _this5.props.onOptionsChange(_this5.props.panelOptions);
-
-              _this5._trainModel(name, output_bucket);
-            })["catch"](function (err) {
-              window.console.log('createModelHook error', err);
-              app_events_1["default"].emit(data_1.AppEvents.alertError, [err.message]);
-              return;
-            });
-          })["catch"](function (err) {
-            window.console.log('createModel error', err);
-            app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model create error', err.data]);
-            return;
-          });
-        }); // })
-      })["catch"](function (err) {
-        console.error(err);
-        app_events_1["default"].emit(data_1.AppEvents.alertError, [err.message]);
-        return;
-      });
-    }
-  }, {
-    key: "getDatasource",
-    value: function getDatasource(value) {
-      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return runtime_1.getDataSourceSrv().loadDatasource(value);
-
-              case 2:
-                return _context.abrupt("return", _context.sent);
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }));
-    }
-  }, {
-    key: "getLoudMLDatasource",
-    value: function getLoudMLDatasource() {
-      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return runtime_1.getDataSourceSrv().loadDatasource(this.dsName);
-
-              case 2:
-                return _context2.abrupt("return", _context2.sent);
-
-              case 3:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-    }
-  }, {
-    key: "onCreateBaselineClick",
-    value: function onCreateBaselineClick() {
-      var _this6 = this;
-
-      var datasourceOptions = this.props.panelOptions.datasourceOptions;
-      window.console.log('-- Create Baseline --');
-      window.console.log('LoudML server:', datasourceOptions.datasource);
-      window.console.log('Input bucket:', datasourceOptions.input_bucket);
-      window.console.log('Output bucket:', datasourceOptions.output_bucket);
-      this.dsName = datasourceOptions.datasource;
-
-      if (!this.dsName) {
-        app_events_1["default"].emit(data_1.AppEvents.alertError, ['Please choose Loud ML Server in panel settings']);
-        return;
+          window.console.log('ML forecastModel error', err);
+          grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertError, ['Model forecast job error', err.data.message]);
+          return;
+        });
+      } catch (error) {
+        console.error(error);
+        grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_6___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_4__["AppEvents"].alertError, ['Model forecast job error', err.message]);
       }
-
-      this.getLoudMLDatasource().then(function (result) {
-        _this6.ds = result;
-
-        if (_this6.isValid()) {
-          _this6._createAndTrainModel();
-        } else {
-          app_events_1["default"].emit(data_1.AppEvents.alertError, ['In Query settings please choose One metric; Group by != auto; Fill != linear']);
-        }
-      })["catch"](function (err) {
-        window.console.log('Error getting Loud ML datasource', err);
-        app_events_1["default"].emit(data_1.AppEvents.alertError, [err.message]);
-        return;
-      });
     }
-  }, {
-    key: "render",
-    value: function render() {
-      var data = this.data;
-      var datasourceOptions = this.props.panelOptions.datasourceOptions;
-      return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(ui_1.Button, {
-        size: "sm",
-        className: "btn btn-inverse",
-        disabled: !this.isValid(),
-        onClick: this.onCreateBaselineClick.bind(this)
-      }, react_1["default"].createElement("i", {
-        className: "fa fa-graduation-cap fa-fw"
-      }), "Create Baseline"), react_1["default"].createElement(ui_1.Tooltip, {
+  };
+
+  MLModelController.prototype.render = function () {
+    var play_btn = this.model && this.model.settings && this.model.settings.run && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+      href: "#",
+      onClick: this.toggleModelRun.bind(this)
+    }, ' ', react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+      className: "fa fa-pause"
+    }), " Stop") || react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+      href: "#",
+      onClick: this.toggleModelRun.bind(this)
+    }, ' ', react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+      className: "fa fa-play"
+    }), " Play");
+    var model_trained = this.model && this.model.state && this.model.state.trained && 'Trained.' || 'Not trained.';
+
+    if (this.model && this.model.training && this.model.training.state === 'running') {
+      model_trained = 'Training...';
+    }
+
+    if (this.modelName) {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "panel-time-info"
+      }, "ML Model: ", this.modelName, " ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "label"
+      }, model_trained), play_btn, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        href: "#",
+        className: "gf-form-help-icon",
+        onClick: this.trainModel.bind(this)
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+        className: "fa fa-clock-o"
+      }), " Train"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        href: "#",
+        className: "gf-form-help-icon",
+        onClick: this.forecastModel.bind(this)
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+        className: "fa fa-clock-o"
+      }), " Forecast"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_3__["Tooltip"], {
         placement: "top",
-        content: react_1["default"].createElement(LoudMLTooltip, {
-          data: data,
-          datasourceOptions: datasourceOptions
-        })
-      }, react_1["default"].createElement("span", {
+        content: "Current time range selection will be used to Train / Forecast"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         className: "gf-form-help-icon"
-      }, react_1["default"].createElement("i", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
         className: "fa fa-info-circle"
       }))));
+    } else {
+      return null;
     }
-  }]);
-
-  return CreateBaselineButton;
-}(react_1["default"].Component);
-
-exports.CreateBaselineButton = CreateBaselineButton;
-
-var MLModelController = /*#__PURE__*/function (_react_1$default$Comp4) {
-  _inherits(MLModelController, _react_1$default$Comp4);
-
-  var _super4 = _createSuper(MLModelController);
-
-  function MLModelController(props) {
-    var _this7;
-
-    _classCallCheck(this, MLModelController);
-
-    _this7 = _super4.call(this, props); // window.console.log('MLModelController init', props);
-
-    _this7.getLoudMLDatasource();
-
-    return _this7;
-  }
-
-  _createClass(MLModelController, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      // window.console.log('MLModelController update', this.props);
-      this.getLoudMLDatasource();
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.intervalId = setInterval(this.getModel.bind(this), 15000);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      clearInterval(this.intervalId);
-    }
-  }, {
-    key: "getModel",
-    value: function getModel() {
-      var _this8 = this;
-
-      if (!this.loudml || this.props.panelOptions.modelName.length === 0) {
-        return;
-      }
-
-      this.modelName = this.props.panelOptions.modelName; // window.console.log("ML getModel", this.modelName);
-
-      this.loudml.getModel(this.modelName).then(function (result) {
-        _this8.model = result[0];
-
-        _this8.props.onOptionsChange(_this8.props.panelOptions);
-      })["catch"](function (err) {
-        window.console.log('Error getting Loud ML model', err);
-      });
-    }
-  }, {
-    key: "getLoudMLDatasource",
-    value: function getLoudMLDatasource() {
-      var _this9 = this;
-
-      if (this.dsName === this.props.panelOptions.datasourceOptions.datasource) {
-        return;
-      }
-
-      this.dsName = this.props.panelOptions.datasourceOptions.datasource;
-
-      if (!this.dsName) {
-        return;
-      }
-
-      runtime_1.getDataSourceSrv().loadDatasource(this.dsName).then(function (result) {
-        _this9.ds = result;
-        _this9.loudml = _this9.ds.loudml;
-
-        _this9.getModel();
-      })["catch"](function (err) {
-        window.console.log('Error getting Loud ML datasource', err);
-        return;
-      });
-    }
-  }, {
-    key: "toggleModelRun",
-    value: function toggleModelRun() {
-      var _this10 = this;
-
-      if (this.model && this.model.settings && this.model.settings.run) {
-        this.loudml.stopModel(this.modelName).then(function (result) {
-          _this10.model.settings.run = false;
-
-          _this10.props.onOptionsChange(_this10.props.panelOptions);
-        });
-      } else {
-        var output_bucket = this.props.panelOptions.datasourceOptions.output_bucket;
-        this.loudml.startModel(this.modelName, output_bucket).then(function (result) {
-          _this10.model.settings.run = true;
-
-          _this10.props.onOptionsChange(_this10.props.panelOptions);
-        });
-      }
-    }
-  }, {
-    key: "trainModel",
-    value: function trainModel() {
-      if (this.model) {
-        var output_bucket = this.props.panelOptions.datasourceOptions.output_bucket;
-
-        try {
-          this.loudml.trainModel(this.modelName, this.props.data, output_bucket).then(function (result) {
-            window.console.log('ML trainModel', result);
-            app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model train job started on Loud ML server']);
-          })["catch"](function (err) {
-            window.console.log('ML trainModel error', err);
-            app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model train job error', err.data.message]);
-            return;
-          });
-        } catch (error) {
-          console.error(error);
-          app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model train job error', err.message]);
-        }
-      }
-    }
-  }, {
-    key: "forecastModel",
-    value: function forecastModel() {
-      if (this.model) {
-        var output_bucket = this.props.panelOptions.datasourceOptions.output_bucket;
-
-        try {
-          this.loudml.forecastModel(this.modelName, this.props.data, output_bucket).then(function (result) {
-            window.console.log('ML forecastModel', result);
-            app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model forecast job started on Loud ML server']);
-          })["catch"](function (err) {
-            window.console.log('ML forecastModel error', err);
-            app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model forecast job error', err.data.message]);
-            return;
-          });
-        } catch (error) {
-          console.error(error);
-          app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model forecast job error', err.message]);
-        }
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var play_btn = this.model && this.model.settings && this.model.settings.run && react_1["default"].createElement("a", {
-        href: "#",
-        onClick: this.toggleModelRun.bind(this)
-      }, ' ', react_1["default"].createElement("i", {
-        className: "fa fa-pause"
-      }), " Stop") || react_1["default"].createElement("a", {
-        href: "#",
-        onClick: this.toggleModelRun.bind(this)
-      }, ' ', react_1["default"].createElement("i", {
-        className: "fa fa-play"
-      }), " Play");
-      var model_trained = this.model && this.model.state && this.model.state.trained && 'Trained.' || 'Not trained.';
-
-      if (this.model && this.model.training && this.model.training.state === 'running') {
-        model_trained = 'Training...';
-      }
-
-      if (this.modelName) {
-        return react_1["default"].createElement("span", {
-          className: "panel-time-info"
-        }, "ML Model: ", this.modelName, " ", react_1["default"].createElement("span", {
-          className: "label"
-        }, model_trained), play_btn, react_1["default"].createElement("a", {
-          href: "#",
-          className: "gf-form-help-icon",
-          onClick: this.trainModel.bind(this)
-        }, react_1["default"].createElement("i", {
-          className: "fa fa-clock-o"
-        }), " Train"), react_1["default"].createElement("a", {
-          href: "#",
-          className: "gf-form-help-icon",
-          onClick: this.forecastModel.bind(this)
-        }, react_1["default"].createElement("i", {
-          className: "fa fa-clock-o"
-        }), " Forecast"), react_1["default"].createElement(ui_1.Tooltip, {
-          placement: "top",
-          content: "Current time range selection will be used to Train / Forecast"
-        }, react_1["default"].createElement("span", {
-          className: "gf-form-help-icon"
-        }, react_1["default"].createElement("i", {
-          className: "fa fa-info-circle"
-        }))));
-      } else {
-        return null;
-      }
-    }
-  }]);
+  };
 
   return MLModelController;
-}(react_1["default"].Component);
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
-exports.MLModelController = MLModelController;
+
 
 /***/ }),
 
@@ -70783,75 +70433,47 @@ exports.MLModelController = MLModelController;
 /*!************************************!*\
   !*** ./panel/GraphWithLegend2.tsx ***!
   \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: GraphWithLegend2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GraphWithLegend2", function() { return GraphWithLegend2; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var emotion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! emotion */ "emotion");
+/* harmony import */ var emotion__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(emotion__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Graph2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Graph2 */ "./panel/Graph2.tsx");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_4__);
+ // @ts-nocheck
+// Libraries
 
 
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n    padding: 25px 0;\n    max-height: ", ";\n  "]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n    min-height: 65%;\n    flex-grow: 1;\n  "]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    display: flex;\n    flex-direction: ", ";\n    height: 100%;\n  "]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var tslib_1 = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js"); // Libraries
 
 
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "react"));
 
-var emotion_1 = __webpack_require__(/*! emotion */ "emotion");
 
-var Graph2_1 = __webpack_require__(/*! ./Graph2 */ "./panel/Graph2.tsx");
 
-var ui_1 = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
-
-var ui_2 = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
-
-var ui_3 = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
-
-var getGraphWithLegendStyles = ui_3.stylesFactory(function (_ref) {
-  var placement = _ref.placement;
+var getGraphWithLegendStyles = Object(_grafana_ui__WEBPACK_IMPORTED_MODULE_4__["stylesFactory"])(function (_a) {
+  var placement = _a.placement;
   return {
-    wrapper: emotion_1.css(_templateObject(), placement === 'under' ? 'column' : 'row'),
-    graphContainer: emotion_1.css(_templateObject2()),
-    legendContainer: emotion_1.css(_templateObject3(), placement === 'under' ? '35%' : 'none')
+    wrapper: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["css"])(templateObject_1 || (templateObject_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n    display: flex;\n    flex-direction: ", ";\n    height: 100%;\n  "], ["\n    display: flex;\n    flex-direction: ", ";\n    height: 100%;\n  "])), placement === 'under' ? 'column' : 'row'),
+    graphContainer: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["css"])(templateObject_2 || (templateObject_2 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n    min-height: 65%;\n    flex-grow: 1;\n  "], ["\n    min-height: 65%;\n    flex-grow: 1;\n  "]))),
+    legendContainer: Object(emotion__WEBPACK_IMPORTED_MODULE_2__["css"])(templateObject_3 || (templateObject_3 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__makeTemplateObject"])(["\n    padding: 25px 0;\n    max-height: ", ";\n  "], ["\n    padding: 25px 0;\n    max-height: ", ";\n  "])), placement === 'under' ? '35%' : 'none')
   };
 });
 
-var shouldHideLegendItem = function shouldHideLegendItem(data) {
-  var hideEmpty = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-  var hideZero = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+var shouldHideLegendItem = function shouldHideLegendItem(data, hideEmpty, hideZero) {
+  if (hideEmpty === void 0) {
+    hideEmpty = false;
+  }
+
+  if (hideZero === void 0) {
+    hideZero = false;
+  }
+
   var isZeroOnlySeries = data.reduce(function (acc, current) {
     return acc + (current[1] || 0);
   }, 0) === 0;
@@ -70861,7 +70483,7 @@ var shouldHideLegendItem = function shouldHideLegendItem(data) {
   return hideEmpty && isNullOnlySeries || hideZero && isZeroOnlySeries;
 };
 
-exports.GraphWithLegend2 = function (props) {
+var GraphWithLegend2 = function GraphWithLegend2(props) {
   var series = props.series,
       timeRange = props.timeRange,
       width = props.width,
@@ -70889,10 +70511,10 @@ exports.GraphWithLegend2 = function (props) {
       children = props.children,
       panelChrome = props.panelChrome;
 
-  var _getGraphWithLegendSt = getGraphWithLegendStyles(props),
-      graphContainer = _getGraphWithLegendSt.graphContainer,
-      wrapper = _getGraphWithLegendSt.wrapper,
-      legendContainer = _getGraphWithLegendSt.legendContainer;
+  var _a = getGraphWithLegendStyles(props),
+      graphContainer = _a.graphContainer,
+      wrapper = _a.wrapper,
+      legendContainer = _a.legendContainer;
 
   var legendItems = series.reduce(function (acc, s) {
     return shouldHideLegendItem(s.data, hideEmpty, hideZero) ? acc : acc.concat([{
@@ -70903,11 +70525,11 @@ exports.GraphWithLegend2 = function (props) {
       displayValues: s.info || []
     }]);
   }, []);
-  return react_1["default"].createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: wrapper
-  }, react_1["default"].createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: graphContainer
-  }, react_1["default"].createElement(Graph2_1.Graph2, {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Graph2__WEBPACK_IMPORTED_MODULE_3__["Graph2"], {
     series: series,
     timeRange: timeRange,
     timeZone: timeZone,
@@ -70923,11 +70545,11 @@ exports.GraphWithLegend2 = function (props) {
     fillGradient: fillGradient,
     panelChrome: panelChrome,
     onHorizontalRegionSelected: onHorizontalRegionSelected
-  }, children)), isLegendVisible && react_1["default"].createElement("div", {
+  }, children)), isLegendVisible && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: legendContainer
-  }, react_1["default"].createElement(ui_2.CustomScrollbar, {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_4__["CustomScrollbar"], {
     hideHorizontalTrack: true
-  }, react_1["default"].createElement(ui_1.GraphLegend, {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_4__["GraphLegend"], {
     items: legendItems,
     displayMode: displayMode,
     placement: placement,
@@ -70943,6 +70565,7 @@ exports.GraphWithLegend2 = function (props) {
     onToggleSort: onToggleSort
   }))));
 };
+var templateObject_1, templateObject_2, templateObject_3;
 
 /***/ }),
 
@@ -70950,22 +70573,34 @@ exports.GraphWithLegend2 = function (props) {
 /*!*****************************!*\
   !*** ./panel/extractors.ts ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: extract_tooltip_feature, extract_group_by, extract_fill_value, extract_format_tags, extract_is_valid, extract_model_database, extract_model_measurement, extract_model_select, extract_model_feature, extract_model_func, extract_model_fill, extract_model_time_format, extract_model_time, extract_model_tags, extract_model_tags_map */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_tooltip_feature", function() { return extract_tooltip_feature; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_group_by", function() { return extract_group_by; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_fill_value", function() { return extract_fill_value; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_format_tags", function() { return extract_format_tags; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_is_valid", function() { return extract_is_valid; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_model_database", function() { return extract_model_database; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_model_measurement", function() { return extract_model_measurement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_model_select", function() { return extract_model_select; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_model_feature", function() { return extract_model_feature; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_model_func", function() { return extract_model_func; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_model_fill", function() { return extract_model_fill; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_model_time_format", function() { return extract_model_time_format; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_model_time", function() { return extract_model_time; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_model_tags", function() { return extract_model_tags; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extract_model_tags_map", function() { return extract_model_tags_map; });
+/* harmony import */ var _datasource_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../datasource/types */ "./datasource/types.ts");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+// @ts-nocheck
 
 /*eslint-disable */
 // Data extractor functions
 // to parse selected data/queries into features, groupBy and params for Loud ML Model
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var types_1 = __webpack_require__(/*! ../datasource/types */ "./datasource/types.ts");
 
 function extract_tooltip_feature(target) {
   if (target.select) {
@@ -71002,16 +70637,13 @@ function extract_tooltip_feature(target) {
     return target.metrics[0].type + ": " + target.metrics[0].field;
   }
 }
-
-exports.extract_tooltip_feature = extract_tooltip_feature;
-
 function extract_group_by(target) {
   if (target.groupBy) {
     // InfluxDB or so
     var res = _formatGroupBy(target.groupBy);
 
     if (res == "time: $__interval") {
-      return "time: " + types_1.DEFAULT_MODEL.interval;
+      return "time: " + _datasource_types__WEBPACK_IMPORTED_MODULE_0__["DEFAULT_MODEL"].interval;
     }
 
     return res;
@@ -71045,9 +70677,6 @@ function extract_group_by(target) {
     return "auto";
   }
 }
-
-exports.extract_group_by = extract_group_by;
-
 function extract_fill_value(target) {
   if (target.groupBy) {
     // InfluxDB or so
@@ -71076,9 +70705,6 @@ function extract_fill_value(target) {
 
   return null;
 }
-
-exports.extract_fill_value = extract_fill_value;
-
 function extract_format_tags(target) {
   if (target.tags && target.tags.map) {
     // InfluxDB or so
@@ -71120,9 +70746,6 @@ function extract_format_tags(target) {
     return target.query;
   }
 }
-
-exports.extract_format_tags = extract_format_tags;
-
 function extract_is_valid(target) {
   if (target.select) {
     // InfluxDB or so
@@ -71144,9 +70767,6 @@ function extract_is_valid(target) {
     return true;
   }
 }
-
-exports.extract_is_valid = extract_is_valid;
-
 function extract_model_database(datasource) {
   // console.log(datasource);
   if (datasource.database) {
@@ -71161,9 +70781,6 @@ function extract_model_database(datasource) {
 
   return datasource.name.toLowerCase().replace(/-/g, "_");
 }
-
-exports.extract_model_database = extract_model_database;
-
 function extract_model_measurement(target) {
   if (target.measurement) {
     // InfluxDB or so
@@ -71182,9 +70799,6 @@ function extract_model_measurement(target) {
 
   return "auto";
 }
-
-exports.extract_model_measurement = extract_model_measurement;
-
 function extract_model_select(target, field) {
   if (target.select) {
     // InfluxDB or so
@@ -71206,9 +70820,6 @@ function extract_model_select(target, field) {
     return string_to_slug(target.expr);
   }
 }
-
-exports.extract_model_select = extract_model_select;
-
 function extract_model_feature(target, field) {
   if (target.select) {
     // InfluxDB or so
@@ -71230,9 +70841,6 @@ function extract_model_feature(target, field) {
     return target.expr;
   }
 }
-
-exports.extract_model_feature = extract_model_feature;
-
 function extract_model_func(target, field) {
   if (target.select) {
     // InfluxDB or so
@@ -71251,9 +70859,6 @@ function extract_model_func(target, field) {
 
   return "avg";
 }
-
-exports.extract_model_func = extract_model_func;
-
 function extract_model_fill(target) {
   if (target.groupBy) {
     // InfluxDB or so
@@ -71277,9 +70882,6 @@ function extract_model_fill(target) {
 
   return null; // TODO
 }
-
-exports.extract_model_fill = extract_model_fill;
-
 function extract_model_time_format(target) {
   if (target.groupBy) {
     // InfluxDB or so
@@ -71287,7 +70889,7 @@ function extract_model_time_format(target) {
 
 
     if (res == "time_$__interval") {
-      return types_1.DEFAULT_MODEL.interval;
+      return _datasource_types__WEBPACK_IMPORTED_MODULE_0__["DEFAULT_MODEL"].interval;
     }
 
     return res;
@@ -71296,9 +70898,6 @@ function extract_model_time_format(target) {
     return target.downsampleInterval || target.interval || "auto";
   }
 }
-
-exports.extract_model_time_format = extract_model_time_format;
-
 function extract_model_time(target) {
   if (target.groupBy) {
     // InfluxDB or so
@@ -71306,7 +70905,7 @@ function extract_model_time(target) {
 
 
     if (res == "$__interval") {
-      return types_1.DEFAULT_MODEL.interval;
+      return _datasource_types__WEBPACK_IMPORTED_MODULE_0__["DEFAULT_MODEL"].interval;
     }
 
     return res;
@@ -71320,9 +70919,6 @@ function extract_model_time(target) {
 
   return target.downsampleInterval || target.interval || "20m";
 }
-
-exports.extract_model_time = extract_model_time;
-
 function extract_model_tags(target) {
   if (target.tags && target.tags.map) {
     // InfluxDB or so
@@ -71350,9 +70946,6 @@ function extract_model_tags(target) {
 
   return "";
 }
-
-exports.extract_model_tags = extract_model_tags;
-
 function extract_model_tags_map(target) {
   if (target.tags && target.tags.map) {
     // InfluxDB or so
@@ -71390,9 +70983,7 @@ function extract_model_tags_map(target) {
   }
 
   return [];
-}
-
-exports.extract_model_tags_map = extract_model_tags_map; // Internal parser functions -------------------------------------------------
+} // Internal parser functions -------------------------------------------------
 
 function _formatFeature(value) {
   // window.console.log('Feature Value', value);
@@ -71490,7 +71081,7 @@ function _get_time(value) {
   });
 
   if (time.length !== 1) {
-    return types_1.DEFAULT_MODEL.interval;
+    return _datasource_types__WEBPACK_IMPORTED_MODULE_0__["DEFAULT_MODEL"].interval;
   }
 
   return time[0].params[0];
@@ -71523,159 +71114,162 @@ function string_to_slug(str) {
 /*!**************************************!*\
   !*** ./panel/getGraphSeriesModel.ts ***!
   \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: getGraphSeriesModel */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getGraphSeriesModel", function() { return getGraphSeriesModel; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_2__);
+ // @ts-nocheck
 
 
-function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+var getGraphSeriesModel = function getGraphSeriesModel(dataFrames, timeZone, seriesOptions, graphOptions, legendOptions, fieldOptions) {
+  var e_1, _a, e_2, _b;
 
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var ui_1 = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
-
-var data_1 = __webpack_require__(/*! @grafana/data */ "@grafana/data");
-
-exports.getGraphSeriesModel = function (dataFrames, timeZone, seriesOptions, graphOptions, legendOptions, fieldOptions) {
-  var _a, _b, _c;
+  var _c, _d, _e;
 
   var graphs = [];
-  var displayProcessor = data_1.getDisplayProcessor({
+  var displayProcessor = Object(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["getDisplayProcessor"])({
     field: {
       config: {
-        unit: (_b = (_a = fieldOptions) === null || _a === void 0 ? void 0 : _a.defaults) === null || _b === void 0 ? void 0 : _b.unit,
+        unit: (_d = (_c = fieldOptions) === null || _c === void 0 ? void 0 : _c.defaults) === null || _d === void 0 ? void 0 : _d.unit,
         decimals: legendOptions.decimals
       }
     }
   });
   var fieldColumnIndex = -1;
 
-  var _iterator = _createForOfIteratorHelper(dataFrames),
-      _step;
-
   try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var series = _step.value;
-
-      var _data_1$getTimeField = data_1.getTimeField(series),
-          timeField = _data_1$getTimeField.timeField;
+    for (var dataFrames_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(dataFrames), dataFrames_1_1 = dataFrames_1.next(); !dataFrames_1_1.done; dataFrames_1_1 = dataFrames_1.next()) {
+      var series = dataFrames_1_1.value;
+      var timeField = Object(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["getTimeField"])(series).timeField;
 
       if (!timeField) {
         continue;
       }
 
-      var _iterator2 = _createForOfIteratorHelper(series.fields),
-          _step2;
+      var _loop_1 = function _loop_1(field) {
+        if (field.type !== _grafana_data__WEBPACK_IMPORTED_MODULE_2__["FieldType"].number) {
+          return "continue";
+        } // Storing index of series field for future inspection
+
+
+        fieldColumnIndex++; // Use external calculator just to make sure it works :)
+
+        var points = Object(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["getFlotPairs"])({
+          xField: timeField,
+          yField: field,
+          nullValueMode: _grafana_data__WEBPACK_IMPORTED_MODULE_2__["NullValueMode"].Null
+        });
+
+        if (points.length > 0) {
+          var seriesStats_1 = Object(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["reduceField"])({
+            field: field,
+            reducers: legendOptions.stats
+          });
+          var statsDisplayValues = void 0;
+
+          if (legendOptions.stats) {
+            statsDisplayValues = legendOptions.stats.map(function (stat) {
+              var statDisplayValue = displayProcessor(seriesStats_1[stat]);
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, statDisplayValue), {
+                title: stat
+              });
+            });
+          }
+
+          var color = void 0;
+
+          if (seriesOptions[field.name] && seriesOptions[field.name].color) {
+            // Case when panel has settings provided via SeriesOptions, i.e. graph panel
+            color = {
+              mode: _grafana_data__WEBPACK_IMPORTED_MODULE_2__["FieldColorMode"].Fixed,
+              fixedColor: seriesOptions[field.name].color
+            };
+          } else if (field.config && field.config.color) {
+            // Case when color settings are set on field, i.e. Explore logs histogram (see makeSeriesForLogs)
+            color = field.config.color;
+          } else {
+            color = {
+              mode: _grafana_data__WEBPACK_IMPORTED_MODULE_2__["FieldColorMode"].Fixed,
+              fixedColor: _grafana_ui__WEBPACK_IMPORTED_MODULE_1__["colors"][graphs.length % _grafana_ui__WEBPACK_IMPORTED_MODULE_1__["colors"].length]
+            };
+          }
+
+          field.config = fieldOptions ? Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, field.config), {
+            unit: fieldOptions.defaults.unit,
+            decimals: fieldOptions.defaults.decimals,
+            color: color
+          }) : Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, field.config), {
+            color: color
+          });
+          field.display = Object(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["getDisplayProcessor"])({
+            field: field
+          }); // Time step is used to determine bars width when graph is rendered as bar chart
+
+          var timeStep = Object(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["getSeriesTimeStep"])(timeField);
+          var useMsDateFormat = Object(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["hasMsResolution"])(timeField);
+          timeField.display = Object(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["getDisplayProcessor"])({
+            timeZone: timeZone,
+            field: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, timeField), {
+              type: timeField.type,
+              config: {
+                unit: "time:" + (useMsDateFormat ? _grafana_data__WEBPACK_IMPORTED_MODULE_2__["MS_DATE_TIME_FORMAT"] : _grafana_data__WEBPACK_IMPORTED_MODULE_2__["DEFAULT_DATE_TIME_FORMAT"])
+              }
+            })
+          });
+          graphs.push({
+            label: field.name,
+            data: points,
+            color: (_e = field.config.color) === null || _e === void 0 ? void 0 : _e.fixedColor,
+            info: statsDisplayValues,
+            isVisible: true,
+            yAxis: {
+              index: seriesOptions[field.name] && seriesOptions[field.name].yAxis || 1
+            },
+            // This index is used later on to retrieve appropriate series/time for X and Y axes
+            seriesIndex: fieldColumnIndex,
+            timeField: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, timeField),
+            valueField: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, field),
+            timeStep: timeStep
+          });
+        }
+      };
 
       try {
-        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var field = _step2.value;
+        for (var _f = (e_2 = void 0, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(series.fields)), _g = _f.next(); !_g.done; _g = _f.next()) {
+          var field = _g.value;
 
-          if (field.type !== data_1.FieldType.number) {
-            continue;
-          } // Storing index of series field for future inspection
-
-
-          fieldColumnIndex++; // Use external calculator just to make sure it works :)
-
-          var points = data_1.getFlotPairs({
-            xField: timeField,
-            yField: field,
-            nullValueMode: data_1.NullValueMode.Null
-          });
-
-          if (points.length > 0) {
-            (function () {
-              var seriesStats = data_1.reduceField({
-                field: field,
-                reducers: legendOptions.stats
-              });
-              var statsDisplayValues = void 0;
-
-              if (legendOptions.stats) {
-                statsDisplayValues = legendOptions.stats.map(function (stat) {
-                  var statDisplayValue = displayProcessor(seriesStats[stat]);
-                  return Object.assign(Object.assign({}, statDisplayValue), {
-                    title: stat
-                  });
-                });
-              }
-
-              var color = void 0;
-
-              if (seriesOptions[field.name] && seriesOptions[field.name].color) {
-                // Case when panel has settings provided via SeriesOptions, i.e. graph panel
-                color = {
-                  mode: data_1.FieldColorMode.Fixed,
-                  fixedColor: seriesOptions[field.name].color
-                };
-              } else if (field.config && field.config.color) {
-                // Case when color settings are set on field, i.e. Explore logs histogram (see makeSeriesForLogs)
-                color = field.config.color;
-              } else {
-                color = {
-                  mode: data_1.FieldColorMode.Fixed,
-                  fixedColor: ui_1.colors[graphs.length % ui_1.colors.length]
-                };
-              }
-
-              field.config = fieldOptions ? Object.assign(Object.assign({}, field.config), {
-                unit: fieldOptions.defaults.unit,
-                decimals: fieldOptions.defaults.decimals,
-                color: color
-              }) : Object.assign(Object.assign({}, field.config), {
-                color: color
-              });
-              field.display = data_1.getDisplayProcessor({
-                field: field
-              }); // Time step is used to determine bars width when graph is rendered as bar chart
-
-              var timeStep = data_1.getSeriesTimeStep(timeField);
-              var useMsDateFormat = data_1.hasMsResolution(timeField);
-              timeField.display = data_1.getDisplayProcessor({
-                timeZone: timeZone,
-                field: Object.assign(Object.assign({}, timeField), {
-                  type: timeField.type,
-                  config: {
-                    unit: "time:".concat(useMsDateFormat ? data_1.MS_DATE_TIME_FORMAT : data_1.DEFAULT_DATE_TIME_FORMAT)
-                  }
-                })
-              });
-              graphs.push({
-                label: field.name,
-                data: points,
-                color: (_c = field.config.color) === null || _c === void 0 ? void 0 : _c.fixedColor,
-                info: statsDisplayValues,
-                isVisible: true,
-                yAxis: {
-                  index: seriesOptions[field.name] && seriesOptions[field.name].yAxis || 1
-                },
-                // This index is used later on to retrieve appropriate series/time for X and Y axes
-                seriesIndex: fieldColumnIndex,
-                timeField: Object.assign({}, timeField),
-                valueField: Object.assign({}, field),
-                timeStep: timeStep
-              });
-            })();
-          }
+          _loop_1(field);
         }
-      } catch (err) {
-        _iterator2.e(err);
+      } catch (e_2_1) {
+        e_2 = {
+          error: e_2_1
+        };
       } finally {
-        _iterator2.f();
+        try {
+          if (_g && !_g.done && (_b = _f["return"])) _b.call(_f);
+        } finally {
+          if (e_2) throw e_2.error;
+        }
       }
     }
-  } catch (err) {
-    _iterator.e(err);
+  } catch (e_1_1) {
+    e_1 = {
+      error: e_1_1
+    };
   } finally {
-    _iterator.f();
+    try {
+      if (dataFrames_1_1 && !dataFrames_1_1.done && (_a = dataFrames_1["return"])) _a.call(dataFrames_1);
+    } finally {
+      if (e_1) throw e_1.error;
+    }
   }
 
   return graphs;
@@ -71687,21 +71281,21 @@ exports.getGraphSeriesModel = function (dataFrames, timeZone, seriesOptions, gra
 /*!*************************!*\
   !*** ./panel/module.ts ***!
   \*************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: plugin */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "plugin", function() { return plugin; });
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _grafana_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @grafana/runtime */ "@grafana/runtime");
+/* harmony import */ var _grafana_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_grafana_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _GraphPanel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GraphPanel */ "./panel/GraphPanel.tsx");
+// @ts-nocheck
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var data_1 = __webpack_require__(/*! @grafana/data */ "@grafana/data");
-
-var runtime_1 = __webpack_require__(/*! @grafana/runtime */ "@grafana/runtime");
-
-var GraphPanel_1 = __webpack_require__(/*! ./GraphPanel */ "./panel/GraphPanel.tsx"); // function grafanaVersion(): string | null {
+ // function grafanaVersion(): string | null {
 //   if(_.has(window, 'grafanaBootData.settings.buildInfo.version')) {
 //     return window.grafanaBootData.settings.buildInfo.version;
 //   }
@@ -71710,13 +71304,12 @@ var GraphPanel_1 = __webpack_require__(/*! ./GraphPanel */ "./panel/GraphPanel.t
 // console.log(GrafanaBootConfig);
 // export const plugin = new PanelPlugin<Options>(GraphPanel).setDefaults(defaults).setEditor(GraphPanelEditor);
 
-
 function datasourcesList() {
   var res = new Array({
     label: 'Not selected',
     value: ''
   });
-  var datasources = runtime_1.getDataSourceSrv().getMetricSources();
+  var datasources = Object(_grafana_runtime__WEBPACK_IMPORTED_MODULE_1__["getDataSourceSrv"])().getMetricSources();
   datasources.forEach(function (val) {
     if (val.meta.id === 'loudml-datasource') {
       res.push({
@@ -71728,8 +71321,8 @@ function datasourcesList() {
   return res;
 }
 
-exports.plugin = new data_1.PanelPlugin(GraphPanel_1.GraphPanel).useFieldConfig({
-  standardOptions: [data_1.FieldConfigProperty.Unit, data_1.FieldConfigProperty.Decimals]
+var plugin = new _grafana_data__WEBPACK_IMPORTED_MODULE_0__["PanelPlugin"](_GraphPanel__WEBPACK_IMPORTED_MODULE_2__["GraphPanel"]).useFieldConfig({
+  standardOptions: [_grafana_data__WEBPACK_IMPORTED_MODULE_0__["FieldConfigProperty"].Unit, _grafana_data__WEBPACK_IMPORTED_MODULE_0__["FieldConfigProperty"].Decimals]
 }).setPanelOptions(function (builder) {
   builder.addSelect({
     path: 'datasourceOptions.datasource',

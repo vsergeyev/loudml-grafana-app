@@ -1,8 +1,8 @@
 {
-  "extends": "./node_modules/@grafana/toolkit/src/config/tsconfig.plugin.json",
+  "extends": "@grafana/toolkit/src/config/tsconfig.plugin.json",
   "include": ["src", "types"],
   "compilerOptions": {
-    "rootDir": "./src",
+    "alwaysStrict": false,
     "baseUrl": "./src",
     "typeRoots": ["./node_modules/@types"],
     "skipLibCheck": true,
@@ -15,13 +15,14 @@
     "allowUnreachableCode": true,
     "module": "commonjs",
     "target": "es6",
+    "jsx": "react",
+    "strict": false,
     "paths": {
-      "@": ["."],
-      "grafana/*": ["~/go/src/github.com/grafana/grafana/public/*"]
+      "@": ["."]
     }
   },
   "linterOptions": {
-    "exclude": ["./dist/**", "./node_modules/**"]
+    "exclude": ["./dist/**", "./node_modules/**", "grafana/**"]
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "grafana"],
 }

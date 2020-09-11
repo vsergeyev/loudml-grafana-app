@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { colors } from '@grafana/ui';
 import {
   getFlotPairs,

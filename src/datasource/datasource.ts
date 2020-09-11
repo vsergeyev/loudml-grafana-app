@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { BackendSrv } from 'grafana/app/core/services/backend_srv';
 
 import LoudMLAPI from './loudml_api';

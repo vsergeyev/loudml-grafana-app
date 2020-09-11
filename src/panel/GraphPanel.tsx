@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { GraphWithLegend, Chart } from '@grafana/ui';
 import { GraphWithLegend2 } from './GraphWithLegend2';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Libraries
 import _ from 'lodash';
 import $ from 'jquery';

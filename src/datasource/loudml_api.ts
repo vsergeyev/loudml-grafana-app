@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Loud ML API class
 // Connects to Loud ML server
 //

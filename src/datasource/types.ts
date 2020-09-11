@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { DataQuery, DataSourceJsonData } from '@grafana/data';
 
 export interface LoudMLOptions extends DataSourceJsonData {

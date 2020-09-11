@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { LegendOptions, GraphTooltipOptions } from '@grafana/ui';
 import { GraphLegendEditorLegendOptions } from './GraphLegendEditor';
 import { YAxis, ReducerID, FieldDisplayOptions, ThresholdsMode, DataSourceSelectItem } from '@grafana/data';
