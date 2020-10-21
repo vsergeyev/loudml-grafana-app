@@ -56,6 +56,12 @@ C) From sources (note - github latest is for Grafana 7.x)
  * LoudML app should be in plugins list, you may need to activate it
  * enjoy :)
 
+# Problem with babel/preset-env
+
+ * yarn add @babel/preset-env --dev
+
+ 
+
 # What inside
 
 Loud ML Panel - is a version of Grafana's default Graph Panel with a "Create Baseline" button

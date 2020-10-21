@@ -119,7 +119,7 @@ export class LoudMLConfigCtrl {
       ]
     });
     appEvents.emit('show-modal', {
-      src: '/public/plugins/loudml-grafana-app/datasource/partials/add_model.html',
+      src: 'public/plugins/loudml-grafana-app/datasource/partials/add_model.html',
       modalClass: 'confirm-modal',
       model: this,
     });
@@ -130,7 +130,7 @@ export class LoudMLConfigCtrl {
     this.model = model.settings;
     // appEvents.emit(CoreEvents.showModal, {
     appEvents.emit('show-modal', {
-      src: '/public/plugins/loudml-grafana-app/datasource/partials/add_model.html',
+      src: 'public/plugins/loudml-grafana-app/datasource/partials/add_model.html',
       modalClass: 'confirm-modal',
       model: this,
     });
@@ -217,7 +217,7 @@ export class LoudMLConfigCtrl {
     this.job = Object.assign({}, DEFAULT_JOB);
 
     appEvents.emit('show-modal', {
-      src: '/public/plugins/loudml-grafana-app/datasource/partials/add_job.html',
+      src: 'public/plugins/loudml-grafana-app/datasource/partials/add_job.html',
       modalClass: 'confirm-modal',
       model: this,
     });
@@ -237,7 +237,7 @@ export class LoudMLConfigCtrl {
     }
 
     appEvents.emit('show-modal', {
-      src: '/public/plugins/loudml-grafana-app/datasource/partials/add_job.html',
+      src: 'public/plugins/loudml-grafana-app/datasource/partials/add_job.html',
       modalClass: 'confirm-modal',
       model: this,
     });

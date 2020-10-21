@@ -399,7 +399,7 @@ export class CreateBaselineButton extends React.Component {
           extract_model_time_format(source),
         ]
           .join('_')
-          .replace(/\./g, '_');
+          .replace(/[.*+?^${}()|[\]\\]/g, '_');
 
         // Group By Value – [{params: ["5m"], type: "time"}, {params: ["linear"], type: "fill"}]
         // Let parse a "5m" time from it
