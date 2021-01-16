@@ -5,8 +5,8 @@ import { css } from 'emotion';
 import { GraphSeriesValue } from '@grafana/data';
 
 import { Graph2 } from './Graph2';
-import { LegendRenderOptions, LegendItem, LegendDisplayMode } from '@grafana/ui';
-import { Graph, GraphProps, GraphLegend } from '@grafana/ui';
+import { LegendRenderOptions, VizLegendItem, LegendDisplayMode } from '@grafana/ui';
+import { Graph, GraphProps, VizLegend } from '@grafana/ui';
 import { CustomScrollbar } from '@grafana/ui';
 import { stylesFactory } from '@grafana/ui';
 
@@ -18,7 +18,7 @@ export type SeriesAxisToggleHandler = SeriesOptionChangeHandler<number>;
 
 export interface GraphWithLegendProps extends GraphProps, LegendRenderOptions {
   isLegendVisible: boolean;
-  displayMode: LegendDisplayMode;
+  legendDisplayMode: LegendDisplayMode;
   sortLegendBy?: string;
   sortLegendDesc?: boolean;
   onSeriesColorChange?: SeriesColorChangeHandler;
@@ -62,7 +62,7 @@ export const GraphWithLegend2: React.FunctionComponent<GraphWithLegendProps> = (
     sortLegendBy,
     sortLegendDesc,
     isLegendVisible,
-    displayMode,
+    legendDisplayMode,
     placement,
     onSeriesAxisToggle,
     onSeriesColorChange,
@@ -81,16 +81,16 @@ export const GraphWithLegend2: React.FunctionComponent<GraphWithLegendProps> = (
   } = props;
   const { graphContainer, wrapper, legendContainer } = getGraphWithLegendStyles(props);
 
-  const legendItems = series.reduce<LegendItem[]>((acc, s) => {
+  const legendItems = series.reduce<VizLegendItem[]>((acc, s) => {
     return shouldHideLegendItem(s.data, hideEmpty, hideZero)
       ? acc
       : acc.concat([
           {
             label: s.label,
-            color: s.color,
-            isVisible: s.isVisible,
+            color: s.color || '',
+            disabled: !s.isVisible,
             yAxis: s.yAxis.index,
-            displayValues: s.info || [],
+            getDisplayValues: () => s.info || [],
           },
         ]);
   }, []);
@@ -119,12 +119,12 @@ export const GraphWithLegend2: React.FunctionComponent<GraphWithLegendProps> = (
         </Graph2>
       </div>
 
-      {isLegendVisible && (
-        <div className={legendContainer}>
+      <div className={legendContainer}>
+        {isLegendVisible && (
           <CustomScrollbar hideHorizontalTrack>
-            <GraphLegend
+            <VizLegend
               items={legendItems}
-              displayMode={displayMode}
+              displayMode={legendDisplayMode}
               placement={placement}
               sortBy={sortLegendBy}
               sortDesc={sortLegendDesc}
@@ -134,12 +134,11 @@ export const GraphWithLegend2: React.FunctionComponent<GraphWithLegendProps> = (
                 }
               }}
               onSeriesColorChange={onSeriesColorChange}
-              onSeriesAxisToggle={onSeriesAxisToggle}
               onToggleSort={onToggleSort}
             />
           </CustomScrollbar>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

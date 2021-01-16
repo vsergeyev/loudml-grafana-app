@@ -1,11 +1,10 @@
 // @ts-nocheck
 import React from 'react';
-import { GraphWithLegend, Chart } from '@grafana/ui';
+import { Chart, LegendDisplayMode } from '@grafana/ui';
 import { GraphWithLegend2 } from './GraphWithLegend2';
 import { PanelProps } from '@grafana/data';
 import { Options } from './types';
 import { GraphPanelController, CreateBaselineButton, MLModelController } from './GraphPanelController';
-import { LegendDisplayMode } from '@grafana/ui/src/components/Legend/Legend';
 
 interface GraphPanelProps extends PanelProps<Options> {}
 
@@ -16,6 +15,7 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
   width,
   height,
   options,
+  fieldConfig,
   onOptionsChange,
   onChangeTimeRange,
 }) => {
@@ -58,16 +58,16 @@ export const GraphPanel: React.FunctionComponent<GraphPanelProps> = ({
               timeRange={timeRange}
               timeZone={timeZone}
               width={width}
-              height={height - 50} // TODO: -50 is to ajust graph height with CreateBaselineButton, need better calc
-              displayMode={asTable ? LegendDisplayMode.Table : LegendDisplayMode.List}
+              height={height}
+              legendDisplayMode={asTable ? LegendDisplayMode.Table : LegendDisplayMode.List}
               isLegendVisible={isVisible}
+              placement={legendOptions.placement}
               sortLegendBy={legendOptions.sortBy}
               sortLegendDesc={legendOptions.sortDesc}
               onSeriesToggle={onSeriesToggle}
               onHorizontalRegionSelected={onHorizontalRegionSelected}
               onClick={onHorizontalRegionSelected}
               {...graphProps}
-              {...legendProps}
               {...controllerApi}
             >
               <Chart.Tooltip mode={tooltipOptions.mode} />

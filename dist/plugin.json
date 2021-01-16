@@ -22,7 +22,7 @@
       {"name": "LoudML datasource", "path": "img/loudml_grafana_datasource.png"}
     ],
     "version": "1.7.1",
-    "updated": "%TODAY%"
+    "updated": "2021-01-16"
   },
 
   "includes": [

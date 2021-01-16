@@ -10,7 +10,7 @@ import appEvents from 'grafana/app/core/app_events';
 
 import { getGraphSeriesModel } from './getGraphSeriesModel';
 import { Options, SeriesOptions } from './types';
-import { SeriesColorChangeHandler, SeriesAxisToggleHandler } from '@grafana/ui/src/components/Graph/GraphWithLegend';
+import { SeriesColorChangeHandler, SeriesAxisToggleHandler } from './GraphWithLegend2';
 
 import LoudMLDatasource from '../datasource/datasource';
 import {

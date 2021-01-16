@@ -344,28 +344,34 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
 /*!***********************************!*\
   !*** ./datasource/config_ctrl.ts ***!
   \***********************************/
-/*! exports provided: LoudMLConfigCtrl */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoudMLConfigCtrl", function() { return LoudMLConfigCtrl; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _grafana_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @grafana/runtime */ "@grafana/runtime");
-/* harmony import */ var _grafana_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_grafana_runtime__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
-/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! grafana/app/core/app_events */ "grafana/app/core/app_events");
-/* harmony import */ var grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _partials_config_html__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./partials/config.html */ "./datasource/partials/config.html");
-/* harmony import */ var _partials_config_html__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_partials_config_html__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./types */ "./datasource/types.ts");
- // @ts-nocheck
 
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var tslib_1 = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js"); // @ts-nocheck
 
 
+var runtime_1 = __webpack_require__(/*! @grafana/runtime */ "@grafana/runtime");
 
+var data_1 = __webpack_require__(/*! @grafana/data */ "@grafana/data");
+
+var app_events_1 = tslib_1.__importDefault(__webpack_require__(/*! grafana/app/core/app_events */ "grafana/app/core/app_events"));
+
+var config_html_1 = tslib_1.__importDefault(__webpack_require__(/*! ./partials/config.html */ "./datasource/partials/config.html"));
+
+var types_1 = __webpack_require__(/*! ./types */ "./datasource/types.ts");
 
 var POST_A_BUG_SAVE_PLANET = 'Be aware, it may be an alien bug. If so - save planet, post bug report at https://github.com/vsergeyev/loudml-grafana-app/issues (starship troopers will do the rest of bloody job for you)';
 
@@ -374,13 +380,13 @@ function sorry_its_error(err) {
   window.console.log('Model update error.');
   window.console.log(POST_A_BUG_SAVE_PLANET);
   window.console.log(err);
-  grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertError, ['Model update error', err.data]);
+  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model update error', err.data]);
 }
 
-var LoudMLConfigCtrl =
-/** @class */
-function () {
+var LoudMLConfigCtrl = /*#__PURE__*/function () {
   function LoudMLConfigCtrl($scope) {
+    _classCallCheck(this, LoudMLConfigCtrl);
+
     this.$scope = $scope;
     this.ACCESS_OPTIONS = [{
       key: 'proxy',
@@ -403,446 +409,477 @@ function () {
     }
   }
 
-  LoudMLConfigCtrl.prototype.toggleAccessHelp = function () {
-    this.showAccessHelp = !this.showAccessHelp;
-  };
-  /**
-   * Displays list of ML models and jobs on server
-   */
+  _createClass(LoudMLConfigCtrl, [{
+    key: "toggleAccessHelp",
+    value: function toggleAccessHelp() {
+      this.showAccessHelp = !this.showAccessHelp;
+    }
+    /**
+     * Displays list of ML models and jobs on server
+     */
 
+  }, {
+    key: "refreshModels",
+    value: function refreshModels() {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var _this = this;
 
-  LoudMLConfigCtrl.prototype.refreshModels = function () {
-    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var ds;
+        var ds;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.$scope.ctrl.modelsList = [{
+                  is_loading: true,
+                  settings: {
+                    name: 'Loading...'
+                  },
+                  state: {
+                    trained: ''
+                  }
+                }];
+                _context.next = 3;
+                return runtime_1.getDataSourceSrv().loadDatasource(this.current.name);
 
-      var _this = this;
+              case 3:
+                ds = _context.sent;
 
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            this.$scope.ctrl.modelsList = [{
-              is_loading: true,
-              settings: {
-                name: 'Loading...'
-              },
-              state: {
-                trained: ''
-              }
-            }];
-            return [4
-            /*yield*/
-            , Object(_grafana_runtime__WEBPACK_IMPORTED_MODULE_1__["getDataSourceSrv"])().loadDatasource(this.current.name)];
+                try {
+                  ds.query({
+                    url: '/models',
+                    params: {}
+                  }).then(function (response) {
+                    _this.$scope.ctrl.modelsList = response;
 
-          case 1:
-            ds = _a.sent();
+                    _this.$scope.$apply();
+                  })["catch"](function (err) {
+                    console.error(err.statusText);
+                    console.error('Long time ago, in a galaxy far far away...');
+                    console.log('https://www.google.com/search?q=parallel+worlds+michio+kaku');
+                    app_events_1["default"].emit(data_1.AppEvents.alertError, [err.statusText]);
+                  });
+                  ds.query({
+                    url: '/jobs',
+                    params: {}
+                  }).then(function (response) {
+                    _this.$scope.ctrl.jobsList = response;
 
-            try {
-              ds.query({
-                url: '/models',
-                params: {}
-              }).then(function (response) {
-                _this.$scope.ctrl.modelsList = response;
+                    _this.$scope.$apply();
+                  })["catch"](function (err) {
+                    app_events_1["default"].emit(data_1.AppEvents.alertError, [err.statusText]);
+                  });
+                  ds.query({
+                    url: '/scheduled_jobs',
+                    params: {}
+                  }).then(function (response) {
+                    _this.$scope.ctrl.scheduledList = response;
 
-                _this.$scope.$apply();
-              })["catch"](function (err) {
-                console.error(err.statusText);
-                console.error('Long time ago, in a galaxy far far away...');
-                console.log('https://www.google.com/search?q=parallel+worlds+michio+kaku');
-                grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertError, [err.statusText]);
-              });
-              ds.query({
-                url: '/jobs',
-                params: {}
-              }).then(function (response) {
-                _this.$scope.ctrl.jobsList = response;
+                    _this.$scope.$apply();
+                  })["catch"](function (err) {
+                    app_events_1["default"].emit(data_1.AppEvents.alertError, [err.statusText]);
+                  });
+                  ds.query({
+                    url: '/buckets',
+                    params: {}
+                  }).then(function (response) {
+                    _this.$scope.ctrl.buckets = response;
+                  })["catch"](function (err) {
+                    app_events_1["default"].emit(data_1.AppEvents.alertError, [err.statusText]);
+                  });
+                } catch (err) {
+                  console.error(err);
+                  app_events_1["default"].emit(data_1.AppEvents.alertError, [err]);
+                }
 
-                _this.$scope.$apply();
-              })["catch"](function (err) {
-                grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertError, [err.statusText]);
-              });
-              ds.query({
-                url: '/scheduled_jobs',
-                params: {}
-              }).then(function (response) {
-                _this.$scope.ctrl.scheduledList = response;
-
-                _this.$scope.$apply();
-              })["catch"](function (err) {
-                grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertError, [err.statusText]);
-              });
-              ds.query({
-                url: '/buckets',
-                params: {}
-              }).then(function (response) {
-                _this.$scope.ctrl.buckets = response;
-              })["catch"](function (err) {
-                grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertError, [err.statusText]);
-              });
-            } catch (err) {
-              console.error(err);
-              grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertError, [err]);
+              case 5:
+              case "end":
+                return _context.stop();
             }
+          }
+        }, _callee, this);
+      }));
+    }
+    /**
+     * Displays new ML model dialog
+     */
 
-            return [2
-            /*return*/
-            ];
-        }
+  }, {
+    key: "addModel",
+    value: function addModel() {
+      this.model = Object.assign(Object.assign(Object.assign({}, types_1.DEFAULT_MODEL), {
+        features: [Object.assign({}, types_1.DEFAULT_FEATURE)]
+      }));
+      app_events_1["default"].emit('show-modal', {
+        src: '/public/plugins/loudml-grafana-app/datasource/partials/add_model.html',
+        modalClass: 'confirm-modal',
+        model: this
       });
-    });
-  };
-  /**
-   * Displays new ML model dialog
-   */
+    }
+  }, {
+    key: "editModel",
+    value: function editModel(name) {
+      var model = this.$scope.ctrl.modelsList.find(function (el) {
+        return el.settings.name === name;
+      });
+      this.model = model.settings; // appEvents.emit(CoreEvents.showModal, {
 
+      app_events_1["default"].emit('show-modal', {
+        src: '/public/plugins/loudml-grafana-app/datasource/partials/add_model.html',
+        modalClass: 'confirm-modal',
+        model: this
+      });
+    }
+    /**
+     * Posts dialog data to LoudML server
+     */
 
-  LoudMLConfigCtrl.prototype.addModel = function () {
-    this.model = Object.assign(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, _types__WEBPACK_IMPORTED_MODULE_5__["DEFAULT_MODEL"]), {
-      features: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, _types__WEBPACK_IMPORTED_MODULE_5__["DEFAULT_FEATURE"])]
-    }));
-    grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit('show-modal', {
-      src: '/public/plugins/loudml-grafana-app/datasource/partials/add_model.html',
-      modalClass: 'confirm-modal',
-      model: this
-    });
-  };
+  }, {
+    key: "addModelPost",
+    value: function addModelPost() {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var _this2 = this;
 
-  LoudMLConfigCtrl.prototype.editModel = function (name) {
-    var model = this.$scope.ctrl.modelsList.find(function (el) {
-      return el.settings.name === name;
-    });
-    this.model = model.settings; // appEvents.emit(CoreEvents.showModal, {
+        var ds;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                console.log(this.model);
 
-    grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit('show-modal', {
-      src: '/public/plugins/loudml-grafana-app/datasource/partials/add_model.html',
-      modalClass: 'confirm-modal',
-      model: this
-    });
-  };
-  /**
-   * Posts dialog data to LoudML server
-   */
+                if (this.model.features[0]["default"] !== 'previous') {
+                  this.model.features[0]["default"] = 0;
+                }
 
+                delete this.model.features[0].$$hashKey;
+                _context2.next = 5;
+                return runtime_1.getDataSourceSrv().loadDatasource(this.current.name);
 
-  LoudMLConfigCtrl.prototype.addModelPost = function () {
-    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var ds;
-
-      var _this = this;
-
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            console.log(this.model);
-
-            if (this.model.features[0]["default"] !== 'previous') {
-              this.model.features[0]["default"] = 0;
-            }
-
-            delete this.model.features[0].$$hashKey;
-            return [4
-            /*yield*/
-            , Object(_grafana_runtime__WEBPACK_IMPORTED_MODULE_1__["getDataSourceSrv"])().loadDatasource(this.current.name)];
-
-          case 1:
-            ds = _a.sent();
-            ds.loudml.getModel(this.model.name).then(function (result) {
-              console.log('Model exists, updating it...');
-              ds.loudml.patchModel(_this.model.name, _this.model).then(function (result) {})["catch"](function (err) {
-                sorry_its_error(err);
-                return;
-              }); //   // Let remove it and recreate
-              //   ds.loudml.deleteModel(this.model.name).then(response => {
-              //     ds.loudml
-              //       .createModel(this.model)
-              //       .then(result => {
-              //         ds.loudml
-              //           .createModelHook(this.model.name, ds.loudml.createHook(ANOMALY_HOOK, this.model.default_bucket))
-              //           .then(result => {
-              //             appEvents.emit(AppEvents.alertSuccess, ['Model has been updated on Loud ML server']);
-              //             this.refreshModels();
-              //           })
-              //           .catch(err => {
-              //             window.console.log('createModelHook error', err);
-              //             appEvents.emit(AppEvents.alertError, [err.message]);
-              //             return;
-              //           });
-              //       })
-              //       .catch(err => {
-              //         window.console.log('Model create error', err);
-              //         appEvents.emit(AppEvents.alertError, ['Model create error', err.data]);
-              //         return;
-              //       });
-              //   });
-            })["catch"](function (err) {
-              // New model
-              console.log('New model, creating it...');
-              ds.loudml.createModel(_this.model).then(function (result) {
-                ds.loudml.createModelHook(_this.model.name, ds.loudml.createHook(_types__WEBPACK_IMPORTED_MODULE_5__["ANOMALY_HOOK"], _this.model.default_bucket)).then(function (result) {
-                  grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertSuccess, ['Model has been created on Loud ML server']);
-
-                  _this.refreshModels();
+              case 5:
+                ds = _context2.sent;
+                ds.loudml.getModel(this.model.name).then(function (result) {
+                  console.log('Model exists, updating it...');
+                  ds.loudml.patchModel(_this2.model.name, _this2.model).then(function (result) {})["catch"](function (err) {
+                    sorry_its_error(err);
+                    return;
+                  }); //   // Let remove it and recreate
+                  //   ds.loudml.deleteModel(this.model.name).then(response => {
+                  //     ds.loudml
+                  //       .createModel(this.model)
+                  //       .then(result => {
+                  //         ds.loudml
+                  //           .createModelHook(this.model.name, ds.loudml.createHook(ANOMALY_HOOK, this.model.default_bucket))
+                  //           .then(result => {
+                  //             appEvents.emit(AppEvents.alertSuccess, ['Model has been updated on Loud ML server']);
+                  //             this.refreshModels();
+                  //           })
+                  //           .catch(err => {
+                  //             window.console.log('createModelHook error', err);
+                  //             appEvents.emit(AppEvents.alertError, [err.message]);
+                  //             return;
+                  //           });
+                  //       })
+                  //       .catch(err => {
+                  //         window.console.log('Model create error', err);
+                  //         appEvents.emit(AppEvents.alertError, ['Model create error', err.data]);
+                  //         return;
+                  //       });
+                  //   });
                 })["catch"](function (err) {
-                  window.console.log('createModelHook error', err);
-                  grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertError, [err.message]);
-                  return;
+                  // New model
+                  console.log('New model, creating it...');
+                  ds.loudml.createModel(_this2.model).then(function (result) {
+                    ds.loudml.createModelHook(_this2.model.name, ds.loudml.createHook(types_1.ANOMALY_HOOK, _this2.model.default_bucket)).then(function (result) {
+                      app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been created on Loud ML server']);
+
+                      _this2.refreshModels();
+                    })["catch"](function (err) {
+                      window.console.log('createModelHook error', err);
+                      app_events_1["default"].emit(data_1.AppEvents.alertError, [err.message]);
+                      return;
+                    });
+                  })["catch"](function (err) {
+                    window.console.log('createModel error', err);
+                    app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model create error', err.data]);
+                    return;
+                  });
                 });
-              })["catch"](function (err) {
-                window.console.log('createModel error', err);
-                grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertError, ['Model create error', err.data]);
-                return;
-              });
-            });
-            return [2
-            /*return*/
-            ];
-        }
-      });
-    });
-  };
-  /**
-   * Displays new job dialog
-   */
 
-
-  LoudMLConfigCtrl.prototype.addJob = function () {
-    this.job = Object.assign({}, _types__WEBPACK_IMPORTED_MODULE_5__["DEFAULT_JOB"]);
-    grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit('show-modal', {
-      src: '/public/plugins/loudml-grafana-app/datasource/partials/add_job.html',
-      modalClass: 'confirm-modal',
-      model: this
-    });
-  };
-  /**
-   * Displays edit job dialog
-   */
-
-
-  LoudMLConfigCtrl.prototype.editJob = function (name) {
-    this.job = this.$scope.ctrl.scheduledList.find(function (el) {
-      return el.name === name;
-    });
-
-    if (this.job.params) {
-      this.job.params = JSON.stringify(this.job.params);
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
     }
+    /**
+     * Displays new job dialog
+     */
 
-    if (this.job.json) {
-      this.job.json = JSON.stringify(this.job.json);
+  }, {
+    key: "addJob",
+    value: function addJob() {
+      this.job = Object.assign({}, types_1.DEFAULT_JOB);
+      app_events_1["default"].emit('show-modal', {
+        src: '/public/plugins/loudml-grafana-app/datasource/partials/add_job.html',
+        modalClass: 'confirm-modal',
+        model: this
+      });
     }
+    /**
+     * Displays edit job dialog
+     */
 
-    grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit('show-modal', {
-      src: '/public/plugins/loudml-grafana-app/datasource/partials/add_job.html',
-      modalClass: 'confirm-modal',
-      model: this
-    });
-  };
-  /**
-   * Posts job data to LoudML server
-   */
-
-
-  LoudMLConfigCtrl.prototype.scheduleJob = function () {
-    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var ds;
-
-      var _this = this;
-
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            return [4
-            /*yield*/
-            , Object(_grafana_runtime__WEBPACK_IMPORTED_MODULE_1__["getDataSourceSrv"])().loadDatasource(this.current.name)];
-
-          case 1:
-            ds = _a.sent();
-            ds.loudml.scheduleJob(this.job).then(function (response) {
-              window.console.log(response);
-              grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertSuccess, ['Job has been scheduled on Loud ML server']);
-
-              _this.refreshModels();
-            })["catch"](function (error) {
-              console.log(error);
-              grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertError, ['Job schedule error', error.statusText]);
-            });
-            return [2
-            /*return*/
-            ];
-        }
+  }, {
+    key: "editJob",
+    value: function editJob(name) {
+      this.job = this.$scope.ctrl.scheduledList.find(function (el) {
+        return el.name === name;
       });
-    });
-  };
-  /**
-   * Deletes  job on LoudML server
-   */
 
+      if (this.job.params) {
+        this.job.params = JSON.stringify(this.job.params);
+      }
 
-  LoudMLConfigCtrl.prototype.deleteJob = function (name) {
-    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var ds;
+      if (this.job.json) {
+        this.job.json = JSON.stringify(this.job.json);
+      }
 
-      var _this = this;
-
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            return [4
-            /*yield*/
-            , Object(_grafana_runtime__WEBPACK_IMPORTED_MODULE_1__["getDataSourceSrv"])().loadDatasource(this.current.name)];
-
-          case 1:
-            ds = _a.sent();
-            ds.loudml.deleteJob(name).then(function (response) {
-              window.console.log(response);
-              grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertSuccess, ['Scheduled job has been deleted on Loud ML server']);
-
-              _this.refreshModels();
-            })["catch"](function (error) {
-              grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertError, ['Job delete error', error.statusText]);
-            });
-            return [2
-            /*return*/
-            ];
-        }
+      app_events_1["default"].emit('show-modal', {
+        src: '/public/plugins/loudml-grafana-app/datasource/partials/add_job.html',
+        modalClass: 'confirm-modal',
+        model: this
       });
-    });
-  };
+    }
+    /**
+     * Posts job data to LoudML server
+     */
 
-  LoudMLConfigCtrl.prototype.startModel = function (name) {
-    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var ds;
+  }, {
+    key: "scheduleJob",
+    value: function scheduleJob() {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+        var _this3 = this;
 
-      var _this = this;
+        var ds;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return runtime_1.getDataSourceSrv().loadDatasource(this.current.name);
 
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            return [4
-            /*yield*/
-            , Object(_grafana_runtime__WEBPACK_IMPORTED_MODULE_1__["getDataSourceSrv"])().loadDatasource(this.current.name)];
+              case 2:
+                ds = _context3.sent;
+                ds.loudml.scheduleJob(this.job).then(function (response) {
+                  window.console.log(response);
+                  app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Job has been scheduled on Loud ML server']);
 
-          case 1:
-            ds = _a.sent();
+                  _this3.refreshModels();
+                })["catch"](function (error) {
+                  console.log(error);
+                  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Job schedule error', error.statusText]);
+                });
 
-            try {
-              ds.loudml.startModel(name).then(function (response) {
-                window.console.log(response);
-                grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertSuccess, ['Model has been started on Loud ML server']);
-
-                _this.refreshModels();
-              });
-            } catch (err) {
-              console.error(err);
-              grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertError, ['Model start error', err]);
+              case 4:
+              case "end":
+                return _context3.stop();
             }
+          }
+        }, _callee3, this);
+      }));
+    }
+    /**
+     * Deletes  job on LoudML server
+     */
 
-            return [2
-            /*return*/
-            ];
-        }
-      });
-    });
-  };
+  }, {
+    key: "deleteJob",
+    value: function deleteJob(name) {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+        var _this4 = this;
 
-  LoudMLConfigCtrl.prototype.stopModel = function (name) {
-    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var ds;
+        var ds;
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return runtime_1.getDataSourceSrv().loadDatasource(this.current.name);
 
-      var _this = this;
+              case 2:
+                ds = _context4.sent;
+                ds.loudml.deleteJob(name).then(function (response) {
+                  window.console.log(response);
+                  app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Scheduled job has been deleted on Loud ML server']);
 
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            return [4
-            /*yield*/
-            , Object(_grafana_runtime__WEBPACK_IMPORTED_MODULE_1__["getDataSourceSrv"])().loadDatasource(this.current.name)];
+                  _this4.refreshModels();
+                })["catch"](function (error) {
+                  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Job delete error', error.statusText]);
+                });
 
-          case 1:
-            ds = _a.sent();
-
-            try {
-              ds.loudml.stopModel(name).then(function (response) {
-                window.console.log(response);
-                grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertSuccess, ['Model has been stoped on Loud ML server']);
-
-                _this.refreshModels();
-              });
-            } catch (err) {
-              console.error(err);
-              grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertError, ['Model stop error', err]);
+              case 4:
+              case "end":
+                return _context4.stop();
             }
+          }
+        }, _callee4, this);
+      }));
+    }
+  }, {
+    key: "startModel",
+    value: function startModel(name) {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+        var _this5 = this;
 
-            return [2
-            /*return*/
-            ];
-        }
-      });
-    });
-  };
+        var ds;
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return runtime_1.getDataSourceSrv().loadDatasource(this.current.name);
 
-  LoudMLConfigCtrl.prototype.forecastModel = function (name) {
-    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-        window.console.log('FORECAST MODEL');
-        return [2
-        /*return*/
-        ];
-      });
-    });
-  };
+              case 2:
+                ds = _context5.sent;
 
-  LoudMLConfigCtrl.prototype.trainModel = function (name) {
-    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-        window.console.log('TRAIN MODEL');
-        return [2
-        /*return*/
-        ];
-      });
-    });
-  };
+                try {
+                  ds.loudml.startModel(name).then(function (response) {
+                    window.console.log(response);
+                    app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been started on Loud ML server']);
 
-  LoudMLConfigCtrl.prototype.deleteModel = function (name) {
-    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var ds;
+                    _this5.refreshModels();
+                  });
+                } catch (err) {
+                  console.error(err);
+                  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model start error', err]);
+                }
 
-      var _this = this;
-
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            return [4
-            /*yield*/
-            , Object(_grafana_runtime__WEBPACK_IMPORTED_MODULE_1__["getDataSourceSrv"])().loadDatasource(this.current.name)];
-
-          case 1:
-            ds = _a.sent();
-
-            try {
-              ds.loudml.deleteModel(name).then(function (response) {
-                window.console.log(response);
-                grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertSuccess, ['Model has been deleted on Loud ML server']);
-
-                _this.refreshModels();
-              });
-            } catch (err) {
-              console.error(err);
-              grafana_app_core_app_events__WEBPACK_IMPORTED_MODULE_3___default.a.emit(_grafana_data__WEBPACK_IMPORTED_MODULE_2__["AppEvents"].alertError, ['Model delete error', err]);
+              case 4:
+              case "end":
+                return _context5.stop();
             }
+          }
+        }, _callee5, this);
+      }));
+    }
+  }, {
+    key: "stopModel",
+    value: function stopModel(name) {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+        var _this6 = this;
 
-            return [2
-            /*return*/
-            ];
-        }
-      });
-    });
-  };
+        var ds;
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return runtime_1.getDataSourceSrv().loadDatasource(this.current.name);
 
-  LoudMLConfigCtrl.template = _partials_config_html__WEBPACK_IMPORTED_MODULE_4___default.a;
+              case 2:
+                ds = _context6.sent;
+
+                try {
+                  ds.loudml.stopModel(name).then(function (response) {
+                    window.console.log(response);
+                    app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been stoped on Loud ML server']);
+
+                    _this6.refreshModels();
+                  });
+                } catch (err) {
+                  console.error(err);
+                  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model stop error', err]);
+                }
+
+              case 4:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+    }
+  }, {
+    key: "forecastModel",
+    value: function forecastModel(name) {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                window.console.log('FORECAST MODEL');
+
+              case 1:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }));
+    }
+  }, {
+    key: "trainModel",
+    value: function trainModel(name) {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+        return regeneratorRuntime.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                window.console.log('TRAIN MODEL');
+
+              case 1:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
+      }));
+    }
+  }, {
+    key: "deleteModel",
+    value: function deleteModel(name) {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+        var _this7 = this;
+
+        var ds;
+        return regeneratorRuntime.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                _context9.next = 2;
+                return runtime_1.getDataSourceSrv().loadDatasource(this.current.name);
+
+              case 2:
+                ds = _context9.sent;
+
+                try {
+                  ds.loudml.deleteModel(name).then(function (response) {
+                    window.console.log(response);
+                    app_events_1["default"].emit(data_1.AppEvents.alertSuccess, ['Model has been deleted on Loud ML server']);
+
+                    _this7.refreshModels();
+                  });
+                } catch (err) {
+                  console.error(err);
+                  app_events_1["default"].emit(data_1.AppEvents.alertError, ['Model delete error', err]);
+                }
+
+              case 4:
+              case "end":
+                return _context9.stop();
+            }
+          }
+        }, _callee9, this);
+      }));
+    }
+  }]);
+
   return LoudMLConfigCtrl;
 }();
 
-
+exports.LoudMLConfigCtrl = LoudMLConfigCtrl;
+LoudMLConfigCtrl.template = config_html_1["default"];
 
 /***/ }),
 
@@ -850,84 +887,104 @@ function () {
 /*!**********************************!*\
   !*** ./datasource/datasource.ts ***!
   \**********************************/
-/*! exports provided: default, LoudMLDatasource */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoudMLDatasource", function() { return LoudMLDatasource; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _loudml_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./loudml_api */ "./datasource/loudml_api.ts");
 
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var LoudMLDatasource =
-/** @class */
-function () {
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var tslib_1 = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+
+var loudml_api_1 = tslib_1.__importDefault(__webpack_require__(/*! ./loudml_api */ "./datasource/loudml_api.ts"));
+
+var LoudMLDatasource = /*#__PURE__*/function () {
   LoudMLDatasource.$inject = ["instanceSettings", "backendSrv"];
 
   /** @ngInject */
   function LoudMLDatasource(instanceSettings, backendSrv) {
+    _classCallCheck(this, LoudMLDatasource);
+
     this.bucket = (instanceSettings.jsonData || {}).bucket;
-    this.loudml = new _loudml_api__WEBPACK_IMPORTED_MODULE_1__["default"](instanceSettings, backendSrv);
+    this.loudml = new loudml_api_1["default"](instanceSettings, backendSrv);
   }
 
-  LoudMLDatasource.prototype.query = function (options) {
-    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var url, params, response;
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            url = options.url, params = options.params;
-            return [4
-            /*yield*/
-            , this.loudml.get(url, params)];
+  _createClass(LoudMLDatasource, [{
+    key: "query",
+    value: function query(options) {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var url, params, response;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                url = options.url, params = options.params;
+                _context.next = 3;
+                return this.loudml.get(url, params);
 
-          case 1:
-            response = _a.sent();
-            return [2
-            /*return*/
-            , response];
-        }
-      });
-    });
-  };
+              case 3:
+                response = _context.sent;
+                return _context.abrupt("return", response);
 
-  LoudMLDatasource.prototype.testDatasource = function () {
-    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var response;
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            return [4
-            /*yield*/
-            , this.loudml.get('/')];
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+    }
+  }, {
+    key: "testDatasource",
+    value: function testDatasource() {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var response;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return this.loudml.get('/');
 
-          case 1:
-            response = _a.sent();
-            return [2
-            /*return*/
-            , response.version ? {
-              status: 'success',
-              message: 'Data source is working, Loud ML server version ' + response.version
-            } : {
-              status: 'error',
-              message: response.error
-            }];
-        }
-      });
-    });
-  };
+              case 2:
+                response = _context2.sent;
+                return _context2.abrupt("return", response.version ? {
+                  status: 'success',
+                  message: 'Data source is working, Loud ML server version ' + response.version
+                } : {
+                  status: 'error',
+                  message: response.error
+                });
 
-  LoudMLDatasource.prototype.metricFindQuery = function (options) {
-    return [];
-  };
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+    }
+  }, {
+    key: "metricFindQuery",
+    value: function metricFindQuery(options) {
+      return [];
+    }
+  }]);
 
   return LoudMLDatasource;
 }();
 
-/* harmony default export */ __webpack_exports__["default"] = (LoudMLDatasource);
-
+exports["default"] = LoudMLDatasource;
+exports.LoudMLDatasource = LoudMLDatasource;
 
 /***/ }),
 
@@ -935,68 +992,78 @@ function () {
 /*!**********************************!*\
   !*** ./datasource/loudml_api.ts ***!
   \**********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ "./datasource/types.ts");
-// @ts-nocheck
+ // @ts-nocheck
 // Loud ML API class
 // Connects to Loud ML server
 //
 // https://loudml.io
 // http://github.com/regel/loudml
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-var LoudMLAPI =
-/** @class */
-function () {
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var tslib_1 = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+
+var types_1 = __webpack_require__(/*! ./types */ "./datasource/types.ts");
+
+var LoudMLAPI = /*#__PURE__*/function () {
   function LoudMLAPI(instanceSettings, backendSrv) {
     var _this = this;
+
+    _classCallCheck(this, LoudMLAPI);
 
     this.backendSrv = backendSrv;
 
     this.createAndGetBucket = function (database, retentionPolicy, measurement, source) {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
-        var _a, host, port, bucketName, settings, response;
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var _this$splitAddr, host, port, bucketName, settings, response;
 
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
-          switch (_b.label) {
-            case 0:
-              _a = this.splitAddr('http://localhost:8086', 8086), host = _a.host, port = _a.port;
-              bucketName = [database, retentionPolicy, measurement].join('_');
-              settings = {
-                type: source.type,
-                name: bucketName,
-                retention_policy: retentionPolicy,
-                database: database,
-                measurement: measurement,
-                addr: host + ":" + port,
-                username: source.username,
-                password: source.password
-              };
-              return [4
-              /*yield*/
-              , this._query('POST', '/buckets', settings)];
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this$splitAddr = this.splitAddr('http://localhost:8086', 8086), host = _this$splitAddr.host, port = _this$splitAddr.port; //source.url, 8086)
 
-            case 1:
-              _b.sent();
+                bucketName = [database, retentionPolicy, measurement].join('_');
+                settings = {
+                  type: source.type,
+                  name: bucketName,
+                  retention_policy: retentionPolicy,
+                  database: database,
+                  measurement: measurement,
+                  addr: "".concat(host, ":").concat(port),
+                  username: source.username,
+                  password: source.password
+                };
+                _context.next = 5;
+                return this._query('POST', '/buckets', settings);
 
-              return [4
-              /*yield*/
-              , this._query('GET', "/buckets/" + bucketName)];
+              case 5:
+                _context.next = 7;
+                return this._query('GET', "/buckets/".concat(bucketName));
 
-            case 2:
-              response = _b.sent();
-              return [2
-              /*return*/
-              , response[0]];
+              case 7:
+                response = _context.sent;
+                return _context.abrupt("return", response[0]);
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
           }
-        });
-      });
+        }, _callee, this);
+      }));
     };
 
     this.splitAddr = function (url, port) {
@@ -1010,198 +1077,275 @@ function () {
     };
 
     this.createModel = function (model) {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-          // POST model JSON to /models
-          return [2
-          /*return*/
-          , this._query('POST', '/models', model)];
-        });
-      });
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                return _context2.abrupt("return", this._query('POST', '/models', model));
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
     };
 
     this.patchModel = function (name, model) {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-          return [2
-          /*return*/
-          , this._query('PATCH', "/models/" + name, model)];
-        });
-      });
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                return _context3.abrupt("return", this._query('PATCH', "/models/".concat(name), model));
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
     };
 
     this.getModel = function (name) {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-          return [2
-          /*return*/
-          , this._query('GET', "/models/" + name)];
-        });
-      });
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                return _context4.abrupt("return", this._query('GET', "/models/".concat(name)));
+
+              case 1:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
     };
 
     this.deleteModel = function (name) {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-          return [2
-          /*return*/
-          , this._query('DELETE', "/models/" + name)];
-        });
-      });
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                return _context5.abrupt("return", this._query('DELETE', "/models/".concat(name)));
+
+              case 1:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
     };
 
     this.createHook = function (hook, bucket) {
-      var h = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, hook);
-
+      var h = Object.assign({}, hook);
       h.config.bucket = bucket;
       return h;
     };
 
     this.createModelHook = function (name, hook) {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-          // POST model hook to /models/${name}/hooks
-          return [2
-          /*return*/
-          , this._query('POST', "/models/" + name + "/hooks", hook)];
-        });
-      });
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                return _context6.abrupt("return", this._query('POST', "/models/".concat(name, "/hooks"), hook));
+
+              case 1:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
     };
 
     this.trainAndStartModel = function (name, from, to, output_bucket) {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
         var params;
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-          params = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, _types__WEBPACK_IMPORTED_MODULE_1__["DEFAULT_START_OPTIONS"]), {
-            from: from,
-            to: to,
-            output_bucket: output_bucket
-          });
-          return [2
-          /*return*/
-          , this._query('POST', "/models/" + name + "/_train", params, true)];
-        });
-      });
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                params = Object.assign(Object.assign({}, types_1.DEFAULT_START_OPTIONS), {
+                  from: from,
+                  to: to,
+                  output_bucket: output_bucket
+                });
+                return _context7.abrupt("return", this._query('POST', "/models/".concat(name, "/_train"), params, true));
+
+              case 2:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7, this);
+      }));
     };
 
     this.forecastModel = function (name, data, output_bucket) {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
-        var _a, from, to, params;
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+        var _data$timeRange$raw, from, to, params;
 
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
-          _a = data.timeRange.raw, from = _a.from, to = _a.to;
-          params = {
-            from: from,
-            to: to,
-            save_output_data: true,
-            output_bucket: output_bucket,
-            bg: true
-          };
-          return [2
-          /*return*/
-          , this._query('POST', "/models/" + name + "/_forecast", params, true)];
-        });
-      });
+        return regeneratorRuntime.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                _data$timeRange$raw = data.timeRange.raw, from = _data$timeRange$raw.from, to = _data$timeRange$raw.to;
+                params = {
+                  from: from,
+                  to: to,
+                  save_output_data: true,
+                  output_bucket: output_bucket,
+                  bg: true
+                };
+                return _context8.abrupt("return", this._query('POST', "/models/".concat(name, "/_forecast"), params, true));
+
+              case 3:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8, this);
+      }));
     };
 
     this.trainModel = function (name, data, output_bucket) {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
-        var _a, lower, upper;
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+        var _this$convertTimeRang, lower, upper;
 
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
-          switch (_b.label) {
-            case 0:
-              _a = this.convertTimeRange(data.timeRange), lower = _a.lower, upper = _a.upper;
-              return [4
-              /*yield*/
-              , this.trainAndStartModel(name, lower, upper, output_bucket)];
+        return regeneratorRuntime.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                _this$convertTimeRang = this.convertTimeRange(data.timeRange), lower = _this$convertTimeRang.lower, upper = _this$convertTimeRang.upper;
+                _context9.next = 3;
+                return this.trainAndStartModel(name, lower, upper, output_bucket);
 
-            case 1:
-              return [2
-              /*return*/
-              , _b.sent()];
+              case 3:
+                return _context9.abrupt("return", _context9.sent);
+
+              case 4:
+              case "end":
+                return _context9.stop();
+            }
           }
-        });
-      });
+        }, _callee9, this);
+      }));
     };
 
     this.startModel = function (name, output_bucket) {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
         var params;
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-          params = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, _types__WEBPACK_IMPORTED_MODULE_1__["DEFAULT_START_OPTIONS"]), {
-            output_bucket: output_bucket
-          });
-          return [2
-          /*return*/
-          , this._query('POST', "/models/" + name + "/_start", params, true)];
-        });
-      });
+        return regeneratorRuntime.wrap(function _callee10$(_context10) {
+          while (1) {
+            switch (_context10.prev = _context10.next) {
+              case 0:
+                params = Object.assign(Object.assign({}, types_1.DEFAULT_START_OPTIONS), {
+                  output_bucket: output_bucket
+                });
+                return _context10.abrupt("return", this._query('POST', "/models/".concat(name, "/_start"), params, true));
+
+              case 2:
+              case "end":
+                return _context10.stop();
+            }
+          }
+        }, _callee10, this);
+      }));
     };
 
     this.stopModel = function (name) {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
         var params;
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-          params = {};
-          return [2
-          /*return*/
-          , this._query('POST', "/models/" + name + "/_stop", params, true)];
-        });
-      });
+        return regeneratorRuntime.wrap(function _callee11$(_context11) {
+          while (1) {
+            switch (_context11.prev = _context11.next) {
+              case 0:
+                params = {};
+                return _context11.abrupt("return", this._query('POST', "/models/".concat(name, "/_stop"), params, true));
+
+              case 2:
+              case "end":
+                return _context11.stop();
+            }
+          }
+        }, _callee11, this);
+      }));
     };
 
     this.scheduleJob = function (job) {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
         var params;
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-          params = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, job);
-          window.console.log(params);
-          params.every.count = parseInt(params.every.count, 10) || 1;
+        return regeneratorRuntime.wrap(function _callee12$(_context12) {
+          while (1) {
+            switch (_context12.prev = _context12.next) {
+              case 0:
+                params = Object.assign({}, job);
+                window.console.log(params);
+                params.every.count = parseInt(params.every.count, 10) || 1;
 
-          if (!params.params) {
-            delete params.params;
-          } else {
-            params.params = JSON.parse(params.params);
+                if (!params.params) {
+                  delete params.params;
+                } else {
+                  params.params = JSON.parse(params.params);
+                }
+
+                if (!params.json) {
+                  delete params.json;
+                } else {
+                  params.json = JSON.parse(params.json);
+                }
+
+                if (!params.every.at) {
+                  delete params.every.at;
+                }
+
+                delete params['$$hashKey'];
+                delete params.ok;
+                delete params.error;
+                delete params.status_code;
+                delete params.last_run_timestamp;
+                window.console.log(params);
+                return _context12.abrupt("return", this._query('POST', "/scheduled_jobs", params));
+
+              case 13:
+              case "end":
+                return _context12.stop();
+            }
           }
-
-          if (!params.json) {
-            delete params.json;
-          } else {
-            params.json = JSON.parse(params.json);
-          }
-
-          if (!params.every.at) {
-            delete params.every.at;
-          }
-
-          delete params['$$hashKey'];
-          delete params.ok;
-          delete params.error;
-          delete params.status_code;
-          delete params.last_run_timestamp;
-          window.console.log(params);
-          return [2
-          /*return*/
-          , this._query('POST', "/scheduled_jobs", params)];
-        });
-      });
+        }, _callee12, this);
+      }));
     };
 
     this.deleteJob = function (name) {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-          return [2
-          /*return*/
-          , this._query('DELETE', "/scheduled_jobs/" + name)];
-        });
-      });
+      return tslib_1.__awaiter(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
+        return regeneratorRuntime.wrap(function _callee13$(_context13) {
+          while (1) {
+            switch (_context13.prev = _context13.next) {
+              case 0:
+                return _context13.abrupt("return", this._query('DELETE', "/scheduled_jobs/".concat(name)));
+
+              case 1:
+              case "end":
+                return _context13.stop();
+            }
+          }
+        }, _callee13, this);
+      }));
     };
 
     this.convertTimeRange = function (timeRange) {
-      var _a = timeRange.raw,
-          from = _a.from,
-          to = _a.to;
+      var _timeRange$raw = timeRange.raw,
+          from = _timeRange$raw.from,
+          to = _timeRange$raw.to;
       return {
         lower: from,
         upper: to
@@ -1211,55 +1355,69 @@ function () {
     this.url = instanceSettings.url;
   }
 
-  LoudMLAPI.prototype.get = function (url, params) {
-    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-        return [2
-        /*return*/
-        , this._query('GET', url, params)];
-      });
-    });
-  };
+  _createClass(LoudMLAPI, [{
+    key: "get",
+    value: function get(url, params) {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
+        return regeneratorRuntime.wrap(function _callee14$(_context14) {
+          while (1) {
+            switch (_context14.prev = _context14.next) {
+              case 0:
+                return _context14.abrupt("return", this._query('GET', url, params));
 
-  LoudMLAPI.prototype._query = function (method, url, data, data_as_params) {
-    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var options, response, responseData;
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            method = method.toUpperCase();
-            options = {
-              method: method,
-              url: this.url + url,
-              headers: {}
-            };
-
-            if (method === 'GET' || method === 'DELETE' || data_as_params) {
-              options.params = data;
-            } else {
-              options.data = data;
-              options.headers['Content-Type'] = 'application/json';
+              case 1:
+              case "end":
+                return _context14.stop();
             }
+          }
+        }, _callee14, this);
+      }));
+    }
+  }, {
+    key: "_query",
+    value: function _query(method, url, data, data_as_params) {
+      return tslib_1.__awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee15() {
+        var options, response, responseData;
+        return regeneratorRuntime.wrap(function _callee15$(_context15) {
+          while (1) {
+            switch (_context15.prev = _context15.next) {
+              case 0:
+                method = method.toUpperCase();
+                options = {
+                  method: method,
+                  url: this.url + url,
+                  headers: {}
+                };
 
-            return [4
-            /*yield*/
-            , this.backendSrv.datasourceRequest(options)];
+                if (method === 'GET' || method === 'DELETE' || data_as_params) {
+                  options.params = data;
+                } else {
+                  options.data = data;
+                  options.headers['Content-Type'] = 'application/json';
+                }
 
-          case 1:
-            response = _a.sent();
-            responseData = response.data;
-            return [2
-            /*return*/
-            , responseData];
-        }
-      });
-    });
-  };
+                _context15.next = 5;
+                return this.backendSrv.datasourceRequest(options);
+
+              case 5:
+                response = _context15.sent;
+                responseData = response.data;
+                return _context15.abrupt("return", responseData);
+
+              case 8:
+              case "end":
+                return _context15.stop();
+            }
+          }
+        }, _callee15, this);
+      }));
+    }
+  }]);
 
   return LoudMLAPI;
 }();
 
-/* harmony default export */ __webpack_exports__["default"] = (LoudMLAPI);
+exports["default"] = LoudMLAPI;
 
 /***/ }),
 
@@ -1267,29 +1425,29 @@ function () {
 /*!******************************!*\
   !*** ./datasource/module.ts ***!
   \******************************/
-/*! exports provided: LoudMLDatasource, Datasource, QueryCtrl, ConfigCtrl */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _datasource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./datasource */ "./datasource/datasource.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LoudMLDatasource", function() { return _datasource__WEBPACK_IMPORTED_MODULE_0__["LoudMLDatasource"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Datasource", function() { return _datasource__WEBPACK_IMPORTED_MODULE_0__["LoudMLDatasource"]; });
 
-/* harmony import */ var _query_ctrl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./query_ctrl */ "./datasource/query_ctrl.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "QueryCtrl", function() { return _query_ctrl__WEBPACK_IMPORTED_MODULE_1__["LoudMLQueryCtrl"]; });
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-/* harmony import */ var _config_ctrl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config_ctrl */ "./datasource/config_ctrl.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ConfigCtrl", function() { return _config_ctrl__WEBPACK_IMPORTED_MODULE_2__["LoudMLConfigCtrl"]; });
+var datasource_1 = __webpack_require__(/*! ./datasource */ "./datasource/datasource.ts");
 
- // import { LoudMLQueryCtrl as QueryCtrl } from './query_ctrl';
+exports.LoudMLDatasource = datasource_1.LoudMLDatasource;
+exports.Datasource = datasource_1.LoudMLDatasource; // import { LoudMLQueryCtrl as QueryCtrl } from './query_ctrl';
 // import { LoudMLConfigCtrl as ConfigCtrl } from './config_ctrl';
 
+var query_ctrl_1 = __webpack_require__(/*! ./query_ctrl */ "./datasource/query_ctrl.ts");
 
- // export { LoudMLDatasource as Datasource, ConfigCtrl, QueryCtrl };
+exports.QueryCtrl = query_ctrl_1.LoudMLQueryCtrl;
 
+var config_ctrl_1 = __webpack_require__(/*! ./config_ctrl */ "./datasource/config_ctrl.ts");
 
+exports.ConfigCtrl = config_ctrl_1.LoudMLConfigCtrl;
 
 /***/ }),
 
@@ -1319,40 +1477,54 @@ module.exports = "";
 /*!**********************************!*\
   !*** ./datasource/query_ctrl.ts ***!
   \**********************************/
-/*! exports provided: LoudMLQueryCtrl */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoudMLQueryCtrl", function() { return LoudMLQueryCtrl; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _partials_query_ctrl_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./partials/query_ctrl.html */ "./datasource/partials/query_ctrl.html");
-/* harmony import */ var _partials_query_ctrl_html__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_partials_query_ctrl_html__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var grafana_app_plugins_sdk__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! grafana/app/plugins/sdk */ "grafana/app/plugins/sdk");
-/* harmony import */ var grafana_app_plugins_sdk__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(grafana_app_plugins_sdk__WEBPACK_IMPORTED_MODULE_2__);
- // @ts-nocheck
 
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var tslib_1 = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js"); // @ts-nocheck
 
 
-var LoudMLQueryCtrl =
-/** @class */
-function (_super) {
+var query_ctrl_html_1 = tslib_1.__importDefault(__webpack_require__(/*! ./partials/query_ctrl.html */ "./datasource/partials/query_ctrl.html"));
+
+var sdk_1 = __webpack_require__(/*! grafana/app/plugins/sdk */ "grafana/app/plugins/sdk");
+
+var LoudMLQueryCtrl = /*#__PURE__*/function (_sdk_1$QueryCtrl) {
   LoudMLQueryCtrl.$inject = ["$scope", "$injector"];
 
-  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(LoudMLQueryCtrl, _super);
+  _inherits(LoudMLQueryCtrl, _sdk_1$QueryCtrl);
+
   /** @ngInject */
-
-
   function LoudMLQueryCtrl($scope, $injector) {
-    return _super.call(this, $scope, $injector) || this;
+    _classCallCheck(this, LoudMLQueryCtrl);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(LoudMLQueryCtrl).call(this, $scope, $injector));
   }
 
-  LoudMLQueryCtrl.template = _partials_query_ctrl_html__WEBPACK_IMPORTED_MODULE_1___default.a;
   return LoudMLQueryCtrl;
-}(grafana_app_plugins_sdk__WEBPACK_IMPORTED_MODULE_2__["QueryCtrl"]);
+}(sdk_1.QueryCtrl);
 
-
+exports.LoudMLQueryCtrl = LoudMLQueryCtrl;
+LoudMLQueryCtrl.template = query_ctrl_html_1["default"];
 
 /***/ }),
 
@@ -1360,33 +1532,22 @@ function (_super) {
 /*!*****************************!*\
   !*** ./datasource/types.ts ***!
   \*****************************/
-/*! exports provided: DEFAULT_LOUDML_RP, MODEL_TYPE_LIST, DEFAULT_MODEL, DEFAULT_JOB, DEFAULT_FEATURE, DEFAULT_START_OPTIONS, MIN_INTERVAL_SECOND, MIN_INTERVAL_UNIT, MAX_INTERVAL_SECOND, MAX_INTERVAL_UNIT, MIN_SPAN, MAX_SPAN, DEFAULT_ANOMALY_TYPE, ANOMALY_HOOK_NAME, ANOMALY_HOOK */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_LOUDML_RP", function() { return DEFAULT_LOUDML_RP; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MODEL_TYPE_LIST", function() { return MODEL_TYPE_LIST; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_MODEL", function() { return DEFAULT_MODEL; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_JOB", function() { return DEFAULT_JOB; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_FEATURE", function() { return DEFAULT_FEATURE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_START_OPTIONS", function() { return DEFAULT_START_OPTIONS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MIN_INTERVAL_SECOND", function() { return MIN_INTERVAL_SECOND; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MIN_INTERVAL_UNIT", function() { return MIN_INTERVAL_UNIT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAX_INTERVAL_SECOND", function() { return MAX_INTERVAL_SECOND; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAX_INTERVAL_UNIT", function() { return MAX_INTERVAL_UNIT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MIN_SPAN", function() { return MIN_SPAN; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAX_SPAN", function() { return MAX_SPAN; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_ANOMALY_TYPE", function() { return DEFAULT_ANOMALY_TYPE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ANOMALY_HOOK_NAME", function() { return ANOMALY_HOOK_NAME; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ANOMALY_HOOK", function() { return ANOMALY_HOOK; });
-var DEFAULT_LOUDML_RP = 'autogen';
-var MODEL_TYPE_LIST = [{
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DEFAULT_LOUDML_RP = 'autogen';
+exports.MODEL_TYPE_LIST = [{
   name: 'Donut',
   type: 'donut',
   "default": true
 }];
-var DEFAULT_MODEL = {
+exports.DEFAULT_MODEL = {
   bucket_interval: '20m',
   default_bucket: null,
   features: [],
@@ -1395,9 +1556,9 @@ var DEFAULT_MODEL = {
   name: '',
   offset: '10s',
   span: 10,
-  type: MODEL_TYPE_LIST[0].type
+  type: exports.MODEL_TYPE_LIST[0].type
 };
-var DEFAULT_JOB = {
+exports.DEFAULT_JOB = {
   name: '',
   method: 'get',
   relative_url: '',
@@ -1409,7 +1570,7 @@ var DEFAULT_JOB = {
     at: ''
   }
 };
-var DEFAULT_FEATURE = {
+exports.DEFAULT_FEATURE = {
   name: '',
   measurement: null,
   field: null,
@@ -1419,18 +1580,18 @@ var DEFAULT_FEATURE = {
   anomaly_type: 'low_high',
   match_all: []
 };
-var DEFAULT_START_OPTIONS = {
+exports.DEFAULT_START_OPTIONS = {
   output_bucket: 'loudml',
   save_output_data: true,
   flag_abnormal_data: true
 };
-var MIN_INTERVAL_SECOND = 5;
-var MIN_INTERVAL_UNIT = MIN_INTERVAL_SECOND + "s";
-var MAX_INTERVAL_SECOND = 60;
-var MAX_INTERVAL_UNIT = MAX_INTERVAL_SECOND + "s";
-var MIN_SPAN = 10;
-var MAX_SPAN = 100;
-var DEFAULT_ANOMALY_TYPE = [{
+exports.MIN_INTERVAL_SECOND = 5;
+exports.MIN_INTERVAL_UNIT = "".concat(exports.MIN_INTERVAL_SECOND, "s");
+exports.MAX_INTERVAL_SECOND = 60;
+exports.MAX_INTERVAL_UNIT = "".concat(exports.MAX_INTERVAL_SECOND, "s");
+exports.MIN_SPAN = 10;
+exports.MAX_SPAN = 100;
+exports.DEFAULT_ANOMALY_TYPE = [{
   text: 'low',
   value: 'low'
 }, {
@@ -1440,10 +1601,10 @@ var DEFAULT_ANOMALY_TYPE = [{
   text: 'low/high',
   value: 'low_high'
 }];
-var ANOMALY_HOOK_NAME = 'add_annotation';
-var ANOMALY_HOOK = {
+exports.ANOMALY_HOOK_NAME = 'add_annotation';
+exports.ANOMALY_HOOK = {
   type: 'annotations',
-  name: ANOMALY_HOOK_NAME,
+  name: exports.ANOMALY_HOOK_NAME,
   config: {
     id: null,
     type: 'loudml',
