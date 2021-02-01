@@ -21,7 +21,7 @@
       {"name": "LoudML graph panel", "path": "img/loudml_grafana_panel.png"},
       {"name": "LoudML datasource", "path": "img/loudml_grafana_datasource.png"}
     ],
-    "version": "1.7.1",
+    "version": "1.7.2",
     "updated": "%TODAY%"
   },
 
